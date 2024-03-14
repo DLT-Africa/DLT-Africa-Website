@@ -1,8 +1,17 @@
+import Link from "next/link";
+import { navbarContent } from "../../configs/navbarConfig";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <div>
+      <Link href={"/"}>
+        <img src={navbarContent.logo} />
+      </Link>
 
-export default Header
+      <div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;

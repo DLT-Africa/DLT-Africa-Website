@@ -71,3 +71,16 @@ git push origin `name of the issue you're picking`
 Go to your github and submit a pull request to the main repository.
 
 Your pull request will be reviewed by the maintainers, and any necessary feedback or adjustments will be provided.
+
+
+
+
+
+
+
+   <Image src='https://tinyurl.com/46va4tyk'
+       alt='/' 
+       width='200'
+       height='400'
+       />
+      

@@ -1,5 +1,5 @@
-export const footerContent = {
-  logo: "",
+export const navbarContent = {
+  logo: "https://dltafrica.io/static/media/dlt-logo.5ab17ff18a5c4ae8adb1df98544f1f69.svg",
   quickLinks: [
     { title: "Home", url: "/" },
     { title: "Hacker House", url: "/hack" },
@@ -7,4 +7,5 @@ export const footerContent = {
     { title: "Our Team", url: "/team" },
     { title: "Programmes", url: "/courses" },
   ],
+
 };
