@@ -28,7 +28,6 @@ const BlockchainSection = () => {
                     ))}
                 </div>
             </div>
- 
         </div>
     )
 }
