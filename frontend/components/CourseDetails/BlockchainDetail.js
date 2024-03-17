@@ -24,8 +24,8 @@ const items = [
 ];
 
 const ListItem = ({ item }) => (
-    <div class=" flex-row  items-center flex-shrink-0">
-        <div className='w-862 flex flex-row items-center  justify-around  h-20 text-black font-serif text-2xl font-bold'>
+    <div class=" flex-row items-center flex-shrink-0">
+        <div className='w-862 flex flex-row items-center flex-container justify-around  h-20 text-black font-serif text-2xl font-bold'>
             <div class="flex  items-start basis-1/4 gap-5 mr-12 flex-shrink-0 ">
                 <div className='w-80 h-11 relative space-x-7 gap-4 flex items-start'>
                     <h1 className='absolute bottom-4 text-5xl'>.</h1>
