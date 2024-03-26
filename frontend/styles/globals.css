@@ -4,38 +4,3 @@
 @tailwind utilities;
 
 
-
-.mostly-customized-scrollbar::-webkit-scrollbar {
-
-  width: 5px;
-  height: 8px;
-  border-radius: 20px;
-  background-color: #c2c2c2;
-}
-
-
-.mostly-customized-scrollbar::-webkit-scrollbar-thumb {
-  background: #505050;
-  border-radius: 20px;
-}
-
-	width: 5px;
-	height: 8px;
-	border-radius: 20px;
-	background-color: #c2c2c2; /* or add it to the track */
-  }
-  
-  /* Add a thumb */
-  .mostly-customized-scrollbar::-webkit-scrollbar-thumb {
-	background: #505050;
-	border-radius: 20px;
-  }
- 
-
-
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-	  transition: background-color 5000000s ease-in-out 0s;
-  }
