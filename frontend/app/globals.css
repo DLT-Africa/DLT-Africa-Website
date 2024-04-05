@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.mostly-customized-scrollbar::-webkit-scrollbar {
+	width: 5px;
+	height: 8px;
+	border-radius: 20px;
+	background-color: #c2c2c2; /* or add it to the track */
+  }
+  
+  /* Add a thumb */
+  .mostly-customized-scrollbar::-webkit-scrollbar-thumb {
+	background: #505050;
+	border-radius: 20px;
+  }
+ 
+  html {
+    scroll-behavior: smooth;
+}
+
