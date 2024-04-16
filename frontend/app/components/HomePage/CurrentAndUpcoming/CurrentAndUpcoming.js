@@ -7,7 +7,7 @@ import Current4 from "../../../../public/Current4.png"
 const CurrentAndUpcoming = () => {
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-center text-6xl tracking-wide mb-12 pt-[57px] ">
+      <h1 className="text-center text-6xl tracking-wide mb-12 pt-[57px]">
         Current and Upcoming Programmmes.
       </h1>
 
