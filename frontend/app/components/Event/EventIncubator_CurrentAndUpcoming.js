@@ -4,7 +4,6 @@ import Current3 from "../../../public/Current3.png";
 import Current4 from "../../../public/Current4.png";
 import Image from "next/image";
 
-
 const EventIncubator_CurrentAndUpcoming = () => {
   return (
     <>
@@ -32,14 +31,14 @@ const EventIncubator_CurrentAndUpcoming = () => {
       </div>
 
       <div>
-        <h1 className="text-center text-[40px] font-normal trackong-[3.36px] leading-[120px] tracking-wide ">
+        <h1 className="text-center text-[30px] font-normal mt-10 xl:text-[45px] lg:text[40px] md:text-[35px]  ">
           Current and Upcoming
         </h1>
       </div>
 
-      <div className="flex justify-center flex-wrap gap-[44px] lg:mb-[135px] md:mb-[40px] sm:mb-[67px]">
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-        <Image className="h-[100px] w-[100px] rounded-full " src={Current1} />
+      <div className="flex justify-center flex-wrap gap-[44px] lg:mb-[135px] md:mb-[40px] sm:mb-[67px] p-10">
+        <div className="hidden xl:flex lg:flex md:flex sm:flex max-w-xs shadow-lg  flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
+          <Image className="h-[100px] w-[100px] rounded-full " src={Current1} />
           <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
             <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
               <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
@@ -61,8 +60,8 @@ const EventIncubator_CurrentAndUpcoming = () => {
           </div>
         </div>
 
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-        <Image className="h-[100px] w-[100px] rounded-full " src={Current2} />
+        <div className="hidden xl:flex lg:flex md:flex sm:flex max-w-xs shadow-lg  flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
+          <Image className="h-[100px] w-[100px] rounded-full " src={Current2} />
           <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
             <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
               <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
@@ -84,8 +83,8 @@ const EventIncubator_CurrentAndUpcoming = () => {
           </div>
         </div>
 
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-        <Image className="h-[100px] w-[100px] rounded-full " src={Current3} />
+        <div className="hidden xl:flex lg:flex md:flex sm:flex max-w-xs shadow-lg  flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
+          <Image className="h-[100px] w-[100px] rounded-full " src={Current3} />
           <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
             <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
               <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
@@ -107,7 +106,7 @@ const EventIncubator_CurrentAndUpcoming = () => {
           </div>
         </div>
         <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-        <Image className="h-[100px] w-[100px] rounded-full " src={Current4} />
+          <Image className="h-[100px] w-[100px] rounded-full " src={Current4} />
           <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
             <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
               <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
