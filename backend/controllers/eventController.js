@@ -1,120 +1,183 @@
 const Event = require("../models/eventModel");
+const asyncHandler = require("express-async-handler");
 
-const createNewEvent = async (req, res) => {
-    console.log(req.file);
-    console.log(req.file.filename);
-    if (
-        !req.file.filename ||
-        !req.body.eventName ||
-        !req.body.eventCategory ||
-        !req.body.startDate ||
-        !req.body.duration ||
-        !req.body.eventDescription ||
-        !req.body.eventRegLink ||
-        !req.body.eventVenue
-    ) {
-        return res
-            .status(400)
-            .json({ message: "All field are required!" });
-    }
+const createNewEvent = asyncHandler(async (req, res) => {
+  const {
+    image,
+    eventName,
+    eventCategory,
+    startDate,
+    duration,
+    eventDescription,
+    eventRegLink,
+    eventVenue,
+  } = req.body;
 
-    try {
-        const newEvent = await Event.create({
-            image: req.file.filename,
-            eventName: req.body.eventName,
-            eventCategory: req.body.eventCategory,
-            startDate: req.body.startDate,
-            duration: req.body.duration,
-            eventDescription: req.body.eventDescription,
-            eventRegLink: req.body.eventRegLink,
-            eventVenue: req.body.eventVenue,
-        });
-        res.status(200).json(newEvent);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
-};
+  if (
+    !image ||
+    !eventName ||
+    !eventCategory ||
+    !startDate ||
+    !duration ||
+    !eventDescription ||
+    !eventRegLink ||
+    !eventVenue
+  ) {
+    res.status(400);
+    throw new Error("All fields are required!");
+  }
 
-const getAllEvents = async (req, res) => {
-    try {
-        const events = await Event.find();
-        if (!events) return res.status(201).json({ message: "No events found" });
+  const eventExists = await Event.findOne({ eventRegLink });
 
-        res.status(200).json(events);
-    } catch (error) {
-        console.error("Error getting the events:", error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
-};
+  if (eventExists) {
+    res.status(400);
+    throw new Error("Event details already in use.");
+  }
+
+  const event = await Event.create({
+    image,
+    eventName,
+    eventCategory,
+    startDate,
+    duration,
+    eventDescription,
+    eventRegLink,
+    eventVenue,
+  });
+
+  if (event) {
+    const {
+      _id,
+      image,
+      eventName,
+      eventCategory,
+      startDate,
+      duration,
+      eventDescription,
+      eventRegLink,
+      eventVenue,
+    } = event;
+
+    res.status(201).json({
+      _id,
+      image,
+      eventName,
+      eventCategory,
+      startDate,
+      duration,
+      eventDescription,
+      eventRegLink,
+      eventVenue,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid event data provided, please confirm!");
+  }
+});
+
+const getAllEvents = asyncHandler(async (req, res) => {
+  const events = await Event.find().sort("-createdAt");
+  if (!events) {
+    res.status(500);
+    throw new Error("Something went wrong");
+  }
+  res.status(200).json(events);
+});
 
 const getEvent = async (req, res) => {
-    if (!req.params?.id) return res.status(400).json({ message: "Event ID is required" });
+  const event = await Team.findById(req.team._id);
 
-    try {
-        const event = await Event.findOne({ _id: req.params.id }).exec();
-        if (!event) return res.status(204).json({ message: `Event with ${req.params.id} not found` });
+  if (event) {
+    const {
+      _id,
+      image,
+      eventName,
+      eventCategory,
+      startDate,
+      duration,
+      eventDescription,
+      eventRegLink,
+      eventVenue,
+    } = event;
 
-        res.status(200).json(event);
-    } catch (error) {
-        console.error("Error getting the event:", error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
+    res.status(201).json({
+      _id,
+      image,
+      eventName,
+      eventCategory,
+      startDate,
+      duration,
+      eventDescription,
+      eventRegLink,
+      eventVenue,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Event not found");
+  }
 };
 
-const updateEvent = async (req, res) => {
-    try {
-        if (!req?.body?.id) return res.status(400).json({ message: "Event ID is required" });
+const updateEvent = asyncHandler(async (req, res) => {
+  const event = await Event.findById(req.event._id);
 
-        const event = await Event.findOne({ _id: req.body.id }).exec();
-        if (!event) return res.status(204).json({ message: `Event with ${req.body.id} not found` });
+  if (event) {
+    const {
+      image,
+      eventName,
+      eventCategory,
+      startDate,
+      duration,
+      eventDescription,
+      eventRegLink,
+      eventVenue,
+    } = event;
 
-        if (req.file?.filename) event.filename = req.file.filename;
-        if (req.body?.eventName) event.eventName = req.body.eventName;
-        if (req.body?.eventCategory) event.eventCategory = req.body.eventCategory;
-        if (req.body?.startDate) event.startDate = req.body.startDate;
-        if (req.body?.duration) event.duration = req.body.duration;
-        if (req.body?.eventDescription) event.eventDescription = req.body.eventDescription;
-        if (req.body?.eventRegLink) event.eventRegLink = req.body.eventRegLink;
-        if (req.body?.eventVenue) event.eventVenue = req.body.eventVenue;
+    event.image = req.body.image || image;
+    event.eventName = req.body.eventName || eventName;
+    event.eventCategory = req.body.eventCategory || eventCategory;
+    event.startDate = req.body.startDate || startDate;
+    event.duration = req.body.duration || duration;
+    event.eventDescription = req.body.eventDescription || eventDescription;
+    event.eventRegLink = req.body.eventRegLink || eventRegLink;
+    event.eventVenue = req.body.eventVenue || eventVenue;
 
-        const result = event.save();
+    const updateEvent = await event.save();
 
-        res.status(200).json(result);
-    } catch (error) {
-        console.error("Error updating event:", error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
+    res.status(201).json({
+      _id: updateEvent._id,
+      image: updateEvent.image,
+      eventName: updateEvent.eventName,
+      eventCategory: updateEvent.eventCategory,
+      startDate: updateEvent.startDate,
+      duration: updateEvent.duration,
+      eventDescription: updateEvent.eventDescription,
+      eventRegLink: updateEvent.eventRegLink,
+      eventVenue: updateEvent.eventVenue,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Event not found");
+  }
+});
 
-};
+const deleteEvent = asyncHandler(async (req, res) => {
+  const event = Event.findById(req.params.id);
 
-const deleteEvent = async (req, res) => {
-    try {
-        if (!req?.body?.id) {
-            return res.status(400).json({ message: "Event ID is required" });
-        }
+  if (!event) {
+    res.status(404);
+    throw new Error("Event not found");
+  }
 
-        const event = await Event.findOne({ _id: req.body.id }).exec();
-        if (!event) {
-            return res.status(404).json({ message: `Event with ID ${req.body.id} not found` });
-        }
-
-        const result = await Event.deleteOne({ _id: req.body.id }).exec();
-        if (result.deletedCount === 1) {
-            return res.status(200).json({ message: `Event with ID ${req.body.id} was deleted successfully` });
-        } else {
-            return res.status(500).json({ message: "Failed to delete event" });
-        }
-    } catch (error) {
-        console.error("Error deleting event:", error);
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
-};
+  await event.deleteOne();
+  res.status(200).json({
+    message: "Event deleted successfully",
+  });
+});
 
 module.exports = {
-    createNewEvent,
-    getAllEvents,
-    getEvent,
-    updateEvent,
-    deleteEvent,
+  createNewEvent,
+  getAllEvents,
+  getEvent,
+  updateEvent,
+  deleteEvent,
 };

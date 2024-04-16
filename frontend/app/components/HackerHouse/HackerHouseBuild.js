@@ -10,7 +10,7 @@ const HackerHouseBuild = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis. Class
               aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
+              inceptos himenaeoses.
             </p>
             <button className="text-[#F7FCFE] bg-[#FC7C13] text-[16px] hover:bg-[#ED6109] rounded-[10px] w-[353px] h-[55px]   ">
               Sign up for Hacker House

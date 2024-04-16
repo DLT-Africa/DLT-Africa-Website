@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     dob: {
-        type: Date,
+        type: String,
         required: true
     },
 
@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    codeExperince: {
+    codeExperience: {
         type: String,
         required: true
     },
@@ -57,6 +57,10 @@ const userSchema = new mongoose.Schema({
     stateOfResidence: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        default: "Not Paid"
     }
 })
 

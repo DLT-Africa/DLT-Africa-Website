@@ -73,3 +73,13 @@ Go to your github and submit a pull request to the main repository.
 Your pull request will be reviewed by the maintainers, and any necessary feedback or adjustments will be provided.
 
 
+
+
+
+
+
+
+
+
+
+"bg-[#031700] w-full top-[22399px] sm:h-[2400px] md:h-[1710px] border-[0px 0px 0.5px 0px] lg:h-auto  xl:h-[1000px]">

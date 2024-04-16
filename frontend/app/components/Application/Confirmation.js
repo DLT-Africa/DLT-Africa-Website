@@ -3,7 +3,7 @@ import Vector1 from "../../../public/Vector1.png"
 import Vector2 from "../../../public/Vector2.png"
 import DLT from "../../dlt.png"
 
-const Confirmation = () => {
+const Confirmation = ({onConfirm, onClose}) => {
   return (
     <div className="flex justify-center items-center mt-[20px] ">
       <div className="bg-[#FFEFD4] h-[579px] w-[1013px] rounded-[20px] flex justify-center items-center relative">
@@ -15,10 +15,10 @@ const Confirmation = () => {
             </p>
           </div>
           <div className="flex w-[649px] justify-center items-center content-center gap-x-[104px] gap-y-[70px] flex-wrap">
-            <button className="flex w-[196px] h-[55px] p-10 justify-center items-center gap-10 flex-shrink-0 rounded-md bg-orange-500 text-[#F7FCFE] font-poppins text-[20px] font-medium mt-[8rem]">
+            <button className="flex w-[196px] h-[55px] p-10 justify-center items-center gap-10 flex-shrink-0 rounded-md bg-orange-500 text-[#F7FCFE] font-poppins text-[20px] font-medium mt-[8rem] cursor-pointer" onClick={onConfirm}>
               Yes
             </button>
-            <button className="flex w-[196px] h-[55px] p-10 justify-center items-center gap-10 flex-shrink-0 rounded-md bg-[#ffe0c0] text-[#FC7C13] font-poppins text-[20px] font-medium mt-[8rem]">
+            <button className="flex w-[196px] h-[55px] p-10 justify-center items-center gap-10 flex-shrink-0 rounded-md bg-[#ffe0c0] text-[#FC7C13] font-poppins text-[20px] font-medium mt-[8rem] cursor-pointer	"  onClick={onClose}>
               No
             </button>
           </div>

@@ -28,7 +28,7 @@ const HeroSection = () => {
             font-medium
             md:mb-[90px]
             mb-[38px]"
-          href="#courses"
+          href="/courses"
         >
           Browse Courses
         </Link>

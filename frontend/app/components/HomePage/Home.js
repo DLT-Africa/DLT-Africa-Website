@@ -12,7 +12,7 @@ const IndexHome = () => {
       <HeroSection />
       <WhatYou />
       <RegisterOnline />
-      <CoursesOffered />
+      {/* <CoursesOffered /> */}
       <JoinHackerHouse />
       <Faqs/>
       <CurrentAndUpcoming />

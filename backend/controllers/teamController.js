@@ -1,16 +1,14 @@
 const asyncHandler = require("express-async-handler");
-const nodemailer = require("nodemailer");
 const Team = require("../models/teamModel");
 const { generateToken, hashToken } = require("../utils");
 const bcrypt = require("bcryptjs");
-const cryptr = require("cryptr");
 const Token = require("../models/tokenModel");
 const jwt = require("jsonwebtoken");
 
 const createTeam = asyncHandler(async (req, res) => {
-  const { name, email, password, phone } = req.body;
+  const { name, email, phone } = req.body;
 
-  if (!name || !email || !password || !phone) {
+  if (!name || !email || !phone) {
     res.status(400);
     throw new Error("Please fill in all the require fields");
   }
@@ -31,7 +29,6 @@ const createTeam = asyncHandler(async (req, res) => {
   const team = await Team.create({
     name,
     email,
-    password,
     phone,
   });
 
@@ -66,12 +63,12 @@ const createTeam = asyncHandler(async (req, res) => {
 });
 
 const loginTeam = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   //   Validation
-  if (!email || !password) {
+  if (!email) {
     res.status(400);
-    throw new Error("Please add email and password");
+    throw new Error("Please input your email");
   }
 
   const team = await Team.findOne({ email });
@@ -81,16 +78,10 @@ const loginTeam = asyncHandler(async (req, res) => {
     throw new Error("Team not found, please signup");
   }
 
-  const passwordIsCorrect = await bcrypt.compare(password, team.password);
-
-  if (!passwordIsCorrect) {
-    res.status(400);
-    throw new Error("Invalid email or password");
-  }
 
   const token = generateToken(team._id);
 
-  if (team && passwordIsCorrect) {
+  if (team ) {
     // Send HTTP-only cookie
     res.cookie("token", token, {
       path: "/",
@@ -301,7 +292,7 @@ const deleteTeam = asyncHandler(async (req, res) => {
     throw new Error("Team not found");
   }
 
-  await team.remove();
+  await team.deleteOne();
   res.status(200).json({
     message: "Team deleted successfully",
   });

@@ -1,4 +1,4 @@
-import CoursesOffered from "./components/HomePage/CoursesOffered/CoursesOffered";
+
 import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 import Faqs from "./components/HomePage/Faq/Faqs";
 import HeroSection from "./components/HomePage/HeroSection/HeroSection";
@@ -8,13 +8,22 @@ import {
   RegisterOnline,
 } from "./components/HomePage/Register/Register";
 import WhatYou from "./components/HomePage/WhatYou/WhatYou";
+import {Metadata} from "next"
+
+export const metadata : Metadata = {
+  title: "DLT Africa",
+  description: "DLT Africa Official Website",
+  icons: {
+    icon: "/dlt.png",
+  },
+};
+
 export default function Home() {
   return (
     <div>
       <HeroSection />
       <WhatYou />
       <RegisterOnline />
-      <CoursesOffered />
       <JoinHackerHouse />
       <Faqs />
       <CurrentAndUpcoming />

@@ -2,27 +2,27 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 
-const AdminDashboard = () => {
-  const [admissionData, setAdmissionData] = useState([]);
-
+const EventPreview = () => {
+  const [eventData, setEventData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [message, setMessage] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchAdmissions = async () => {
+    const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/cohorts/get-all-admissions"
+          "http://localhost:5000/api/v1/events/get-all-events"
         );
 
-        setAdmissionData(response.data);
+        setEventData(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
@@ -32,17 +32,18 @@ const AdminDashboard = () => {
         }
       }
     };
-    fetchAdmissions();
+    fetchEvents();
   }, []);
 
   useEffect(() => {
-    const filteredAdmission = admissionData.filter(
+    const filteredEvents = eventData.filter(
       (res) =>
-        res.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        res.classType.toLowerCase().includes(search.toLowerCase())
+        res.eventName.toLowerCase().includes(search.toLowerCase()) ||
+        res.eventVenue.toLowerCase().includes(search.toLowerCase()) ||
+        res.eventCategory.toLowerCase().includes(search.toLowerCase())
     );
-    setSearchResults(filteredAdmission);
-  }, [admissionData, search]);
+    setSearchResults(filteredEvents);
+  }, [eventData, search]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -54,7 +55,6 @@ const AdminDashboard = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-        {/* <p className="text-[24px] font-bold mr-4">Admission List</p> */}
         <div className="flex space-x-4">
           <Link
             href="/admin-dashboard"
@@ -85,54 +85,58 @@ const AdminDashboard = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {!isLoading && admissionData.length === 0 ? (
-        <p>No user found...</p>
+      {!isLoading && eventData.length === 0 ? (
+        <p>No event found...</p>
       ) : (
         <>
           <table className="table-auto w-full">
             <thead>
               <tr>
                 <th className="px-4 py-2">S/N</th>
-                <th className="px-4 py-2">First Name</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2">Update Status</th>
-                <th className="px-4 py-2">Course Selected</th>
-                <th className="px-4 py-2">Class Type</th>
-                <th className="px-4 py-2" title="payment status">
-                  Status
-                </th>
+                <th className="px-4 py-2">Name</th>
+                <th className="px-4 py-2">Category</th>
+                <th className="px-4 py-2">Start Date</th>
+                <th className="px-4 py-2">Duration</th>
+                <th className="px-4 py-2">Venue</th>
               </tr>
             </thead>
 
             <tbody>
-              {currentItems.map((admission, index) => {
+              {currentItems.map((event, index) => {
                 const {
                   _id,
-                  firstName,
-                  academicQualification,
-                  courseSelected,
-                  classType,
-                  emailAddress,
-                  status,
-                } = admission;
+                  image,
+                  eventName,
+                  eventCategory,
+                  startDate,
+                  duration,
+                  eventVenue,
+                } = event;
 
                 return (
                   <tr key={_id}>
                     <td className="border px-4 py-2">{index + 1}</td>
-                    <td className="border px-4 py-2">{firstName}</td>
-                    <td className="border px-4 py-2">{emailAddress}</td>
-                    <td className="border px-4 py-2">
-                      {academicQualification}
-                    </td>
-                    <td className="border px-4 py-2">{courseSelected}</td>
-                    <td className="border px-4 py-2">{classType}</td>
-                    <td className="border px-4 py-2">{status}</td>
+
+                    <td className="border px-4 py-2">{eventName}</td>
+                    <td className="border px-4 py-2">{eventCategory}</td>
+
+                    <td className="border px-4 py-2">{startDate}</td>
+                    <td className="border px-4 py-2">{duration}</td>
+                    <td className="border px-4 py-2">{eventVenue}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
 
+          <div className="my-[12px] w-[100%] flex items-center justify-center">
+            <Link
+              href="/event-creation"
+              className="w-[353px] bg-[#FC7C13] p-[10px] rounded my-[5px] flex items-center justify-center text-[16px] font-poppins text-[#fff] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-10"
+            >
+              Add Event
+            </Link>
+          </div>
           <div className="mt-4">
             <ul className="flex">
               {[
@@ -155,4 +159,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default EventPreview;

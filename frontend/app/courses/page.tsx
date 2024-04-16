@@ -5,13 +5,18 @@ import Framefrontend from "../../public/Framefrontend.png";
 import Fullstackbg from "../../public/Fullstackbg.png";
 import Blockchainframe from "../../public/Blockchainframe.png";
 
+import Course1 from "../../public/Course1.png";
+import Course2 from "../../public/Course2.png";
+import Course3 from "../../public/Course3.png";
+import Course4 from "../../public/Course4.png";
+
 const coursesList = [
   {
     id: 1,
     courseName: "UI/UX Design and Prototyping (Product Design)",
     description:
       "User Interface (UI) and User Experience(UX) design are in great demand and are applicable across products and industry domain. With customer experience being the centerfold...  ",
-    media: ProductUI,
+    media: Course1,
     url: "/product",
   },
   {
@@ -19,7 +24,7 @@ const coursesList = [
     courseName: "Frontend Web Development",
     description:
       "Start off your career today as a Front-End Web Developer. Learn to build high quality websites with dynamic applications to create stunning user experiences…",
-    media: Framefrontend,
+    media: Course2,
     url: "/frontend",
   },
   {
@@ -27,7 +32,7 @@ const coursesList = [
     courseName: "Fullstack Web Development",
     description:
       "Acquire the skills and knowledge needed build a complete web development project from scratch to finish. Our Full-Stack Developer&apos;s Program is a 6 months program.",
-    media: Fullstackbg,
+    media: Course3,
     url: "/fullstack",
   },
   {
@@ -35,7 +40,7 @@ const coursesList = [
     courseName: "Blockchain Development (Smart Contract)",
     description:
       "Acquire the skills and knowledge needed to be a Blockchain Developer",
-    media: Blockchainframe,
+    media: Course4,
     url: "/blockchain",
   },
 ];
@@ -55,7 +60,7 @@ const page = () => {
             <Image
               src={media}
               alt="courses"
-              className="w-[500px] rounded-lg h-[200px] "
+              className="w-[502px] rounded-t-lg h-[200px] "
             />
 
             <div className="w-[502px] flex flex-col gap-y-[15px] rounded-b-lg bg-[#186106] p-[15px] h-[200px]">

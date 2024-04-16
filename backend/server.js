@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "*"],
+    origin: ["http://localhost:3000", "*", "https://api.facts.ng/v1/states"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
