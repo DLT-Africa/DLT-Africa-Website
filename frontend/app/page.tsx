@@ -14,6 +14,7 @@ import Loader from "./components/Loader/Loader";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     setTimeout(() => {

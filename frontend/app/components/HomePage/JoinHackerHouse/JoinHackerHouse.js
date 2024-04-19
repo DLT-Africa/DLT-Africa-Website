@@ -18,7 +18,7 @@ const JoinHackerHouse = () => {
             </p>
 
             <div className="flex justify-center lg:justify-start ">
-              <button className="w-[353px] lg:mt-[48px] md:justify-center md:mt-[20px] mt-[20px] h-[55px] py-2 px-4 rounded-md  font-400 hover:bg-white text-orange-500 border border-orange-500">
+              <button className="transition duration-500 ease-in-out transform hover:-translate-y-1 w-[353px] lg:mt-[48px] md:justify-center md:mt-[20px] mt-[20px] h-[55px] py-2 px-4 rounded-md  font-400 hover:bg-white text-orange-500 border border-orange-500">
                 Read more
               </button>
             </div>

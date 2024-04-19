@@ -64,13 +64,13 @@ const EventPreview = () => {
           </Link>
           <Link
             href="/team-list"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-green-500 text-white px-4 py-2 rounded-md"
           >
             Team List
           </Link>
           <Link
             href="/event-list"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-red-500 text-white px-4 py-2 rounded-md"
           >
             Event List
           </Link>
@@ -89,7 +89,9 @@ const EventPreview = () => {
         <p>No event found...</p>
       ) : (
         <>
-          <table className="table-auto w-full">
+        <div className="overflow-x-auto">
+
+          <table className="table-auto w-full ">
             <thead>
               <tr>
                 <th className="px-4 py-2">S/N</th>
@@ -128,6 +130,7 @@ const EventPreview = () => {
               })}
             </tbody>
           </table>
+        </div>
 
           <div className="my-[12px] w-[100%] flex items-center justify-center">
             <Link

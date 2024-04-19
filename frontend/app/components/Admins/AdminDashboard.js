@@ -51,7 +51,7 @@ const AdminDashboard = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="h-full p-3 md:p-[50px] w-full">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
         {/* <p className="text-[24px] font-bold mr-4">Admission List</p> */}
@@ -64,13 +64,13 @@ const AdminDashboard = () => {
           </Link>
           <Link
             href="/team-list"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-green-500 text-white px-4 py-2 rounded-md"
           >
             Team List
           </Link>
           <Link
             href="/event-list"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-red-500 text-white px-4 py-2 rounded-md"
           >
             Event List
           </Link>
@@ -89,6 +89,8 @@ const AdminDashboard = () => {
         <p>No user found...</p>
       ) : (
         <>
+        <div className="overflow-x-auto">
+
           <table className="table-auto w-full">
             <thead>
               <tr>
@@ -132,6 +134,7 @@ const AdminDashboard = () => {
               })}
             </tbody>
           </table>
+        </div>
 
           <div className="mt-4">
             <ul className="flex">

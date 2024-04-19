@@ -1,108 +1,80 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import Current1 from "../../../../public/Current1.png";
-import Current2 from "../../../../public/Current2.png";
-import Current3 from "../../../../public/Current3.png";
-import Current4 from "../../../../public/Current4.png";
 
 const CurrentAndUpcoming = () => {
+  const [eventData, setEventData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/events/get-all-events"
+        );
+        setEventData(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          setMessage("Cannot fetch data");
+        } else {
+          setMessage("Server error");
+        }
+      }
+      setIsLoading(false);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-center text-[30px] mb-12 pt-[57px] xl:text-[45px] lg:text-[40px] md:text-[35px]">
-        Current and Upcoming Programmmes.
+      <h1 className="text-center text-4xl mb-12 pt-20 xl:text-5xl lg:text-4xl md:text-3xl">
+        Current and Upcoming Programmes.
       </h1>
 
-      <div className="flex justify-center flex-wrap gap-[44px] lg:mb-[135px] md:mb-[40px] sm:mb-[67px]">
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-          <Image className="h-[100px] w-[100px] rounded-full " src={Current1} />
-          <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
-            <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
-              <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
-                Rorem Ipsum dolor
-              </h3>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : eventData.length === 0 ? (
+        <p>No Event Data...</p>
+      ) : (
+        <div className="flex justify-center items-center flex-wrap gap-8 lg:mb-20 md:mb-8 sm:mb-16">
+          {eventData.map((event, index) => (
+            <div
+              className="max-w-xs shadow-lg p-5 rounded-lg border border-orange-300 flex justify-center items-center flex-col"
+              key={event._id}
+            >
+              <Image
+                className="w-20 h-20 rounded-full"
+                src={Current1}
+                alt="eventmedia"
+              />
 
-              <p className="font-poppins text-[16px] text-sm font-light opacity-65 leading-relaxed w-[110px">
-                Web3 | Online
-              </p>
-
-              <p className="font-poppins text-neutral-black text-[16px] font-light opacity-65 leading-relaxed">
-                9/1/24 | 4 weeks
-              </p>
+              <div className="mt-4 flex justify-center items-center flex-col">
+                <h3 className="text-xl font-semibold text-neutral-black">
+                  {event.eventName}
+                </h3>
+                <p className="text-sm text-neutral-black">
+                  {event.eventCategory} |{" "}
+                  <span className="venue">
+                    {event.eventVenue.length > 10
+                      ? event.eventVenue.substring(0, 8) + "..."
+                      : event.eventVenue}
+                  </span>
+                </p>
+                <p className="text-sm text-neutral-black">
+                  {event.startDate} | {event.duration}
+                </p>
+                <button className="mt-4 transition duration-500 ease-in-out transform hover:-translate-y-1 text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 text-base font-medium">
+                  View more
+                </button>
+              </div>
             </div>
-
-            <button className="flex mt-[35px] items-center text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 font-poppins text-base font-medium leading-relaxed">
-              View more
-            </button>
-          </div>
+          ))}
         </div>
-
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-          <Image className="h-[100px] w-[100px] rounded-full " src={Current2} />
-          <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
-            <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
-              <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
-                Rorem Ipsum dolor
-              </h3>
-
-              <p className="font-poppins text-[16px] text-sm font-light opacity-65 leading-relaxed w-[110px">
-                Web3 | Online
-              </p>
-
-              <p className="font-poppins text-neutral-black text-[16px] font-light opacity-65 leading-relaxed">
-                9/1/24 | 4 weeks
-              </p>
-            </div>
-
-            <button className="flex mt-[35px] items-center text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 font-poppins text-base font-medium leading-relaxed">
-              View more
-            </button>
-          </div>
-        </div>
-
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px]">
-          <Image className="h-[100px] w-[100px] rounded-full " src={Current3} />
-          <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
-            <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
-              <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
-                Rorem Ipsum dolor
-              </h3>
-
-              <p className="font-poppins text-[16px] text-sm font-light opacity-65 leading-relaxed w-[110px">
-                Web3 | Online
-              </p>
-
-              <p className="font-poppins text-neutral-black text-[16px] font-light opacity-65 leading-relaxed">
-                9/1/24 | 4 weeks
-              </p>
-            </div>
-
-            <button className="flex mt-[35px] items-center text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 font-poppins text-base font-medium leading-relaxed">
-              View more
-            </button>
-          </div>
-        </div>
-        <div className="max-w-xs shadow-lg flex flex-col items-center gap-4 p-5 rounded-lg border border-orange-300 w-[243px] mb-[20px]">
-          <Image className="h-[100px] w-[100px] rounded-full " src={Current4} />
-          <div className=" mt-[25px] pb-[31px] flex flex-col justify-center items-center">
-            <div className="w-[266px]  flex flex-col gap-2 justify-center items-center">
-              <h3 className="text-center font-poppins text-xl font-semibold text-neutral-black opacity-75 w-266 w-[233px] h-[26px]">
-                Rorem Ipsum dolor
-              </h3>
-
-              <p className="font-poppins text-[16px] text-sm font-light opacity-65 leading-relaxed w-[110px">
-                Web3 | Online
-              </p>
-
-              <p className="font-poppins text-neutral-black text-[16px] font-light opacity-65 leading-relaxed">
-                9/1/24 | 4 weeks
-              </p>
-            </div>
-
-            <button className="flex mt-[35px] items-center text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 font-poppins text-base font-medium leading-relaxed">
-              View more
-            </button>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

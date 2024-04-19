@@ -28,7 +28,7 @@ const RegisterOnline = () => {
             </div>
 
             <Link href="/application">
-              <div className="w-full lg:w-[353px] flex items-center justify-center h-[55px] p-[10px] rounded-lg border-solid border-2 border-orange-500 text-orange-500 hover:bg-orange-100">
+              <div className="w-full lg:w-[353px] flex items-center justify-center h-[55px] p-[10px] rounded-lg border-solid border-2 border-orange-500 text-orange-500 hover:bg-orange-100 transition duration-500 ease-in-out transform hover:-translate-y-1">
                 Register
               </div>
             </Link>
@@ -69,7 +69,7 @@ const RegisterOffline = () => {
           </div>
 
           <Link href="/application">
-            <div className="w-[200px] mt-[-15px] z-10 xl:w-[350px] lg:w-[320px] md:w-[300px]  h-[55px] p-[10px] text-[16px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE]  mb-14">
+            <div className="w-[200px] mt-[-15px] z-10 xl:w-[350px] lg:w-[320px] md:w-[300px]  h-[55px] p-[10px] text-[16px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE]  mb-14 transition duration-500 ease-in-out transform hover:-translate-y-1">
               Register
             </div>
           </Link>
