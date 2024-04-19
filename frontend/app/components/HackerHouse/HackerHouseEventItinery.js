@@ -1,17 +1,10 @@
 const HackerHouseEventItinery = () => {
   return (
-
     <div className="h-[745px]  border-b border-solid border-black border-opacity-30 bg-[#031700] flex-shrink-0">
       <div>
         <h1 className="text-[#F7FCFE] font-Serif text-[48px] pt-[57px] text-center  font-normal font-serif ">
           Event Itinerary
         </h1>
-
-    <div>
-      HackerHouseEventItinery
-      <div>
-      <h1 className='text-[#F7FCFE] font-Serif text-[48px] pt-[57px] text-center  font-normal font-serif '>Event Itinerary</h1>
-
       </div>
 
       <div className="flex  justify-center space-x-20 mt-[60px]">
@@ -80,20 +73,6 @@ const HackerHouseEventItinery = () => {
           </div>
         </div>
       </div>
-
-      <div className="flex justify-center mt-20">
-        <button className="w-[353px] h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg  bg-orange-500 text-[#F7FCFE] sm:w-[250px] sm:h-[45px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg ">
-          Sign up for Hacker house
-        </button>
-      </div>
-
-      <div className='flex justify-center mt-20'>
-  <button className="w-[353px] h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg  bg-orange-500 text-[#F7FCFE] sm:w-[250px] sm:h-[45px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg ">
-    Sign up for Hacker house
-  </button>
-</div> */}
-
-
     </div>
   );
 };
