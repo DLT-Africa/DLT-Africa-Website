@@ -2,7 +2,7 @@ import React from "react";
 
 const EventHero = () => {
   return (
-    <section className="w-[100%] flex justify-between items-center sm:flex-row flex-col bg-[#F6F6F6] sm:mb-[140px] md:px-[50px] px-[32px]">
+    <section className="w-[100%] flex justify-between items-center sm:flex-row flex-col bg-[#F6F6F6] sm:mb-[140px] pt-[63px] md:pt-0 md:px-[50px] px-[32px]">
       <div>
         <h1 className="text-2xl lg:text-[48px] max-w-[584px] leading mb-[16px] text-[#1C1C1C] font-serif font-[400] space-[3.36]">
           Our Programmes
