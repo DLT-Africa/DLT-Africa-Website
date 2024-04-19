@@ -85,7 +85,7 @@ const Faqs = () => {
         </p>
       </div>
 
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px] w-[225px]">
+      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px]   sm:align-items-center lg:w-[725px] w-[225px]">
         {faqOne.map(({ question, answer, id }) => (
           <FAQ key={id} question={question} answer={answer} />
         ))}

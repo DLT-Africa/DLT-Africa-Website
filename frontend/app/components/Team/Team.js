@@ -91,7 +91,7 @@ const backgoundImage =
 
 const team = () => {
   return (
-    <div className="h-[2135px]">
+    <div className="">
       <div
         className="mt-[185px] 
                 text-center 
@@ -113,7 +113,8 @@ const team = () => {
                 px-10 
                 pt-10 
                 md:grid-cols-2 
-                lg:grid-cols-3"
+                lg:grid-cols-3
+                place-content-center"
       >
         {teamMember.map((member) => (
           <div

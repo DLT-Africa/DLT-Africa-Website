@@ -1,9 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProductUI from "../../public/ProductUI.png";
-import Framefrontend from "../../public/Framefrontend.png";
-import Fullstackbg from "../../public/Fullstackbg.png";
-import Blockchainframe from "../../public/Blockchainframe.png";
 
 import Course1 from "../../public/Course1.png";
 import Course2 from "../../public/Course2.png";
@@ -49,7 +45,7 @@ const page = () => {
   return (
     <div>
       <div className="mt-[127px] ">
-        <h1 className="text-[32px] text-[700] text-[#123E31] pl-[50px] mb-[65px] ">
+        <h1 className="text-[32px] text-[700] text-center text-[#123E31] pl-[50px] mb-[35px] ">
           Our Courses
         </h1>
       </div>
@@ -60,7 +56,7 @@ const page = () => {
             <Image
               src={media}
               alt="courses"
-              className="w-[502px] rounded-t-lg h-[200px] "
+              className="w-[502px] rounded-t-lg h-[200px]  "
             />
 
             <div className="w-[502px] flex flex-col gap-y-[15px] rounded-b-lg bg-[#186106] p-[15px] h-[200px]">
