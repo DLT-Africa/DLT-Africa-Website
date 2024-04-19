@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 import CourseSection from "../CoursesHero/CourseHeroSec";
 
 
@@ -31,4 +28,3 @@ const BlockChainHero = () => {
 };
 
 export default BlockChainHero;
->>>>>>> 36b0419f4978be004ef7bba0f7d1ebea57b5e3d8

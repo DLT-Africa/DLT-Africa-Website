@@ -1,4 +1,6 @@
+"use client";
 
+import { useEffect, useState } from "react";
 import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 import Faqs from "./components/HomePage/Faq/Faqs";
 import HeroSection from "./components/HomePage/HeroSection/HeroSection";
@@ -8,26 +10,32 @@ import {
   RegisterOnline,
 } from "./components/HomePage/Register/Register";
 import WhatYou from "./components/HomePage/WhatYou/WhatYou";
-import {Metadata} from "next"
-
-export const metadata : Metadata = {
-  title: "DLT Africa",
-  description: "DLT Africa Official Website",
-  icons: {
-    icon: "/dlt.png",
-  },
-};
+import Loader from "./components/Loader/Loader";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <div>
-      <HeroSection />
-      <WhatYou />
-      <RegisterOnline />
-      <JoinHackerHouse />
-      <Faqs />
-      <CurrentAndUpcoming />
-      <RegisterOffline />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <HeroSection />
+          <WhatYou />
+          <RegisterOnline />
+          <JoinHackerHouse />
+          <Faqs />
+          <CurrentAndUpcoming />
+          <RegisterOffline />
+        </div>
+      )}
     </div>
   );
 }
