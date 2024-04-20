@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import EventPreview from "./EventPreview";
 
@@ -10,6 +11,7 @@ import EventPreview from "./EventPreview";
 // const upload_preset = "ktpngqgl";
 
 const CreateEvent = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     eventName: "",
     eventCategory: "",
@@ -75,6 +77,8 @@ const CreateEvent = () => {
           console.log(formData);
           setIsSubmitting(false);
           setFormCompleted(true);
+          
+          router.push('/admin-dashboard')
         })
         .catch(function (error) {
           setIsSubmitting(false);

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import ChangeStatus from "@/app/components/ChangeStatus/ChangeStatus";
 
 const AdminDashboard = () => {
   const [admissionData, setAdmissionData] = useState([]);
@@ -23,6 +24,7 @@ const AdminDashboard = () => {
         );
 
         setAdmissionData(response.data);
+        console.log(response.data)
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
@@ -89,52 +91,51 @@ const AdminDashboard = () => {
         <p>No user found...</p>
       ) : (
         <>
-        <div className="overflow-x-auto">
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">S/N</th>
+                  <th className="px-4 py-2">First Name</th>
+                  <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Update Status</th>
+                  <th className="px-4 py-2">Course Selected</th>
+                  <th className="px-4 py-2">Class Type</th>
+                  <th className="px-4 py-2" title="payment status">
+                    Status
+                  </th>
+                </tr>
+              </thead>
 
-          <table className="table-auto w-full">
-            <thead>
-              <tr>
-                <th className="px-4 py-2">S/N</th>
-                <th className="px-4 py-2">First Name</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2">Update Status</th>
-                <th className="px-4 py-2">Course Selected</th>
-                <th className="px-4 py-2">Class Type</th>
-                <th className="px-4 py-2" title="payment status">
-                  Status
-                </th>
-              </tr>
-            </thead>
+              <tbody>
+                {currentItems.map((admission, index) => {
+                  const {
+                    _id,
+                    firstName,
+                    academicQualification,
+                    courseSelected,
+                    classType,
+                    emailAddress,
+                    status,
+                  } = admission;
 
-            <tbody>
-              {currentItems.map((admission, index) => {
-                const {
-                  _id,
-                  firstName,
-                  academicQualification,
-                  courseSelected,
-                  classType,
-                  emailAddress,
-                  status,
-                } = admission;
-
-                return (
-                  <tr key={_id}>
-                    <td className="border px-4 py-2">{index + 1}</td>
-                    <td className="border px-4 py-2">{firstName}</td>
-                    <td className="border px-4 py-2">{emailAddress}</td>
-                    <td className="border px-4 py-2">
-                      {academicQualification}
-                    </td>
-                    <td className="border px-4 py-2">{courseSelected}</td>
-                    <td className="border px-4 py-2">{classType}</td>
-                    <td className="border px-4 py-2">{status}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                  return (
+                    <tr key={_id}>
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{firstName}</td>
+                      <td className="border px-4 py-2">{emailAddress}</td>
+                      <td className="border px-4 py-2">
+                        <ChangeStatus id={_id} />
+                      </td>
+                      <td className="border px-4 py-2">{courseSelected}</td>
+                      <td className="border px-4 py-2">{classType}</td>
+                      <td className="border px-4 py-2">{status}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
           <div className="mt-4">
             <ul className="flex">
