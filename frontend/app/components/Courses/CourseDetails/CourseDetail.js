@@ -6,11 +6,11 @@ const CourseDetail = ({ question, answer, list }) => {
   const [isDetails, setIsDetails] = useState(false);
 
   return (
-    <div className=" py-[15px]">
+    <div className="py-4">
       <div>
-        <article className="flex justify-between gap-[20px] ">
+        <article className="flex justify-between items-center gap-4">
           <ul>
-            <li className="text-[28px] text-[700] list-disc font-Serif ">{question}</li>
+            <li className="text-lg font-semibold list-disc">{question}</li>
           </ul>
 
           <button onClick={() => setIsDetails((prev) => !prev)}>
@@ -22,10 +22,14 @@ const CourseDetail = ({ question, answer, list }) => {
           </button>
         </article>
 
-        {isDetails && <p className="text-[18px] text-[400] p-8">{answer}</p>}
+        <p
+          className={`text-base overflow-hidden transition-height duration-300 ease-out ${
+            isDetails ? "h-auto" : "h-0"
+          }`}
+        >
+          {answer}
+        </p>
       </div>
-
-      
     </div>
   );
 };
