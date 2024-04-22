@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import FAQ from "./Faq";
 
@@ -60,65 +58,47 @@ const Faqs = () => {
     },
   ];
 
-  const backgoundImage =
-    "https://s3-alpha-sig.figma.com/img/e12b/f3f6/017ed28b632ffaaa6539c2f2c1ec403d?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MI3aVsECxE0e1mjJ63fDU2fljO6rk503uaGvQLut9nnLMjNps5EKjusN355eE~dnGWuT3GWuEXmJ7XZ7J2ybcfDxilz3gibbQzudZgOvId2fE9F9NjpZB6gsnoBK60Gj0xK1lhzc6BcGyNVFOif8CSRZa2F5BW0R0jf-Vo~bfZiHEZDWbZpdgl9O31ATRxiXezI~WzCIfsFUpBanXSii02QiSH8Cfgp4DivaojcnNERAAJ4SPbCu~ixGbl98dAc8QvDnIraU05qZqrl-0F76jywV-Butym8Hcjm628Hoc7Q6MCWOpmdL8qJugUQfE97Am-hG7lQluS-ffjc5QSj~Tw__";
-
   return (
-    <section
-      style={{
-        backgroundImage: `url(${backgoundImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }}
-      className="p-40 flex flex-col items-center"
-    >
-      <div className="text-center mb-10 -m-20">
-      <h1 class="text-3xl md:text-4xl lg:text-[48px] mb-5">Frequently asked questions</h1>
-        <p className="text-center text-[16px] ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasell{" "}
-          <br />
-          lorem. Nam vehicula commodo malesuada. Cras tempus metus id lorem
-          <br />
-          vulputate pellentesque eros et, elementum magna. Aenean convallis
-          lobortis ipsum, non me lorem.
-        </p>
-      </div>
+    <section className="p-10 sm:p-20 flex flex-col items-center">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl mb-5">
+        Frequently asked questions
+      </h1>
+      <p className="text-center text-sm sm:text-base mb-10">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+        lorem.
+      </p>
 
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px]   sm:align-items-center lg:w-[725px] w-[225px]">
-        {faqOne.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
-      </div>
-
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px] w-[225px]">
-        {faqTwo.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
-      </div>
-
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px] w-[225px]">
-        {faqThree.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
-      </div>
-
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px] w-[225px]">
-        {faqFour.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
-      </div>
-
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
-        {faqFive.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
-      </div>
-
-      <div className="bg-orange-300 p-5 mb-5 rounded-[10px]  sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px] w-[225px]">
-        {faqSix.map(({ question, answer, id }) => (
-          <FAQ key={id} question={question} answer={answer} />
-        ))}
+      <div className="grid grid-cols-1 gap-6">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqOne.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqTwo.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqThree.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqFour.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqFive.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+          {faqSix.map(({ question, answer, id }) => (
+            <FAQ key={id} question={question} answer={answer} />
+          ))}{" "}
+        </div>
       </div>
     </section>
   );

@@ -31,7 +31,7 @@ const courses = [
           <li>Understanding User Interface and Experience</li>
           <li>Real - World Projects and Case Studies</li>
         </ul>
-        ,
+        
       </>,
     ],
   },
@@ -49,7 +49,7 @@ const courses = [
             No prior experience is required. We will start from the very basics
           </li>
         </ul>
-        ,
+        
       </>,
     ],
   },
@@ -80,14 +80,14 @@ const courses = [
 
 const ProductDesignDetail = () => {
   return (
-    <div className="py-[95.5px] bg-[#F6F6F6] px-[286px] ">
+    <div className="py-8 md:py-16 bg-gray-100 px-6 md:px-12 lg:px-24 xl:px-32">
       <div>
         {courses.map(({ id, question, answer }) => (
           <CourseDetail key={id} question={question} answer={answer} />
         ))}
       </div>
 
-      <div className="flex justify-center ">
+      <div className="flex justify-center mt-8">
         <Button to="/application">Apply Now</Button>
       </div>
     </div>

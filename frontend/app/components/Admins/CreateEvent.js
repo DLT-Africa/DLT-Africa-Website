@@ -2,14 +2,17 @@
 
 import React, { useState } from "react";
 import { Button, Input, Typography } from "@material-tailwind/react";
-import Loader from "@/app/components/Application/Loader";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-import AdminDashboard from "./AdminDashboard";
+import EventPreview from "./EventPreview";
+
+// const cloud_name = "dsblhzcka";
+// const upload_preset = "ktpngqgl";
 
 const CreateEvent = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
-    image: "",
     eventName: "",
     eventCategory: "",
     startDate: "",
@@ -33,71 +36,79 @@ const CreateEvent = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const {
-      image,
-      eventName,
-      eventCategory,
-      startDate,
-      duration,
-      eventDescription,
-      eventRegLink,
-      eventVenue,
-    } = formData;
+    try {
+      const {
+        eventName,
+        eventCategory,
+        startDate,
+        duration,
+        eventDescription,
+        eventRegLink,
+        eventVenue,
+      } = formData;
 
-    if (
-      !image ||
-      !eventName ||
-      !eventCategory ||
-      !startDate ||
-      !duration ||
-      !eventDescription ||
-      !eventRegLink ||
-      !eventVenue
-    ) {
-      setFormValidMessage(
-        "Oops! required field are not filled. Go back and fill them"
-      );
-      return;
+      console.log(formData);
+      // Check if all required fields are filled
+      if (
+        !eventName ||
+        !eventCategory ||
+        !startDate ||
+        !duration ||
+        !eventDescription ||
+        !eventRegLink ||
+        !eventVenue
+      ) {
+        setFormValidMessage(
+          "Oops! required field are not filled. Go back and fill them"
+        );
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      // Post form data to server
+      axios
+        .post("http://localhost:5000/api/v1/events/create-event", formData)
+        .then(function (response) {
+          console.log(response.data);
+          console.log(formData);
+          setIsSubmitting(false);
+          setFormCompleted(true);
+          
+          router.push('/admin-dashboard')
+        })
+        .catch(function (error) {
+          setIsSubmitting(false);
+          if (error.response && error.response.status == 400) {
+            setFormValidMessage(
+              "An event with the same details already exists."
+            );
+          } else {
+            setFormValidMessage(
+              "Server error: unable to process your event registration."
+            );
+          }
+        });
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
-    setIsSubmitting(true);
-
-    axios
-      .post("http://localhost:5000/api/v1/events/create-event", formData)
-      .then(function (response) {
-        console.log(response.data);
-        console.log(formData);
-        setIsSubmitting(false);
-        setFormCompleted(true);
-      })
-      .catch(function (error) {
-        setIsSubmitting(false);
-        if (error.response && error.response.status == 400) {
-          setFormValidMessage(
-            "Applicant with the same email address already exist"
-          );
-        } else {
-          setFormValidMessage(
-            "Server error unable to process your registration"
-          );
-        }
-      });
   };
 
   return (
     <div>
       <div className="mt-5 mb-20 p-4">
-        <Typography className="font-normal text-[36px] text-black mb-[39px] text-center ">
-          Create an event
-        </Typography>
         {!formCompleted ? (
           //lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]
           <form
             onSubmit={handleSubmit}
             className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
           >
+            <Typography className="font-normal text-[36px] text-black mb-[39px] text-center ">
+              Create an event
+            </Typography>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14 text-center">
               <Input
                 size="lg"
@@ -121,7 +132,7 @@ const CreateEvent = () => {
                 type="text"
                 name="eventCategory"
                 variant="static"
-                label="Event Type"
+                label="Event Category"
                 className="pl-4 text-xl"
                 labelProps={{
                   className: "!text-black",
@@ -129,7 +140,7 @@ const CreateEvent = () => {
                 containerProps={{
                   className: "h-14 ",
                 }}
-                placeholder="Offline"
+                placeholder="web3 || web2"
                 value={formData.eventCategory}
                 onChange={handleChange}
               />
@@ -218,23 +229,6 @@ const CreateEvent = () => {
                 value={formData.eventDescription}
                 onChange={handleChange}
               />
-              <Input
-                type="file"
-                size="lg"
-                name="image"
-                variant="static"
-                label="Image"
-                className="pl-4 text-xl"
-                labelProps={{
-                  className: "!text-black",
-                }}
-                containerProps={{
-                  className: "h-14 ",
-                }}
-                placeholder="1 week"
-                value={formData.image}
-                onChange={handleChange}
-              />
             </div>
 
             <Button
@@ -252,7 +246,7 @@ const CreateEvent = () => {
           </form>
         ) : (
           <div>
-            <AdminDashboard />
+            <EventPreview />
           </div>
         )}
       </div>

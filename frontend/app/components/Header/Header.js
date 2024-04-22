@@ -69,7 +69,7 @@ const Header = () => {
             placement="top"
             open={openTop}
             onClose={closeDrawerTop}
-            className="p-4 min-h-[300px] px-[10px] sm:px-[50px] pb-[300px] mt-[-20px] "
+            className="p-4 px-[10px] sm:px-[50px] pb-[300px] mt-[-22px] "
           >
             <div className="my-[10px] flex items-center justify-between ">
               <Link href={"/"}>
@@ -103,17 +103,17 @@ const Header = () => {
               </svg>
             </div>
 
-            <div className="flex flex-col gap-4 pr-20 items-end p-[10]">
+            <div className="flex flex-col gap-1 pr-20 items-end p-[10]">
               {isLoggedIn ? (
                 <>
                   <Link
-                    className=" text-[13px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                    className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/admin-dashboard"}
                   >
                     Admin Dashboard
                   </Link>
                   <Link
-                    className=" text-[13px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                    className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/"}
                     onClick={handleLogout}
                   >

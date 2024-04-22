@@ -27,7 +27,7 @@ const HeroSection = () => {
             font-Poppins
             font-medium
             md:mb-[90px]
-            mb-[38px]"
+            mb-[38px] transition duration-500 ease-in-out transform hover:-translate-y-1 "
           href="/courses"
         >
           Browse Courses

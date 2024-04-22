@@ -3,7 +3,6 @@ const asyncHandler = require("express-async-handler");
 
 const createNewEvent = asyncHandler(async (req, res) => {
   const {
-    image,
     eventName,
     eventCategory,
     startDate,
@@ -14,7 +13,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
   } = req.body;
 
   if (
-    !image ||
     !eventName ||
     !eventCategory ||
     !startDate ||
@@ -27,15 +25,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
     throw new Error("All fields are required!");
   }
 
-  const eventExists = await Event.findOne({ eventRegLink });
-
-  if (eventExists) {
-    res.status(400);
-    throw new Error("Event details already in use.");
-  }
-
   const event = await Event.create({
-    image,
     eventName,
     eventCategory,
     startDate,
@@ -48,7 +38,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
   if (event) {
     const {
       _id,
-      image,
+
       eventName,
       eventCategory,
       startDate,
@@ -60,7 +50,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       _id,
-      image,
+
       eventName,
       eventCategory,
       startDate,
@@ -90,7 +80,7 @@ const getEvent = async (req, res) => {
   if (event) {
     const {
       _id,
-      image,
+
       eventName,
       eventCategory,
       startDate,
@@ -102,7 +92,7 @@ const getEvent = async (req, res) => {
 
     res.status(201).json({
       _id,
-      image,
+
       eventName,
       eventCategory,
       startDate,
@@ -122,7 +112,6 @@ const updateEvent = asyncHandler(async (req, res) => {
 
   if (event) {
     const {
-      image,
       eventName,
       eventCategory,
       startDate,
@@ -132,7 +121,6 @@ const updateEvent = asyncHandler(async (req, res) => {
       eventVenue,
     } = event;
 
-    event.image = req.body.image || image;
     event.eventName = req.body.eventName || eventName;
     event.eventCategory = req.body.eventCategory || eventCategory;
     event.startDate = req.body.startDate || startDate;
@@ -145,7 +133,7 @@ const updateEvent = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       _id: updateEvent._id,
-      image: updateEvent.image,
+
       eventName: updateEvent.eventName,
       eventCategory: updateEvent.eventCategory,
       startDate: updateEvent.startDate,

@@ -1,6 +1,7 @@
 import Login from "../components/Admins/Login"
-
 const page = () => {
+
+  
   return (
     <div>
       <Login/>

@@ -35,7 +35,7 @@ const coursesList = [
     id: 4,
     courseName: "Blockchain Development (Smart Contract)",
     description:
-      "Acquire the skills and knowledge needed to be a Blockchain Developer",
+      "Acquire the skills and knowledge needed to be a Blockchain Developer, The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
     media: Course4,
     url: "/blockchain",
   },
@@ -44,24 +44,30 @@ const coursesList = [
 const page = () => {
   return (
     <div>
-      <div className="mt-[127px] ">
-        <h1 className="text-[32px] text-[700] text-center text-[#123E31] pl-[50px] mb-[35px] ">
+      <div className="mt-12">
+        <h1 className="text-4xl font-semibold text-center text-green-900 pl-12 mb-8">
           Our Courses
         </h1>
       </div>
 
-      <div className="flex flex-wrap gap-x-[12px] gap-y-[21px] p-[50px]	items-center justify-center mb-[136px]">
+      <div className="flex flex-wrap gap-4 md:gap-x-8 md:gap-y-8 p-4 md:p-12 items-center justify-center">
         {coursesList.map(({ id, courseName, description, media, url }) => (
           <Link href={url} key={id}>
-            <Image
-              src={media}
-              alt="courses"
-              className="w-[502px] rounded-t-lg h-[200px]  "
-            />
+            <div className="w-full md:w-[502px] transition duration-300 transform hover:-translate-y-1 hover:shadow-lg ">
+              <Image
+                src={media}
+                alt="courses"
+                className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg"
+              />
 
-            <div className="w-[502px] flex flex-col gap-y-[15px] rounded-b-lg bg-[#186106] p-[15px] h-[200px]">
-              <p className="mt-[12px] text-[28px] text-[#fff] ">{courseName}</p>
-              <p className="text-[14px] text-[#fff] "> {description} </p>
+              <div className="w-full md:rounded-b-lg bg-green-700 p-4 md:p-6 h-48 md:h-30 rounded-br-lg rounded-bl-lg">
+                <p className="text-lg md:text-xl text-white mb-2 md:mb-4">
+                  {courseName}
+                </p>
+                <p className="text-sm md:text-base text-white line-clamp-3">
+                  {description}
+                </p>
+              </div>
             </div>
           </Link>
         ))}

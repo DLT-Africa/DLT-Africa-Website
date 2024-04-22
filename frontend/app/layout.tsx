@@ -12,18 +12,20 @@ const inter = Inter({ subsets: ["latin"] });
 // Layout component to wrap around content
 export default function RootLayout({
   children,
-  currentPath,
+ 
 }: Readonly<{
   children: React.ReactNode;
   currentPath: string;
+  
 }>) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <CustomHead/>
+        <CustomHead />
         <body className={inter.className}>
-          <Header />
+         <Header />
           {children}
+
           <Footer />
         </body>
       </ThemeProvider>
