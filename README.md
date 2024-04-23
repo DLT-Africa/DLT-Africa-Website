@@ -29,6 +29,7 @@ The **DLT Africa Website** serves as the online platform for our academy, provid
 - Node.js/Express.js
 - Tailwind CSS
 - JWT
+- Nodemailer
 
 ## **Getting Started**
 
@@ -36,7 +37,7 @@ To run the website locally or contribute to the development, follow these steps:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/DLT-Africa/DLT-Africa-Website.git
+   git clone 'your forked github repo link'
 
 3. **Navigate to the project directory**:
 
@@ -58,7 +59,7 @@ click on fork button, uncheck the checkbox, then click on create fork.
     git remote add upstream https://github.com/DLT-Africa/DLT-Africa-Website.git
     git remote -v 
     git checkout -b name of the issue you're picking [this will switch to a new branch bearing the name of the issue]
-    git pull upstream main
+    git pull upstream staging
     code .
 
 
@@ -71,3 +72,15 @@ git push origin `name of the issue you're picking`
 Go to your github and submit a pull request to the main repository.
 
 Your pull request will be reviewed by the maintainers, and any necessary feedback or adjustments will be provided.
+
+
+
+
+
+
+
+
+
+
+
+"bg-[#031700] w-full top-[22399px] sm:h-[2400px] md:h-[1710px] border-[0px 0px 0.5px 0px] lg:h-auto  xl:h-[1000px]">
