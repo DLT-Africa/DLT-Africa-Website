@@ -37,7 +37,7 @@ const WhatYou = () => {
           tracking-[2.52px]
           width-full
           md:text-[36px]
-          
+          text-[25px]
           "
       >
         {" "}

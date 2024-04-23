@@ -1,8 +1,9 @@
-"use client"
+"use client";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
-const Faq = ({ question, answer }) => {
+const Faq = ({ question, answer, url, linkText }) => {
   const [isFaqShowing, setIsFaqShowing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -34,7 +35,19 @@ const Faq = ({ question, answer }) => {
         </button>
       </article>
 
-      {isFaqShowing && <p className="text-[14px] p-[2px]">{answer}</p>}
+      {isFaqShowing && (
+        <p className="text-[14px] p-[2px] flex flex-row gap-1">
+          {answer}
+
+          {url && (
+            <p>
+              <Link href={url} className="">
+                {linkText}
+              </Link>{" "}
+            </p>
+          )}
+        </p>
+      )}
     </div>
   );
 };
