@@ -6,7 +6,7 @@ import Component24 from "../../../public/hackerheroright.svg";
 
 const HackerHouseHero = () => {
   return (
-    <div className="font-serif  h-[640px] bg-[#031700] flex-wrap justify-end overflow-auto lg:w-[1440px] md:w-[834px] ">
+    <div className="font-serif  h-[640px] bg-[#031700] flex-wrap justify-end overflow-auto lg:w-[1440px] md:w-[834px]   ">
       <div className="flex justify-between ">
         <div className=" ">
           <Image

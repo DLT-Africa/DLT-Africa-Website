@@ -48,9 +48,10 @@ const WhatYou = () => {
         text-center text-[#1C1C1C] opacity-[0.75] lg:px-[369px] md:px-[180px] self-center   mb-[90px] md:-w[564px] "
       >
         {" "}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-        libero et velit interdum, ac aliquet odio mattis. Class aptent taciti
-        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        With DLT Africa, you gain complimentary access to the complete 24-Week
+        Online Full-Time Bootcamp curriculum from DLT Africa, totaling over 500
+        hours of material! This extensive program has successfully placed
+        thousands of individuals in lucrative software development positions.
       </p>
 
       <div className="grid md:grid-cols-3 gap-12 sm:gap-16 md:gap-18 lg:gap-28 xl:gap-44 px-14 lg:px-32 pb-[61px] ">

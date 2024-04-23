@@ -8,7 +8,7 @@ const HackerHouseWorkshop = () => {
           Workshops by
         </p>
 
-        <p className="text-[#F7FCFE] Font-Poppins w-[500] text-center text-[96px] opacity-[75%] mt-17">
+        <p className="text-[#F7FCFE] Font-Poppins w-[500] text-center text-[70px] lg:text-[96px]  opacity-[75%] mt-17">
           LISK Tech
         </p>
       </div>
@@ -30,10 +30,10 @@ const HackerHouseWorkshop = () => {
                   Bootcamps
                 </h1>
                 <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                  Ignite your coding journey with our dynamic Bootcamp! Dive
+                  into essential skills, learn from industry pros, and launch
+                  your tech career in record time. Join us and unleash your
+                  coding potential!
                 </p>
               </div>
             </div>
@@ -48,11 +48,11 @@ const HackerHouseWorkshop = () => {
                   Workshops
                 </h1>
 
-                <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[15px] line-height-[19.2px] text-[#F7FCFE] mt-8">
+                  Boost your coding prowess with our immersive Workshops! Gain
+                  expertise from industry leaders, hone essential programming
+                  skills, and accelerate your journey to a tech career. Enroll
+                  today and unleash your coding genius
                 </p>
               </div>
             </div>
@@ -67,10 +67,9 @@ const HackerHouseWorkshop = () => {
                 </h1>
 
                 <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                  Boost your hacking skills with our dynamic Hackathons!
+                  Collaborate, tackle challenges, and showcase your prowess.
+                  Elevate your game with us!
                 </p>
               </div>
             </div>
@@ -85,10 +84,8 @@ const HackerHouseWorkshop = () => {
                 </h1>
 
                 <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                  Elevate your skills with top mentors and unlock unparalleled
+                  growth with us! Join now and ignite your journey to greatness!
                 </p>
               </div>
             </div>
@@ -102,11 +99,11 @@ const HackerHouseWorkshop = () => {
                   Vibes
                 </h1>
 
-                <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[15px] line-height-[19.2px] text-[#F7FCFE] mt-8">
+                  Immerse yourself in the electrifying world of developer vibes
+                  and embark on an exhilarating coding odyssey! Dive into epic
+                  challenges, ignite your passion, and unlock unparalleled
+                  opportunities to master tech mastery!
                 </p>
               </div>
             </div>
@@ -121,10 +118,10 @@ const HackerHouseWorkshop = () => {
                 </h1>
 
                 <p className="w-[250px] h-[152px]  opacity-[65%] Font-Poppins text-[16px] line-height-[19.2px] text-[#F7FCFE] mt-8">
-                  Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                  Engage in our captivating coding games where you can challenge
+                  your limits and compete for incredible prizes! Test your
+                  skills, push your boundaries, and embark on an exhilarating
+                  journey towards victory!
                 </p>
               </div>
             </div>
