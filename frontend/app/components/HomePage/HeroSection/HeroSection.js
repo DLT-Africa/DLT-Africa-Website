@@ -14,8 +14,8 @@ const HeroSection = () => {
         </h2>
 
         <p className="lg:w-[347px] md:w-[326px] mt-[15px] lg:text-[20px] md:text-[16px] font-Poppins text-[#1C1C1C] leading-[120%] text-opacity-[0.75]">
-          Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis.
+          Our bootcamp is designed to help people with little to no coding
+          experience become high-earning software engineers.
         </p>
 
         <Link

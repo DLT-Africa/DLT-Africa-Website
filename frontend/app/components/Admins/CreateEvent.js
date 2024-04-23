@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 
 import EventPreview from "./EventPreview";
 
-// const cloud_name = "dsblhzcka";
-// const upload_preset = "ktpngqgl";
+const cloud_name = "dsblhzcka";
+const upload_preset = "ktpngqgl";
 
 const CreateEvent = () => {
   const router = useRouter();

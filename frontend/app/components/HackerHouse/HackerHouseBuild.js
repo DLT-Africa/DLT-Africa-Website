@@ -1,18 +1,17 @@
 const HackerHouseBuild = () => {
   return (
     <>
-      <div className="bg-[#031700] relative max-w-[1440px] h-[745px] md:834px ">
-        <div className=" z-50 flex justify-center gap-[70px] pt-[201px] ">
-          <div className="text-[#F7FCFE] text-[34px] font-[500] max-w-[459px] ">
+      <div className="bg-[#031700] relative max-w-[1440px] h-[745px] md:834px flex items-center justify-center">
+        <div className="z-50 flex items-center gap-[41px] pt-[97px] flex-col lg:flex-row">
+          <div className="text-center text-[#F7FCFE] text-[34px] font-[500] max-w-[459px] ">
             <h2 className="mb-[15px] ">Build with the Best in Web3</h2>
-            <p className="text-[17px] font-[300] max-w-[343px] mb-[25px] ">
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeoses.
+            <p className="text-[17px] font-[300]  mb-[25px] lg:text-left text-center">
+              Collaborate with blockchain experts, explore cutting-edge tech,
+              master smart contracts, and create groundbreaking projects.
+              Elevate your skills and shape the future of blockchain with us at
+              Hacker House.
             </p>
-            <button className="text-[#F7FCFE] bg-[#FC7C13] text-[16px] hover:bg-[#ED6109] rounded-[10px] w-[353px] h-[55px]   ">
+            <button className="text-[#F7FCFE] bg-[#FC7C13] text-[16px] hover:bg-[#ED6109] rounded-[10px] w-[353px] h-[55px] ">
               Sign up for Hacker House
             </button>
           </div>
@@ -21,7 +20,8 @@ const HackerHouseBuild = () => {
             <img src="/images/withthebestimg.svg" alt="suberopic" />
           </div>
         </div>
-        <div className="div z-50">
+
+        <div className="div z-50 hidden lg:block">
           <img
             src="/images/strokeimg.svg"
             alt="strok"
