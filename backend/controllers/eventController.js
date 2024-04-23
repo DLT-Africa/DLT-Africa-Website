@@ -1,10 +1,12 @@
 const Event = require("../models/eventModel");
 const asyncHandler = require("express-async-handler");
+const cloudinary = require("cloudinary").v2;
 
 const createNewEvent = asyncHandler(async (req, res) => {
   const {
     eventName,
     eventCategory,
+    eventType,
     startDate,
     duration,
     eventDescription,
@@ -15,6 +17,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
   if (
     !eventName ||
     !eventCategory ||
+    !eventType ||
     !startDate ||
     !duration ||
     !eventDescription ||
@@ -28,6 +31,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
   const event = await Event.create({
     eventName,
     eventCategory,
+    eventType,
     startDate,
     duration,
     eventDescription,
@@ -41,6 +45,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
       eventName,
       eventCategory,
+      eventType,
       startDate,
       duration,
       eventDescription,
@@ -50,9 +55,9 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       _id,
-
       eventName,
       eventCategory,
+      eventType,
       startDate,
       duration,
       eventDescription,
@@ -80,9 +85,9 @@ const getEvent = async (req, res) => {
   if (event) {
     const {
       _id,
-
       eventName,
       eventCategory,
+      eventType,
       startDate,
       duration,
       eventDescription,
@@ -92,9 +97,9 @@ const getEvent = async (req, res) => {
 
     res.status(201).json({
       _id,
-
       eventName,
       eventCategory,
+      eventType,
       startDate,
       duration,
       eventDescription,
@@ -114,6 +119,7 @@ const updateEvent = asyncHandler(async (req, res) => {
     const {
       eventName,
       eventCategory,
+      eventType,
       startDate,
       duration,
       eventDescription,
@@ -123,6 +129,7 @@ const updateEvent = asyncHandler(async (req, res) => {
 
     event.eventName = req.body.eventName || eventName;
     event.eventCategory = req.body.eventCategory || eventCategory;
+    event.eventType = req.body.eventType || eventType;
     event.startDate = req.body.startDate || startDate;
     event.duration = req.body.duration || duration;
     event.eventDescription = req.body.eventDescription || eventDescription;
@@ -136,6 +143,7 @@ const updateEvent = asyncHandler(async (req, res) => {
 
       eventName: updateEvent.eventName,
       eventCategory: updateEvent.eventCategory,
+      eventType: updateEvent.eventType,
       startDate: updateEvent.startDate,
       duration: updateEvent.duration,
       eventDescription: updateEvent.eventDescription,

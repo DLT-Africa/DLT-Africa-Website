@@ -24,7 +24,7 @@ const AdminDashboard = () => {
         );
 
         setAdmissionData(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
@@ -100,6 +100,7 @@ const AdminDashboard = () => {
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Update Status</th>
                   <th className="px-4 py-2">Course Selected</th>
+                  <th className="px-4 py-2">DOB</th>
                   <th className="px-4 py-2">Class Type</th>
                   <th className="px-4 py-2" title="payment status">
                     Status
@@ -115,6 +116,7 @@ const AdminDashboard = () => {
                     academicQualification,
                     courseSelected,
                     classType,
+                    dob,
                     emailAddress,
                     status,
                   } = admission;
@@ -128,6 +130,7 @@ const AdminDashboard = () => {
                         <ChangeStatus id={_id} />
                       </td>
                       <td className="border px-4 py-2">{courseSelected}</td>
+                      <td className="border px-4 py-2">{dob}</td>
                       <td className="border px-4 py-2">{classType}</td>
                       <td className="border px-4 py-2">{status}</td>
                     </tr>
