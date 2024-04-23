@@ -1,8 +1,6 @@
-<<<<<<< HEAD:frontend/components/Courses/Frontend/FrontendIconSection.js
-<<<<<<< HEAD
-=======
+
 "use client";
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Courses/Frontend/FrontendIconSection.js
+
 
 import IconSection from "../IconSection/IconSection";
  import { ImHourGlass } from "react-icons/im";
@@ -110,19 +108,3 @@ const FrontendIconSection = () => {
 }
  
 export default FrontendIconSection;
-<<<<<<< HEAD:frontend/components/Courses/Frontend/FrontendIconSection.js
-=======
-import React from 'react'
-
-const FrontendIconSection = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default FrontendIconSection
->>>>>>> b3c53479d8e42b5a83a6ef0a784ed85f568d2369
-=======
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Courses/Frontend/FrontendIconSection.js

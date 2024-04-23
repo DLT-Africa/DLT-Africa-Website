@@ -35,7 +35,7 @@ const coursesList = [
     id: 4,
     courseName: "Blockchain Development (Smart Contract)",
     description:
-      "Acquire the skills and knowledge needed to be a Blockchain Developer, The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
+      "Acquire the skills and knowledge needed to be a Blockchain Developer. The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
     media: Course4,
     url: "/blockchain",
   },

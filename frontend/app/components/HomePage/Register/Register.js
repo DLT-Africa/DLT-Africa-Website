@@ -21,10 +21,10 @@ const RegisterOnline = () => {
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
             <div className="w-full lg:w-[450px] xl:w-[540px] text-[16px] lg:text-left xl:text-left">
-              Register for our online classes, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
+              Enroll in our Online Class and receive personalized mentoring from
+              seasoned developers and product designers. Dive into interactive
+              sessions, hands-on projects, and accelerate your skills from the
+              comfort of your home.
             </div>
 
             <Link href="/application">
@@ -61,10 +61,11 @@ const RegisterOffline = () => {
 
           <div className="w-full xl:w-[600px] lg:w-[500px] md:w-[450px] sm:w-[400px]">
             <p className="text-[#F7FCFE] font-poppins text-[20px] opacity-75 mt-[-40px] p-5 ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
+              Apply for our Physical Class and unlock personalized mentoring
+              from seasoned developers and product designers. Immerse yourself
+              in a vibrant environment tailored for growth. Dive into hands-on
+              projects, connect with industry communities, and accelerate your
+              career journey with us
             </p>
           </div>
 

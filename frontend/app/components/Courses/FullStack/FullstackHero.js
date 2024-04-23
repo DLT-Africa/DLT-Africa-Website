@@ -5,7 +5,7 @@ const sectionData = [
   {
     id: 1,
     title: "Full Stack Web Development",
-    text: "Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    text: "Embark on our immersive journey to master both frontend and backend technologies. Dive into real-world projects to become a well-rounded developer.",
     headline1: "Graduate in six months, part-time, and start working in the high-demand field of software development.",
     headline2: "Meet regularly with an experienced mentor to ask the questions you care about.",
     headline3: "Build your coding skills and launch your software engineering career",
