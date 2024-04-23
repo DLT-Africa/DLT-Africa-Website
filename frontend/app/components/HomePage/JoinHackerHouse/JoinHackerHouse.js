@@ -11,10 +11,8 @@ const JoinHackerHouse = () => {
             <h2 className="text-2xl md:text-4xl lg:text-5xl text-[28px] md:text-center lg:text-start mb-4">
               Join our <span className="text-orange-500">Hacker House</span>
             </h2>
-            <p className="text-base md:text-lg lg:text-xl font-300  lg:mb-8 md:text-center lg:text-start">
-              Register for our Hacker House program and seize the opportunity to
-              win amazing prizes! By joining, you'll not only enhance your
-              skills but also have the chance to win big rewards.
+            <p className="text-base md:text-lg lg:text-xl font-300 text-gray-600 lg:mb-8 md:text-center lg:text-start">
+            Register for our Hacker House program and seize the opportunity to win amazing prizes! By joining, you'll not only have the chance to build amazing projects but also earn rewards doing so.
             </p>
 
             <div className="flex justify-center lg:justify-start">
