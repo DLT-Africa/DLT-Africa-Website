@@ -16,7 +16,7 @@ const RegisterOnline = () => {
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
-            <div className="text-[45px] lg:text-left xl:text-left lg:text-[45px] ">
+            <div className="text-[25px] lg:text-left xl:text-left lg:text-[45px] ">
               <span className="text-[#252A24]">Ready To Change</span>{" "}
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
