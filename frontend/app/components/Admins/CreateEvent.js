@@ -7,29 +7,27 @@ import { useRouter } from "next/navigation";
 
 import EventPreview from "./EventPreview";
 
-const cloud_name = "dsblhzcka";
-const upload_preset = "ktpngqgl";
-
 const CreateEvent = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     eventName: "",
     eventCategory: "",
+    eventType: "",
     startDate: "",
     duration: "",
     eventDescription: "",
     eventRegLink: "",
     eventVenue: "",
+    
   });
 
-  const [formValidMessage, setFormValidMessage] = useState();
+  const [formValidMessage, setFormValidMessage] = useState("");
   const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    console.log(e.target.value);
     setFormData({
       ...formData,
       [name]: value,
@@ -43,6 +41,7 @@ const CreateEvent = () => {
       const {
         eventName,
         eventCategory,
+        eventType,
         startDate,
         duration,
         eventDescription,
@@ -50,16 +49,16 @@ const CreateEvent = () => {
         eventVenue,
       } = formData;
 
-      console.log(formData);
       // Check if all required fields are filled
       if (
         !eventName ||
         !eventCategory ||
+        !eventType ||
         !startDate ||
         !duration ||
         !eventDescription ||
         !eventRegLink ||
-        !eventVenue
+        !eventVenue 
       ) {
         setFormValidMessage(
           "Oops! required field are not filled. Go back and fill them"
@@ -73,12 +72,9 @@ const CreateEvent = () => {
       axios
         .post("http://localhost:5000/api/v1/events/create-event", formData)
         .then(function (response) {
-          console.log(response.data);
-          console.log(formData);
           setIsSubmitting(false);
           setFormCompleted(true);
-          
-          router.push('/admin-dashboard')
+          router.push("/admin-dashboard");
         })
         .catch(function (error) {
           setIsSubmitting(false);
@@ -101,10 +97,9 @@ const CreateEvent = () => {
     <div>
       <div className="mt-5 mb-20 p-4">
         {!formCompleted ? (
-          //lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]
           <form
             onSubmit={handleSubmit}
-            className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
+            className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto"
           >
             <Typography className="font-normal text-[36px] text-black mb-[39px] text-center ">
               Create an event
@@ -125,6 +120,23 @@ const CreateEvent = () => {
                 }}
                 placeholder="OSCAFEST"
                 value={formData.eventName}
+                onChange={handleChange}
+              />
+              <Input
+                size="lg"
+                type="text"
+                name="eventType"
+                variant="static"
+                label="Event Type"
+                className="pl-4 text-xl"
+                labelProps={{
+                  className: "!text-black",
+                }}
+                containerProps={{
+                  className: "h-14 ",
+                }}
+                placeholder="Hackathon || Incubation "
+                value={formData.eventType}
                 onChange={handleChange}
               />
               <Input
@@ -229,12 +241,14 @@ const CreateEvent = () => {
                 value={formData.eventDescription}
                 onChange={handleChange}
               />
+
+              
             </div>
 
             <Button
               type="submit"
               size="large"
-              className="capitalize px-16 py-4 bg-[#FC7C13] my-[35px] w-full text-[16px] transition duration-500 ease-in-out transform hover:-translate-y-1 "
+              className="capitalize px-16 py-4 bg-[#FC7C13] my-[35px] w-full text-[16px] transition duration-500 ease-in-out transform hover:-translate-y-1"
             >
               {isSubmitting ? <p>Loading...</p> : <span>Add Event</span>}
             </Button>
