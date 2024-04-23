@@ -67,13 +67,13 @@ const courses = [
 
 const FrontendDetail = () => {
   return (
-    <div className="py-[95.5px] bg-[#F6F6F6] px-[286px] ">
+    <div className="py-8 md:py-16 bg-gray-100 px-6 md:px-12 lg:px-24 xl:px-32">
       <div>
         {courses.map(({ id, question, answer }) => (
           <CourseDetail key={id} question={question} answer={answer} />
         ))}
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mt-8">
         <Button to="/application">Apply Now</Button>
       </div>
     </div>
