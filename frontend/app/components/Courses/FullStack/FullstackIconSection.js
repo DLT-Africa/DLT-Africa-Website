@@ -1,9 +1,5 @@
-<<<<<<< HEAD:frontend/components/Courses/FullStack/FullstackIconSection.js
-<<<<<<< HEAD
-=======
 "use client";
 
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Courses/FullStack/FullstackIconSection.js
 import IconSection from "../IconSection/IconSection";
  import { ImHourGlass } from "react-icons/im";
  import { IoIosApps } from "react-icons/io";
@@ -113,19 +109,3 @@ const FullstackIconSection = () => {
 }
 
 export default FullstackIconSection
-<<<<<<< HEAD:frontend/components/Courses/FullStack/FullstackIconSection.js
-=======
-import React from 'react'
-
-const FullstackIconSection = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default FullstackIconSection
->>>>>>> b3c53479d8e42b5a83a6ef0a784ed85f568d2369
-=======
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Courses/FullStack/FullstackIconSection.js

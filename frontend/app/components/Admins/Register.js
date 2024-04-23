@@ -128,7 +128,7 @@ const Register = () => {
               />
               <Input
                 size="lg"
-                type="number"
+                type="text"
                 name="phone"
                 variant="static"
                 label="Phone Number"

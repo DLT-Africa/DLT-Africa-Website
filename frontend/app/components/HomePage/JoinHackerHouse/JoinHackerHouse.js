@@ -12,16 +12,18 @@ const JoinHackerHouse = () => {
               Join our <span className="text-orange-500">Hacker House</span>
             </h2>
             <p className="text-base md:text-lg lg:text-xl font-300 text-gray-600 lg:mb-8 md:text-center lg:text-start">
-              Register for our Hacker House and stand a chance of winning huge
-              prizes. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+              Register for our Hacker House program and seize the opportunity to
+              win amazing prizes! By joining, you'll not only enhance your
+              skills but also have the chance to win big rewards.
             </p>
 
             <div className="flex justify-center lg:justify-start">
-            <Link href="/hacker-house" className="transition duration-500 ease-in-out transform hover:-translate-y-1 w-[353px] lg:mt-[48px] md:justify-center md:mt-[20px] mt-[20px] h-[55px] py-2 px-4 rounded-md  font-400 hover:bg-orange-100 text-orange-500 border border-orange-500 flex items-center justify-center">
+              <Link
+                href="/hacker-house"
+                className="transition duration-500 ease-in-out transform hover:-translate-y-1 w-[353px] lg:mt-[48px] md:justify-center md:mt-[20px] mt-[20px] h-[55px] py-2 px-4 rounded-md  font-400 hover:bg-orange-100 text-orange-500 border border-orange-500 flex items-center justify-center"
+              >
                 Read more
               </Link>
-            
             </div>
           </div>
 
