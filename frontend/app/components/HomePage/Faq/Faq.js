@@ -40,7 +40,7 @@ const Faq = ({ question, answer, url, linkText }) => {
           {answer}
 
           {url && (
-            <p>
+            <p className="text-[#fff] duration-500 ease-in-out transform hover:-translate-y-1">
               <Link href={url} className="">
                 {linkText}
               </Link>{" "}

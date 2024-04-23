@@ -23,10 +23,7 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  eventDescription: {
-    type: String,
-    required: true,
-  },
+
   eventRegLink: {
     type: String,
     required: true,
@@ -35,6 +32,18 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  eventDetail: [
+    {
+      media: {
+        type: [String],
+        default: "",
+      },
+      eventDescription: {
+        type: String,
+        default: ""
+      },
+    },
+  ],
 });
 
 const Event = mongoose.model("Event", eventSchema);
