@@ -17,7 +17,7 @@ const Faqs = () => {
       id: 2,
       question: "What is the overview of the training ?",
       answer:
-        "The training is to take an absolute beginners from ground zero to a smart contract developer with the curriculum including HTML, CSS, UI/UX, Javascript, NodeJs, ReactJS and smart contract development with Solidity.",
+        "The training is to take an absolute beginners from ground zero to a smart contract developer with the curriculum including UI/UX, Javascript, NodeJs, ReactJS and smart contract development with Solidity.",
     },
   ];
 
@@ -27,6 +27,7 @@ const Faqs = () => {
       question: "What are the key dates and how to apply for the training ?",
       answer:
         "The training durations depend on the chosen course. Navigate to the courses page for more information.",
+        
     },
   ];
 
@@ -45,7 +46,7 @@ const Faqs = () => {
       id: 1,
       question: "What is the overview of the incubation program ?",
       answer:
-        "The program is 3 months online program that include mentorship, management skills training, regular web3 session and networking events to help put the business in the right position. A demo day will be held during the final week, where there will be opportunity to pitch to global leaders and VC within Web3 space.",
+        "The program is 2months online program that include mentorship, management skills training, regular web3 session and networking events to help put the business in the right position. A demo day will be held during the final week, where there will be opportunity to pitch to global leaders and VC within Web3 space.",
     },
   ];
 
@@ -54,7 +55,7 @@ const Faqs = () => {
       id: 1,
       question: "How to apply for the incubation program and key dates ?",
       answer:
-        "After submitting the application on our website, we will sent an email to confirm the application has been received. We will also follow up to schedule a time for screening and interview for successful application. Only the one who are successful after the interview will be selected to participate in the incubation program. The timeline from application to when successful application will be announced is eight weeks.",
+        "After submitting the application on our website, we will send an email to confirm the application has been received. We will also follow up to schedule a time for screening and interview for successful application. Only the one who are successful after the interview will be selected to participate in the incubation program. The timeline from application to when successful application will be announced is four weeks.",
     },
   ];
 
@@ -75,7 +76,7 @@ const Faqs = () => {
         Frequently asked questions
       </h1>
       <p className="text-center text-sm sm:text-base mb-10">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lorem.
+      Among the frequently asked questions are:
       </p>
 
       <div className="grid grid-cols-1 gap-6">
