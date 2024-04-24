@@ -33,7 +33,7 @@ const EventPreview = () => {
   const handleDelete = async (eventId) => {
     try {
       await axios.delete(
-        `${BACKEND_URL}api/v1/events/delete/${eventId}`
+        `https://dlt-africa-website.vercel.app/api/v1/events/delete/${eventId}`
       );
       setEventData(eventData.filter((event) => event._id !== eventId));
       setMessage("Event deleted successfully");
@@ -47,7 +47,7 @@ const EventPreview = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${BACKEND_URL}api/v1/events/get-all-events`
+          `https://dlt-africa-website.vercel.app/api/v1/events/get-all-events`
         );
 
         setEventData(response.data);
