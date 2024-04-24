@@ -106,19 +106,19 @@ const Footer = () => {
       </div>
 
       <div className="flex gap-6 pb-5 justify-center mt-[80px] mb-[42px] ">
-        <a href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d">
+        <a href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d" target="_blank">
           <FaFacebook className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://www.instagram.com/dlta_frica/">
+        <a href="https://www.instagram.com/dlta_frica/" target="_blank">
           <FaInstagram className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://www.linkedin.com/company/dlt-africa/">
+        <a href="https://www.linkedin.com/company/dlt-africa/" target="_blank">
           <FaLinkedin className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://twitter.com/dlt_africa">
+        <a href="https://twitter.com/dlt_africa" target="_blank">
           <FaTwitter className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://github.com/DLT-Africa">
+        <a href="https://github.com/DLT-Africa" target="_blank">
           <FaGithub className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
       </div>
