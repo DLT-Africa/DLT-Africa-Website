@@ -9,7 +9,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
     eventType,
     startDate,
     duration,
-    eventDescription,
+
     eventRegLink,
     eventVenue,
   } = req.body;
@@ -20,7 +20,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
     !eventType ||
     !startDate ||
     !duration ||
-    !eventDescription ||
     !eventRegLink ||
     !eventVenue
   ) {
@@ -34,7 +33,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
     eventType,
     startDate,
     duration,
-    eventDescription,
+
     eventRegLink,
     eventVenue,
   });
@@ -48,7 +47,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
       eventType,
       startDate,
       duration,
-      eventDescription,
+
       eventRegLink,
       eventVenue,
     } = event;
@@ -60,7 +59,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
       eventType,
       startDate,
       duration,
-      eventDescription,
+
       eventRegLink,
       eventVenue,
     });
@@ -80,94 +79,113 @@ const getAllEvents = asyncHandler(async (req, res) => {
 });
 
 const getEvent = async (req, res) => {
-  const event = await Team.findById(req.team._id);
+  const eventId = req.params.eventId;
 
-  if (event) {
-    const {
-      _id,
-      eventName,
-      eventCategory,
-      eventType,
-      startDate,
-      duration,
-      eventDescription,
-      eventRegLink,
-      eventVenue,
-    } = event;
+  try {
+    const event = await Event.findById(eventId);
 
-    res.status(201).json({
-      _id,
-      eventName,
-      eventCategory,
-      eventType,
-      startDate,
-      duration,
-      eventDescription,
-      eventRegLink,
-      eventVenue,
-    });
-  } else {
-    res.status(404);
-    throw new Error("Event not found");
+    if (event) {
+      const {
+        _id,
+        eventName,
+        eventCategory,
+        eventType,
+        startDate,
+        duration,
+        eventRegLink,
+        eventVenue,
+        eventDetail,
+      } = event;
+
+      res.status(200).json({
+        _id,
+        eventName,
+        eventCategory,
+        eventType,
+        startDate,
+        duration,
+        eventRegLink,
+        eventVenue,
+        eventDetail,
+      });
+    } else {
+      res.status(404).json({ message: "Event not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
 const updateEvent = asyncHandler(async (req, res) => {
-  const event = await Event.findById(req.event._id);
+  const eventId = req.params.eventId;
 
-  if (event) {
-    const {
-      eventName,
-      eventCategory,
-      eventType,
-      startDate,
-      duration,
-      eventDescription,
-      eventRegLink,
-      eventVenue,
-    } = event;
+  try {
+    const event = await Event.findById(eventId);
 
-    event.eventName = req.body.eventName || eventName;
-    event.eventCategory = req.body.eventCategory || eventCategory;
-    event.eventType = req.body.eventType || eventType;
-    event.startDate = req.body.startDate || startDate;
-    event.duration = req.body.duration || duration;
-    event.eventDescription = req.body.eventDescription || eventDescription;
-    event.eventRegLink = req.body.eventRegLink || eventRegLink;
-    event.eventVenue = req.body.eventVenue || eventVenue;
+    if (event) {
+      const {
+        eventName,
+        eventCategory,
+        eventType,
+        startDate,
+        duration,
+        eventRegLink,
+        eventVenue,
+        eventDetail,
+      } = event;
 
-    const updateEvent = await event.save();
+      event.eventName = req.body.eventName || eventName;
+      event.eventCategory = req.body.eventCategory || eventCategory;
+      event.eventType = req.body.eventType || eventType;
+      event.startDate = req.body.startDate || startDate;
+      event.duration = req.body.duration || duration;
+      event.eventRegLink = req.body.eventRegLink || eventRegLink;
+      event.eventVenue = req.body.eventVenue || eventVenue;
+      event.eventDetail = req.body.eventDetail || eventDetail;
 
-    res.status(201).json({
-      _id: updateEvent._id,
+      if (req.body.eventDetail) {
+        event.eventDetail = req.body.eventDetail;
+      }
 
-      eventName: updateEvent.eventName,
-      eventCategory: updateEvent.eventCategory,
-      eventType: updateEvent.eventType,
-      startDate: updateEvent.startDate,
-      duration: updateEvent.duration,
-      eventDescription: updateEvent.eventDescription,
-      eventRegLink: updateEvent.eventRegLink,
-      eventVenue: updateEvent.eventVenue,
-    });
-  } else {
-    res.status(404);
-    throw new Error("Event not found");
+      const updatedEvent = await event.save();
+
+      res.status(201).json({
+        _id: updatedEvent._id,
+        eventName: updatedEvent.eventName,
+        eventCategory: updatedEvent.eventCategory,
+        eventType: updatedEvent.eventType,
+        startDate: updatedEvent.startDate,
+        duration: updatedEvent.duration,
+        eventRegLink: updatedEvent.eventRegLink,
+        eventVenue: updatedEvent.eventVenue,
+        eventDetail: updatedEvent.eventDetail,
+      });
+    } else {
+      res.status(404);
+      throw new Error("Event not found");
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
 const deleteEvent = asyncHandler(async (req, res) => {
-  const event = Event.findById(req.params.id);
+  const eventId = req.params.eventId;
+  try {
+    const event = Event.findById(eventId);
 
-  if (!event) {
-    res.status(404);
-    throw new Error("Event not found");
+    if (!event) {
+      res.status(404);
+      throw new Error("Event not found");
+    }
+
+    await event.deleteOne();
+    res.status(200).json({
+      message: "Event deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
   }
-
-  await event.deleteOne();
-  res.status(200).json({
-    message: "Event deleted successfully",
-  });
 });
 
 module.exports = {

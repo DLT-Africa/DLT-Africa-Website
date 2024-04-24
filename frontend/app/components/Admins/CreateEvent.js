@@ -49,7 +49,6 @@ const CreateEvent = () => {
         eventVenue,
       } = formData;
 
-      // Check if all required fields are filled
       if (
         !eventName ||
         !eventCategory ||
@@ -68,7 +67,6 @@ const CreateEvent = () => {
 
       setIsSubmitting(true);
 
-      // Post form data to server
       axios
         .post("http://localhost:5000/api/v1/events/create-event", formData)
         .then(function (response) {
