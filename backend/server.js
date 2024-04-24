@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "*", "https://api.facts.ng/v1/states"],
+    origin: ["http://localhost:3000", "*", "https://dlt-africa-website-frontend.vercel.app"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
