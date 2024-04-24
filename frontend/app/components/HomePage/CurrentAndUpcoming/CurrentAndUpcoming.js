@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 
 import Current1 from "../../../../public/Current1.png";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const CurrentAndUpcoming = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ const CurrentAndUpcoming = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/events/get-all-events"
+          `${BACKEND_URL}api/v1/events/get-all-events`
         );
         setEventData(response.data);
       } catch (error) {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import ChangeStatus from "@/app/components/ChangeStatus/ChangeStatus";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const AdminDashboard = () => {
   const [admissionData, setAdmissionData] = useState([]);
 
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     const fetchAdmissions = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/cohorts/get-all-admissions"
+          `${BACKEND_URL}api/v1/cohorts/get-all-admissions`
         );
 
         setAdmissionData(response.data);

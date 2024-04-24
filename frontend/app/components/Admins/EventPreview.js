@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { FaPen } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import EditEventPage from "@/app/components/Admins/EditEvent";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const EventPreview = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ const EventPreview = () => {
   const handleDelete = async (eventId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/v1/events/delete/${eventId}`
+        `${BACKEND_URL}api/v1/events/delete/${eventId}`
       );
       setEventData(eventData.filter((event) => event._id !== eventId));
       setMessage("Event deleted successfully");
@@ -47,7 +47,7 @@ const EventPreview = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/events/get-all-events"
+          `${BACKEND_URL}api/v1/events/get-all-events`
         );
 
         setEventData(response.data);
