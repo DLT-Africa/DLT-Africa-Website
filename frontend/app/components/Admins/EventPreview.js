@@ -17,13 +17,16 @@ const EventPreview = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
   const [selectedEventId, setSelectedEventId] = useState(null);
-
-  const handleEditEvent = (eventId) => {
-    setSelectedEventId(eventId);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setSelectedEventId(null);
+    setIsModalOpen(false);
+  };
+
+  const handleEditEvent = (eventId) => {
+    setSelectedEventId(eventId);
+    setIsModalOpen(true);
   };
 
   const router = useRouter();
@@ -170,8 +173,16 @@ const EventPreview = () => {
                   <div>
                     <div className="overlay" onClick={handleCloseModal}></div>
                     <div className="modal">
-                      <button onClick={handleCloseModal} className="p-2 text-[#fff] bg-red-500 t-[20px] mt-1 ">X</button>
-                      <EditEventPage eventId={selectedEventId} />
+                      <button
+                        onClick={handleCloseModal}
+                        className="p-2 text-[#fff] bg-red-500 t-[20px] mt-1 "
+                      >
+                        X
+                      </button>
+                      <EditEventPage
+                        eventId={selectedEventId}
+                        onClose={handleModalClose}
+                      />
                     </div>
                   </div>
                 )}
