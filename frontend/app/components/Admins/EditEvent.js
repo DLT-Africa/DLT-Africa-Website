@@ -4,7 +4,7 @@ import axios from "axios";
 
 const cloud_name = "dsblhzcka";
 const upload_preset = "ktpngqgl";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const EditEventPage = ({ eventId, onClose }) => {
   const [eventImage, setEventImage] = useState(null);
 
@@ -24,7 +24,7 @@ const EditEventPage = ({ eventId, onClose }) => {
   const fetchEventDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/events/get-single-event/${eventId}`
+        `${BACKEND_URL}api/v1/events/get-single-event/${eventId}`
       );
       setFormData(response.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const EditEventPage = ({ eventId, onClose }) => {
     try {
 
       const updateResponse = await axios.patch(
-        `http://localhost:5000/api/v1/events/update-event/${eventId}`,
+        `${BACKEND_URL}api/v1/events/update-event/${eventId}`,
         formData
       );
 

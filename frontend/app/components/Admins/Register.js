@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 import { Button, Input, Typography } from "@material-tailwind/react";
 import Loader from "@/app/components/Application/Loader";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const Register = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ const Register = () => {
     setIsSubmitting(true);
 
     axios
-      .post("http://localhost:5000/api/v1/team/register-team", formData)
+      .post(`${BACKEND_URL}api/v1/team/register-team`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
