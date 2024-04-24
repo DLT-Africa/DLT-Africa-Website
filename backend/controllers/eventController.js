@@ -12,6 +12,8 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
     eventRegLink,
     eventVenue,
+    media,
+    eventDescription,
   } = req.body;
 
   if (
@@ -21,7 +23,9 @@ const createNewEvent = asyncHandler(async (req, res) => {
     !startDate ||
     !duration ||
     !eventRegLink ||
-    !eventVenue
+    !eventVenue ||
+    !eventDescription ||
+    !media
   ) {
     res.status(400);
     throw new Error("All fields are required!");
@@ -33,9 +37,10 @@ const createNewEvent = asyncHandler(async (req, res) => {
     eventType,
     startDate,
     duration,
-
     eventRegLink,
     eventVenue,
+    media,
+    eventDescription,
   });
 
   if (event) {
@@ -50,6 +55,8 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
       eventRegLink,
       eventVenue,
+      media,
+      eventDescription,
     } = event;
 
     res.status(201).json({
@@ -62,6 +69,8 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
       eventRegLink,
       eventVenue,
+      media,
+      eventDescription,
     });
   } else {
     res.status(400);
@@ -94,7 +103,8 @@ const getEvent = async (req, res) => {
         duration,
         eventRegLink,
         eventVenue,
-        eventDetail,
+        media,
+        eventDescription,
       } = event;
 
       res.status(200).json({
@@ -106,7 +116,8 @@ const getEvent = async (req, res) => {
         duration,
         eventRegLink,
         eventVenue,
-        eventDetail,
+        media,
+        eventDescription,
       });
     } else {
       res.status(404).json({ message: "Event not found" });
@@ -131,7 +142,8 @@ const updateEvent = asyncHandler(async (req, res) => {
         duration,
         eventRegLink,
         eventVenue,
-        eventDetail,
+        media,
+        eventDescription
       } = event;
 
       event.eventName = req.body.eventName || eventName;
@@ -141,11 +153,10 @@ const updateEvent = asyncHandler(async (req, res) => {
       event.duration = req.body.duration || duration;
       event.eventRegLink = req.body.eventRegLink || eventRegLink;
       event.eventVenue = req.body.eventVenue || eventVenue;
-      event.eventDetail = req.body.eventDetail || eventDetail;
+      event.media = req.body.media || media;
+      event.eventDescription = req.body.eventDescription || eventDescription;
 
-      if (req.body.eventDetail) {
-        event.eventDetail = req.body.eventDetail;
-      }
+     
 
       const updatedEvent = await event.save();
 
@@ -158,7 +169,8 @@ const updateEvent = asyncHandler(async (req, res) => {
         duration: updatedEvent.duration,
         eventRegLink: updatedEvent.eventRegLink,
         eventVenue: updatedEvent.eventVenue,
-        eventDetail: updatedEvent.eventDetail,
+        eventDescription: updatedEvent.eventDescription,
+        media: updatedEvent.media,
       });
     } else {
       res.status(404);
