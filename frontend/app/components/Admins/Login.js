@@ -34,7 +34,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-africa-website.vercel.app/api/v1/team/login`, formData)
+      .post(`https://dlt-website-backend.vercel.app/api/v1/team/login`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
