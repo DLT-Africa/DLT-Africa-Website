@@ -21,7 +21,7 @@ const HackerHouseBuild = () => {
           </div>
         </div>
 
-        <div className="div z-50 hidden lg:block">
+        <div className="div z-50 hidden  md:hidden lg:hidden">
           <img
             src="/images/strokeimg.svg"
             alt="strok"

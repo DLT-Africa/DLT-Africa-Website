@@ -103,15 +103,10 @@ const CurrentAndUpcoming = () => {
             <p>Venue: {selectedEvent.eventVenue}</p>
             <div className="mt-4">
               <h3 className="text-lg font-semibold">Event Details</h3>
-              <p>Description: {selectedEvent.eventDetail.eventDescription}</p>
+              <p>Description: {selectedEvent.eventDescription}</p>
               <div>
                 Media:
-                <Image
-                  src={selectedEvent.eventDetail.media || ""}
-                  alt="Event Media"
-                  className="w-40 h-40 rounded-lg object-cover"
-                  width={400}
-                />
+                <a href={selectedEvent.media}>{selectedEvent.media}</a>
               </div>
             </div>
             <button

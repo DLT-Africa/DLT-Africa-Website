@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const cloud_name = "dsblhzcka";
-const upload_preset = process.env.CLOUDINARY_UPLOAD_PRESET;
+const upload_preset = "ktpngqgl";
 
-const EditEventPage = ({ eventId }) => {
+const EditEventPage = ({ eventId, onClose }) => {
   const [eventImage, setEventImage] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -16,10 +16,9 @@ const EditEventPage = ({ eventId }) => {
     duration: "",
     eventRegLink: "",
     eventVenue: "",
-    eventDetail: {
-      media: [],
-      eventDescription: "",
-    },
+
+    media: "",
+    eventDescription: "",
   });
 
   const fetchEventDetails = async () => {
@@ -36,61 +35,26 @@ const EditEventPage = ({ eventId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let imageURL = null;
 
-      if (eventImage !== null) {
-        const formData = new FormData();
-        formData.append("file", eventImage);
-        formData.append("upload_preset", upload_preset);
-
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const imgData = await response.json();
-        console.log(imgData);
-        imageURL = imgData.secure_url;
-      }
-
-      const updatedFormData = {
-        ...formData,
-        eventDetail: {
-          ...formData.eventDetail,
-          media: imageURL ? [imageURL] : formData.eventDetail.media,
-        },
-      };
-
-      const updateResponse = await axios.put(
+      const updateResponse = await axios.patch(
         `http://localhost:5000/api/v1/events/update-event/${eventId}`,
-        updatedFormData
+        formData
       );
 
       console.log("Event updated:", updateResponse.data);
+      onClose()
     } catch (error) {
       console.error("Error updating event:", error);
     }
   };
 
   const handleChange = (e) => {
-    if (e.target.name.startsWith("eventDetail.")) {
-      setFormData({
-        ...formData,
-        eventDetail: {
-          ...formData.eventDetail,
-          [e.target.name.split(".")[1]]: e.target.value,
-        },
-      });
-    } else if (e.target.name === "eventDetail.media") {
-      setEventImage(e.target.files[0]);
-    } else {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
-    }
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   useEffect(() => {
@@ -141,25 +105,26 @@ const EditEventPage = ({ eventId }) => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="eventDetail.eventDescription" className="block mb-2">
+          <label htmlFor="eventDescription" className="block mb-2">
             Event Description
           </label>
           <textarea
-            id="eventDetail.eventDescription"
-            name="eventDetail.eventDescription"
-            value={formData.eventDetail.eventDescription}
+            id="eventDescription"
+            name="eventDescription"
+            value={formData.eventDescription}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="eventDetail.media" className="block mb-2">
-            Media
+          <label htmlFor="media" className="block mb-2">
+            Media (Google Drive Link)
           </label>
           <input
-            type="file"
-            id="eventDetail.media"
-            name="eventDetail.media"
+            type="text"
+            id="media"
+            name="media"
+            value={formData.media}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           />
@@ -174,6 +139,5 @@ const EditEventPage = ({ eventId }) => {
     </div>
   );
 };
-
 
 export default EditEventPage;

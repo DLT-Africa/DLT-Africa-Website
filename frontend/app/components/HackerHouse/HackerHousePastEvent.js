@@ -124,7 +124,7 @@ const HackerHousePastEvent = () => {
                         image,
                         eventName,
                         eventCategory,
-                        eventDetail,
+                        eventDescription,
                         eventType,
                         duration,
                         eventVenue,
@@ -154,7 +154,7 @@ const HackerHousePastEvent = () => {
                                 variant="small"
                                 className="font-medium text-gray-700/70"
                               >
-                                {eventDetail.eventDescription}
+                                {eventDescription}
                               </Typography>
                             </div>
                           </td>
@@ -200,7 +200,10 @@ const HackerHousePastEvent = () => {
                           </td>
 
                           <td className={classes}>
-                            <IconButton variant="text" onClick={() => handleViewMore(event)}>
+                            <IconButton
+                              variant="text"
+                              onClick={() => handleViewMore(event)}
+                            >
                               <FaArrowRightLong className="h-4 w-4" />
                             </IconButton>
                           </td>
@@ -222,19 +225,11 @@ const HackerHousePastEvent = () => {
                             <h3 className="text-lg font-semibold">
                               Event Details
                             </h3>
+                            <p>Description: {selectedEvent.eventDescription}</p>
                             <p>
-                              Description:{" "}
-                              {selectedEvent.eventDetail.eventDescription}
-                            </p>
-                            <div>
                               Media:
-                              <Image
-                                src={selectedEvent.eventDetail.media || ""}
-                                alt="Event Media"
-                                className="w-40 h-40 rounded-lg object-cover"
-                                width={400}
-                              />
-                            </div>
+                              {selectedEvent.media}
+                            </p>
                           </div>
                           <button
                             onClick={closeModal}

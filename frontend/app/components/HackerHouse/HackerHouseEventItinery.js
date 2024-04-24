@@ -13,7 +13,7 @@ const HackerHouseEventItinery = () => {
       ],
     },
     {
-      date: "Lorem",
+      date: "[in view]",
       events: [
         "10am: Opening ceremony",
         "10:30am-12:30AM: Hacking & workshops",
