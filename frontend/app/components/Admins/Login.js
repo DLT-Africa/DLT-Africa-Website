@@ -3,15 +3,18 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import { Button, Input, Typography } from "@material-tailwind/react";
-import Loader from "@/app/components/Application/Loader";
 import AdminDashboard from "./AdminDashboard";
-
+import { useRouter } from "next/navigation";
+const BACKEND_URL = process.env.BACKEND_URL
 const Login = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
   });
+  const [formValidMessage, setFormValidMessage] = useState();
+  const [formCompleted, setFormCompleted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
@@ -31,13 +34,14 @@ const Login = () => {
     setIsSubmitting(true);
 
     axios
-      .post("http://localhost:5000/api/v1/team/login", formData)
+      .post(`${BACKEND_URL}api/v1/team/login`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
         setIsSubmitting(false);
         localStorage.setItem("isLoggedIn", "true");
         setFormCompleted(true);
+        router.push("/admin-dashboard");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -48,10 +52,6 @@ const Login = () => {
         }
       });
   };
-
-  const [formValidMessage, setFormValidMessage] = useState();
-  const [formCompleted, setFormCompleted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormValidMessage("");
@@ -66,7 +66,6 @@ const Login = () => {
     <div>
       <div className="mt-5 mb-20 p-4">
         {!formCompleted ? (
-          //lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]
           <form
             onSubmit={handleSubmit}
             className=" w-[700px] rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%] "

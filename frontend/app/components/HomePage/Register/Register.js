@@ -16,19 +16,19 @@ const RegisterOnline = () => {
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
-            <div className="text-[45px] lg:text-left xl:text-left lg:text-[45px] ">
+            <div className="text-[25px] lg:text-left xl:text-left lg:text-[45px] ">
               <span className="text-[#252A24]">Ready To Change</span>{" "}
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
             <div className="w-full lg:w-[450px] xl:w-[540px] text-[16px] lg:text-left xl:text-left">
-              Register for our online classes, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
+              Enroll in our Online Class and receive personalized mentoring from
+              seasoned developers and product designers. Dive into interactive
+              sessions, hands-on projects, and accelerate your skills from the
+              comfort of your home.
             </div>
 
             <Link href="/application">
-              <div className="w-full lg:w-[353px] flex items-center justify-center h-[55px] p-[10px] rounded-lg border-solid border-2 border-orange-500 text-orange-500 hover:bg-orange-100">
+              <div className="w-full lg:w-[353px] flex items-center justify-center h-[55px] p-[10px] rounded-lg border-solid border-2 border-orange-500 text-orange-500 hover:bg-orange-100 transition duration-500 ease-in-out transform hover:-translate-y-1">
                 Register
               </div>
             </Link>
@@ -61,15 +61,16 @@ const RegisterOffline = () => {
 
           <div className="w-full xl:w-[600px] lg:w-[500px] md:w-[450px] sm:w-[400px]">
             <p className="text-[#F7FCFE] font-poppins text-[20px] opacity-75 mt-[-40px] p-5 ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
+              Apply for our Physical Class and unlock personalized mentoring
+              from seasoned developers and product designers. Immerse yourself
+              in a vibrant environment tailored for growth. Dive into hands-on
+              projects, connect with industry communities, and accelerate your
+              career journey with us
             </p>
           </div>
 
           <Link href="/application">
-            <div className="w-[200px] mt-[-15px] z-10 xl:w-[350px] lg:w-[320px] md:w-[300px]  h-[55px] p-[10px] text-[16px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE]  mb-14">
+            <div className="w-[200px] mt-[-15px] z-10 xl:w-[350px] lg:w-[320px] md:w-[300px]  h-[55px] p-[10px] text-[16px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE]  mb-14 transition duration-500 ease-in-out transform hover:-translate-y-1">
               Register
             </div>
           </Link>

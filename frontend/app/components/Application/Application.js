@@ -92,8 +92,10 @@ const clType = [
   { id: 2, tag: "Physical" },
 ];
 
-import Loader from "@/app/components/Application/Loader";
+import { useRouter } from "next/navigation";
+const BACKEND_URL = process.env.BACKEND_URL
 const Application = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -167,12 +169,13 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post("http://localhost:5000/api/v1/cohorts/studentreg", formData)
+      .post(`${BACKEND_URL}api/v1/cohorts/studentreg`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
+        router.push("/admin-dashboard");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -469,7 +472,7 @@ const Application = () => {
                   }`}
                   disabled={!allCheckboxesChecked}
                 >
-                  {isSubmitting ? <Loader /> : <span>Register</span>}
+                  {isSubmitting ? <p>Loading...</p> : <span>Register</span>}
                 </Button>
                 {formValidMessage && (
                   <div className="event-page-registration-error-message">

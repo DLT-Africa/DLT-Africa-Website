@@ -6,13 +6,14 @@ import EventPastEventSection from "@/app/components/Event/EventPastEventSection"
 
 const page = () => {
   return (
-    <div className="bg-[#F6F6F6] ">
+    <div className="bg-[#F6F6F6]">
       <EventHero />
-
       <EventBootCamps_CurrentAndUpcoming />
 
-      <EventHackathon_CurrentAndUpcoming />
-      <EventIncubator_CurrentAndUpcoming />
+      <div className="hidden md:block">
+        <EventHackathon_CurrentAndUpcoming />
+        <EventIncubator_CurrentAndUpcoming />
+      </div>
       <EventPastEventSection />
     </div>
   );

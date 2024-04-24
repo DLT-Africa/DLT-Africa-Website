@@ -205,6 +205,7 @@ const upgradeData = asyncHandler(async (req, res) => {
   const { status, id } = req.body;
 
   const user = await User.findById(id);
+  console.log(user)
 
   if (!user) {
     res.status(404);

@@ -1,9 +1,9 @@
-import Login from "@/app/components/Admins/Login"
+import Register from "@/app/components/Admins/Register"
 
 const page = () => {
   return (
     <div>
-        <Login/>
+        <Register/>
     </div>
   )
 }

@@ -29,6 +29,7 @@ The **DLT Africa Website** serves as the online platform for our academy, provid
 - Node.js/Express.js
 - Tailwind CSS
 - JWT
+- Nodemailer
 
 ## **Getting Started**
 

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import DLT from "../../../public/dlt-logo.png";
+import Link from 'next/link'
 
 import {
   FaFacebook,
@@ -34,8 +35,7 @@ const Footer = () => {
             Our Mission
           </h1>
           <p className="text-[#252A24] font-source-sans-pro  font-normal leading-normal w-full h-auto min-h-[69px] text-sm md:text-lg">
-            To help build Web3 talents from ground zero, through full-stack and
-            smart contract developments
+          To help build Web3 talents from ground zero, through full-stack and smart contract developments.
           </p>
         </div>
         <div className=" h-auto min-h-[244px]  ">
@@ -65,7 +65,35 @@ const Footer = () => {
           </h1>
           <ul>
             <li className="mb-[21px] text-sm md:text-lg">
-              <a
+            <a
+                className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                href="https://medium.com/@DLTAfrica" target="_blank"
+              >
+                Blog
+              </a>
+
+            </li>
+            <li className="mb-[21px] text-sm md:text-lg">
+            <Link
+                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                href={"/event"} 
+              >
+                Event
+              </Link>
+            </li>
+            <li className="mb-[21px] text-sm md:text-lg">
+           
+            <Link
+                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href={"/hacker-house"}
+                >
+                  Hacker House
+                </Link>
+            
+            </li>
+            <li className="mb-[21px] text-sm md:text-lg">
+            
+                <a
                 href="/team"
                 className="hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
               >
@@ -78,19 +106,19 @@ const Footer = () => {
       </div>
 
       <div className="flex gap-6 pb-5 justify-center mt-[80px] mb-[42px] ">
-        <a href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d">
+        <a href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d" target="_blank">
           <FaFacebook className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://www.instagram.com/dlta_frica/">
+        <a href="https://www.instagram.com/dlta_frica/" target="_blank">
           <FaInstagram className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://www.linkedin.com/company/dlt-africa/">
+        <a href="https://www.linkedin.com/company/dlt-africa/" target="_blank">
           <FaLinkedin className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://twitter.com/dlt_africa">
+        <a href="https://twitter.com/dlt_africa" target="_blank">
           <FaTwitter className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
-        <a href="https://github.com/DLT-Africa">
+        <a href="https://github.com/DLT-Africa" target="_blank">
           <FaGithub className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
       </div>
