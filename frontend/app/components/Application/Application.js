@@ -169,7 +169,7 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`${BACKEND_URL}api/v1/cohorts/studentreg`, formData)
+      .post(`https://dlt-africa-website.vercel.app/api/v1/cohorts/studentreg`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);

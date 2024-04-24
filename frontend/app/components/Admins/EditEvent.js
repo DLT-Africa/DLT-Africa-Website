@@ -24,7 +24,7 @@ const EditEventPage = ({ eventId, onClose }) => {
   const fetchEventDetails = async () => {
     try {
       const response = await axios.get(
-        `${BACKEND_URL}api/v1/events/get-single-event/${eventId}`
+        `https://dlt-africa-website.vercel.app/api/v1/events/get-single-event/${eventId}`
       );
       setFormData(response.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const EditEventPage = ({ eventId, onClose }) => {
     try {
 
       const updateResponse = await axios.patch(
-        `${BACKEND_URL}api/v1/events/update-event/${eventId}`,
+        `https://dlt-africa-website.vercel.app/api/v1/events/update-event/${eventId}`,
         formData
       );
 
