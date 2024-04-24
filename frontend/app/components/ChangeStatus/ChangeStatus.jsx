@@ -16,7 +16,7 @@ const ChangeStatus = ({ id }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `https://dlt-africa-website.vercel.app/api/v1/cohorts/upgrade-admission`,
+        `https://dlt-website-backend.vercel.app/api/v1/cohorts/upgrade-admission`,
         { status: studentStatus, id }
       );
       toast.success(response.data.message);

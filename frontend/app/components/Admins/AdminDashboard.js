@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     const fetchAdmissions = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-africa-website.vercel.app/api/v1/cohorts/get-all-admissions`
+          `https://dlt-website-backend.vercel.app/api/v1/cohorts/get-all-admissions`
         );
 
         setAdmissionData(response.data);
