@@ -19,7 +19,7 @@ const TeamPreview = () => {
     const fetchTeamData = async () => {
       try {
         const response = await axios.get(
-          `${BACKEND_URL}api/v1/team/team-details`
+          `https://dlt-africa-website.vercel.app/api/v1/team/team-details`
         );
 
         setTeamData(response.data);
