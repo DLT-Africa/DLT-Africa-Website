@@ -9,7 +9,7 @@ const HackerHouseWorkshop = () => {
         </p>
 
         <p className="text-[#F7FCFE] Font-Poppins w-[500] text-center text-[70px] lg:text-[96px]  opacity-[75%] mt-17">
-          LISK Tech
+          [in view]
         </p>
       </div>
 

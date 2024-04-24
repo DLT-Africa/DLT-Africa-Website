@@ -23,10 +23,7 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  eventDescription: {
-    type: String,
-    required: true,
-  },
+
   eventRegLink: {
     type: String,
     required: true,
@@ -34,6 +31,15 @@ const eventSchema = new mongoose.Schema({
   eventVenue: {
     type: String,
     required: true,
+  },
+
+  media: {
+    type: String,
+    default: "",
+  },
+  eventDescription: {
+    type: String,
+    default: "",
   },
 });
 

@@ -16,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
-    
+
     setIsLoggedIn(loggedIn === "true");
   }, []);
 
@@ -26,7 +26,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-
     setPathname(window.location.pathname);
 
     const handlePathnameChange = () => {
@@ -109,13 +108,17 @@ const Header = () => {
                   <Link
                     className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/admin-dashboard"}
+                    onClick={closeDrawerTop}
                   >
                     Admin Dashboard
                   </Link>
                   <Link
                     className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/"}
-                    onClick={handleLogout}
+                    onClick={() => {
+                      handleLogout();
+                      closeDrawerTop();
+                    }}
                   >
                     Logout
                   </Link>
@@ -124,6 +127,7 @@ const Header = () => {
                 <Link
                   className=" text-[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                   href={"/admin"}
+                  onClick={closeDrawerTop}
                 >
                   Admin Registration/Login
                 </Link>
@@ -132,12 +136,14 @@ const Header = () => {
               <a
                 className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href="https://medium.com/@DLTAfrica"
+                onClick={closeDrawerTop}
               >
                 Blog
               </a>
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/event"}
+                onClick={closeDrawerTop}
               >
                 Event
               </Link>
@@ -145,6 +151,7 @@ const Header = () => {
                 <Link
                   className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                   href={"/hacker-house"}
+                  onClick={closeDrawerTop}
                 >
                   Hacker House
                 </Link>
@@ -153,12 +160,14 @@ const Header = () => {
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/team"}
+                onClick={closeDrawerTop}
               >
                 Our Team
               </Link>
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/courses"}
+                onClick={closeDrawerTop}
               >
                 Programmes
               </Link>

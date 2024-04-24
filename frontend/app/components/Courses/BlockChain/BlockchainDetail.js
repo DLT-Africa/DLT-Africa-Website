@@ -39,7 +39,7 @@ const courses = [
           contracts & Building and deploying a fully functional smart contract
           that solves a real-world problem
         </li>
-      </ul>,
+      </ul>
     ],
   },
   {

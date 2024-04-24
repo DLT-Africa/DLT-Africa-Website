@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import ChangeStatus from "@/app/components/ChangeStatus/ChangeStatus";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const AdminDashboard = () => {
   const [admissionData, setAdmissionData] = useState([]);
 
@@ -20,11 +20,11 @@ const AdminDashboard = () => {
     const fetchAdmissions = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/cohorts/get-all-admissions"
+          `https://dlt-africa-website.vercel.app/api/v1/cohorts/get-all-admissions`
         );
 
         setAdmissionData(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
@@ -100,6 +100,7 @@ const AdminDashboard = () => {
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Update Status</th>
                   <th className="px-4 py-2">Course Selected</th>
+                  <th className="px-4 py-2">DOB</th>
                   <th className="px-4 py-2">Class Type</th>
                   <th className="px-4 py-2" title="payment status">
                     Status
@@ -115,6 +116,7 @@ const AdminDashboard = () => {
                     academicQualification,
                     courseSelected,
                     classType,
+                    dob,
                     emailAddress,
                     status,
                   } = admission;
@@ -128,6 +130,7 @@ const AdminDashboard = () => {
                         <ChangeStatus id={_id} />
                       </td>
                       <td className="border px-4 py-2">{courseSelected}</td>
+                      <td className="border px-4 py-2">{dob}</td>
                       <td className="border px-4 py-2">{classType}</td>
                       <td className="border px-4 py-2">{status}</td>
                     </tr>

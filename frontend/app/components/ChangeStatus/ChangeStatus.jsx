@@ -2,7 +2,7 @@ import { FaCheck } from "react-icons/fa";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const ChangeStatus = ({ id }) => {
     console.log(id)
   const [studentStatus, setStudentStatus] = useState("");
@@ -16,7 +16,7 @@ const ChangeStatus = ({ id }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/cohorts/upgrade-admission",
+        `https://dlt-africa-website.vercel.app/api/v1/cohorts/upgrade-admission`,
         { status: studentStatus, id }
       );
       toast.success(response.data.message);

@@ -45,7 +45,7 @@ const page = () => {
   return (
     <div>
       <div className="mt-12">
-        <h1 className="text-4xl font-semibold text-center text-green-900 pl-12 mb-8">
+        <h1 className="text-4xl font-semibold text-center pl-12 mb-8">
           Our Courses
         </h1>
       </div>
@@ -57,14 +57,14 @@ const page = () => {
               <Image
                 src={media}
                 alt="courses"
-                className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg"
+                className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg "
               />
 
-              <div className="w-full md:rounded-b-lg bg-green-700 p-4 md:p-6 h-48 md:h-30 rounded-br-lg rounded-bl-lg">
-                <p className="text-lg md:text-xl text-white mb-2 md:mb-4">
+              <div className="w-full md:rounded-b-lg bg-[#ffc072] p-4 md:p-6 h-48 md:h-30 rounded-br-lg rounded-bl-lg">
+                <p className="text-[20px] text-black mb-1 md:mb-4 font-[600] ">
                   {courseName}
                 </p>
-                <p className="text-sm md:text-base text-white line-clamp-3">
+                <p className="text-sm md:text-base text-black line-clamp-3">
                   {description}
                 </p>
               </div>

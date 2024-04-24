@@ -1,5 +1,6 @@
 import React from "react";
 import FAQ from "./Faq";
+import Link from "next/link";
 
 const Faqs = () => {
   const faqOne = [
@@ -25,9 +26,9 @@ const Faqs = () => {
     {
       id: 3,
       question: "What are the key dates and how to apply for the training ?",
-      answer:
-        "The training durations depend on the chosen course. Navigate to the courses page for more information.",
-        
+      answer: "The training durations depend on the chosen  ",
+      url: "/courses",
+      linkText: "courses",
     },
   ];
 
@@ -80,35 +81,41 @@ const Faqs = () => {
       </p>
 
       <div className="grid grid-cols-1 gap-6">
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]    sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqOne.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+          ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqTwo.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+          ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
-          {faqThree.map(({ question, answer, id }) => (
-            <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+          {faqThree.map(({ question, answer, url, linkText, id }) => (
+            <FAQ
+              key={id}
+              question={question}
+              answer={`${answer}`}
+              url={url}
+              linkText={linkText}
+            />
+          ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqFour.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+          ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqFive.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+          ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px] sm:w-[360px] sm:p-[16px 20px]  sm:align-items-center lg:w-[725px]   w-[225px]">
+        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqSix.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
-          ))}{" "}
+          ))}
         </div>
       </div>
     </section>
