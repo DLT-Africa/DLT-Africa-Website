@@ -5,8 +5,8 @@ import axios from "axios";
 import Image from "next/image";
 
 import Current1 from "../../../../public/Current1.png";
-const BACKEND_URL = process.env.BACKEND_URL
-console.log(BACKEND_URL)
+// const BACKEND_URL = process.env.BACKEND_URL
+// console.log(BACKEND_URL)
 const CurrentAndUpcoming = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

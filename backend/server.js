@@ -10,7 +10,6 @@ const userRoute = require("./routes/userRoute");
 const eventRoute = require("./routes/eventRoute");
 const teamRoute = require("./routes/teamRoute");
 const mongoose = require("mongoose");
-const cloudinary = require("cloudinary").v2
 
 const app = express();
 
@@ -22,19 +21,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.use(
   cors({
-    origin: ["http://localhost:3000", "*", "https://dlt-africa-website-frontend.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+
+      "https://dlt-africa-website-frontend.vercel.app",
+    ],
     credentials: true,
+    optionSuccessStatus: 200,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
