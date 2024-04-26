@@ -73,7 +73,7 @@ const Register = () => {
         {!formCompleted ? (
           <form
             onSubmit={handleSubmit}
-            className="w-[700px] rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%]  "
+            className="w-[400px] rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%]  "
           >
             <div className="grid grid-cols-none md:grid-cols-none gap-y-14 gap-x-14 text-center">
               <Input
