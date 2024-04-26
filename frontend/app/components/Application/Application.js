@@ -101,8 +101,8 @@ const Application = () => {
   const course =
     formData.classType === "Online"
       ? [
-          { id: 1, tag: "Frontend Development" },
-          { id: 2, tag: "Blockchain Development" },
+          { id: 1, tag: "Frontend Development", fee: 320000 },
+          { id: 2, tag: "Blockchain Development", fee: 0 },
         ]
       : [
           { id: 1, tag: "Frontend Development" },
@@ -353,7 +353,7 @@ const Application = () => {
                     containerProps={{
                       className: "h-14 ",
                     }}
-                    placeholder="+234705746234"
+                    placeholder="+2347123456789"
                     value={formData.phoneNo}
                     onChange={handleChange}
                   />
@@ -406,13 +406,14 @@ const Application = () => {
                       name="courseSelected"
                       options={course}
                       setTuitionFee={setTuitionFee}
+                      classType={formData.classType}
                     />
-                    <span>
-                      Course Fee:{" "}
-                      {typeof tuitionFee === "number"
-                        ? `₦${tuitionFee.toFixed(2)}`
-                        : tuitionFee}
-                    </span>
+                      <span>
+                        Course Fee:{" "}
+                        {typeof tuitionFee === "number"
+                          ? `₦${tuitionFee.toFixed(2)}`
+                          : tuitionFee}
+                      </span>
                   </div>
 
                   <SelectField
