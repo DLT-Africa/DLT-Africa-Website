@@ -2,11 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const cloud_name = "dsblhzcka";
-const upload_preset = "ktpngqgl";
-const BACKEND_URL = process.env.BACKEND_URL
+
 const EditEventPage = ({ eventId, onClose }) => {
-  const [eventImage, setEventImage] = useState(null);
 
   const [formData, setFormData] = useState({
     _id: "",
