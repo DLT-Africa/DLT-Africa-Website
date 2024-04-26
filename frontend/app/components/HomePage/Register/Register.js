@@ -11,7 +11,7 @@ const RegisterOnline = () => {
       <div className="max-w-screen-xl p-8 w-full">
         <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-20">
           <Image
-            className="w-full lg:w-auto lg:max-w-[527px] h-[344px] flex-shrink-0 rounded-[20px] "
+            className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
             src={Hero}
           />
 

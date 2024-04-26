@@ -56,14 +56,14 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex flex-end">
-          <div className="flex ">
-            <Image
-              src={Hamburger}
-              onClick={openDrawerTop}
-              className="cursor-pointer	"
-              alt="icon"
-            />
+          <div
+            className="flex flex-col items-end gap-2 cursor-pointer"
+            onClick={openDrawerTop}
+          >
+            <div className="w-[50px] h-[5px] bg-orange-500 transition-all duration-300 ease-in-out"></div>
+            <div className="w-[25px] h-[5px] bg-orange-500 hover:w-[45px] transition-all duration-300 ease-in-out"></div>
           </div>
+
           <Drawer
             placement="top"
             open={openTop}
