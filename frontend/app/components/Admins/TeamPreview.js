@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const TeamPreview = () => {
   const [teamData, setTeamData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ const TeamPreview = () => {
     const fetchTeamData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/team/team-details"
+          `https://dlt-website-backend.vercel.app/api/v1/team/team-details`
         );
 
         setTeamData(response.data);

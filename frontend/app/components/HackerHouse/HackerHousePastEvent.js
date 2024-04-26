@@ -18,7 +18,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import Image from "next/image";
-
+const BACKEND_URL = process.env.BACKEND_URL;
 const HackerHousePastEvent = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [eventData, setEventData] = useState([]);
@@ -30,7 +30,7 @@ const HackerHousePastEvent = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/events/get-all-events"
+          `https://dlt-website-backend.vercel.app/api/v1/events/get-all-events`
         );
         setEventData(response.data);
         setIsLoading(false);

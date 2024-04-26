@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import EventPreview from "./EventPreview";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const CreateEvent = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -68,7 +68,7 @@ const CreateEvent = () => {
       setIsSubmitting(true);
 
       axios
-        .post("http://localhost:5000/api/v1/events/create-event", formData)
+        .post(`https://dlt-website-backend.vercel.app/api/v1/events/create-event`, formData)
         .then(function (response) {
           setIsSubmitting(false);
           setFormCompleted(true);

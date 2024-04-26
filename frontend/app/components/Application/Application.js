@@ -93,7 +93,7 @@ const clType = [
 ];
 
 import { useRouter } from "next/navigation";
-
+const BACKEND_URL = process.env.BACKEND_URL
 const Application = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -169,7 +169,7 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post("http://localhost:5000/api/v1/cohorts/studentreg", formData)
+      .post(`https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
