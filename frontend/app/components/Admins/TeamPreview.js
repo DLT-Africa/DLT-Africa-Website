@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const BACKEND_URL = process.env.BACKEND_URL
 const TeamPreview = () => {
   const [teamData, setTeamData] = useState([]);
@@ -13,13 +14,15 @@ const TeamPreview = () => {
   const [message, setMessage] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
+  const router = useRouter();
+
 
   useEffect(() => {
     setIsLoading(true);
     const fetchTeamData = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-africa-website.vercel.app/api/v1/team/team-details`
+          `https://dlt-website-backend.vercel.app/api/v1/team/team-details`
         );
 
         setTeamData(response.data);
@@ -54,23 +57,14 @@ const TeamPreview = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-        <div className="flex space-x-4">
-          <Link
-            href="/admin-dashboard"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
-          >
+      <div className="flex space-x-4">
+          <Link href="/admin-dashboard" className="bg-blue-500 text-[#fff] px-4 py-2 rounded-md">
             Admission List
           </Link>
-          <Link
-            href="/team-list"
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
-          >
+          <Link href="/team-list" className="bg-green-500 text-[#fff] px-4 py-2 rounded-md">
             Team List
           </Link>
-          <Link
-            href="/event-list"
-            className="bg-red-500 text-white px-4 py-2 rounded-md"
-          >
+          <Link href="/event-list" className="bg-red-500 text-[#fff] px-4 py-2 rounded-md">
             Event List
           </Link>
         </div>

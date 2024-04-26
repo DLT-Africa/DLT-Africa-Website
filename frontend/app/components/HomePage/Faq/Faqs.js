@@ -81,17 +81,17 @@ const Faqs = () => {
       </p>
 
       <div className="grid grid-cols-1 gap-6">
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]    sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]    sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqOne.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
           ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqTwo.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
           ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqThree.map(({ question, answer, url, linkText, id }) => (
             <FAQ
               key={id}
@@ -102,17 +102,17 @@ const Faqs = () => {
             />
           ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqFour.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
           ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqFive.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
           ))}
         </div>
-        <div className="bg-orange-300 p-5 mb-5 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
+        <div className="bg-orange-300 p-2 mb-2 rounded-[10px]   sm:align-items-center lg:w-[725px]   w-[100%]">
           {faqSix.map(({ question, answer, id }) => (
             <FAQ key={id} question={question} answer={answer} />
           ))}

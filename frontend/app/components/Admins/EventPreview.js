@@ -33,7 +33,7 @@ const EventPreview = () => {
   const handleDelete = async (eventId) => {
     try {
       await axios.delete(
-        `https://dlt-africa-website.vercel.app/api/v1/events/delete/${eventId}`
+        `https://dlt-website-backend.vercel.app/api/v1/events/delete/${eventId}`
       );
       setEventData(eventData.filter((event) => event._id !== eventId));
       setMessage("Event deleted successfully");
@@ -47,7 +47,7 @@ const EventPreview = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-africa-website.vercel.app/api/v1/events/get-all-events`
+          `https://dlt-website-backend.vercel.app/api/v1/events/get-all-events`
         );
 
         setEventData(response.data);
@@ -84,23 +84,14 @@ const EventPreview = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-        <div className="flex space-x-4">
-          <Link
-            href="/admin-dashboard"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
-          >
+      <div className="flex space-x-4">
+          <Link href="/admin-dashboard" className="bg-blue-500 text-[#fff] px-4 py-2 rounded-md">
             Admission List
           </Link>
-          <Link
-            href="/team-list"
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
-          >
+          <Link href="/team-list" className="bg-green-500 text-[#fff] px-4 py-2 rounded-md">
             Team List
           </Link>
-          <Link
-            href="/event-list"
-            className="bg-red-500 text-white px-4 py-2 rounded-md"
-          >
+          <Link href="/event-list" className="bg-red-500 text-[#fff] px-4 py-2 rounded-md">
             Event List
           </Link>
         </div>
@@ -181,7 +172,7 @@ const EventPreview = () => {
                       </button>
                       <EditEventPage
                         eventId={selectedEventId}
-                        onClose={handleModalClose}
+                        onClose={handleCloseModal}
                       />
                     </div>
                   </div>

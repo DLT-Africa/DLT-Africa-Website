@@ -45,13 +45,13 @@ const WhatYou = () => {
       </div>
       <p
         className="lg:text-[16px] md:text-[14px] mt-[10px] leading-[120%] 
-        text-center text-[#1C1C1C] opacity-[0.75] lg:px-[369px] md:px-[180px] self-center   mb-[90px] md:-w[564px] "
+        text-center text-[#1C1C1C] opacity-[0.75] lg:px-[369px] md:px-[180px] self-center mb-[90px] md:-w[564px] px-[25px]"
       >
         {" "}
         With DLT Africa, you gain access to an extensive curriculum spanning through Full- Stack and Smart Contract development totaling over 200 hours. Accepted cohorts have access to our thriving community as well as opportunities from our strategic partners around the globe.
       </p>
 
-      <div className="grid md:grid-cols-3 gap-12 sm:gap-16 md:gap-18 lg:gap-28 xl:gap-44 px-14 lg:px-32 pb-[61px] ">
+      <div className="grid md:grid-cols-3 gap-12 sm:gap-16 md:gap-18 lg:gap-28 xl:gap-44 px-[25px] lg:px-32 pb-[61px] ">
         {getDetails.map((details) => (
           <div className="flex flex-col" key={details.id}>
             {/* <div className='lg:px-[117px]'> */}

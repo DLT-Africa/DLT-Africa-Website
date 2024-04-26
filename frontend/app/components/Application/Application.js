@@ -61,39 +61,7 @@ const nigerianStates = [
   { id: 37, tag: "Federal Capital Territory" },
 ];
 
-const gender = [
-  { id: 1, tag: "Male" },
-  { id: 2, tag: "Female" },
-  { id: 3, tag: "Prefer Not To Mention" },
-];
-
-const academicQual = [
-  { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
-  { id: 2, tag: "Ordinary National Diploma (OND)" },
-  { id: 3, tag: "Higher National Diploma (HND)" },
-  { id: 4, tag: "BSc" },
-];
-
-const codeExperience = [
-  { id: 1, tag: "Beginner" },
-  { id: 2, tag: "Inter-Mediate" },
-  { id: 3, tag: "Advanced" },
-];
-
-const course = [
-  { id: 1, tag: "Frontend Development" },
-  { id: 2, tag: "Full-Stack Development" },
-  { id: 3, tag: "Product UI/UX Design" },
-  { id: 4, tag: "Blockchain Development" },
-];
-
-const clType = [
-  { id: 1, tag: "Online" },
-  { id: 2, tag: "Physical" },
-];
-
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL
 const Application = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -110,6 +78,39 @@ const Application = () => {
     codeExperience: "",
     stateOfResidence: "",
   });
+
+  const gender = [
+    { id: 1, tag: "Male" },
+    { id: 2, tag: "Female" },
+    { id: 3, tag: "Prefer Not To Mention" },
+  ];
+
+  const academicQual = [
+    { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
+    { id: 2, tag: "Ordinary National Diploma (OND)" },
+    { id: 3, tag: "Higher National Diploma (HND)" },
+    { id: 4, tag: "BSc" },
+  ];
+
+  const codeExperience = [
+    { id: 1, tag: "Beginner" },
+    { id: 2, tag: "Inter-Mediate" },
+    { id: 3, tag: "Advanced" },
+  ];
+
+  const course =
+    formData.classType === "Online"
+      ? [
+          { id: 1, tag: "Frontend Development", fee: 320000 },
+          { id: 2, tag: "Blockchain Development", fee: 0 },
+        ]
+      : [
+          { id: 1, tag: "Frontend Development" },
+          { id: 2, tag: "Full-Stack Development" },
+          { id: 3, tag: "Product UI/UX Design" },
+          { id: 4, tag: "Blockchain Development" },
+        ];
+
   const [checkboxesChecked, setCheckboxesChecked] = useState({
     newsletter: false,
     privacyPolicy: false,
@@ -124,10 +125,18 @@ const Application = () => {
     setFormValidMessage("");
     const { name, value } = e.target;
     console.log(e.target.value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "classType" && value === "Online") {
+      setFormData({
+        ...formData,
+        [name]: value,
+        courseSelected: "",
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -169,7 +178,10 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-africa-website.vercel.app/api/v1/cohorts/studentreg`, formData)
+      .post(
+        `https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`,
+        formData
+      )
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
@@ -217,7 +229,6 @@ const Application = () => {
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
         style={{ backgroundImage: `url(images/application-page-right-bg.svg)` }}
       >
-        {/* Your content goes here */}
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
             <div className="p-4">
@@ -342,7 +353,7 @@ const Application = () => {
                     containerProps={{
                       className: "h-14 ",
                     }}
-                    placeholder="+234705746234"
+                    placeholder="+2347123456789"
                     value={formData.phoneNo}
                     onChange={handleChange}
                   />
@@ -372,19 +383,15 @@ const Application = () => {
                   />
 
                   <SelectField
-                    label="Course Selected"
+                    label="Class type"
+                    name="classType"
                     handleChange={handleChange}
-                    name="courseSelected"
-                    options={course}
-                    setTuitionFee={setTuitionFee}
+                    options={[
+                      { id: 1, tag: "Online" },
+                      { id: 2, tag: "Physical" },
+                    ]}
+                    value={formData.classType}
                   />
-                  <span>
-                    Course Fee:{" "}
-                    {typeof tuitionFee === "number"
-                      ? `₦${tuitionFee.toFixed(2)}`
-                      : tuitionFee}
-                  </span>
-
                   <SelectField
                     label="Coding Experience"
                     handleChange={handleChange}
@@ -392,13 +399,22 @@ const Application = () => {
                     options={codeExperience}
                     setTuitionFee={setTuitionFee}
                   />
-
-                  <SelectField
-                    label="Class type"
-                    name="classType"
-                    handleChange={handleChange}
-                    options={clType}
-                  />
+                  <div className="flex flex-col">
+                    <SelectField
+                      label="Course Selected"
+                      handleChange={handleChange}
+                      name="courseSelected"
+                      options={course}
+                      setTuitionFee={setTuitionFee}
+                      classType={formData.classType}
+                    />
+                      <span>
+                        Course Fee:{" "}
+                        {typeof tuitionFee === "number"
+                          ? `₦${tuitionFee.toFixed(2)}`
+                          : tuitionFee}
+                      </span>
+                  </div>
 
                   <SelectField
                     label="State Of Residence"
