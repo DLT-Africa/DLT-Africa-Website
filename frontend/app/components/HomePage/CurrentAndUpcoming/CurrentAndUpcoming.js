@@ -44,7 +44,7 @@ const CurrentAndUpcoming = () => {
 
   return (
     <div className="w-screen px-4 flex flex-col items-center justify-center  bg-[#f5f3f5] ">
-      <h1 className="text-center text-4xl mb-12 pt-20 xl:text-5xl lg:text-4xl md:text-3xl">
+      <h1 className="text-center text-[30px] mb-12 pt-20 xl:text-5xl lg:text-4xl md:text-3xl">
         Current and Upcoming Programmes.
       </h1>
 
@@ -94,7 +94,7 @@ const CurrentAndUpcoming = () => {
 
       {isModalOpen && selectedEvent && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen ">
-          <div className="bg-white p-8 rounded-lg w-[900px] ">
+          <div className="bg-white p-8 rounded-lg w-[350px] ">
             <h2 className="text-2xl font-semibold mb-4">
               Name:{selectedEvent.eventName}
             </h2>
