@@ -18,7 +18,6 @@ const createTeam = asyncHandler(async (req, res) => {
     throw new Error("Password must be up to 6 characters.");
   }
 
-  // Check if user exists
   const teamExists = await Team.findOne({ email });
 
   if (teamExists) {
@@ -34,7 +33,6 @@ const createTeam = asyncHandler(async (req, res) => {
 
   const token = generateToken(team._id);
 
-  // Send HTTP-only cookie
   res.cookie("token", token, {
     path: "/",
     httpOnly: true,
@@ -82,7 +80,6 @@ const loginTeam = asyncHandler(async (req, res) => {
   const token = generateToken(team._id);
 
   if (team ) {
-    // Send HTTP-only cookie
     res.cookie("token", token, {
       path: "/",
       httpOnly: true,
@@ -122,13 +119,11 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
     throw new Error("You are already verified");
   }
 
-  // Delete Token if it exists in DB
   let token = await Token.findOne({ teamId: team._id });
   if (token) {
     await token.deleteOne();
   }
 
-  //   Create Verification Token and Save
   const verificationToken = crypto.randomBytes(32).toString("hex") + team._id;
   console.log(verificationToken);
 
