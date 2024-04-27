@@ -28,11 +28,11 @@ const IconSection = ({
 
   return (
     <div
-      className={`courseCon ${courseConClass} cursor-pointer`}
+      className={`courseCon ${courseConClass}  cursor-pointer`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`iconBody ${iconBodyClass} flex justify-center `}>
+      <div className={`iconBody ${iconBodyClass} w-[95%] flex justify-center `}>
         <article className="flex justify-center items-center flex-col transition duration-500 ease-in-out delay-500 transform hover:-translate-y-1 hover:scale-70 ">
           <div className={`icons ${iconsClass}`}>{icon}</div>
           <span className={`block ${titleClass}`}>{title}</span>

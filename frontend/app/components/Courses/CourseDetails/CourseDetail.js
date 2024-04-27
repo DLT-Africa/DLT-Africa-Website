@@ -22,13 +22,13 @@ const CourseDetail = ({ question, answer, list }) => {
           </button>
         </article>
 
-        <p
+        <div
           className={`text-base overflow-hidden transition-height duration-300 ease-out ${
             isDetails ? "h-auto" : "h-0"
           }`}
         >
           {answer}
-        </p>
+        </div>
       </div>
     </div>
   );

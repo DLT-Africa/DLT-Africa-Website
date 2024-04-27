@@ -33,7 +33,7 @@ export default function RootLayout({
             type="image/x-icon"
           />
         </head>
-        <body className={inter.className}>
+        <body className={inter.className }>
           <Header />
           {children}
 
