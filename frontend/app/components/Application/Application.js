@@ -63,7 +63,6 @@ const nigerianStates = [
 
 import { useRouter } from "next/navigation";
 const Application = () => {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -139,6 +138,8 @@ const Application = () => {
     }
   };
 
+  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -187,7 +188,6 @@ const Application = () => {
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
-        router.push("/admin-dashboard");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -514,7 +514,7 @@ const Application = () => {
                       <Link href="/">Dismiss</Link>
                     </div>
                     <div className="absolute left-[88px] top-[444px]">
-                      <Image className="h-[67px] w-[41px]" src={DLT} alt="" />
+                      <Image className="h-[67px] w-[41px]" src={DLT} alt="dlt-logo" />
                     </div>
                   </div>
 

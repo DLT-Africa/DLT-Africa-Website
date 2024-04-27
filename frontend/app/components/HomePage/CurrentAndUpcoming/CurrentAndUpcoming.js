@@ -5,8 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 
 import Current1 from "../../../../public/Current1.png";
-// const BACKEND_URL = process.env.BACKEND_URL
-// console.log(BACKEND_URL)
+
 const CurrentAndUpcoming = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +55,7 @@ const CurrentAndUpcoming = () => {
         <div className="flex justify-center items-center flex-wrap gap-8 lg:mb-20 md:mb-8 sm:mb-16  p-4 ">
           {eventData.map((event) => (
             <div
-              className="max-w-xs shadow-lg p-7 rounded-lg border border-orange-300 flex justify-center items-center flex-col w-[500px] lg:w-[600px] gap-4 duration-500 ease-in-out transform hover:-translate-y-1"
+              className="max-w-xs shadow-lg p-7 rounded-lg border border-orange-300 flex justify-center items-center flex-col w-[500px] lg:w-[600px] gap-4 "
               key={event._id}
             >
               <Image
@@ -93,7 +92,10 @@ const CurrentAndUpcoming = () => {
       )}
 
       {isModalOpen && selectedEvent && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen ">
+        <div
+          className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen"
+          onClick={closeModal}
+        >
           <div className="bg-white p-8 rounded-lg w-[350px] ">
             <h2 className="text-2xl font-semibold mb-4">
               Name:{selectedEvent.eventName}
@@ -106,16 +108,20 @@ const CurrentAndUpcoming = () => {
               <h3 className="text-lg font-semibold">Event Details</h3>
               <p>Description: {selectedEvent.eventDescription}</p>
               <div>
-                Media:
-                <a href={selectedEvent.media}>{selectedEvent.media}</a>
+                Photos:&nbsp;
+                <a href={selectedEvent.media} className="text-blue-500" target="_blank" rel="noopener noreferrer" >
+                  {selectedEvent.media.length > 30
+                    ? selectedEvent.media.substring(0, 30) + "..."
+                    : selectedEvent.media}
+                </a>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={closeModal}
               className="w-[100%] bg-orange-500 rounded-lg p-2 transition duration-500 ease-in-out transform hover:-translate-y-1"
             >
               Close
-            </button>
+            </button> */}
           </div>
         </div>
       )}
