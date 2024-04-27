@@ -265,7 +265,7 @@ const Application = () => {
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
-                    <p>23000+ alumni have joined our community, so can you</p>
+                    <p>300+ alumni have joined our community, so can you</p>
                   </div>
                 </div>
               </div>
@@ -284,7 +284,7 @@ const Application = () => {
                     name="firstName"
                     variant="static"
                     label="First Name"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -295,18 +295,13 @@ const Application = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                   />
-                  <SelectField
-                    label="State Of Origin"
-                    name="stateOfOrigin"
-                    handleChange={handleChange}
-                    options={nigerianStates}
-                  />
+
                   <Input
                     size="lg"
                     name="lastName"
                     variant="static"
                     label="Last Name"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -320,6 +315,7 @@ const Application = () => {
                   <SelectField
                     label="Gender"
                     name="gender"
+                    className="pl-4 text-[18px]"
                     handleChange={handleChange}
                     options={gender}
                   />
@@ -329,7 +325,7 @@ const Application = () => {
                     name="dob"
                     type="date"
                     variant="static"
-                    className="pl-4 text-xl text-gray-600"
+                    className="pl-4 text-[18px] text-gray-600"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -346,7 +342,7 @@ const Application = () => {
                     name="phoneNo"
                     variant="static"
                     label="Phone Number"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -358,19 +354,12 @@ const Application = () => {
                     onChange={handleChange}
                   />
 
-                  <SelectField
-                    label="Academic Qualification"
-                    name="academicQualification"
-                    handleChange={handleChange}
-                    options={academicQual}
-                  />
-
                   <Input
                     size="lg"
                     name="emailAddress"
                     variant="static"
                     label="Email Address"
-                    className="pl-4 text-xl "
+                    className="pl-4 text-[18px] "
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -383,6 +372,31 @@ const Application = () => {
                   />
 
                   <SelectField
+                    label="State Of Origin"
+                    name="stateOfOrigin"
+                    className="pl-4 text-[18px] "
+                    handleChange={handleChange}
+                    options={nigerianStates}
+                  />
+
+                  <SelectField
+                    label="Academic Qualification"
+                    name="academicQualification"
+                    className="pl-4 text-[18px] "
+                    handleChange={handleChange}
+                    options={academicQual}
+                  />
+
+                  <SelectField
+                    label="Coding Experience"
+                    className="pl-4 text-[18px] "
+                    handleChange={handleChange}
+                    name="codeExperience"
+                    options={codeExperience}
+                    setTuitionFee={setTuitionFee}
+                  />
+                  <SelectField
+                  className="pl-4 text-[18px] "
                     label="Class type"
                     name="classType"
                     handleChange={handleChange}
@@ -392,15 +406,9 @@ const Application = () => {
                     ]}
                     value={formData.classType}
                   />
-                  <SelectField
-                    label="Coding Experience"
-                    handleChange={handleChange}
-                    name="codeExperience"
-                    options={codeExperience}
-                    setTuitionFee={setTuitionFee}
-                  />
                   <div className="flex flex-col">
                     <SelectField
+                    className="pl-4 text-[18px] "
                       label="Course Selected"
                       handleChange={handleChange}
                       name="courseSelected"
@@ -408,15 +416,16 @@ const Application = () => {
                       setTuitionFee={setTuitionFee}
                       classType={formData.classType}
                     />
-                      <span>
-                        Course Fee:{" "}
-                        {typeof tuitionFee === "number"
-                          ? `₦${tuitionFee.toFixed(2)}`
-                          : tuitionFee}
-                      </span>
+                    <span>
+                      Course Fee:{" "}
+                      {typeof tuitionFee === "number"
+                        ? `₦${tuitionFee.toFixed(2)}`
+                        : tuitionFee}
+                    </span>
                   </div>
 
                   <SelectField
+                  className="pl-4 text-[18px] "
                     label="State Of Residence"
                     name="stateOfResidence"
                     handleChange={handleChange}
