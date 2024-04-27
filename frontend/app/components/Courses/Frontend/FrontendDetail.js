@@ -67,7 +67,7 @@ const courses = [
 
 const FrontendDetail = () => {
   return (
-    <div className="py-8 md:py-16 bg-gray-100 px-6 md:px-12 lg:px-24 xl:px-32">
+    <div className="py-8 md:py-16 bg-gray-100 md:px-12 lg:px-24 xl:px-32 font-serif px-[35px]">
       <div>
         {courses.map(({ id, question, answer }) => (
           <CourseDetail key={id} question={question} answer={answer} />

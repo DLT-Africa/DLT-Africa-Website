@@ -1,8 +1,8 @@
 const HackerHouseHero = () => {
   return (
-    <div className="font-serif h-[640px]  bg-[#031700] flex justify-center items-center overflow-auto lg:w-full md:w-full w-[100%]  ">
+    <div className="h-[640px]  bg-[#031700] flex justify-center items-center overflow-auto lg:w-full md:w-full w-[100%]  ">
       <div className="gap-[10px] sm:gap-[25px]  ">
-        <h2 className="text-[#F7FCFE] text-[36px] md:text-[36px] lg:text-[48px] font-normal flex justify-center gap-[10px] lg:mt-[209px] md:mt-[103px] mb-[10px] relative">
+        <h2 className="text-[#F7FCFE] text-[36px] md:text-[36px] lg:text-[48px] font-poppins flex justify-center gap-[10px] lg:mt-[209px] md:mt-[103px] mb-[10px] relative">
           Hacker House
         </h2>
 

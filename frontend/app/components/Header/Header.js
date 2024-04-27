@@ -21,7 +21,7 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Remove authentication state
+    localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
 
@@ -43,7 +43,7 @@ const Header = () => {
   const closeDrawerTop = () => setOpenTop(false);
 
   return (
-    <>
+    <div>
       <div
         className="flex justify-between py-[10px]  sm:py-5 px-[20px] sm:px-[10px] md:px-[50px] "
         style={{
@@ -56,14 +56,14 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex flex-end">
-          <div className="flex ">
-            <Image
-              src={Hamburger}
-              onClick={openDrawerTop}
-              className="cursor-pointer	"
-              alt="icon"
-            />
+          <div
+            className="flex flex-col items-end gap-2 cursor-pointer"
+            onClick={openDrawerTop}
+          >
+            <div className="w-[50px] h-[5px] bg-orange-500 transition-all duration-300 ease-in-out"></div>
+            <div className="w-[25px] h-[5px] bg-orange-500 hover:w-[45px] transition-all duration-300 ease-in-out"></div>
           </div>
+
           <Drawer
             placement="top"
             open={openTop}
@@ -71,8 +71,11 @@ const Header = () => {
             className="p-4 px-[10px] sm:px-[50px] pb-[300px] mt-[-22px] "
           >
             <div className="my-[10px] flex items-center justify-between ">
-              <Link href={"/"}>
-                <Image src={dlt} />
+              <Link href={"/"} 
+              onClick={closeDrawerTop}
+              >
+                <Image src={dlt} alt="nav-log" />
+                
               </Link>
               <svg
                 onClick={closeDrawerTop}
@@ -175,7 +178,7 @@ const Header = () => {
           </Drawer>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

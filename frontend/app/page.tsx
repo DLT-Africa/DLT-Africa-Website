@@ -14,7 +14,6 @@ import Loader from "./components/Loader/Loader";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,11 +22,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div >
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div >
+         
+
           <HeroSection />
           <WhatYou />
           <RegisterOnline />

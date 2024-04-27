@@ -18,6 +18,10 @@ const EventPreview = () => {
   const [itemsPerPage] = useState(5);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState("/event-list");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
 
   const handleCloseModal = () => {
     setSelectedEventId(null);
@@ -87,19 +91,34 @@ const EventPreview = () => {
         <div className="flex space-x-4">
           <Link
             href="/admin-dashboard"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Admission List
           </Link>
           <Link
             href="/team-list"
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Team List
           </Link>
           <Link
             href="/event-list"
-            className="bg-red-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Event List
           </Link>
@@ -181,7 +200,7 @@ const EventPreview = () => {
                       </button>
                       <EditEventPage
                         eventId={selectedEventId}
-                        onClose={handleModalClose}
+                        onClose={handleCloseModal}
                       />
                     </div>
                   </div>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function SelectField({ label, name, options, handleChange, setTuitionFee }) {
+function SelectField({ label, name, options, handleChange, setTuitionFee, classType }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [validationError, setValidationError] = useState("");
 
   const handleOptionChange = (e) => {
-    handleChange(e)
+    handleChange(e);
     const value = e.target.value;
     setSelectedOption(value);
     if (value === "") {
@@ -15,22 +15,38 @@ function SelectField({ label, name, options, handleChange, setTuitionFee }) {
     }
 
     if (label === "Course Selected") {
-      switch (value) {
-        case "Frontend Development":
-          setTuitionFee(370000);
-          break;
-        case "Full-Stack Development":
-          setTuitionFee(570000);
-          break;
-        case "Product UI/UX Design":
-          setTuitionFee(150000);
-          break;
-        case "Blockchain Development":
-          setTuitionFee(0);
-          break;
-        default:
-          setTuitionFee(0);
+      let tuitionFee = 0;
+      if (classType === "Physical") {
+        switch (value) {
+          case "Frontend Development":
+            tuitionFee = 407000;
+            break;
+          case "Full-Stack Development":
+            tuitionFee = 627000;
+            break;
+          case "Product UI/UX Design":
+            tuitionFee = 150000;
+            break;
+          case "Blockchain Development":
+            tuitionFee = 0;
+            break;
+          default:
+            tuitionFee = 0;
+        }
+      } else if (classType === "Online") {
+        switch (value) {
+          case "Frontend Development":
+            tuitionFee = 320000;
+            break;
+          
+          case "Blockchain Development":
+            tuitionFee = 0;
+            break;
+          default:
+            tuitionFee = 0;
+        }
       }
+      setTuitionFee(tuitionFee);
     }
   };
 
@@ -52,7 +68,7 @@ function SelectField({ label, name, options, handleChange, setTuitionFee }) {
           </option>
         ))}
       </select>
-      {validationError && <p style={{ color: "red" }}>{validationError}</p>}
+      {/* {validationError && <p style={{ color: "red" }}>{validationError}</p>} */}
     </div>
   );
 }

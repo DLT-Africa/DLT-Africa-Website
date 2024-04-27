@@ -4,7 +4,7 @@ const sectionData = [
   {
     id: 2,
     title: "Front End Web Development",
-    text: "Dive into our comprehensive program to master frontend development. Gain hands-on experience with real-world projects and elevate your frontend development skills.",
+    text: "Dive into our comprehensive program to master frontend development. Gain hands-on experience with real-world projects and elevate your frontend development skills.projects.",
     headline1:
       "Graduate in four months, part-time, and start working in the high-demand field of software development.",
     headline2:

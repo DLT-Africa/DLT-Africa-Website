@@ -33,11 +33,7 @@ const Congrats = () => {
         </div>
 
         <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-<<<<<<< HEAD:frontend/components/Application/Congrats.js
-            <img src="Vector1.png" alt="Example"/>
-=======
           <Image src={Vector1} alt="Example" />
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Application/Congrats.js
         </div>
       </div>
     </div>

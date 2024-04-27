@@ -4,8 +4,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import ChangeStatus from "@/app/components/ChangeStatus/ChangeStatus";
-const BACKEND_URL = process.env.BACKEND_URL
+
 const AdminDashboard = () => {
+  const [activeButton, setActiveButton] = useState("/admin-dashboard");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
+
   const [admissionData, setAdmissionData] = useState([]);
 
   const [search, setSearch] = useState("");
@@ -55,24 +60,40 @@ const AdminDashboard = () => {
   return (
     <div className="h-full p-3 md:p-[50px] w-full">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+   
+
       <div className="flex mb-4">
-        {/* <p className="text-[24px] font-bold mr-4">Admission List</p> */}
         <div className="flex space-x-4">
           <Link
             href="/admin-dashboard"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Admission List
           </Link>
           <Link
             href="/team-list"
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Team List
           </Link>
           <Link
             href="/event-list"
-            className="bg-red-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Event List
           </Link>
@@ -88,7 +109,7 @@ const AdminDashboard = () => {
       />
 
       {!isLoading && admissionData.length === 0 ? (
-        <p>No user found...</p>
+        <p>No admission data found...</p>
       ) : (
         <>
           <div className="overflow-x-auto">

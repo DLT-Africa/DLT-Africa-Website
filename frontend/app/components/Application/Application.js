@@ -61,41 +61,8 @@ const nigerianStates = [
   { id: 37, tag: "Federal Capital Territory" },
 ];
 
-const gender = [
-  { id: 1, tag: "Male" },
-  { id: 2, tag: "Female" },
-  { id: 3, tag: "Prefer Not To Mention" },
-];
-
-const academicQual = [
-  { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
-  { id: 2, tag: "Ordinary National Diploma (OND)" },
-  { id: 3, tag: "Higher National Diploma (HND)" },
-  { id: 4, tag: "BSc" },
-];
-
-const codeExperience = [
-  { id: 1, tag: "Beginner" },
-  { id: 2, tag: "Inter-Mediate" },
-  { id: 3, tag: "Advanced" },
-];
-
-const course = [
-  { id: 1, tag: "Frontend Development" },
-  { id: 2, tag: "Full-Stack Development" },
-  { id: 3, tag: "Product UI/UX Design" },
-  { id: 4, tag: "Blockchain Development" },
-];
-
-const clType = [
-  { id: 1, tag: "Online" },
-  { id: 2, tag: "Physical" },
-];
-
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL
 const Application = () => {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -110,6 +77,39 @@ const Application = () => {
     codeExperience: "",
     stateOfResidence: "",
   });
+
+  const gender = [
+    { id: 1, tag: "Male" },
+    { id: 2, tag: "Female" },
+    { id: 3, tag: "Prefer Not To Mention" },
+  ];
+
+  const academicQual = [
+    { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
+    { id: 2, tag: "Ordinary National Diploma (OND)" },
+    { id: 3, tag: "Higher National Diploma (HND)" },
+    { id: 4, tag: "BSc" },
+  ];
+
+  const codeExperience = [
+    { id: 1, tag: "Beginner" },
+    { id: 2, tag: "Inter-Mediate" },
+    { id: 3, tag: "Advanced" },
+  ];
+
+  const course =
+    formData.classType === "Online"
+      ? [
+          { id: 1, tag: "Frontend Development", fee: 320000 },
+          { id: 2, tag: "Blockchain Development", fee: 0 },
+        ]
+      : [
+          { id: 1, tag: "Frontend Development" },
+          { id: 2, tag: "Full-Stack Development" },
+          { id: 3, tag: "Product UI/UX Design" },
+          { id: 4, tag: "Blockchain Development" },
+        ];
+
   const [checkboxesChecked, setCheckboxesChecked] = useState({
     newsletter: false,
     privacyPolicy: false,
@@ -124,11 +124,21 @@ const Application = () => {
     setFormValidMessage("");
     const { name, value } = e.target;
     console.log(e.target.value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "classType" && value === "Online") {
+      setFormData({
+        ...formData,
+        [name]: value,
+        courseSelected: "",
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -169,13 +179,15 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`, formData)
+      .post(
+        `https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`,
+        formData
+      )
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
-        router.push("/admin-dashboard");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -217,7 +229,6 @@ const Application = () => {
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
         style={{ backgroundImage: `url(images/application-page-right-bg.svg)` }}
       >
-        {/* Your content goes here */}
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
             <div className="p-4">
@@ -254,7 +265,7 @@ const Application = () => {
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
-                    <p>23000+ alumni have joined our community, so can you</p>
+                    <p>300+ alumni have joined our community, so can you</p>
                   </div>
                 </div>
               </div>
@@ -273,7 +284,7 @@ const Application = () => {
                     name="firstName"
                     variant="static"
                     label="First Name"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -284,18 +295,13 @@ const Application = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                   />
-                  <SelectField
-                    label="State Of Origin"
-                    name="stateOfOrigin"
-                    handleChange={handleChange}
-                    options={nigerianStates}
-                  />
+
                   <Input
                     size="lg"
                     name="lastName"
                     variant="static"
                     label="Last Name"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -309,6 +315,7 @@ const Application = () => {
                   <SelectField
                     label="Gender"
                     name="gender"
+                    className="pl-4 text-[18px]"
                     handleChange={handleChange}
                     options={gender}
                   />
@@ -318,7 +325,7 @@ const Application = () => {
                     name="dob"
                     type="date"
                     variant="static"
-                    className="pl-4 text-xl text-gray-600"
+                    className="pl-4 text-[18px] text-gray-600"
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -335,23 +342,16 @@ const Application = () => {
                     name="phoneNo"
                     variant="static"
                     label="Phone Number"
-                    className="pl-4 text-xl"
+                    className="pl-4 text-[18px]"
                     labelProps={{
                       className: "!text-black",
                     }}
                     containerProps={{
                       className: "h-14 ",
                     }}
-                    placeholder="+234705746234"
+                    placeholder="+2347123456789"
                     value={formData.phoneNo}
                     onChange={handleChange}
-                  />
-
-                  <SelectField
-                    label="Academic Qualification"
-                    name="academicQualification"
-                    handleChange={handleChange}
-                    options={academicQual}
                   />
 
                   <Input
@@ -359,7 +359,7 @@ const Application = () => {
                     name="emailAddress"
                     variant="static"
                     label="Email Address"
-                    className="pl-4 text-xl "
+                    className="pl-4 text-[18px] "
                     labelProps={{
                       className: "!text-black",
                     }}
@@ -372,35 +372,60 @@ const Application = () => {
                   />
 
                   <SelectField
-                    label="Course Selected"
+                    label="State Of Origin"
+                    name="stateOfOrigin"
+                    className="pl-4 text-[18px] "
                     handleChange={handleChange}
-                    name="courseSelected"
-                    options={course}
-                    setTuitionFee={setTuitionFee}
+                    options={nigerianStates}
                   />
-                  <span>
-                    Course Fee:{" "}
-                    {typeof tuitionFee === "number"
-                      ? `₦${tuitionFee.toFixed(2)}`
-                      : tuitionFee}
-                  </span>
+
+                  <SelectField
+                    label="Academic Qualification"
+                    name="academicQualification"
+                    className="pl-4 text-[18px] "
+                    handleChange={handleChange}
+                    options={academicQual}
+                  />
 
                   <SelectField
                     label="Coding Experience"
+                    className="pl-4 text-[18px] "
                     handleChange={handleChange}
                     name="codeExperience"
                     options={codeExperience}
                     setTuitionFee={setTuitionFee}
                   />
-
                   <SelectField
+                  className="pl-4 text-[18px] "
                     label="Class type"
                     name="classType"
                     handleChange={handleChange}
-                    options={clType}
+                    options={[
+                      { id: 1, tag: "Online" },
+                      { id: 2, tag: "Physical" },
+                    ]}
+                    value={formData.classType}
                   />
+                  <div className="flex flex-col">
+                    <SelectField
+                    className="pl-4 text-[18px] "
+                      label="Course Selected"
+                      handleChange={handleChange}
+                      name="courseSelected"
+                      options={course}
+                      setTuitionFee={setTuitionFee}
+                      classType={formData.classType}
+                    />
+                    <span>
+                      Course Fee:{" "}
+                      {typeof tuitionFee === "number"
+                        ? `₦${tuitionFee.toFixed(2)}`
+                        : tuitionFee}
+                    </span>
+                  </div>
 
                   <SelectField
+                  className="pl-4 text-[18px] "
                     label="State Of Residence"
                     name="stateOfResidence"
                     handleChange={handleChange}
@@ -498,7 +523,7 @@ const Application = () => {
                       <Link href="/">Dismiss</Link>
                     </div>
                     <div className="absolute left-[88px] top-[444px]">
-                      <Image className="h-[67px] w-[41px]" src={DLT} alt="" />
+                      <Image className="h-[67px] w-[41px]" src={DLT} alt="dlt-logo" />
                     </div>
                   </div>
 
