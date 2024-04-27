@@ -34,18 +34,18 @@ const WhatYou = () => {
           text-[#1C1C1C] 
           lg:text-[48px]
           font-serif
-          tracking-[2.52px]
+          tracking-[1px]
           width-full
           md:text-[36px]
-          text-[25px]
-          "
+          text-[30px]
+          font-bold"
       >
         {" "}
         Here&apos;s what you&apos;ll get
       </div>
       <p
-        className="lg:text-[16px] md:text-[14px] mt-[10px] leading-[120%] 
-        text-center text-[#1C1C1C] opacity-[0.75] lg:px-[369px] md:px-[180px] self-center mb-[90px] md:-w[564px] px-[25px]"
+        className="lg:text-[25px] md:text-[14px] mt-[10px] leading-[120%] 
+        text-center text-[#1C1C1C] opacity-[0.75] lg:px-[250px] md:px-[180px] self-center mb-[90px] md:-w[564px] px-[25px] font-serif"
       >
         {" "}
         With DLT Africa, you gain access to an extensive curriculum spanning through Full- Stack and Smart Contract development totaling over 200 hours. Accepted cohorts have access to our thriving community as well as opportunities from our strategic partners around the globe.
@@ -63,17 +63,20 @@ const WhatYou = () => {
 
             <div className="flex flex-col items-center gap-[15px]">
               <h2
-                className="text-left
+                className="
                 text-[#1C1C1C]
                 md:text-[18px] 
                 lg:text-[22px] 
+                text-[20px]
                 font-medium 
-                leading-[120%]"
+                leading-[120%]
+                text-center
+                px-[10px]"
               >
                 {details.name}
               </h2>
 
-              <p className="lg:text-[16px] md:text-[14px]">
+              <p className="lg:text-[20px] md:text-[14px] font-serif font-light">
                 {details.description}
               </p>
             </div>

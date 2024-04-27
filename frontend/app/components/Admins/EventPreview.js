@@ -18,6 +18,10 @@ const EventPreview = () => {
   const [itemsPerPage] = useState(5);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState("/event-list");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
 
   const handleCloseModal = () => {
     setSelectedEventId(null);
@@ -84,14 +88,38 @@ const EventPreview = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-      <div className="flex space-x-4">
-          <Link href="/admin-dashboard" className="bg-blue-500 text-[#fff] px-4 py-2 rounded-md">
+        <div className="flex space-x-4">
+          <Link
+            href="/admin-dashboard"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Admission List
           </Link>
-          <Link href="/team-list" className="bg-green-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/team-list"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Team List
           </Link>
-          <Link href="/event-list" className="bg-red-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/event-list"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Event List
           </Link>
         </div>

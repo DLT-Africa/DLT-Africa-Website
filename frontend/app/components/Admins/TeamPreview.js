@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL
+const BACKEND_URL = process.env.BACKEND_URL;
 const TeamPreview = () => {
   const [teamData, setTeamData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,10 @@ const TeamPreview = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
   const router = useRouter();
-
+  const [activeButton, setActiveButton] = useState("/team-list");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -57,14 +60,38 @@ const TeamPreview = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-      <div className="flex space-x-4">
-          <Link href="/admin-dashboard" className="bg-blue-500 text-[#fff] px-4 py-2 rounded-md">
+        <div className="flex space-x-4">
+          <Link
+            href="/admin-dashboard"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Admission List
           </Link>
-          <Link href="/team-list" className="bg-green-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/team-list"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Team List
           </Link>
-          <Link href="/event-list" className="bg-red-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/event-list"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Event List
           </Link>
         </div>
@@ -91,7 +118,7 @@ const TeamPreview = () => {
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Phone</th>
-                  <th className="px-4 py-2">Role</th>
+                  {/* <th className="px-4 py-2">Role</th> */}
                 </tr>
               </thead>
 
@@ -108,7 +135,7 @@ const TeamPreview = () => {
                       <td className="border px-4 py-2">{email}</td>
 
                       <td className="border px-4 py-2">{phone}</td>
-                      <td className="border px-4 py-2">{role}</td>
+                      {/* <td className="border px-4 py-2">{role}</td> */}
                     </tr>
                   );
                 })}
