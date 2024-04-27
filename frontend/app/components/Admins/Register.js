@@ -49,7 +49,7 @@ const Register = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-website-backend.vercel.app/api/v1/team/register-team`, formData)
+      .post(`https://dlt-website-backend.com/api/v1/team/register-team`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
