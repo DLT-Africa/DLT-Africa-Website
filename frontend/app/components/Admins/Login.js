@@ -6,7 +6,6 @@ import axios from "axios";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import AdminDashboard from "./AdminDashboard";
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL
 const Login = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -34,7 +33,10 @@ const Login = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-website-backend.vercel.app/api/v1/team/login`, formData)
+      .post(
+        `https://dlt-website-backend.vercel.app/api/v1/team/login`,
+        formData
+      )
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
@@ -68,9 +70,9 @@ const Login = () => {
         {!formCompleted ? (
           <form
             onSubmit={handleSubmit}
-            className=" w-[400px] rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%] "
+            className="rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%]"
           >
-            <Typography className="font-normal text-[36px] text-black mb-[39px] text-center ">
+            <Typography className="md: font-normal sm:font-black md:text-[36px] sm:text-[25px] text-black mb-[39px] text-center">
               Login as an Admin
             </Typography>
             <div className="grid grid-cols-none md:grid-cols-none gap-y-14 gap-x-14 text-center">

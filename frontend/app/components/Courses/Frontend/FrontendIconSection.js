@@ -28,7 +28,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "Inview",
+    text: "3 July, 2024",
      icon: <BsCalendar4Event/>,
     courseConClass:" py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: " sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -86,8 +86,8 @@ const secData = [
 const FrontendIconSection = () => {
     return ( 
       
-    <section className="mainCon flex justify-center pt-[84px] pb-[71px] text-center sm:px-[100px] md:px-[120px] lg:[220] bg-[#F6F6F6]">
-    <div className="iconsCon sm: grid grid-cols-1 sm:gap-5 md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-20 items-center justify-center">
+    <section className="mainCon flex  justify-center pt-[84px] pb-[71px] text-center sm:px-[100px] md:px-[120px] bg-[#F6F6F6]">
+    <div className="iconsCon sm:grid sm:gap-5 md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-20 items-center justify-center">
       {secData.map(({ id, title, text, text2, icon, courseConClass, iconBodyClass, iconsClass, titleClass, textClass }) => (
         <IconSection
           key={id}

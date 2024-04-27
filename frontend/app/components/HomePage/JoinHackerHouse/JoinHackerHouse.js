@@ -8,10 +8,10 @@ const JoinHackerHouse = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
         <div className="flex flex-col-reverse md:flex-row lg:flex-row items-center justify-between lg:gap-[175px]">
           <div className="w-full md:mb-8 lg:text-left text-center">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl text-[28px] md:text-center lg:text-start mb-4">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl text-[28px] md:text-center lg:text-start mb-4 font-semibold">
               Join our <span className="text-orange-500">Hacker House</span>
             </h2>
-            <p className="text-base md:text-lg lg:text-xl font-300 text-gray-600 lg:mb-8 md:text-center lg:text-start">
+            <p className=" lg:text-[20px] text-[16px] md:text-[18px] font-300  text-gray-600 lg:mb-8 md:text-center lg:text-start ">
             Register for our Hacker House program and seize the opportunity to win amazing prizes! By joining, you'll not only have the chance to build amazing projects but also earn rewards doing so.
             </p>
 
@@ -25,7 +25,7 @@ const JoinHackerHouse = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-[490px] md:mb-8 mr-0 md:mr-12">
+          <div className="w-full md:w-[490px] md:mb-8 mr-0 md:mr-12 mb-[50px]">
             <Image
               src={Working}
               className="w-full h-auto"
