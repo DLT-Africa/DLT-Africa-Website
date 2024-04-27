@@ -13,14 +13,14 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="  bg-[#EFFFE2] flex flex-col items-center justify-center text-[18px]">
+    <footer className="  bg-[#EFFFE2] flex flex-col items-center justify-center text-[18px] font-serif">
       {/* <div className=" flex flex-row justify-center gap-[50px] mr-[300px] "> */}
       <div className=" grid grid-cols-1 sm:grid-cols-4 gap-4 mt-20 px-5">
         <div className="  h-auto min-h-[80px] flex flex-col items-center">
           <div className="flex flex-col gap-4  justify-center items-center">
             <a href="">
               {" "}
-              <Image src={DLT} alt="logo" className="w-[126px] h-[50.797px] " />
+              <Image src={DLT} alt="logo" className="w-[126px] h-[50.797px]" />
             </a>
 
             <p className="text-neutral-black font-poppins text-sm md:text-lg font-normal leading-[120%]  h-[19px] text-center">
