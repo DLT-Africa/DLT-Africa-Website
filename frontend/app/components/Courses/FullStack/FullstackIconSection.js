@@ -26,7 +26,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "Inview",
+    text: "3 July, 2024",
      icon: <BsCalendar4Event/>,
     courseConClass:" py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: "sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",

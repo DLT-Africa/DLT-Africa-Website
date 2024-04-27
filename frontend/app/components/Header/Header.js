@@ -43,7 +43,7 @@ const Header = () => {
   const closeDrawerTop = () => setOpenTop(false);
 
   return (
-    <>
+    <div>
       <div
         className="flex justify-between py-[10px]  sm:py-5 px-[20px] sm:px-[10px] md:px-[50px] "
         style={{
@@ -178,7 +178,7 @@ const Header = () => {
           </Drawer>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

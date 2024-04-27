@@ -73,10 +73,10 @@ const Faqs = () => {
       }}
       className="p-10 sm:p-20 flex flex-col items-center"
     >
-      <h1 className="text-3xl md:text-4xl lg:text-5xl mb-5">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl mb-5 text-center font-semibold font-serif tracking-[0.5px] leading-9">
         Frequently asked questions
       </h1>
-      <p className="text-center text-sm sm:text-base mb-10">
+      <p className="text-center lg:text-[25px] text-sm sm:text-base mb-10 font-serif">
       Among the frequently asked questions are:
       </p>
 

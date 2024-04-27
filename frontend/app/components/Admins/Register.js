@@ -74,13 +74,13 @@ const Register = () => {
   return (
     <div>
       <div className="mt-5 mb-20 p-4">
-        <Typography className="font-normal text-[36px] text-black mb-[39px] text-center ">
+        <Typography className="font-normal md:text-[36px] sm:text-[25px] text-black mb-[39px] text-center ">
           Register as an Admin
         </Typography>
         {!formCompleted ? (
           <form
             onSubmit={handleSubmit}
-            className="w-[400px] rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%]  "
+            className=" rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto lg:min-w-[65%] 2xl:min-w-[50%] lg:max-w-[65%] 2xl:max-w-[50%]  "
           >
             <div className="grid grid-cols-none md:grid-cols-none gap-y-14 gap-x-14 text-center">
               <Input

@@ -4,13 +4,13 @@ import Link from "next/link";
 const CourseSection = (props) => {
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[83px] lg:pr-[50px] md:gap-[63px] ">
+      <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[83px] lg:pr-[50px] md:gap-[63px] md:justify-between ">
         <div className="lg:w-[673px] md:w-[345px] sm:w-[390px] lg:pl-[50px] lg:mt-[35px] md:px-[50px] px-[32px] mt-[30px]">
-          <h4 className="lg:text-[40px] md:text-[24px] leading-none w-full lg:w-[404px] md:w-[187px] sm:w-[187px] font-serif font-[700] lg:mb-[14px] md:mb-[10px] sm:mt-[30px] sm:text-[24px] sm:font-[700] sm:mb-[10px]">
+          <h4 className="lg:text-[40px] md:text-[24px] text-[30px] w-full lg:w-[404px] md:w-[187px] sm:w-[187px] font-serif font-[700] lg:mb-[14px] md:mb-[10px] sm:mt-[30px] sm:font-[700] sm:mb-[10px] leading-[120%]">
             {props.title}
           </h4>
           {props.text && (
-            <p className="flex flex-wrap text-[#1C1C1C] mb-4 lg:text-[20px] md:text-[16px] font-poppins lg:font-normal leading-[120%] text-opacity-[0.75] lg:w-[584px] md:w-[326px] sm:w-[326px] sm:text-[16px] mt-[10px] sm:font-[400]">
+            <p className="flex flex-wrap text-[#1C1C1C] mb-4 lg:text-[20px] md:text-[16px] sm:[12px] font-poppins lg:font-normal leading-[120%] text-opacity-[0.75] lg:w-[584px] md:w-[326px] sm:w-[326px] sm:text-[16px] mt-[10px] sm:font-[400]">
               {props.text}
             </p>
           )}
