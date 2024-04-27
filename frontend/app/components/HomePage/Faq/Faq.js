@@ -24,7 +24,7 @@ const Faq = ({ question, answer, url, linkText }) => {
   return (
     <div onClick={() => setIsFaqShowing((prev) => !prev)}>
       <article className="flex justify-between ">
-        <p className="text-[16px]">{question}</p>
+        <p className="lg:text-[20px] text-[16px] font-serif">{question}</p>
 
         <button className="">
           {isFaqShowing ? (
@@ -36,11 +36,11 @@ const Faq = ({ question, answer, url, linkText }) => {
       </article>
 
       {isFaqShowing && (
-        <p className="text-[14px] p-[2px] flex flex-row gap-1">
+        <p className="lg:text-[18px] text-[14px] p-[2px] flex flex-row gap-1 font-serif">
           {answer}
 
           {url && (
-            <p className="text-[#fff] duration-500 ease-in-out transform hover:-translate-y-1">
+            <p className="text-[#fff] duration-500 ease-in-out transform hover:-translate-y-1 font-serif">
               <Link href={url} className="">
                 {linkText}
               </Link>{" "}
