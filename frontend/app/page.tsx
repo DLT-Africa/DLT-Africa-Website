@@ -22,11 +22,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div >
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div >
          
 
           <HeroSection />
