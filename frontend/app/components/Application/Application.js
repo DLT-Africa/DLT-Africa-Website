@@ -177,7 +177,7 @@ const Application = () => {
 
     axios
       .post(
-        `https://dlt-website-backend.com/api/v1/cohorts/studentreg`,
+        `https://dlt-backend.vercel.app/api/v1/cohorts/studentreg`,
         formData
       )
       .then(function (response) {

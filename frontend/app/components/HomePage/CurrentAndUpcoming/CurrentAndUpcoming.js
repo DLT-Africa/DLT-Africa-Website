@@ -17,7 +17,7 @@ const CurrentAndUpcoming = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dltafrica.io/https:/dlt-website-backend.com/api/v1/events/get-all-events`
+          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
         );
         setEventData(response.data);
       } catch (error) {
@@ -58,9 +58,9 @@ const CurrentAndUpcoming = () => {
               className="max-w-xs shadow-lg p-7 rounded-lg border border-orange-300 flex justify-center items-center flex-col w-[500px] lg:w-[600px] gap-4 "
               key={event._id}
             >
-              <Image
+              <img
                 className="w-20 h-20 rounded-full"
-                src={Current1}
+                src="Current1.png"
                 alt="eventmedia"
               />
 
