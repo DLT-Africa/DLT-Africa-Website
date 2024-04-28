@@ -91,12 +91,12 @@ const Footer = () => {
               </Link>
             </li>
             <li className="mb-[21px] text-sm md:text-lg">
-              <a
+              <Link
                 href="/team"
                 className="hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
               >
                 Our Team
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
