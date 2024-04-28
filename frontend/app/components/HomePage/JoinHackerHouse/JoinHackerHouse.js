@@ -26,8 +26,8 @@ const JoinHackerHouse = () => {
           </div>
 
           <div className="w-full md:w-[490px] md:mb-8 mr-0 md:mr-12 mb-[50px]">
-            <Image
-              src={Working}
+            <img
+              src="Working.png"
               className="w-full h-auto"
               alt="Working at Hacker House"
             />
