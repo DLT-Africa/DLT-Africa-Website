@@ -52,7 +52,7 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src={navbarContent.logo} />
+            <img src="dlt-logo.png" />
           </Link>
         </div>
         <div className="flex flex-end">
@@ -71,11 +71,8 @@ const Header = () => {
             className="p-4 px-[10px] sm:px-[50px] pb-[300px] mt-[-22px] "
           >
             <div className="my-[10px] flex items-center justify-between ">
-              <Link href={"/"} 
-              onClick={closeDrawerTop}
-              >
-                <Image src={dlt} alt="nav-log" />
-                
+              <Link href={"/"} onClick={closeDrawerTop}>
+                <img src="dlt.png" alt="nav-log" />
               </Link>
               <svg
                 onClick={closeDrawerTop}

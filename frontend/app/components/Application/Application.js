@@ -1,9 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import DLT from "../../dlt.png";
-import Vector1 from "../../../public/Vector1.png";
-import Vector2 from "../../../public/Vector2.png";
+
 
 import Link from "next/link";
 
@@ -180,7 +177,7 @@ const Application = () => {
 
     axios
       .post(
-        `https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`,
+        `https://dlt-website-backend.com/api/v1/cohorts/studentreg`,
         formData
       )
       .then(function (response) {
@@ -223,11 +220,11 @@ const Application = () => {
   return (
     <div
       className="bg-auto  bg-no-repeat bg-left-top"
-      style={{ backgroundImage: `url(images/application-page-bg.svg)` }}
+      style={{ backgroundimg: `url(imgs/application-page-bg.svg)` }}
     >
       <div
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
-        style={{ backgroundImage: `url(images/application-page-right-bg.svg)` }}
+        style={{ backgroundimg: `url(imgs/application-page-right-bg.svg)` }}
       >
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
@@ -523,16 +520,16 @@ const Application = () => {
                       <Link href="/">Dismiss</Link>
                     </div>
                     <div className="absolute left-[88px] top-[444px]">
-                      <Image className="h-[67px] w-[41px]" src={DLT} alt="dlt-logo" />
+                      <img className="h-[67px] w-[41px]" src="dlt.png" alt="dlt-logo" />
                     </div>
                   </div>
 
                   <div className="w-[724.48px] h-[666.52px] top-[2px] left-[2px] Border-[2px] Rotation-[56.1°] absolute">
-                    <Image src={Vector2} alt="Example" />
+                    <img src="Vector2.png" alt="Example" />
                   </div>
 
                   <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-                    <Image src={Vector1} alt="Example" />
+                    <img src="Vector1.png" alt="Example" />
                   </div>
                 </div>
               </div>

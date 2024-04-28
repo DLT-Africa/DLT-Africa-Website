@@ -2,11 +2,12 @@ import React from "react";
 import Linkedin from "../../../public/images/linkedin.svg";
 import Twitter from "../../../public/images/twitter.svg";
 import Image from "next/image";
+import { BsLinkedin, BsTwitterX } from "react-icons/bs";
 
 const teamMember = [
   {
     id: 1,
-    img: require("../../../public/soliu.jpeg"),
+    img: "soliu.jpeg",
     name: "Soliu Ahmad",
     role: "Software Developer",
     description:
@@ -16,7 +17,7 @@ const teamMember = [
   },
   {
     id: 2,
-    img: require("../../../public/naheem.jpeg"),
+    img: "naheem.jpeg",
     name: "Naheem Oloyede",
     role: "Software Developer & Team Lead",
     description:
@@ -26,7 +27,7 @@ const teamMember = [
   },
   {
     id: 3,
-    img: require("../../../public/jordan.jpeg"),
+    img: "jordan.jpeg",
     name: "Jordan Muthemba",
     role: "Blockchain Developer",
     description:
@@ -36,7 +37,7 @@ const teamMember = [
   },
   {
     id: 4,
-    img: require("../../../public/ameer.jpeg"),
+    img: "ameer.jpeg",
     name: "Abdullah Raji",
     role: "Software Developer",
     description:
@@ -46,7 +47,7 @@ const teamMember = [
   },
   {
     id: 5,
-    img: require("../../../public/anate.jpeg"),
+    img: "anate.jpeg",
     name: "Aliyu Anate",
     role: "Software Developer",
     description:
@@ -56,17 +57,17 @@ const teamMember = [
   },
   {
     id: 6,
-    img: require("../../../public/fawaz.jpeg"),
+    img: "fawaz.jpeg",
     name: "Fawaz Dada",
     role: "Graphic Designer",
     description:
       "A highly creative, fast-working, and adaptable graphic designer who can quickly grasp the concept of the brief he has been given. He has a strong understanding of the principles of design and he is able to apply them to create visually appealing and effective designs..",
-    linkedinLink: "",
+    linkedinLink: null,
     twitterLink: "https://twitter.com/dadaXxf",
   },
   {
     id: 7,
-    img: require("../../../public/seyi.jpeg"),
+    img: "seyi.jpeg",
     name: "Oluwaseyi Abolaji",
     role: "Product Designer & Manager",
     description:
@@ -76,7 +77,7 @@ const teamMember = [
   },
   {
     id: 8,
-    img: require("../../../public/herlew.jpeg"),
+    img: "herlew.jpeg",
     name: "Aliu Musa",
     role: "Blockchain Engineer",
     description:
@@ -132,7 +133,7 @@ const team = () => {
             key={member.id}
           >
             <div>
-              <Image
+              <img
                 className="w-[180px] 
                                 h-[180px] 
                                 flex 
@@ -189,11 +190,11 @@ const team = () => {
 
             <div className="flex mb-[16px] w-[40px] h-[40px] gap-[10px]">
               <a href={member.linkedinLink}>
-                <Image className="text-[#0A66C2]" src={Linkedin} alt="" />
+                <BsTwitterX className="text-[#0A66C2]" />
               </a>
 
               <a href={member.twitterLink}>
-                <Image className="text-[#000000]" src={Twitter} alt="twitter" />
+                <BsLinkedin className="text-[#000000]" />
               </a>
             </div>
           </div>

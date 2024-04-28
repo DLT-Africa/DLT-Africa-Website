@@ -32,6 +32,7 @@ app.use(
       "http://localhost:3000",
 
       "https://dlt-africa-website-frontend.vercel.app",
+      "https://dltafrica.io"
     ],
     credentials: true,
     optionSuccessStatus: 200,
