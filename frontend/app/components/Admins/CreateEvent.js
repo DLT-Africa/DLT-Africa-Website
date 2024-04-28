@@ -68,7 +68,7 @@ const CreateEvent = () => {
       setIsSubmitting(true);
 
       axios
-        .post(`https://dlt-website-backend.vercel.app/api/v1/events/create-event`, formData)
+        .post(`https://dlt-backend.vercel.app/api/v1/events/create-event`, formData)
         .then(function (response) {
           setIsSubmitting(false);
           setFormCompleted(true);

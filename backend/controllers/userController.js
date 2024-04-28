@@ -92,18 +92,18 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-function sendEmail(firstName, courseSelected, emailAddress, user) {
+const sendEmail = async (firstName, courseSelected, emailAddress, user) => {
   let tuitionFee;
 
   switch (courseSelected) {
     case "Frontend Development":
-      tuitionFee = 0.5 * 370000;
+      tuitionFee = 0.5 * 410000;
       break;
     case "Full-Stack Development":
-      tuitionFee = 0.5 * 570000;
+      tuitionFee = 0.5 * 630000;
       break;
     case "Product UI/UX Design":
-      tuitionFee = 0.5 * 150000;
+      tuitionFee = 0.65 * 170000;
       break;
     case "Blockchain Development":
       tuitionFee = 0;
@@ -112,7 +112,7 @@ function sendEmail(firstName, courseSelected, emailAddress, user) {
       tuitionFee = 0;
   }
 
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: 587,
     auth: {
@@ -146,7 +146,7 @@ function sendEmail(firstName, courseSelected, emailAddress, user) {
 
     <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of #${tuitionFee.toFixed(
       2
-    )} of the total tuition fee starting from November 20th until December 15th, 2023.</p>
+    )} of the total tuition fee #${tuitionFee} starting from May 1st until May 15th, 2024.</p>
 
     <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
 
@@ -169,13 +169,12 @@ function sendEmail(firstName, courseSelected, emailAddress, user) {
     <p>DLT Africa Team</p>`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending mail:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Payment confirmation email sent successfully.");
+  } catch (error) {
+    console.error("Error sending payment confirmation email:", error);
+  }
 }
 
 const getAdmissions = asyncHandler(async (req, res) => {
@@ -205,7 +204,7 @@ const upgradeData = asyncHandler(async (req, res) => {
   const { status, id } = req.body;
 
   const user = await User.findById(id);
-  console.log(user)
+  console.log(user);
 
   if (!user) {
     res.status(404);
@@ -257,7 +256,7 @@ const sendPaymentConfirmationEmail = async (
 
     <p>We are pleased to inform you that your first payment has been received! This brings you one step closer to unlocking the full potential of our services.</p>
     
-    <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701.</p>
+    <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701 OR 08133083895.</p>
     
     <p>Best regards,</p>
     
@@ -281,11 +280,11 @@ const sendAcceptanceEmail = async (emailAddress, firstName, courseSelected) => {
     
       <h1>Dear ${firstName},</h1>
   
-      <p>We are pleased to inform you that your application has been accepted into DLT Africa Cohort 5.0 for ${courseSelected}! Welcome aboard!</p>
+      <p>We are pleased to inform you that your application has been accepted into DLT Africa Cohort 5.0 for ${courseSelected}! Welcome aboard 🎊!</p>
   
       <p>We request you to join the WhatsApp group for your batch <a href="your_whatsapp_group_link_here">here</a>.</p>
   
-      <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701.</p>
+      <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701 OR 08133083895.</p>
   
       <p>Best regards,</p>
   
@@ -293,7 +292,6 @@ const sendAcceptanceEmail = async (emailAddress, firstName, courseSelected) => {
     `,
   };
 
-  // Send acceptance email
   await sendEmailMessage(mailOptions);
 };
 

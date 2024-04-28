@@ -47,13 +47,13 @@ const courses = [
     question: "Prerequisites",
     answer: [
       <>
-        <p>
+        <ul className="list-disc">
+        <li>
           You should have a computer with an internet connection and have access
           to a Solidity development environment such as Remix or Truffle.
           Familiarity with Ethereum and the Ethereum Virtual Machine (EVM) is
           also recommended.
-        </p>
-        <ul className="list-disc">
+        </li>
           <li>
             Familiarity with basic programming concepts (variables, functions,
             loops, etc.)

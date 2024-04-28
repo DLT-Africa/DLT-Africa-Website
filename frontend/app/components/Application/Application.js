@@ -1,10 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import DLT from "../../dlt.png";
-import Vector1 from "../../../public/Vector1.png";
-import Vector2 from "../../../public/Vector2.png";
-
 import Link from "next/link";
 
 import {
@@ -17,7 +12,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SelectField from "@/app/components/Application/SelectField";
 
@@ -64,6 +59,7 @@ const nigerianStates = [
 import { useRouter } from "next/navigation";
 const Application = () => {
   const router = useRouter();
+  const [countdown, setCountdown] = useState(15);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -139,6 +135,22 @@ const Application = () => {
     }
   };
 
+  useEffect(() => {
+    if (formCompleted) {
+      const timer = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [formCompleted]);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      router.push("/");
+    }
+  }, [countdown]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -179,7 +191,7 @@ const Application = () => {
 
     axios
       .post(
-        `https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`,
+        `https://dlt-backend.vercel.app/api/v1/cohorts/studentreg`,
         formData
       )
       .then(function (response) {
@@ -187,7 +199,6 @@ const Application = () => {
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
-        router.push("/admin-dashboard");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -223,11 +234,11 @@ const Application = () => {
   return (
     <div
       className="bg-auto  bg-no-repeat bg-left-top"
-      style={{ backgroundImage: `url(images/application-page-bg.svg)` }}
+      style={{ backgroundimg: `url(imgs/application-page-bg.svg)` }}
     >
       <div
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
-        style={{ backgroundImage: `url(images/application-page-right-bg.svg)` }}
+        style={{ backgroundimg: `url(imgs/application-page-right-bg.svg)` }}
       >
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
@@ -272,7 +283,7 @@ const Application = () => {
             </div>
           </div>
 
-          <div className="mt-5 mb-20 p-4">
+          <div className="mt-5 mb-20 p-2">
             {!formCompleted ? (
               <form
                 className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
@@ -396,7 +407,7 @@ const Application = () => {
                     setTuitionFee={setTuitionFee}
                   />
                   <SelectField
-                  className="pl-4 text-[18px] "
+                    className="pl-4 text-[18px] "
                     label="Class type"
                     name="classType"
                     handleChange={handleChange}
@@ -408,7 +419,7 @@ const Application = () => {
                   />
                   <div className="flex flex-col">
                     <SelectField
-                    className="pl-4 text-[18px] "
+                      className="pl-4 text-[18px] "
                       label="Course Selected"
                       handleChange={handleChange}
                       name="courseSelected"
@@ -425,7 +436,7 @@ const Application = () => {
                   </div>
 
                   <SelectField
-                  className="pl-4 text-[18px] "
+                    className="pl-4 text-[18px] "
                     label="State Of Residence"
                     name="stateOfResidence"
                     handleChange={handleChange}
@@ -507,32 +518,39 @@ const Application = () => {
               </form>
             ) : (
               <div className="flex justify-center items-center h-screen">
-                <div className="bg-[#FFEFD4] h-[545px] w-[1013px] rounded-[20px] flex justify-center items-center relative">
+                <div className="bg-[#FFEFD4] h-[545px] w-[100%] rounded-[20px] flex justify-center items-center relative">
                   <div className="flex flex-col text-center">
                     <h1 className="text-[#FC7C13] w-[400px] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
                       Congratulations!!!
                       <br />
                     </h1>
                     <div>
-                      <p className="w-[796px] h-[48px] opacity-75%">
-                        Your application has successfully been submitted,
-                        you&apos;ll get an email from our
-                        <br /> team on your next step of action.
+                      <p className="w-[796px] h-[48px] opacity-75% text-center">
+                        Your application has successfully <br />
+                        been submitted, you&apos;ll get an <br />
+                        email from our team on your next <br />
+                        step of action.. check spam folder. 
                       </p>
 
-                      <Link href="/">Dismiss</Link>
+                      <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
+                        <p>Redirecting to homepage in {countdown} seconds...</p>
+                      </div>
                     </div>
                     <div className="absolute left-[88px] top-[444px]">
-                      <Image className="h-[67px] w-[41px]" src={DLT} alt="" />
+                      <img
+                        className="h-[67px] w-[41px]"
+                        src="dlt.png"
+                        alt="dlt-logo"
+                      />
                     </div>
                   </div>
 
                   <div className="w-[724.48px] h-[666.52px] top-[2px] left-[2px] Border-[2px] Rotation-[56.1°] absolute">
-                    <Image src={Vector2} alt="Example" />
+                    <img src="Vector2.png" alt="Example" />
                   </div>
 
                   <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-                    <Image src={Vector1} alt="Example" />
+                    <img src="Vector1.png" alt="Example" />
                   </div>
                 </div>
               </div>

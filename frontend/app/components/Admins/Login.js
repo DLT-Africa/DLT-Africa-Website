@@ -6,7 +6,6 @@ import axios from "axios";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import AdminDashboard from "./AdminDashboard";
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL
 const Login = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -34,7 +33,10 @@ const Login = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-website-backend.vercel.app/api/v1/team/login`, formData)
+      .post(
+        `https://dlt-backend.vercel.app/api/v1/team/login`,
+        formData
+      )
       .then(function (response) {
         console.log(response.data);
         console.log(formData);

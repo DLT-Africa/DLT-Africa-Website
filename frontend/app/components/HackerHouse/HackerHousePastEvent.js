@@ -30,7 +30,7 @@ const HackerHousePastEvent = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-website-backend.vercel.app/api/v1/events/get-all-events`
+          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
         );
         setEventData(response.data);
         setIsLoading(false);
@@ -138,7 +138,6 @@ const HackerHousePastEvent = () => {
                         <tr key={index}>
                           <td className={classes}>
                             <div className="flex items-center gap-3 max-w-[20rem] lg:max-w-[27rem] ">
-                              {/* <Avatar src={img} alt={description} size="lg" /> */}
                               <Typography
                                 variant="small"
                                 color="blue-gray"

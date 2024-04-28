@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +17,12 @@ const Register = () => {
     phone: "",
   });
 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    if (loggedIn === "true") {
+      setFormCompleted(true);
+    }
+  }, []);
   const [formValidMessage, setFormValidMessage] = useState();
   const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,11 +49,12 @@ const Register = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-website-backend.vercel.app/api/v1/team/register-team`, formData)
+      .post(`https://dlt-backend.vercel.app/api/v1/team/register-team`, formData)
       .then(function (response) {
         console.log(response.data);
         console.log(formData);
         setIsSubmitting(false);
+        localStorage.setItem("isLoggedIn", "true");
         setFormCompleted(true);
         router.push("/admin-dashboard");
       })
