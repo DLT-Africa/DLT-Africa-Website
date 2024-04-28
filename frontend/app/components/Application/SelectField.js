@@ -19,13 +19,13 @@ function SelectField({ label, name, options, handleChange, setTuitionFee, classT
       if (classType === "Physical") {
         switch (value) {
           case "Frontend Development":
-            tuitionFee = 407000;
+            tuitionFee = 410000;
             break;
           case "Full-Stack Development":
-            tuitionFee = 627000;
+            tuitionFee = 630000;
             break;
           case "Product UI/UX Design":
-            tuitionFee = 150000;
+            tuitionFee = 170000;
             break;
           case "Blockchain Development":
             tuitionFee = 0;

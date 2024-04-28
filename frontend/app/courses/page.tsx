@@ -1,10 +1,10 @@
-import Image from "next/image";
+
 import Link from "next/link";
 
-import Course1 from "../../public/Course1.png";
-import Course2 from "../../public/Course2.png";
-import Course3 from "../../public/Course3.png";
-import Course4 from "../../public/Course4.png";
+import Course1 from "Course1.png";
+import Course2 from "Course2.png";
+import Course3 from "Course3.png";
+import Course4 from "Course4.png";
 
 const coursesList = [
   {
@@ -12,7 +12,7 @@ const coursesList = [
     courseName: "UI/UX and Prototyping (Product Design)",
     description:
       "User Interface (UI) and User Experience(UX) design are in great demand and are applicable across products and industry domain. With customer experience being the centerfold...  ",
-    media: Course3,
+    media: "Course3.png",
     url: "/product",
   },
   {
@@ -21,7 +21,7 @@ const coursesList = [
     description:
     
       "Start off your career today as a Front-End Web Developer. Learn to build high quality websites with dynamic applications to create stunning user experiences… ",
-    media: Course2,
+    media: "Course2.png",
     url: "/frontend",
   },
   {
@@ -29,7 +29,7 @@ const coursesList = [
     courseName: "Fullstack Web Development",
     description:
       "Acquire the skills and knowledge needed build a complete web development project from scratch to finish. Our Full-Stack Developer's Program is a 6 months program.",
-    media:  Course1,
+    media:  "Course1.png",
     url: "/fullstack",
   },
   {
@@ -37,7 +37,7 @@ const coursesList = [
     courseName: "Blockchain Development (Smart Contract)",
     description:
       "Acquire the skills and knowledge needed to be a Blockchain Developer. The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
-    media: Course4,
+    media: "Course4.png",
     url: "/blockchain",
   },
 ];
@@ -55,7 +55,7 @@ const page = () => {
         {coursesList.map(({ id, courseName, description, media, url }) => (
           <Link href={url} key={id}>
             <div className="w-full md:w-[502px] transition duration-300 transform hover:-translate-y-1 hover:shadow-lg ">
-              <Image
+              <img
                 src={media}
                 alt="courses"
                 className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg "

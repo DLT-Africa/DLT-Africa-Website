@@ -34,7 +34,7 @@ const Login = () => {
 
     axios
       .post(
-        `https://dlt-website-backend.vercel.app/api/v1/team/login`,
+        `https://dlt-backend.vercel.app/api/v1/team/login`,
         formData
       )
       .then(function (response) {
