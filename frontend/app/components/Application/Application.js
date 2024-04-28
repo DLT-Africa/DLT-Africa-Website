@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import Link from "next/link";
 
 import {
@@ -14,7 +12,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SelectField from "@/app/components/Application/SelectField";
 
@@ -60,6 +58,7 @@ const nigerianStates = [
 
 import { useRouter } from "next/navigation";
 const Application = () => {
+  const [countdown, setCountdown] = useState(10);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -135,7 +134,21 @@ const Application = () => {
     }
   };
 
-  
+  useEffect(() => {
+    if (formCompleted) {
+      const timer = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [formCompleted]);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      router.push("/");
+    }
+  }, [countdown]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -393,7 +406,7 @@ const Application = () => {
                     setTuitionFee={setTuitionFee}
                   />
                   <SelectField
-                  className="pl-4 text-[18px] "
+                    className="pl-4 text-[18px] "
                     label="Class type"
                     name="classType"
                     handleChange={handleChange}
@@ -405,7 +418,7 @@ const Application = () => {
                   />
                   <div className="flex flex-col">
                     <SelectField
-                    className="pl-4 text-[18px] "
+                      className="pl-4 text-[18px] "
                       label="Course Selected"
                       handleChange={handleChange}
                       name="courseSelected"
@@ -422,7 +435,7 @@ const Application = () => {
                   </div>
 
                   <SelectField
-                  className="pl-4 text-[18px] "
+                    className="pl-4 text-[18px] "
                     label="State Of Residence"
                     name="stateOfResidence"
                     handleChange={handleChange}
@@ -504,7 +517,7 @@ const Application = () => {
               </form>
             ) : (
               <div className="flex justify-center items-center h-screen">
-                <div className="bg-[#FFEFD4] h-[545px] w-[1013px] rounded-[20px] flex justify-center items-center relative">
+                <div className="bg-[#FFEFD4] h-[545px] w-[100%] rounded-[20px] flex justify-center items-center relative">
                   <div className="flex flex-col text-center">
                     <h1 className="text-[#FC7C13] w-[400px] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
                       Congratulations!!!
@@ -512,15 +525,21 @@ const Application = () => {
                     </h1>
                     <div>
                       <p className="w-[796px] h-[48px] opacity-75%">
-                        Your application has successfully been submitted,
+                        Your application has successfully been submitted, <br/>
                         you&apos;ll get an email from our
                         <br /> team on your next step of action.
                       </p>
 
-                      <Link href="/">Dismiss</Link>
+                      <div className="absolute top-0 right-0 m-4 p-2 bg-white rounded-lg shadow">
+                        <p>Redirecting to homepage in {countdown} seconds...</p>
+                      </div>
                     </div>
                     <div className="absolute left-[88px] top-[444px]">
-                      <img className="h-[67px] w-[41px]" src="dlt.png" alt="dlt-logo" />
+                      <img
+                        className="h-[67px] w-[41px]"
+                        src="dlt.png"
+                        alt="dlt-logo"
+                      />
                     </div>
                   </div>
 
