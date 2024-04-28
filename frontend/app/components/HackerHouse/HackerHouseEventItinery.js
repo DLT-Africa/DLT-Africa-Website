@@ -57,9 +57,12 @@ const HackerHouseEventItinery = () => {
       </div>
 
       <div className="flex justify-center mt-20 mb-20 px-[5px] ">
-        <button className=" w-full h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE] sm:w-[350px] sm:h-[60px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg">
+        <a
+          href="https://forms.gle/ea5B6C16hif4YYtz8"
+          className=" w-full h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE] sm:w-[350px] sm:h-[60px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg"
+        >
           Sign up for Hacker house
-        </button>
+        </a>
       </div>
     </div>
   );
