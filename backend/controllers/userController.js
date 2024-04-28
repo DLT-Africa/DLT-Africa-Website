@@ -92,7 +92,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-function sendEmail(firstName, courseSelected, emailAddress, user) {
+const sendEmail = async (firstName, courseSelected, emailAddress, user) => {
   let tuitionFee;
 
   switch (courseSelected) {
@@ -112,7 +112,7 @@ function sendEmail(firstName, courseSelected, emailAddress, user) {
       tuitionFee = 0;
   }
 
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: 587,
     auth: {
@@ -169,13 +169,12 @@ function sendEmail(firstName, courseSelected, emailAddress, user) {
     <p>DLT Africa Team</p>`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending mail:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Payment confirmation email sent successfully.");
+  } catch (error) {
+    console.error("Error sending payment confirmation email:", error);
+  }
 }
 
 const getAdmissions = asyncHandler(async (req, res) => {

@@ -58,7 +58,8 @@ const nigerianStates = [
 
 import { useRouter } from "next/navigation";
 const Application = () => {
-  const [countdown, setCountdown] = useState(10);
+  const router = useRouter();
+  const [countdown, setCountdown] = useState(15);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -282,7 +283,7 @@ const Application = () => {
             </div>
           </div>
 
-          <div className="mt-5 mb-20 p-4">
+          <div className="mt-5 mb-20 p-2">
             {!formCompleted ? (
               <form
                 className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
@@ -524,13 +525,14 @@ const Application = () => {
                       <br />
                     </h1>
                     <div>
-                      <p className="w-[796px] h-[48px] opacity-75%">
-                        Your application has successfully been submitted, <br/>
-                        you&apos;ll get an email from our
-                        <br /> team on your next step of action.
+                      <p className="w-[796px] h-[48px] opacity-75% text-center">
+                        Your application has successfully <br />
+                        been submitted, you&apos;ll get an <br />
+                        email from our team on your next <br />
+                        step of action.. check spam folder. 
                       </p>
 
-                      <div className="absolute top-0 right-0 m-4 p-2 bg-white rounded-lg shadow">
+                      <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
                         <p>Redirecting to homepage in {countdown} seconds...</p>
                       </div>
                     </div>

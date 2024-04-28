@@ -57,7 +57,7 @@ const Header = () => {
         </div>
         <div className="flex flex-end">
           <div
-            className="flex flex-col items-end gap-2 cursor-pointer"
+            className="flex flex-col items-end justify-center gap-2 cursor-pointer"
             onClick={openDrawerTop}
           >
             <div className="w-[50px] h-[5px] bg-orange-500 transition-all duration-300 ease-in-out"></div>
