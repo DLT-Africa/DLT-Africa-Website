@@ -100,35 +100,37 @@ const team = () => {
                 text-[36px] 
                 font-[normal] 
                 leading-[120%] 
-                tracking-[2.52px]"
+                tracking-[2.52px]
+                "
       >
         {" "}
         Meet the Team
       </div>
 
       <div
-        className="grid 
-                gap-[68px 73px] 
+        className="grid gap-6 
                 w-full 
                 px-10 
                 pt-10 
                 md:grid-cols-2 
                 lg:grid-cols-3
-                place-content-center"
+                place-content-center
+                "
       >
         {teamMember.map((member) => (
           <div
             className="flex 
                         flex-col 
-                        w-[387px] 
-                        h-[521px] 
+                        w-full 
+                        h-auto 
                         gap-[35px] 
                         items-center 
                         flex-shrink-0 
-                        p-[-60px] 
+                        px-50px
                         border-2 border-orange-100 
                         rounded-[10px] 
-                        mb-[73px]"
+                        mb-[73px]
+                        "
             key={member.id}
           >
             <div>
