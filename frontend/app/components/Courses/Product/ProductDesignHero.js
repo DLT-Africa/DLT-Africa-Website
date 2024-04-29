@@ -6,7 +6,7 @@ const sectionData = [
     title: "UI/UX Design and Prototyping(Product Design)",
     text: "Step into our immersive program to master the principles of product design. Learn UX/UI, prototyping, user research, and design thinking. Dive into real-world projects to create impactful designs.",
     headline1:
-      "Graduate in three months, part-time, and start working in the high-demand field of software development.",
+      "Experience a 3 months full-time learning experience and be ready to take up job opportunities in the high-demand software development industry.",
     headline2:
       "Meet regularly with an experienced mentor to ask the questions you care about.",
     headline3: "Build your UI/UX skills and launch your product design career",
