@@ -56,22 +56,22 @@ const HackerHousePastEvent = () => {
       label: "All",
       value: "all",
     },
-    {
-      label: "Hackaton",
-      value: "hackaton",
-    },
-    {
-      label: "Bootcamp",
-      value: "bootcamp",
-    },
-    {
-      label: "Event",
-      value: "event",
-    },
-    {
-      label: "Incubator",
-      value: "incubator",
-    },
+    // {
+    //   label: "Hackaton",
+    //   value: "hackaton",
+    // },
+    // {
+    //   label: "Bootcamp",
+    //   value: "bootcamp",
+    // },
+    // {
+    //   label: "Event",
+    //   value: "event",
+    // },
+    // {
+    //   label: "Incubator",
+    //   value: "incubator",
+    // },
   ];
 
   return (
@@ -151,7 +151,8 @@ const HackerHousePastEvent = () => {
                             <div className="flex flex-col">
                               <Typography
                                 variant="small"
-                                className="font-medium text-gray-700/70"
+                                className="font-medium text-black-700 w-[250px] "
+                                title={eventDescription}
                               >
                                 {eventDescription}
                               </Typography>

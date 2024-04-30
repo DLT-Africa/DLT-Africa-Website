@@ -59,7 +59,6 @@ const nigerianStates = [
 import { useRouter } from "next/navigation";
 const Application = () => {
   const router = useRouter();
-  const [countdown, setCountdown] = useState(15);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -135,22 +134,6 @@ const Application = () => {
     }
   };
 
-  useEffect(() => {
-    if (formCompleted) {
-      const timer = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }
-  }, [formCompleted]);
-
-  useEffect(() => {
-    if (countdown === 0) {
-      router.push("/");
-    }
-  }, [countdown]);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -199,6 +182,7 @@ const Application = () => {
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
+        router.push("/congrats");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -208,7 +192,7 @@ const Application = () => {
           );
         } else {
           setFormValidMessage(
-            "Server error unable to process your registration"
+            "Server error, unable to process your registration"
           );
         }
       });
@@ -284,277 +268,235 @@ const Application = () => {
           </div>
 
           <div className="mt-5 mb-20 p-2">
-            {!formCompleted ? (
-              <form
-                className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
-                onSubmit={handleSubmit}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14">
-                  <Input
-                    size="lg"
-                    name="firstName"
-                    variant="static"
-                    label="First Name"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                  />
+            <form
+              className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
+              onSubmit={handleSubmit}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14">
+                <Input
+                  size="lg"
+                  name="firstName"
+                  variant="static"
+                  label="First Name"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
 
-                  <Input
-                    size="lg"
-                    name="lastName"
-                    variant="static"
-                    label="Last Name"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                  />
+                <Input
+                  size="lg"
+                  name="lastName"
+                  variant="static"
+                  label="Last Name"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+                <SelectField
+                  label="Gender"
+                  name="gender"
+                  className="pl-4 text-[18px]"
+                  handleChange={handleChange}
+                  options={gender}
+                />
+
+                <Input
+                  size="lg"
+                  name="dob"
+                  type="date"
+                  variant="static"
+                  className="pl-4 text-[18px] text-gray-600"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  label="Date of Birth"
+                  value={formData.dob}
+                  onChange={handleChange}
+                />
+
+                <Input
+                  size="lg"
+                  name="phoneNo"
+                  variant="static"
+                  label="Phone Number"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="+2347123456789"
+                  value={formData.phoneNo}
+                  onChange={handleChange}
+                />
+
+                <Input
+                  size="lg"
+                  name="emailAddress"
+                  variant="static"
+                  label="Email Address"
+                  className="pl-4 text-[18px] "
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="yourmail@gmail.com"
+                  value={formData.emailAddress}
+                  onChange={handleChange}
+                />
+
+                <SelectField
+                  label="State Of Origin"
+                  name="stateOfOrigin"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  options={nigerianStates}
+                />
+
+                <SelectField
+                  label="Academic Qualification"
+                  name="academicQualification"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  options={academicQual}
+                />
+
+                <SelectField
+                  label="Coding Experience"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  name="codeExperience"
+                  options={codeExperience}
+                  setTuitionFee={setTuitionFee}
+                />
+                <SelectField
+                  className="pl-4 text-[18px] "
+                  label="Class type"
+                  name="classType"
+                  handleChange={handleChange}
+                  options={[
+                    { id: 1, tag: "Online" },
+                    { id: 2, tag: "Physical" },
+                  ]}
+                  value={formData.classType}
+                />
+                <div className="flex flex-col">
                   <SelectField
-                    label="Gender"
-                    name="gender"
-                    className="pl-4 text-[18px]"
-                    handleChange={handleChange}
-                    options={gender}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="dob"
-                    type="date"
-                    variant="static"
-                    className="pl-4 text-[18px] text-gray-600"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    label="Date of Birth"
-                    value={formData.dob}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="phoneNo"
-                    variant="static"
-                    label="Phone Number"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="+2347123456789"
-                    value={formData.phoneNo}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="emailAddress"
-                    variant="static"
-                    label="Email Address"
                     className="pl-4 text-[18px] "
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="yourmail@gmail.com"
-                    value={formData.emailAddress}
-                    onChange={handleChange}
-                  />
-
-                  <SelectField
-                    label="State Of Origin"
-                    name="stateOfOrigin"
-                    className="pl-4 text-[18px] "
+                    label="Course Selected"
                     handleChange={handleChange}
-                    options={nigerianStates}
-                  />
-
-                  <SelectField
-                    label="Academic Qualification"
-                    name="academicQualification"
-                    className="pl-4 text-[18px] "
-                    handleChange={handleChange}
-                    options={academicQual}
-                  />
-
-                  <SelectField
-                    label="Coding Experience"
-                    className="pl-4 text-[18px] "
-                    handleChange={handleChange}
-                    name="codeExperience"
-                    options={codeExperience}
+                    name="courseSelected"
+                    options={course}
                     setTuitionFee={setTuitionFee}
+                    classType={formData.classType}
                   />
-                  <SelectField
-                    className="pl-4 text-[18px] "
-                    label="Class type"
-                    name="classType"
-                    handleChange={handleChange}
-                    options={[
-                      { id: 1, tag: "Online" },
-                      { id: 2, tag: "Physical" },
-                    ]}
-                    value={formData.classType}
-                  />
-                  <div className="flex flex-col">
-                    <SelectField
-                      className="pl-4 text-[18px] "
-                      label="Course Selected"
-                      handleChange={handleChange}
-                      name="courseSelected"
-                      options={course}
-                      setTuitionFee={setTuitionFee}
-                      classType={formData.classType}
-                    />
-                    <span>
-                      Course Fee:{" "}
-                      {typeof tuitionFee === "number"
-                        ? `₦${tuitionFee.toFixed(2)}`
-                        : tuitionFee}
-                    </span>
-                  </div>
-
-                  <SelectField
-                    className="pl-4 text-[18px] "
-                    label="State Of Residence"
-                    name="stateOfResidence"
-                    handleChange={handleChange}
-                    options={nigerianStates}
-                  />
+                  <span>
+                    Course Fee:{" "}
+                    {typeof tuitionFee === "number"
+                      ? `₦${tuitionFee.toFixed(2)}`
+                      : tuitionFee}
+                  </span>
                 </div>
-                <div className="mt-5 flex w-full flex-col gap-3">
-                  <List className="flex-col">
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center  py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() => handleCheckboxChange("newsletter")}
-                            checked={checkboxesChecked.newsletter}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-gray-600">
-                          I would like to be kept up to date with new training
-                          programs, events, promotions, and marketing.
-                        </Typography>
-                      </label>
-                    </ListItem>
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() =>
-                              handleCheckboxChange("privacyPolicy")
-                            }
-                            checked={checkboxesChecked.privacyPolicy}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-gray-600">
-                          By submitting this form, I accept DLT Africa's Privacy
-                          Policy.
-                        </Typography>
-                      </label>
-                    </ListItem>
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() => handleCheckboxChange("payment")}
-                            checked={checkboxesChecked.payment}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-[#000] ">
-                          Are you sure you want to apply for this course at the
-                          specified fee of #{tuitionFee.toFixed(2)}?
-                        </Typography>
-                      </label>
-                    </ListItem>
-                  </List>
-                </div>
-                <Button
-                  type="submit"
-                  size="large"
-                  className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
-                    !allCheckboxesChecked && "pointer-events-none opacity-50"
-                  }`}
-                  disabled={!allCheckboxesChecked}
-                >
-                  {isSubmitting ? <p>Loading...</p> : <span>Register</span>}
-                </Button>
-                {formValidMessage && (
-                  <div className="event-page-registration-error-message">
-                    {formValidMessage}
-                  </div>
-                )}
-              </form>
-            ) : (
-              <div className="flex justify-center items-center h-screen">
-                <div className="bg-[#FFEFD4] h-[545px] w-[100%] rounded-[20px] flex justify-center items-center relative">
-                  <div className="flex flex-col text-center">
-                    <h1 className="text-[#FC7C13] w-[400px] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
-                      Congratulations!!!
-                      <br />
-                    </h1>
-                    <div>
-                      <p className="w-[796px] h-[48px] opacity-75% text-center">
-                        Your application has successfully <br />
-                        been submitted, you&apos;ll get an <br />
-                        email from our team on your next <br />
-                        step of action.. check spam folder. 
-                      </p>
 
-                      <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
-                        <p>Redirecting to homepage in {countdown} seconds...</p>
-                      </div>
-                    </div>
-                    <div className="absolute left-[88px] top-[444px]">
-                      <img
-                        className="h-[67px] w-[41px]"
-                        src="dlt.png"
-                        alt="dlt-logo"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="w-[724.48px] h-[666.52px] top-[2px] left-[2px] Border-[2px] Rotation-[56.1°] absolute">
-                    <img src="Vector2.png" alt="Example" />
-                  </div>
-
-                  <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-                    <img src="Vector1.png" alt="Example" />
-                  </div>
-                </div>
+                <SelectField
+                  className="pl-4 text-[18px] "
+                  label="State Of Residence"
+                  name="stateOfResidence"
+                  handleChange={handleChange}
+                  options={nigerianStates}
+                />
               </div>
-            )}
+              <div className="mt-5 flex w-full flex-col gap-3">
+                <List className="flex-col">
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center  py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("newsletter")}
+                          checked={checkboxesChecked.newsletter}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-gray-600">
+                        I would like to be kept up to date with new training
+                        programs, events, promotions, and marketing.
+                      </Typography>
+                    </label>
+                  </ListItem>
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("privacyPolicy")}
+                          checked={checkboxesChecked.privacyPolicy}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-gray-600">
+                        By submitting this form, I accept DLT Africa's Privacy
+                        Policy.
+                      </Typography>
+                    </label>
+                  </ListItem>
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("payment")}
+                          checked={checkboxesChecked.payment}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-[#000] ">
+                        Are you sure you want to apply for this course at the
+                        specified fee of #{tuitionFee.toFixed(2)}?
+                      </Typography>
+                    </label>
+                  </ListItem>
+                </List>
+              </div>
+              <Button
+                type="submit"
+                size="large"
+                className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
+                  !allCheckboxesChecked && "pointer-events-none opacity-50"
+                }`}
+                disabled={!allCheckboxesChecked}
+              >
+                {isSubmitting ? <p>Submitting...</p> : <span>Register</span>}
+              </Button>
+              {formValidMessage && (
+                <div className="event-page-registration-error-message">
+                  {formValidMessage}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </div>
