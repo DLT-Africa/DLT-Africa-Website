@@ -96,32 +96,38 @@ const CurrentAndUpcoming = () => {
           className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen"
           onClick={closeModal}
         >
-          <div className="bg-white p-8 rounded-lg w-[350px] ">
+          <div className="bg-white p-8 rounded-lg w-[350px] flex flex-col gap-2">
             <h2 className="text-2xl font-semibold mb-4">
               Name:{selectedEvent.eventName}
             </h2>
-            <p>Category: {selectedEvent.eventCategory}</p>
-            <p>Start Date: {selectedEvent.startDate}</p>
-            <p>Duration: {selectedEvent.duration}</p>
-            <p>Venue: {selectedEvent.eventVenue}</p>
-            <div className="mt-4">
-              <h3 className="text-lg font-semibold">Event Details</h3>
-              <p>Description: {selectedEvent.eventDescription}</p>
-              <div>
-                Photos:&nbsp;
-                <a href={selectedEvent.media} className="text-blue-500" target="_blank" rel="noopener noreferrer" >
-                  {selectedEvent.media.length > 30
-                    ? selectedEvent.media.substring(0, 30) + "..."
-                    : selectedEvent.media}
-                </a>
-              </div>
+            <div className="flex">
+              <p className="font-bold">Category:&nbsp;</p> {selectedEvent.eventCategory}
             </div>
-            {/* <button
-              onClick={closeModal}
-              className="w-[100%] bg-orange-500 rounded-lg p-2 transition duration-500 ease-in-out transform hover:-translate-y-1"
-            >
-              Close
-            </button> */}
+            <div className="flex">
+              <p className="font-bold">Start Date:&nbsp;</p> {selectedEvent.startDate}
+            </div>
+            <div className="flex">
+              <p className="font-bold">Duration:&nbsp;</p> {selectedEvent.duration}
+            </div>
+            <div className="flex">
+              <p className="font-bold">Venue:&nbsp;</p> {selectedEvent.eventVenue}
+            </div>
+            <div>
+              <p className="font-bold">Description:&nbsp;</p> {selectedEvent.eventDescription}
+            </div>
+            <div className="flex">
+              <p className="font-bold">Photos:&nbsp;</p>
+              <a
+                href={selectedEvent.media}
+                className="text-blue-500"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedEvent.media.length > 30
+                  ? selectedEvent.media.substring(0, 30) + "..."
+                  : selectedEvent.media}
+              </a>
+            </div>
           </div>
         </div>
       )}
