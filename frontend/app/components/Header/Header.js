@@ -52,7 +52,7 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src="dlt-logo.png" />
+            <img src="wilddlt.png" />
           </Link>
         </div>
         <div className="flex flex-end">

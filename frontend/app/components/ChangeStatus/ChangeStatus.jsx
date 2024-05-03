@@ -7,9 +7,9 @@ const ChangeStatus = ({ id }) => {
   console.log(id);
   const [studentStatus, setStudentStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const changeRole = async () => {
-    const router = useRouter();
     if (!studentStatus) {
       toast.error("Please select a status to be updated");
       return;

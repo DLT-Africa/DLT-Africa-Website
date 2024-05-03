@@ -72,6 +72,7 @@ const CreateEvent = () => {
           formData
         )
         .then(function (response) {
+          console.log(response.data)
           setIsSubmitting(false);
           setFormCompleted(true);
           router.push("/event-list");
