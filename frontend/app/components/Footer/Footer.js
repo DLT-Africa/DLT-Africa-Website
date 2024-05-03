@@ -14,7 +14,6 @@ import {
 const Footer = () => {
   return (
     <footer className="  bg-[#EFFFE2] flex flex-col items-center justify-center text-[18px] font-serif">
-      {/* <div className=" flex flex-row justify-center gap-[50px] mr-[300px] "> */}
       <div className=" grid grid-cols-1 sm:grid-cols-4 gap-4 mt-20 px-5">
         <div className="  h-auto min-h-[80px] flex flex-col items-center">
           <div className="flex flex-col gap-4  justify-center items-center">
@@ -29,7 +28,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <div className="w-auto  h-auto min-h-[244px] inline-flex items-start gap-50  mt-[63px] "> */}
         <div className=" h-[123px]">
           <h1 className=" text-[#C54809] font-sans  font-bold leading-normal mb-[21px] text-lg md:text-2xl">
             Our Mission
@@ -100,7 +98,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        {/* </div> */}
       </div>
 
       <div className="flex gap-6 pb-5 justify-center mt-[80px] mb-[42px] ">

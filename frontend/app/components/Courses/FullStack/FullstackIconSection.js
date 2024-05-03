@@ -13,7 +13,7 @@ const secData = [
   {
     id: 1,
     title: "Duration",
-    text: "6 months Changed from text to match the data Changed from text to  the data",
+    text: "6 months",
     //text2: "(3 times a week)", // Changed from text to text2 to match the data
      icon: <ImHourGlass />,
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center gap-[30px]",
@@ -26,7 +26,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "3 July, 2024",
+    text: "3rd July, 2024",
      icon: <BsCalendar4Event/>,
     courseConClass:" py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: "sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -37,7 +37,7 @@ const secData = [
   {
     id: 3,
     title: "Level",
-    text: "Our program doesn't require you to have any knowledge",
+    text: "Our program doesn't require you to have any prior knowledge",
     icon: <IoIosApps/>, 
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: " sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -48,7 +48,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "Our Fullstack course cost sum of Five hundred and Seventy thousand naira only.(#570,000)",
+    text: "Our Fullstack course cost sum of Six hundred and Thirty thousand naira only.(#630,000)",
     icon: <CgBrowser />, // Corrected to SlCalendar
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: "sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -61,7 +61,7 @@ const secData = [
   {
     id: 5,
     title: "Prerequisites",
-    text: "All you'll needing for our program is a laptop and an open mind",
+    text: "All you'll need for our program is a laptop and an open mind",
     icon: <BsListUl />, 
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass: " sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -72,7 +72,7 @@ const secData = [
   {
     id: 6,
     title: "Projects",
-    text: "Our cohorts will be given 4 project to test their knowledge",
+    text: "Our cohorts will be given 4 projects to test their knowledge",
     icon: <BsLayoutWtf/>, 
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center ", // Different class for the second item
     iconBodyClass: "sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",

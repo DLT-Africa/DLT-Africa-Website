@@ -40,6 +40,7 @@ const EditEventPage = ({ eventId, onClose }) => {
 
       console.log("Event updated:", updateResponse.data);
       onClose()
+      
     } catch (error) {
       console.error("Error updating event:", error);
     }
