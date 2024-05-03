@@ -83,8 +83,6 @@ const registerUser = asyncHandler(async (req, res) => {
       `,
     });
 
-
-
     const {
       _id,
       firstName,
@@ -178,7 +176,7 @@ const upgradeData = asyncHandler(async (req, res) => {
       emailContent = `
         <h1>Dear ${user.firstName},</h1>
         <p>We are pleased to inform you that your application has been accepted into DLT Africa Cohort 5.0 for ${user.courseSelected}! Welcome aboard 🎊!</p>
-        <p>We request you to join the WhatsApp group for your batch <a href="your_whatsapp_group_link_here">here</a>.</p>
+        <p>We request you to join the WhatsApp group for your batch <a href="https://chat.whatsapp.com/BrknqYS3BiJGD3ekWjcIom">here</a>.</p>
         <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701 OR 08133083895.</p>
         <p>Best regards,</p>
         <p>DLT Africa Team</p>

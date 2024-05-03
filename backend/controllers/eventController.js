@@ -23,9 +23,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
     !startDate ||
     !duration ||
     !eventRegLink ||
-    !eventVenue ||
-    !eventDescription ||
-    !media
+    !eventVenue
   ) {
     res.status(400);
     throw new Error("All fields are required!");
@@ -143,7 +141,7 @@ const updateEvent = asyncHandler(async (req, res) => {
         eventRegLink,
         eventVenue,
         media,
-        eventDescription
+        eventDescription,
       } = event;
 
       event.eventName = req.body.eventName || eventName;
@@ -155,8 +153,6 @@ const updateEvent = asyncHandler(async (req, res) => {
       event.eventVenue = req.body.eventVenue || eventVenue;
       event.media = req.body.media || media;
       event.eventDescription = req.body.eventDescription || eventDescription;
-
-     
 
       const updatedEvent = await event.save();
 

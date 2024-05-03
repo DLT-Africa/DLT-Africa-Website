@@ -44,7 +44,7 @@ const CurrentAndUpcoming = () => {
   return (
     <div className="w-screen px-4 flex flex-col items-center justify-center bg-[#f5f3f5] ">
       <h1 className="text-center text-[30px] mb-12 pt-20 xl:text-5xl lg:text-4xl md:text-3xl">
-        Current and Upcoming Programmes
+        Past Programmes
       </h1>
 
       {isLoading ? (
