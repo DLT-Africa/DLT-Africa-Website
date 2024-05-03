@@ -6,8 +6,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import Footer from "@/app/components/Footer/Footer";
 import Header from "@/app/components/Header/Header";
-import dlt from "@/app/dlt.png";
-import ScrollToTop from "@/app/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,12 +33,10 @@ export default function RootLayout({
           />
         </head>
         <body className={inter.className}>
-          {/* <ScrollToTop> */}
-            <Header />
-            {children}
+          <Header />
+          {children}
 
-            <Footer />
-          {/* </ScrollToTop> */}
+          <Footer />
         </body>
       </ThemeProvider>
     </html>
