@@ -114,11 +114,9 @@ const TeamPreview = () => {
               <thead>
                 <tr>
                   <th className="px-4 py-2">S/N</th>
-                  {/* <th className="px-4 py-2">Photo</th> */}
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Phone</th>
-                  {/* <th className="px-4 py-2">Role</th> */}
                 </tr>
               </thead>
 
@@ -135,7 +133,6 @@ const TeamPreview = () => {
                       <td className="border px-4 py-2">{email}</td>
 
                       <td className="border px-4 py-2">{phone}</td>
-                      {/* <td className="border px-4 py-2">{role}</td> */}
                     </tr>
                   );
                 })}

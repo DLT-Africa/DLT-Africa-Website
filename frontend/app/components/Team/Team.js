@@ -192,11 +192,11 @@ const team = () => {
 
             <div className="flex mb-[16px] w-[40px] h-[40px] gap-[10px]">
               <a href={member.linkedinLink}>
-                <BsTwitterX className="text-[#0A66C2]" />
+                <BsTwitterX className="text-[#0A66C2] transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110" />
               </a>
 
               <a href={member.twitterLink}>
-                <BsLinkedin className="text-[#000000]" />
+                <BsLinkedin className="text-[#000000] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
               </a>
             </div>
           </div>
