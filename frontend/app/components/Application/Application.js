@@ -96,14 +96,12 @@ const Application = () => {
   const course =
     formData.classType === "Online"
       ? [
-          { id: 1, tag: "Frontend Development", fee: 320000 },
-          { id: 2, tag: "Blockchain Development", fee: 0 },
+          { id: 1, tag: "Frontend Development", fee: 320000 }
         ]
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
-          { id: 3, tag: "Product UI/UX Design" },
-          { id: 4, tag: "Blockchain Development" },
+          { id: 3, tag: "Product UI/UX Design" }
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({
