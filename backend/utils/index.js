@@ -66,17 +66,12 @@ const calculateTuitionFee = (courseSelected, classType) => {
   return tuitionFee;
 };
 
-const emailAddresses = [
-  "info@dltafrica.io",
-  "aliu@dltafrica.io",
-  "rajiabdullahi907@gmail.com",
-];
+
 
 module.exports = {
   generateToken,
   hashToken,
   sendEmail,
   calculateTuitionFee,
-  emailAddresses
 };
 

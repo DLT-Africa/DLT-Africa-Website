@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { sendEmail, emailAddresses, } = require("../utils");
+const { sendEmail, calculateTuitionFee } = require("../utils");
 
 const validateUserInput = (reqBody) => {
   const {
@@ -83,8 +83,11 @@ const registerUser = asyncHandler(async (req, res) => {
       `,
     });
 
-   
-
+    const emailAddresses = [
+      "info@dltafrica.io",
+      "aliu@dltafrica.io",
+      "rajiabdullahi907@gmail.com",
+    ];
     await sendEmail({
       from: process.env.EMAIL_USER,
       to: emailAddresses.join(", "),
@@ -214,6 +217,3 @@ const upgradeData = asyncHandler(async (req, res) => {
 });
 
 module.exports = { registerUser, getAdmissions, deleteAdmission, upgradeData };
-
-
-
