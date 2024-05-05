@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { sendEmail, calculateTuitionFee } = require("../utils");
+const { sendEmail, emailAddresses, } = require("../utils");
 
 const validateUserInput = (reqBody) => {
   const {
@@ -35,6 +35,7 @@ const validateUserInput = (reqBody) => {
     throw new Error("Please fill in all the required fields.");
   }
 };
+exports.validateUserInput = validateUserInput;
 
 const registerUser = asyncHandler(async (req, res) => {
   const { emailAddress } = req.body;
@@ -77,6 +78,21 @@ const registerUser = asyncHandler(async (req, res) => {
         <p>Please share the receipt of payment on WhatsApp through either of these contacts: 08156509701 OR 08133083895.</p>
         <p>Once payment has been confirmed, we shall share resources to get you started ahead of the training.</p>
         <p>We look forward to embarking on this journey with you.</p>
+        <p>Regards,</p>
+        <p>DLT Africa Team</p>
+      `,
+    });
+
+   
+
+    await sendEmail({
+      from: process.env.EMAIL_USER,
+      to: emailAddresses.join(", "),
+      subject: "New Registration Notification",
+      html: `
+        <h1>New Registration Notification</h1>
+        <p>A new student, ${user.firstName} ${user.lastName}, has registered for DLT Africa Training to study ${user.courseSelected}.</p>
+        <p>Please take necessary actions to review the application.</p>
         <p>Regards,</p>
         <p>DLT Africa Team</p>
       `,
@@ -198,3 +214,6 @@ const upgradeData = asyncHandler(async (req, res) => {
 });
 
 module.exports = { registerUser, getAdmissions, deleteAdmission, upgradeData };
+
+
+
