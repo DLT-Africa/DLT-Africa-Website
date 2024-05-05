@@ -237,9 +237,9 @@ const Application = () => {
               </p>
             </div>
             <div className="p-4 flex justify-end ">
-              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] pt-10 pr-10 pb-9 pl-6 max-w-[404px]">
+              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] pt-10 pl-6 max-w-[404px]">
                 <div className="flex flex-col">
-                  <div className="flex  gap-2">
+                  <div className="flex gap-2">
                     {" "}
                     <div className="mt-1 h-4 w-4">
                       {" "}
@@ -256,7 +256,7 @@ const Application = () => {
                     <p>No prepayment and no commitment</p>
                   </div>
                   <div className="flex  gap-2">
-                    <div className="mt-1 h-4 w-4">
+                    <div className="mt-1 w-4">
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
