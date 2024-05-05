@@ -1,6 +1,11 @@
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
+const asyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
+const { validateUserInput } = require("../controllers/userController");
+const User = require("../models/userModel");
+const User = require("../models/userModel");
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
@@ -66,9 +71,17 @@ const calculateTuitionFee = (courseSelected, classType) => {
   return tuitionFee;
 };
 
+const emailAddresses = [
+  "info@dltafrica.io",
+  "aliu@dltafrica.io",
+  "rajiabdullahi907@gmail.com",
+];
+
 module.exports = {
   generateToken,
   hashToken,
   sendEmail,
   calculateTuitionFee,
+  emailAddresses
 };
+
