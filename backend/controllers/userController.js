@@ -69,7 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
         <p>If you lack basic knowledge of computers, now is the time to start learning.</p>
         <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of #${tuitionFee.toFixed(
           2
-        )} of the total tuition fee starting from May 5th until May 15th, 2024.</p>
+        )} of the total tuition fee starting from May 5th until May 25th, 2024.</p>
         <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
         <p>For payment, kindly make use of the account details below:</p>
         <p>Bank Name: Access Bank</p>
