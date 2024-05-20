@@ -39,7 +39,7 @@ const nigerianStates = [
   { id: 20, tag: "Katsina" },
   { id: 21, tag: "Kebbi" },
   { id: 22, tag: "Kogi" },
-  { id: 23, name: "Kwara" },
+  { id: 23, tag: "Kwara" },
   { id: 24, tag: "Lagos" },
   { id: 25, tag: "Nasarawa" },
   { id: 26, tag: "Niger" },
@@ -55,6 +55,7 @@ const nigerianStates = [
   { id: 36, tag: "Zamfara" },
   { id: 37, tag: "Federal Capital Territory" },
 ];
+
 
 import { useRouter } from "next/navigation";
 const Application = () => {
@@ -96,14 +97,12 @@ const Application = () => {
   const course =
     formData.classType === "Online"
       ? [
-          { id: 1, tag: "Frontend Development", fee: 320000 },
-          { id: 2, tag: "Blockchain Development", fee: 0 },
+          { id: 1, tag: "Frontend Development", fee: 320000 }
         ]
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
-          { id: 3, tag: "Product UI/UX Design" },
-          { id: 4, tag: "Blockchain Development" },
+          { id: 3, tag: "Product UI/UX Design" }
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({

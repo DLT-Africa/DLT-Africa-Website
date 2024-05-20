@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { sendEmail, emailAddresses, } = require("../utils");
+const { sendEmail, calculateTuitionFee } = require("../utils");
 
 const validateUserInput = (reqBody) => {
   const {
@@ -69,7 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
         <p>If you lack basic knowledge of computers, now is the time to start learning.</p>
         <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of #${tuitionFee.toFixed(
           2
-        )} of the total tuition fee starting from May 5th until May 15th, 2024.</p>
+        )} of the total tuition fee starting from May 5th until May 25th, 2024.</p>
         <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
         <p>For payment, kindly make use of the account details below:</p>
         <p>Bank Name: Access Bank</p>
@@ -83,8 +83,11 @@ const registerUser = asyncHandler(async (req, res) => {
       `,
     });
 
-   
-
+    const emailAddresses = [
+      "info@dltafrica.io",
+      "aliu@dltafrica.io",
+      "rajiabdullahi907@gmail.com",
+    ];
     await sendEmail({
       from: process.env.EMAIL_USER,
       to: emailAddresses.join(", "),
@@ -214,6 +217,3 @@ const upgradeData = asyncHandler(async (req, res) => {
 });
 
 module.exports = { registerUser, getAdmissions, deleteAdmission, upgradeData };
-
-
-
