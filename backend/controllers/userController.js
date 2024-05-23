@@ -59,6 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
       to: user.emailAddress,
       subject: "DLT Africa Training Registration Confirmation",
       html: `
+        <img src="https://dltafrica.io/dlt-logo.png" alt="">\n
         <h1>Hello ${user.firstName},</h1> 
         <p>Thanks for applying for DLT Africa Training to study ${
           user.courseSelected
@@ -69,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
         <p>If you lack basic knowledge of computers, now is the time to start learning.</p>
         <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of #${tuitionFee.toFixed(
           2
-        )} of the total tuition fee starting from May 5th until May 25th, 2024.</p>
+        )} of the total tuition fee on or before June 30th, 2024.</p>
         <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
         <p>For payment, kindly make use of the account details below:</p>
         <p>Bank Name: Access Bank</p>
@@ -94,7 +95,7 @@ const registerUser = asyncHandler(async (req, res) => {
       subject: "New Registration Notification",
       html: `
         <h1>New Registration Notification</h1>
-        <p>A new student, ${user.firstName} ${user.lastName}, has registered for DLT Africa Training to study ${user.courseSelected}.</p>
+        <p>A new student, ${user.firstName} ${user.lastName}, has registered for DLT Africa Training to study ${user.courseSelected} via ${user.classType}.</p>
         <p>Please take necessary actions to review the application.</p>
         <p>Regards,</p>
         <p>DLT Africa Team</p>
@@ -182,6 +183,7 @@ const upgradeData = asyncHandler(async (req, res) => {
     case "paid":
       emailSubject = "Payment Confirmation";
       emailContent = `
+        <img src="https://dltafrica.io/dlt-logo.png" alt="">\n
         <h1>Dear ${user.firstName},</h1>
         <p>We are pleased to inform you that your first payment has been received! This brings you one step closer to unlocking the full potential of our services.</p>
         <p>If you have any questions or concerns, please don't hesitate to contact our support team at +2348156509701 OR 08133083895.</p>
@@ -192,6 +194,7 @@ const upgradeData = asyncHandler(async (req, res) => {
     case "accepted":
       emailSubject = "Application Accepted";
       emailContent = `
+        <img src="https://dltafrica.io/dlt-logo.png" alt="">\n
         <h1>Dear ${user.firstName},</h1>
         <p>We are pleased to inform you that your application has been accepted into DLT Africa Cohort 5.0 for ${user.courseSelected}! Welcome aboard 🎊!</p>
         <p>We request you to join the WhatsApp group for your batch <a href="https://chat.whatsapp.com/BrknqYS3BiJGD3ekWjcIom">here</a>.</p>
