@@ -48,7 +48,7 @@ const calculateTuitionFee = (courseSelected, classType) => {
   } else if (classType === "Online") {
     switch (courseSelected) {
       case "Frontend Development":
-        tuitionFee = 320000;
+        tuitionFee = 0.8 * 320000;
         break;
       case "Product UI/UX Design":
         tuitionFee = 0.65 * 170000;
