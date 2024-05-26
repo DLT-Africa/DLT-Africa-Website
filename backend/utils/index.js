@@ -42,12 +42,6 @@ const calculateTuitionFee = (courseSelected, classType) => {
       case "Full-Stack Development":
         tuitionFee = 0.5 * 630000;
         break;
-      case "Product UI/UX Design":
-        tuitionFee = 0.65 * 170000;
-        break;
-      case "Blockchain Development":
-        tuitionFee = 0;
-        break;
       default:
         tuitionFee = 0;
     }
@@ -55,6 +49,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
     switch (courseSelected) {
       case "Frontend Development":
         tuitionFee = 320000;
+        break;
+      case "Product UI/UX Design":
+        tuitionFee = 0.65 * 170000;
         break;
       case "Blockchain Development":
         tuitionFee = 0;
@@ -66,12 +63,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
   return tuitionFee;
 };
 
-
-
 module.exports = {
   generateToken,
   hashToken,
   sendEmail,
   calculateTuitionFee,
 };
-
