@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Confetti from "react-confetti";
@@ -30,7 +28,7 @@ const Congrats = () => {
 
     const timeout = setTimeout(() => {
       setShowConfetti(false);
-    }, 15000);
+    }, 20000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -46,18 +44,17 @@ const Congrats = () => {
           </h1>
           <div>
             <p className="h-[48px] opacity-75% text-center">
-              Your application has been successfully submitted.
-              You'll receive an email from our team regarding your  next
-              steps shortly.
+              Your application has been successfully submitted. You'll receive
+              an email from our team regarding your next steps shortly.
             </p>
             <br />
             <p>
-              If you don't receive any email within a few minutes, please
-              check your spam folder.
+              If you don't receive any email within a few minutes, please check
+              your spam folder.
             </p>
 
             <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
-              <p>Redirecting to homepage in {countdown} seconds...</p>
+              <p>Redirecting to homepage in {countdown} seconds...</p> 
             </div>
           </div>
         </div>

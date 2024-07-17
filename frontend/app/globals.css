@@ -3,35 +3,35 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .mostly-customized-scrollbar::-webkit-scrollbar {
-	width: 5px;
-	height: 8px;
-	border-radius: 20px;
-	background-color: #c2c2c2; /* or add it to the track */
-  }
-  
-  /* Add a thumb */
-  .mostly-customized-scrollbar::-webkit-scrollbar-thumb {
-	background: #505050;
-	border-radius: 20px;
-  }
- 
-  html {
-    scroll-behavior: smooth;
+  width: 5px;
+  height: 8px;
+  border-radius: 20px;
+  background-color: #c2c2c2; /* or add it to the track */
+}
+
+/* Add a thumb */
+.mostly-customized-scrollbar::-webkit-scrollbar-thumb {
+  background: #505050;
+  border-radius: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-	  transition: background-color 5000000s ease-in-out 0s;
-  }
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000000s ease-in-out 0s;
+}
 
 select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus,
-  select:-webkit-autofill:active {
-	  transition: background-color 5000000s ease-in-out 0s;
-  }
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  transition: background-color 5000000s ease-in-out 0s;
+}
+
+
