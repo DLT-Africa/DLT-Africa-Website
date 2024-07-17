@@ -56,7 +56,6 @@ const nigerianStates = [
   { id: 37, tag: "Federal Capital Territory" },
 ];
 
-
 import { useRouter } from "next/navigation";
 const Application = () => {
   const router = useRouter();
@@ -98,7 +97,7 @@ const Application = () => {
     formData.classType === "Online"
       ? [
           { id: 1, tag: "Frontend Development", fee: 320000 },
-          { id: 2, tag: "Product UI/UX Design", fee: 170000 }
+          { id: 2, tag: "Product UI/UX Design", fee: 170000 },
         ]
       : [
           { id: 1, tag: "Frontend Development" },
@@ -209,7 +208,18 @@ const Application = () => {
   );
 
   const [tuitionFee, setTuitionFee] = useState(0);
+  const [isApplicationClosed, setIsApplicationClosed] = useState(false);
 
+  useEffect(() => {
+    const checkApplicationDeadline = () => {
+      const currentDate = new Date();
+      const deadlineDate = new Date("2024-07-31");
+      if (currentDate >= deadlineDate) {
+        setIsApplicationClosed(true);
+      }
+    };
+    checkApplicationDeadline();
+  }, []);
   const handleCourseChange = (value) => {
     setSelectedCourse(value);
   };
@@ -486,7 +496,9 @@ const Application = () => {
                 className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
                   !allCheckboxesChecked && "pointer-events-none opacity-50"
                 }`}
-                disabled={!allCheckboxesChecked}
+                disabled={
+                  !allCheckboxesChecked || isSubmitting || isApplicationClosed
+                }
               >
                 {isSubmitting ? <p>Submitting...</p> : <span>Register</span>}
               </Button>
