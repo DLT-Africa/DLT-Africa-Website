@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import DLT from "../../../public/dlt-logo.png";
-import Link from 'next/link'
+import Link from "next/link";
 
 import {
   FaFacebook,
@@ -14,13 +14,12 @@ import {
 const Footer = () => {
   return (
     <footer className="  bg-[#EFFFE2] flex flex-col items-center justify-center text-[18px] font-serif">
-      {/* <div className=" flex flex-row justify-center gap-[50px] mr-[300px] "> */}
       <div className=" grid grid-cols-1 sm:grid-cols-4 gap-4 mt-20 px-5">
         <div className="  h-auto min-h-[80px] flex flex-col items-center">
           <div className="flex flex-col gap-4  justify-center items-center">
             <a href="">
               {" "}
-              <Image src={DLT} alt="logo" className="w-[126px] h-[50.797px]" />
+              <img src="dlt-logo.png" alt="logo" className="w-[126px] h-[50.797px]" />
             </a>
 
             <p className="text-neutral-black font-poppins text-sm md:text-lg font-normal leading-[120%]  h-[19px] text-center">
@@ -29,13 +28,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <div className="w-auto  h-auto min-h-[244px] inline-flex items-start gap-50  mt-[63px] "> */}
         <div className=" h-[123px]">
           <h1 className=" text-[#C54809] font-sans  font-bold leading-normal mb-[21px] text-lg md:text-2xl">
             Our Mission
           </h1>
           <p className="text-[#252A24] font-source-sans-pro  font-normal leading-normal w-full h-auto min-h-[69px] text-sm md:text-lg">
-          To help build Web3 talents from ground zero, through full-stack and smart contract developments.
+            To help build Web3 talents from ground zero, through full-stack and
+            smart contract developments.
           </p>
         </div>
         <div className=" h-auto min-h-[244px]  ">
@@ -65,48 +64,47 @@ const Footer = () => {
           </h1>
           <ul>
             <li className="mb-[21px] text-sm md:text-lg">
-            <a
+              <a
                 className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href="https://medium.com/@DLTAfrica" target="_blank"
+                href="https://medium.com/@DLTAfrica"
+                target="_blank"
               >
                 Blog
               </a>
-
             </li>
             <li className="mb-[21px] text-sm md:text-lg">
-            <Link
+              <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/event"} 
+                href={"/event"}
               >
                 Event
               </Link>
             </li>
             <li className="mb-[21px] text-sm md:text-lg">
-           
-            <Link
-                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                  href={"/hacker-house"}
-                >
-                  Hacker House
-                </Link>
-            
+              <Link
+                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                href={"/hacker-house"}
+              >
+                Hacker House
+              </Link>
             </li>
             <li className="mb-[21px] text-sm md:text-lg">
-            
-                <a
+              <Link
                 href="/team"
                 className="hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
               >
                 Our Team
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
-        {/* </div> */}
       </div>
 
       <div className="flex gap-6 pb-5 justify-center mt-[80px] mb-[42px] ">
-        <a href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d" target="_blank">
+        <a
+          href="https://www.facebook.com/share/1C7CRtQDN31XBgVb/?mibextid=LQQJ4d"
+          target="_blank"
+        >
           <FaFacebook className="w-[35px] h-[35px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </a>
         <a href="https://www.instagram.com/dlta_frica/" target="_blank">

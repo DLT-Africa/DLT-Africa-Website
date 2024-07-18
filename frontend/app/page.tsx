@@ -5,6 +5,7 @@ import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/Current
 import Faqs from "./components/HomePage/Faq/Faqs";
 import HeroSection from "./components/HomePage/HeroSection/HeroSection";
 import JoinHackerHouse from "./components/HomePage/JoinHackerHouse/JoinHackerHouse";
+import Partners from "./components/HomePage/Partners/Partners"
 import {
   RegisterOffline,
   RegisterOnline,
@@ -32,10 +33,11 @@ export default function Home() {
           <HeroSection />
           <WhatYou />
           <RegisterOnline />
+          <Partners/>
           <JoinHackerHouse />
           <Faqs />
           <CurrentAndUpcoming />
-          <RegisterOffline />
+          {/* <RegisterOffline /> */}
         </div>
       )}
     </div>

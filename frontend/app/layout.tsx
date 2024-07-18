@@ -1,15 +1,14 @@
 "use client";
 // @ts-ignore
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import Footer from "@/app/components/Footer/Footer";
 import Header from "@/app/components/Header/Header";
-import dlt from "@/app/dlt.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Layout component to wrap around content
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,8 +23,8 @@ export default function RootLayout({
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Document</title>
-          <meta name="description" content="Description of your website" />
+          <title>DLT Africa Official Website</title>
+          <meta name="description" content="DLT Africa Official Website" />
 
           <link
             rel="shortcut icon"
@@ -33,7 +32,7 @@ export default function RootLayout({
             type="image/x-icon"
           />
         </head>
-        <body className={inter.className }>
+        <body className={inter.className}>
           <Header />
           {children}
 

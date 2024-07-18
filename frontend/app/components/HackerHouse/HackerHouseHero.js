@@ -1,8 +1,8 @@
 const HackerHouseHero = () => {
   return (
-    <div className="font-serif h-[640px]  bg-[#031700] flex justify-center items-center overflow-auto lg:w-full md:w-full w-[100%]  ">
+    <div className="h-[640px]  bg-[#031700] flex justify-center items-center overflow-auto lg:w-full md:w-full w-[100%]  ">
       <div className="gap-[10px] sm:gap-[25px]  ">
-        <h2 className="text-[#F7FCFE] text-[36px] md:text-[36px] lg:text-[48px] font-normal flex justify-center gap-[10px] lg:mt-[209px] md:mt-[103px] mb-[10px] relative">
+        <h2 className="text-[#F7FCFE] text-[36px] md:text-[36px] lg:text-[48px] font-poppins flex justify-center gap-[10px] lg:mt-[209px] md:mt-[103px] mb-[10px] relative">
           Hacker House
         </h2>
 
@@ -16,10 +16,16 @@ const HackerHouseHero = () => {
             <span className=" mb-[15px] text-[18px]">Location: [in view]</span>
           </p1>
           <div className="flex flex-col lg:flex-row md:flex-row justify-center lg:gap-[20px] md:gap-[10px]">
-            <button className="text-[16px] border border-[#C54809] rounded-[10px] lg:w-[355px] md:w-[250px] p-[10px] h-[55px] text-center font-poppins font-bold text-[#F7FCFE] bg-[#FC7C13] hover:bg-[#f19d53] cursor-pointer mb-4 lg:mb-0">
+            <a
+              href="https://forms.gle/ea5B6C16hif4YYtz8"
+              className="text-[16px] border-[#C54809] rounded-[10px] lg:w-[355px] md:w-[250px] p-[10px] h-[55px] text-center font-poppins font-bold text-[#F7FCFE] bg-[#FC7C13] hover:bg-[#f19d53] cursor-pointer mb-4 lg:mb-0 flex items-center justify-center"
+            >
               Sign up for Hacker House
-            </button>
-            <button className="border border-[#C54809] rounded-[10px] lg:w-[196px] md:w-[178px] p-[10px] h-[55px] text-center font-poppins font-bold text-[#C54809] hover:bg-[white] cursor-pointer">
+            </a>
+            <button
+              className="border border-[#C54809] rounded-[10px] lg:w-[196px] md:w-[178px] p-[10px] h-[55px] text-center font-poppins font-bold text-[#C54809] hover:bg-[white] cursor-pointer"
+              disabled
+            >
               view agenda
             </button>
           </div>

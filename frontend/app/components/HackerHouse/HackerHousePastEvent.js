@@ -30,7 +30,7 @@ const HackerHousePastEvent = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-website-backend.vercel.app/api/v1/events/get-all-events`
+          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
         );
         setEventData(response.data);
         setIsLoading(false);
@@ -56,22 +56,22 @@ const HackerHousePastEvent = () => {
       label: "All",
       value: "all",
     },
-    {
-      label: "Hackaton",
-      value: "hackaton",
-    },
-    {
-      label: "Bootcamp",
-      value: "bootcamp",
-    },
-    {
-      label: "Event",
-      value: "event",
-    },
-    {
-      label: "Incubator",
-      value: "incubator",
-    },
+    // {
+    //   label: "Hackaton",
+    //   value: "hackaton",
+    // },
+    // {
+    //   label: "Bootcamp",
+    //   value: "bootcamp",
+    // },
+    // {
+    //   label: "Event",
+    //   value: "event",
+    // },
+    // {
+    //   label: "Incubator",
+    //   value: "incubator",
+    // },
   ];
 
   return (
@@ -138,7 +138,6 @@ const HackerHousePastEvent = () => {
                         <tr key={index}>
                           <td className={classes}>
                             <div className="flex items-center gap-3 max-w-[20rem] lg:max-w-[27rem] ">
-                              {/* <Avatar src={img} alt={description} size="lg" /> */}
                               <Typography
                                 variant="small"
                                 color="blue-gray"
@@ -152,7 +151,8 @@ const HackerHousePastEvent = () => {
                             <div className="flex flex-col">
                               <Typography
                                 variant="small"
-                                className="font-medium text-gray-700/70"
+                                className="font-medium text-black-700 w-[250px] "
+                                title={eventDescription}
                               >
                                 {eventDescription}
                               </Typography>
@@ -212,31 +212,47 @@ const HackerHousePastEvent = () => {
                     })}
 
                     {isModalOpen && selectedEvent && (
-                      <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen ">
-                        <div className="bg-white p-8 rounded-lg w-[900px] ">
+                      <div
+                        className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 w-screen"
+                        onClick={closeModal}
+                      >
+                        <div className="bg-white p-8 rounded-lg w-[350px] flex flex-col gap-2">
                           <h2 className="text-2xl font-semibold mb-4">
                             Name:{selectedEvent.eventName}
                           </h2>
-                          <p>Category: {selectedEvent.eventCategory}</p>
-                          <p>Start Date: {selectedEvent.startDate}</p>
-                          <p>Duration: {selectedEvent.duration}</p>
-                          <p>Venue: {selectedEvent.eventVenue}</p>
-                          <div className="mt-4">
-                            <h3 className="text-lg font-semibold">
-                              Event Details
-                            </h3>
-                            <p>Description: {selectedEvent.eventDescription}</p>
-                            <p>
-                              Media:
-                              {selectedEvent.media}
-                            </p>
+                          <div className="flex">
+                            <p className="font-bold">Category:&nbsp;</p>{" "}
+                            {selectedEvent.eventCategory}
                           </div>
-                          <button
-                            onClick={closeModal}
-                            className="w-[100%] bg-orange-500 rounded-lg p-2 transition duration-500 ease-in-out transform hover:-translate-y-1"
-                          >
-                            Close
-                          </button>
+                          <div className="flex">
+                            <p className="font-bold">Start Date:&nbsp;</p>{" "}
+                            {selectedEvent.startDate}
+                          </div>
+                          <div className="flex">
+                            <p className="font-bold">Duration:&nbsp;</p>{" "}
+                            {selectedEvent.duration}
+                          </div>
+                          <div className="flex">
+                            <p className="font-bold">Venue:&nbsp;</p>{" "}
+                            {selectedEvent.eventVenue}
+                          </div>
+                          <div>
+                            <p className="font-bold">Description:&nbsp;</p>{" "}
+                            {selectedEvent.eventDescription}
+                          </div>
+                          <div className="flex">
+                            <p className="font-bold">Photos:&nbsp;</p>
+                            <a
+                              href={selectedEvent.media}
+                              className="text-blue-500"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {selectedEvent.media.length > 30
+                                ? selectedEvent.media.substring(0, 30) + "..."
+                                : selectedEvent.media}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     )}

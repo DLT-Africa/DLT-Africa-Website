@@ -21,7 +21,7 @@ const EditEventPage = ({ eventId, onClose }) => {
   const fetchEventDetails = async () => {
     try {
       const response = await axios.get(
-        `https://dlt-website-backend.vercel.app/api/v1/events/get-single-event/${eventId}`
+        `https://dlt-backend.vercel.app/api/v1/events/get-single-event/${eventId}`
       );
       setFormData(response.data);
     } catch (error) {
@@ -34,12 +34,13 @@ const EditEventPage = ({ eventId, onClose }) => {
     try {
 
       const updateResponse = await axios.patch(
-        `https://dlt-website-backend.vercel.app/api/v1/events/update-event/${eventId}`,
+        `https://dlt-backend.vercel.app/api/v1/events/update-event/${eventId}`,
         formData
       );
 
       console.log("Event updated:", updateResponse.data);
       onClose()
+      
     } catch (error) {
       console.error("Error updating event:", error);
     }
@@ -59,7 +60,7 @@ const EditEventPage = ({ eventId, onClose }) => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 w-[340px] ">
       <h1 className="text-2xl font-bold mb-4">Edit Event</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

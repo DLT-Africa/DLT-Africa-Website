@@ -11,6 +11,7 @@ const sectionData = [
       "Meet regularly with an experienced mentor to ask the questions you care about.",
     headline3:
       "Build your coding skills and launch your blockchain engineering career",
+      headline4: "",
     button1: "Register for Offline",
     button2: "Register for Online",
     img: "/images/front-end-hero.png",

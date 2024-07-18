@@ -1,10 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import DLT from "../../dlt.png";
-import Vector1 from "../../../public/Vector1.png";
-import Vector2 from "../../../public/Vector2.png";
-
 import Link from "next/link";
 
 import {
@@ -17,7 +12,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SelectField from "@/app/components/Application/SelectField";
 
@@ -44,7 +39,7 @@ const nigerianStates = [
   { id: 20, tag: "Katsina" },
   { id: 21, tag: "Kebbi" },
   { id: 22, tag: "Kogi" },
-  { id: 23, name: "Kwara" },
+  { id: 23, tag: "Kwara" },
   { id: 24, tag: "Lagos" },
   { id: 25, tag: "Nasarawa" },
   { id: 26, tag: "Niger" },
@@ -102,13 +97,11 @@ const Application = () => {
     formData.classType === "Online"
       ? [
           { id: 1, tag: "Frontend Development", fee: 320000 },
-          { id: 2, tag: "Blockchain Development", fee: 0 },
+          { id: 2, tag: "Product UI/UX Design", fee: 170000 },
         ]
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
-          { id: 3, tag: "Product UI/UX Design" },
-          { id: 4, tag: "Blockchain Development" },
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({
@@ -179,7 +172,7 @@ const Application = () => {
 
     axios
       .post(
-        `https://dlt-website-backend.vercel.app/api/v1/cohorts/studentreg`,
+        `https://dlt-backend.vercel.app/api/v1/cohorts/studentreg`,
         formData
       )
       .then(function (response) {
@@ -187,7 +180,7 @@ const Application = () => {
         console.log(formData);
         setIsSubmitting(false);
         setFormCompleted(true);
-        router.push("/admin-dashboard");
+        router.push("/congrats");
       })
       .catch(function (error) {
         setIsSubmitting(false);
@@ -197,7 +190,7 @@ const Application = () => {
           );
         } else {
           setFormValidMessage(
-            "Server error unable to process your registration"
+            "Server error, unable to process your registration"
           );
         }
       });
@@ -215,7 +208,18 @@ const Application = () => {
   );
 
   const [tuitionFee, setTuitionFee] = useState(0);
+  const [isApplicationClosed, setIsApplicationClosed] = useState(false);
 
+  useEffect(() => {
+    const checkApplicationDeadline = () => {
+      const currentDate = new Date();
+      const deadlineDate = new Date("2024-07-31");
+      if (currentDate >= deadlineDate) {
+        setIsApplicationClosed(true);
+      }
+    };
+    checkApplicationDeadline();
+  }, []);
   const handleCourseChange = (value) => {
     setSelectedCourse(value);
   };
@@ -223,11 +227,11 @@ const Application = () => {
   return (
     <div
       className="bg-auto  bg-no-repeat bg-left-top"
-      style={{ backgroundImage: `url(images/application-page-bg.svg)` }}
+      style={{ backgroundimg: `url(imgs/application-page-bg.svg)` }}
     >
       <div
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
-        style={{ backgroundImage: `url(images/application-page-right-bg.svg)` }}
+        style={{ backgroundimg: `url(imgs/application-page-right-bg.svg)` }}
       >
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
@@ -242,9 +246,9 @@ const Application = () => {
               </p>
             </div>
             <div className="p-4 flex justify-end ">
-              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] pt-10 pr-10 pb-9 pl-6 max-w-[404px]">
+              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] pt-10 pl-6 max-w-[404px]">
                 <div className="flex flex-col">
-                  <div className="flex  gap-2">
+                  <div className="flex gap-2">
                     {" "}
                     <div className="mt-1 h-4 w-4">
                       {" "}
@@ -261,7 +265,7 @@ const Application = () => {
                     <p>No prepayment and no commitment</p>
                   </div>
                   <div className="flex  gap-2">
-                    <div className="mt-1 h-4 w-4">
+                    <div className="mt-1 w-4">
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
@@ -272,271 +276,238 @@ const Application = () => {
             </div>
           </div>
 
-          <div className="mt-5 mb-20 p-4">
-            {!formCompleted ? (
-              <form
-                className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
-                onSubmit={handleSubmit}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14">
-                  <Input
-                    size="lg"
-                    name="firstName"
-                    variant="static"
-                    label="First Name"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                  />
+          <div className="mt-5 mb-20 p-2">
+            <form
+              className="w-full lg:min-w-[75%] 2xl:min-w-[70%] lg:max-w-[75%] 2xl:max-w-[70%]  rounded-2xl bg-[#FFEFD4] py-[69px] px-8 lg:px-[86px] mx-auto "
+              onSubmit={handleSubmit}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14">
+                <Input
+                  size="lg"
+                  name="firstName"
+                  variant="static"
+                  label="First Name"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
 
-                  <Input
-                    size="lg"
-                    name="lastName"
-                    variant="static"
-                    label="Last Name"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                  />
+                <Input
+                  size="lg"
+                  name="lastName"
+                  variant="static"
+                  label="Last Name"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+                <SelectField
+                  label="Gender"
+                  name="gender"
+                  className="pl-4 text-[18px]"
+                  handleChange={handleChange}
+                  options={gender}
+                />
+
+                <Input
+                  size="lg"
+                  name="dob"
+                  type="date"
+                  variant="static"
+                  className="pl-4 text-[18px] text-gray-600"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  label="Date of Birth"
+                  value={formData.dob}
+                  onChange={handleChange}
+                />
+
+                <Input
+                  size="lg"
+                  name="phoneNo"
+                  variant="static"
+                  label="Phone Number"
+                  className="pl-4 text-[18px]"
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="+2347123456789"
+                  value={formData.phoneNo}
+                  onChange={handleChange}
+                />
+
+                <Input
+                  size="lg"
+                  name="emailAddress"
+                  variant="static"
+                  label="Email Address"
+                  className="pl-4 text-[18px] "
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="yourmail@gmail.com"
+                  value={formData.emailAddress}
+                  onChange={handleChange}
+                />
+
+                <SelectField
+                  label="State Of Origin"
+                  name="stateOfOrigin"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  options={nigerianStates}
+                />
+
+                <SelectField
+                  label="Academic Qualification"
+                  name="academicQualification"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  options={academicQual}
+                />
+
+                <SelectField
+                  label="Coding Experience"
+                  className="pl-4 text-[18px] "
+                  handleChange={handleChange}
+                  name="codeExperience"
+                  options={codeExperience}
+                  setTuitionFee={setTuitionFee}
+                />
+                <SelectField
+                  className="pl-4 text-[18px] "
+                  label="Class type"
+                  name="classType"
+                  handleChange={handleChange}
+                  options={[
+                    { id: 1, tag: "Online" },
+                    { id: 2, tag: "Physical" },
+                  ]}
+                  value={formData.classType}
+                />
+                <div className="flex flex-col">
                   <SelectField
-                    label="Gender"
-                    name="gender"
-                    className="pl-4 text-[18px]"
-                    handleChange={handleChange}
-                    options={gender}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="dob"
-                    type="date"
-                    variant="static"
-                    className="pl-4 text-[18px] text-gray-600"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    label="Date of Birth"
-                    value={formData.dob}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="phoneNo"
-                    variant="static"
-                    label="Phone Number"
-                    className="pl-4 text-[18px]"
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="+2347123456789"
-                    value={formData.phoneNo}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    size="lg"
-                    name="emailAddress"
-                    variant="static"
-                    label="Email Address"
                     className="pl-4 text-[18px] "
-                    labelProps={{
-                      className: "!text-black",
-                    }}
-                    containerProps={{
-                      className: "h-14 ",
-                    }}
-                    placeholder="yourmail@gmail.com"
-                    value={formData.emailAddress}
-                    onChange={handleChange}
-                  />
-
-                  <SelectField
-                    label="State Of Origin"
-                    name="stateOfOrigin"
-                    className="pl-4 text-[18px] "
+                    label="Course Selected"
                     handleChange={handleChange}
-                    options={nigerianStates}
-                  />
-
-                  <SelectField
-                    label="Academic Qualification"
-                    name="academicQualification"
-                    className="pl-4 text-[18px] "
-                    handleChange={handleChange}
-                    options={academicQual}
-                  />
-
-                  <SelectField
-                    label="Coding Experience"
-                    className="pl-4 text-[18px] "
-                    handleChange={handleChange}
-                    name="codeExperience"
-                    options={codeExperience}
+                    name="courseSelected"
+                    options={course}
                     setTuitionFee={setTuitionFee}
+                    classType={formData.classType}
                   />
-                  <SelectField
+                  <span>
+                    Course Fee:{" "}
+                    {typeof tuitionFee === "number"
+                      ? `₦${tuitionFee.toFixed(2)}`
+                      : tuitionFee}
+                  </span>
+                </div>
+
+                <SelectField
                   className="pl-4 text-[18px] "
-                    label="Class type"
-                    name="classType"
-                    handleChange={handleChange}
-                    options={[
-                      { id: 1, tag: "Online" },
-                      { id: 2, tag: "Physical" },
-                    ]}
-                    value={formData.classType}
-                  />
-                  <div className="flex flex-col">
-                    <SelectField
-                    className="pl-4 text-[18px] "
-                      label="Course Selected"
-                      handleChange={handleChange}
-                      name="courseSelected"
-                      options={course}
-                      setTuitionFee={setTuitionFee}
-                      classType={formData.classType}
-                    />
-                    <span>
-                      Course Fee:{" "}
-                      {typeof tuitionFee === "number"
-                        ? `₦${tuitionFee.toFixed(2)}`
-                        : tuitionFee}
-                    </span>
-                  </div>
-
-                  <SelectField
-                  className="pl-4 text-[18px] "
-                    label="State Of Residence"
-                    name="stateOfResidence"
-                    handleChange={handleChange}
-                    options={nigerianStates}
-                  />
-                </div>
-                <div className="mt-5 flex w-full flex-col gap-3">
-                  <List className="flex-col">
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center  py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() => handleCheckboxChange("newsletter")}
-                            checked={checkboxesChecked.newsletter}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-gray-600">
-                          I would like to be kept up to date with new training
-                          programs, events, promotions, and marketing.
-                        </Typography>
-                      </label>
-                    </ListItem>
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() =>
-                              handleCheckboxChange("privacyPolicy")
-                            }
-                            checked={checkboxesChecked.privacyPolicy}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-gray-600">
-                          By submitting this form, I accept DLT Africa's Privacy
-                          Policy.
-                        </Typography>
-                      </label>
-                    </ListItem>
-                    <ListItem className="p-0 hover:bg-transparent">
-                      <label className="flex w-full cursor-pointer items-center py-2">
-                        <ListItemPrefix className="mr-3">
-                          <Checkbox
-                            ripple={false}
-                            containerProps={{ className: "p-0" }}
-                            onChange={() => handleCheckboxChange("payment")}
-                            checked={checkboxesChecked.payment}
-                            required
-                          />
-                        </ListItemPrefix>
-                        <Typography className="font-normal text-sm text-[#000] ">
-                          Are you sure you want to apply for this course at the
-                          specified fee of #{tuitionFee.toFixed(2)}?
-                        </Typography>
-                      </label>
-                    </ListItem>
-                  </List>
-                </div>
-                <Button
-                  type="submit"
-                  size="large"
-                  className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
-                    !allCheckboxesChecked && "pointer-events-none opacity-50"
-                  }`}
-                  disabled={!allCheckboxesChecked}
-                >
-                  {isSubmitting ? <p>Loading...</p> : <span>Register</span>}
-                </Button>
-                {formValidMessage && (
-                  <div className="event-page-registration-error-message">
-                    {formValidMessage}
-                  </div>
-                )}
-              </form>
-            ) : (
-              <div className="flex justify-center items-center h-screen">
-                <div className="bg-[#FFEFD4] h-[545px] w-[1013px] rounded-[20px] flex justify-center items-center relative">
-                  <div className="flex flex-col text-center">
-                    <h1 className="text-[#FC7C13] w-[400px] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
-                      Congratulations!!!
-                      <br />
-                    </h1>
-                    <div>
-                      <p className="w-[796px] h-[48px] opacity-75%">
-                        Your application has successfully been submitted,
-                        you&apos;ll get an email from our
-                        <br /> team on your next step of action.
-                      </p>
-
-                      <Link href="/">Dismiss</Link>
-                    </div>
-                    <div className="absolute left-[88px] top-[444px]">
-                      <Image className="h-[67px] w-[41px]" src={DLT} alt="" />
-                    </div>
-                  </div>
-
-                  <div className="w-[724.48px] h-[666.52px] top-[2px] left-[2px] Border-[2px] Rotation-[56.1°] absolute">
-                    <Image src={Vector2} alt="Example" />
-                  </div>
-
-                  <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-                    <Image src={Vector1} alt="Example" />
-                  </div>
-                </div>
+                  label="State Of Residence"
+                  name="stateOfResidence"
+                  handleChange={handleChange}
+                  options={nigerianStates}
+                />
               </div>
-            )}
+              <div className="mt-5 flex w-full flex-col gap-3">
+                <List className="flex-col">
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center  py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("newsletter")}
+                          checked={checkboxesChecked.newsletter}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-gray-600">
+                        I would like to be kept up to date with new training
+                        programs, events, promotions, and marketing.
+                      </Typography>
+                    </label>
+                  </ListItem>
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("privacyPolicy")}
+                          checked={checkboxesChecked.privacyPolicy}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-gray-600">
+                        By submitting this form, I accept DLT Africa's Privacy
+                        Policy.
+                      </Typography>
+                    </label>
+                  </ListItem>
+                  <ListItem className="p-0 hover:bg-transparent">
+                    <label className="flex w-full cursor-pointer items-center py-2">
+                      <ListItemPrefix className="mr-3">
+                        <Checkbox
+                          ripple={false}
+                          containerProps={{ className: "p-0" }}
+                          onChange={() => handleCheckboxChange("payment")}
+                          checked={checkboxesChecked.payment}
+                          required
+                        />
+                      </ListItemPrefix>
+                      <Typography className="font-normal text-sm text-[#000] ">
+                        Are you sure you want to apply for this course at the
+                        specified fee of #{tuitionFee.toFixed(2)}?
+                      </Typography>
+                    </label>
+                  </ListItem>
+                </List>
+              </div>
+              <Button
+                type="submit"
+                size="large"
+                className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
+                  !allCheckboxesChecked && "pointer-events-none opacity-50"
+                }`}
+                disabled={
+                  !allCheckboxesChecked || isSubmitting || isApplicationClosed
+                }
+              >
+                {isSubmitting ? <p>Submitting...</p> : <span>Register</span>}
+              </Button>
+              {formValidMessage && (
+                <div className="event-page-registration-error-message">
+                  {formValidMessage}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </div>

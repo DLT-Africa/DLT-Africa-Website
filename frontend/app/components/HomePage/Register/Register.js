@@ -8,11 +8,11 @@ import Group164 from "../../../../public/Group164.png";
 const RegisterOnline = () => {
   return (
     <div className="bg-gray-100  flex justify-center items-center">
-      <div className="max-w-screen-xl p-8 w-full">
+      <div className="max-w-screen-xl p-8 w-full pt-[57px]">
         <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-20">
-          <Image
+          <img
             className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
-            src={Hero}
+            src="hero-section.png"
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
@@ -43,11 +43,11 @@ export default RegisterOnline;
 
 const RegisterOffline = () => {
   return (
-    <div className="w-auto h-auto bg-[#186106] items-center flex justify-center overflow-hidden">
-      <div className="flex justify-center items-center text-center relative">
+    <div className="w-auto h-auto bg-[#186106] items-center flex justify-center overflow-hidden  ">
+      <div className="flex justify-center items-center text-center relative ">
         <div className="absolute xl:left-[-400px] lg:left-[-300px] md:left-[-200px] sm:left-[-100px] left-0 top-0">
-          <Image
-            src={Grouping162}
+          <img
+            src="Grouping162.png"
             className="w-[390px] h-[400px] ml-[-100px] "
           />
         </div>
@@ -76,7 +76,7 @@ const RegisterOffline = () => {
           </Link>
         </div>
         <div className="absolute xl:right-[-380px] lg:right-[-290px] md:right-[-200px] sm:right-[-200px] bottom-0 right-[-100px]">
-          <Image src={Group164} alt="image" className="h-[300px]" />
+          <img src="Group164.png" alt="image" className="h-[300px]" />
         </div>
       </div>
     </div>

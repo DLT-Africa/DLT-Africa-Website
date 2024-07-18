@@ -4,21 +4,21 @@ import Image from "next/image";
 const getDetails = [
   {
     id: 1,
-    img: require("../../../../public/images/YouTube.png"),
+    img: "images/YouTube.png",
     name: "300 hours of full-stack online curriculum",
     description:
       "Embark on a transformative journey with DLTAfrica's comprehensive Full-Stack Online Curriculum, designed to empower aspiring developers and seasoned professionals alike. ",
   },
   {
     id: 2,
-    img: require("../../../../public/images/Vector.png"),
+    img: "images/Vector.png",
     name: "Guidance on setting up your own coding environment",
     description:
       "DLT Africa is there to give you a comprehensive guide on setting up your own coding environment. Whether you're a beginner or seasoned developer, having the right tools and environment is crucial for success. Wait no more!",
   },
   {
     id: 3,
-    img: require("../../../../public/images/BarChart.png"),
+    img: "images/BarChart.png",
     name: "A progress-oriented user interface and experience",
     description:
       "Experience software development like never before with our innovative approach to user interface and experience (UI/UX). Designed with your progress in mind, our platform offers an intuitive and conducive learning environment that keeps you engaged, motivated, and focused on your goals.",
@@ -55,7 +55,7 @@ const WhatYou = () => {
         {getDetails.map((details) => (
           <div className="flex flex-col" key={details.id}>
             {/* <div className='lg:px-[117px]'> */}
-            <Image
+            <img
               className="w-[50px] mx-auto h-[50px] mb-[15px]"
               src={details.img}
             />

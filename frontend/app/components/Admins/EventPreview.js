@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import { FaPen } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import EditEventPage from "@/app/components/Admins/EditEvent";
-const BACKEND_URL = process.env.BACKEND_URL
+
+
 const EventPreview = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,10 @@ const EventPreview = () => {
   const [itemsPerPage] = useState(5);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState("/event-list");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
 
   const handleCloseModal = () => {
     setSelectedEventId(null);
@@ -33,7 +38,7 @@ const EventPreview = () => {
   const handleDelete = async (eventId) => {
     try {
       await axios.delete(
-        `https://dlt-website-backend.vercel.app/api/v1/events/delete/${eventId}`
+        `https://dlt-backend.vercel.app/api/v1/events/delete/${eventId}`
       );
       setEventData(eventData.filter((event) => event._id !== eventId));
       setMessage("Event deleted successfully");
@@ -47,7 +52,7 @@ const EventPreview = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-website-backend.vercel.app/api/v1/events/get-all-events`
+          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
         );
 
         setEventData(response.data);
@@ -67,7 +72,7 @@ const EventPreview = () => {
   useEffect(() => {
     const filteredEvents = eventData.filter(
       (res) =>
-        res.eventName.toLowerCase().includes(search.toLowerCase()) ||
+        res.roomLocation.toLowerCase().includes(search.toLowerCase()) ||
         res.eventVenue.toLowerCase().includes(search.toLowerCase()) ||
         res.eventCategory.toLowerCase().includes(search.toLowerCase())
     );
@@ -84,14 +89,38 @@ const EventPreview = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <div className="flex mb-4">
-      <div className="flex space-x-4">
-          <Link href="/admin-dashboard" className="bg-blue-500 text-[#fff] px-4 py-2 rounded-md">
+        <div className="flex space-x-4">
+          <Link
+            href="/admin-dashboard"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Admission List
           </Link>
-          <Link href="/team-list" className="bg-green-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/team-list"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Team List
           </Link>
-          <Link href="/event-list" className="bg-red-500 text-[#fff] px-4 py-2 rounded-md">
+          <Link
+            href="/event-list"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
             Event List
           </Link>
         </div>

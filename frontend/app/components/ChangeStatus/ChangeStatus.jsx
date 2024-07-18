@@ -1,12 +1,13 @@
 import { FaCheck } from "react-icons/fa";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import axios from "axios";
-const BACKEND_URL = process.env.BACKEND_URL
+import { useRouter } from "next/navigation";
+
 const ChangeStatus = ({ id }) => {
-    console.log(id)
+  console.log(id);
   const [studentStatus, setStudentStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const changeRole = async () => {
     if (!studentStatus) {
@@ -16,10 +17,10 @@ const ChangeStatus = ({ id }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `https://dlt-website-backend.vercel.app/api/v1/cohorts/upgrade-admission`,
+        `https://dlt-backend.vercel.app/api/v1/cohorts/upgrade-admission`,
         { status: studentStatus, id }
       );
-      toast.success(response.data.message);
+      router.push("/admin-dashboard");
     } catch (error) {
       toast.error("Failed to update status");
     } finally {

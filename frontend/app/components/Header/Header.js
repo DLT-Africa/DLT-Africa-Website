@@ -21,7 +21,7 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Remove authentication state
+    localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
 
@@ -52,12 +52,12 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src={navbarContent.logo} />
+            <img src="wilddlt.png" className="w-[180px]  " />
           </Link>
         </div>
         <div className="flex flex-end">
           <div
-            className="flex flex-col items-end gap-2 cursor-pointer"
+            className="flex flex-col items-end justify-center gap-2 cursor-pointer"
             onClick={openDrawerTop}
           >
             <div className="w-[50px] h-[5px] bg-orange-500 transition-all duration-300 ease-in-out"></div>
@@ -71,8 +71,8 @@ const Header = () => {
             className="p-4 px-[10px] sm:px-[50px] pb-[300px] mt-[-22px] "
           >
             <div className="my-[10px] flex items-center justify-between ">
-              <Link href={"/"}>
-                <Image src={dlt} />
+              <Link href={"/"} onClick={closeDrawerTop}>
+                <img src="dlt.png" alt="nav-log" />
               </Link>
               <svg
                 onClick={closeDrawerTop}
