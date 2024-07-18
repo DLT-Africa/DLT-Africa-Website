@@ -8,7 +8,7 @@ import Group164 from "../../../../public/Group164.png";
 const RegisterOnline = () => {
   return (
     <div className="bg-gray-100  flex justify-center items-center">
-      <div className="max-w-screen-xl p-8 w-full">
+      <div className="max-w-screen-xl p-8 w-full pt-[57px]">
         <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-20">
           <img
             className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
@@ -43,8 +43,8 @@ export default RegisterOnline;
 
 const RegisterOffline = () => {
   return (
-    <div className="w-auto h-auto bg-[#186106] items-center flex justify-center overflow-hidden">
-      <div className="flex justify-center items-center text-center relative">
+    <div className="w-auto h-auto bg-[#186106] items-center flex justify-center overflow-hidden  ">
+      <div className="flex justify-center items-center text-center relative ">
         <div className="absolute xl:left-[-400px] lg:left-[-300px] md:left-[-200px] sm:left-[-100px] left-0 top-0">
           <img
             src="Grouping162.png"

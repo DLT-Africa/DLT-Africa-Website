@@ -1,7 +1,25 @@
+"use client";
+
 import { FaCheckCircle } from "react-icons/fa";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const CourseSection = (props) => {
+  const [pathname, setPathname] = useState("");
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+
+    const handlePathnameChange = () => {
+      setPathname(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handlePathnameChange);
+
+    return () => {
+      window.removeEventListener("popstate", handlePathnameChange);
+    };
+  }, []);
   return (
     <>
       <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[83px] lg:pr-[50px] md:gap-[63px] md:justify-between ">
@@ -52,18 +70,29 @@ const CourseSection = (props) => {
           )}
 
           <div className="flex flex-col lg:flex-row gap-4 lg:py-[36px] ">
-            <Link href="/application" legacyBehavior={true}>
-              <a className="bg-[#FC7C13] w-full lg:w-[196px] md:w-[196px] sm:w-[326px] h-[55px] p-[10px] flex justify-center items-center md:text-[16px] text-white font-bold rounded-[10px] hover:bg-[#ED6109] hover:text-[#F7FCFE]">
-                Register for Offline
-              </a>
-            </Link>
-            <Link href="/application" legacyBehavior={true}>
-              <a className="w-full lg:w-[196px] md:w-[196px] sm:w-[326px] h-[55px] p-[10px] flex justify-center items-center md:text-[16px] text-[#C54809] font-bold rounded-[10px] hover:bg-[#FFF8ED] border border-solid border-[#C54809]">
-                Register for online
-              </a>
-            </Link>
+            {pathname === "/blockchain" ? (
+              <p className="text-red-600">
+                Currently Not Available!!... <br /> check back later
+              </p>
+            ) : (
+              <Link href="/application" legacyBehavior={true}>
+                <a className="bg-[#FC7C13] w-full lg:w-[196px] md:w-[196px] sm:w-[326px] h-[55px] p-[10px] flex justify-center items-center md:text-[16px] text-white font-bold rounded-[10px] hover:bg-[#ED6109] hover:text-[#F7FCFE]">
+                  Register for Offline
+                </a>
+              </Link>
+            )}
+
+            {pathname === "/blockchain" ? (
+              null
+            ) : (
+              <Link href="/application" legacyBehavior={true}>
+                <a className="w-full lg:w-[196px] md:w-[196px] sm:w-[326px] h-[55px] p-[10px] flex justify-center items-center md:text-[16px] text-[#C54809] font-bold rounded-[10px] hover:bg-[#FFF8ED] border border-solid border-[#C54809]">
+                  Register for online
+                </a>
+              </Link>
+            )}
           </div>
-          <p className="text-gray-700">{props.headline}</p>
+          <p className="text-gray-700">{props.headline4}</p>
         </div>
 
         <div className="lg:mt-[88px] md:mt-[45px] px-[23px] mt-[40px]">

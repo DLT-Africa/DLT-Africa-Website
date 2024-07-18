@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import { FaPen } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import EditEventPage from "@/app/components/Admins/EditEvent";
-const BACKEND_URL = process.env.BACKEND_URL
+
+
 const EventPreview = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +72,7 @@ const EventPreview = () => {
   useEffect(() => {
     const filteredEvents = eventData.filter(
       (res) =>
-        res.eventName.toLowerCase().includes(search.toLowerCase()) ||
+        res.roomLocation.toLowerCase().includes(search.toLowerCase()) ||
         res.eventVenue.toLowerCase().includes(search.toLowerCase()) ||
         res.eventCategory.toLowerCase().includes(search.toLowerCase())
     );

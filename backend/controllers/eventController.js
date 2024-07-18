@@ -23,9 +23,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
     !startDate ||
     !duration ||
     !eventRegLink ||
-    !eventVenue ||
-    !eventDescription ||
-    !media
+    !eventVenue
   ) {
     res.status(400);
     throw new Error("All fields are required!");
@@ -39,8 +37,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
     duration,
     eventRegLink,
     eventVenue,
-    media,
-    eventDescription,
   });
 
   if (event) {
@@ -55,8 +51,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
       eventRegLink,
       eventVenue,
-      media,
-      eventDescription,
     } = event;
 
     res.status(201).json({
@@ -69,8 +63,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
 
       eventRegLink,
       eventVenue,
-      media,
-      eventDescription,
     });
   } else {
     res.status(400);

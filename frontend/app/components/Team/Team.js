@@ -79,9 +79,9 @@ const teamMember = [
     id: 8,
     img: "herlew.jpeg",
     name: "Aliu Musa",
-    role: "Blockchain Engineer",
+    role: "Chief Servant Officer",
     description:
-      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and with his current position as the Africa Ecosystem Lead at Celo Foundation.",
+      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and with his current stint at Arbitrum Foundation as a Senior Program Manager.",
     linkedinLink: "https://www.linkedin.com/in/aliumusa/",
     twitterLink: "https://twitter.com/herlew99",
   },
@@ -192,11 +192,11 @@ const team = () => {
 
             <div className="flex mb-[16px] w-[40px] h-[40px] gap-[10px]">
               <a href={member.linkedinLink}>
-                <BsTwitterX className="text-[#0A66C2]" />
+                <BsTwitterX className="text-[#0A66C2] transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110" />
               </a>
 
               <a href={member.twitterLink}>
-                <BsLinkedin className="text-[#000000]" />
+                <BsLinkedin className="text-[#000000] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
               </a>
             </div>
           </div>
