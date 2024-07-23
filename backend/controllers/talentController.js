@@ -1,5 +1,6 @@
 const { sendEmail } = require("../utils");
 const Talent = require("../models/talentModel");
+const Skill = require("../models/skillModel");
 
 exports.register = async (req, res) => {
   try {
@@ -12,6 +13,7 @@ exports.register = async (req, res) => {
       gitHubLink,
       addImage,
       role,
+      skills,
     } = req.body;
 
     const newRegistration = new Talent({
@@ -23,9 +25,20 @@ exports.register = async (req, res) => {
       gitHubLink,
       addImage,
       role,
+      skills,
     });
 
     await newRegistration.save();
+
+    await Promise.all(
+      skills.map(async (skillType) => {
+        const skill = await Skill.findOne({ skillType });
+        if (skill && !skill[skillType].includes(newRegistration._id)) {
+          skill[skillType].push(newRegistration._id);
+          await skill.save();
+        }
+      })
+    );
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -42,6 +55,71 @@ exports.register = async (req, res) => {
       data: newRegistration,
     });
   } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+exports.getTalent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const talent = await Talent.findById(id);
+
+    if (!talent) {
+      return res.status(404).json({
+        success: false,
+        message: "Talent not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: talent,
+    });
+  } catch (error) {
+    console.error("Error fetching talent:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+exports.getTalents = async (req, res) => {
+  try {
+    const { skills } = req.query;
+
+    let query = {};
+
+    if (skills) {
+      const skillArray = skills.split(",").map((skill) => skill.trim());
+
+      if (Array.isArray(skillArray) && skillArray.length > 0) {
+        query.skills = { $all: skillArray };
+      }
+    }
+
+    const talents = await Talent.find(query);
+
+    if (talents.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No talents found with the specified skill sets",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: talents,
+    });
+  } catch (error) {
+    console.error("Error fetching talents by skill sets:", error);
     res.status(500).json({
       success: false,
       message: "Server error",

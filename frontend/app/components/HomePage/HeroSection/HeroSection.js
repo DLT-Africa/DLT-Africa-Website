@@ -1,9 +1,6 @@
-import Image from "next/image";
-import HeroImage from "../../../../public/images/hero-img.svg";
 import Link from "next/link";
-import Lottie from 'lottie-react';
-import animationData from '../../../json-data/character-circular.json';
-
+import Lottie from "lottie-react";
+import animationData from "../../../json-data/character-circular.json";
 
 const HeroSection = () => {
   return (
@@ -37,7 +34,7 @@ const HeroSection = () => {
       </div>
 
       <div className="flex">
-      <Lottie animationData={animationData} loop={true} />
+        <Lottie animationData={animationData} loop={true} />
       </div>
     </div>
   );
