@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
-import dlt from "../../public/DLT.png";
+import dlt from "/DLT.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { validateEmail } from "../redux/auth/authService";
 import { register, RESET } from "../redux/auth/authSlice";
-const URL = import.meta.env.VITE_APP_BACKEND_URL;
+import axios from "axios";
 
+const URL = import.meta.env.VITE_APP_BACKEND_URL;
 const cloud_name = import.meta.env.VITE_APP_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_APP_UPLOAD_PRESET;
 
-// Initial form state
 const initialState = {
   fullName: "",
   phoneNumber: "",
@@ -23,7 +23,6 @@ const initialState = {
   skills: [],
 };
 
-// Main component
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState(initialState);
@@ -32,14 +31,15 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isSuccess } = useSelector((state) => state.auth);
+
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await fetch(`${URL}/api/v1/skill/skills`);
-        const data = await response.json();
-        setAvailableSkills(
-          Object.keys(data).filter((key) => key !== "_id" && key !== "__v")
+        const response = await axios.get(`${URL}/api/v1/skill/skills`);
+        const skillCategories = Object.keys(response.data).filter(
+          (key) => key !== "_id" && key !== "__v"
         );
+        setAvailableSkills(skillCategories);
       } catch (error) {
         console.error("Error fetching skills:", error);
         toast.error("Error fetching skills");
@@ -48,6 +48,12 @@ const Home = () => {
 
     fetchSkills();
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -138,181 +144,177 @@ const Home = () => {
 
   if (loading) return <Loader />;
 
-  const handleSkillChange = (e) => {
-    const { value, checked } = e.target;
-    setFormData((prevData) => {
-      const updatedSkills = checked
-        ? [...prevData.skills, value]
-        : prevData.skills.filter((skill) => skill !== value);
-
-      return { ...prevData, skills: updatedSkills };
-    });
-  };
-
   return (
-    <div className="h-full flex justify-center py-6">
-      <div className="flex flex-col gap-2 justify-center items-center">
-        <Header />
-        <RegistrationForm
-          formData={formData}
-          setFormData={setFormData}
-          createAccount={createAccount}
-          handleFileChange={handleFileChange}
-          handleSkillChange={handleSkillChange}
-          availableSkills={availableSkills}
-        />
-      </div>
-    </div>
-  );
-};
-
-// Header component
-const Header = () => (
-  <header className="flex flex-col items-center justify-center w-screen gap-[5px] md:gap-[15px] md:w-[796px] p-4 mb-[20px]">
-    <img
-      src={dlt}
-      alt="dlt-logo"
-      loading="lazy"
-      className="w-[50px] md:w-[50px]"
-    />
-    <p className="text-[#1c1c1c] text-[20px] md:text-[30px] font-[400]">
-      DLT Africa talent pool
-    </p>
-    <p className="text-[#1c1c1c] font-Poppins text-[13px] md:text-[15px] font-[400]">
-      Register for the DLT Africa talent pool.
-    </p>
-  </header>
-);
-
-// RegistrationForm component
-const RegistrationForm = ({
-  formData,
-  setFormData,
-  createAccount,
-  handleFileChange,
-  handleSkillChange,
-  availableSkills,
-}) => {
-  const fields = ["fullName", "phoneNumber", "emailAddress", "uploadResume"];
-  const oppositeFields = ["gender", "gitHubLink", "addImage", "skill set"];
-
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    const isValid = Object.values(formData).every(
-      (value) => value.trim() !== "" || Array.isArray(value)
-    );
-    setIsFormValid(isValid);
-  }, [formData]);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  return (
-    <form
-      className="md:w-[889px] w-[300px] bg-[#FFEFD4] flex flex-col justify-center py-[69px] px-[30px] md:px-[86px] rounded"
-      onSubmit={createAccount}
-    >
-      {fields.map((field, index) => (
-        <div
-          key={index}
-          className="flex justify-between mb-4 md:flex-row flex-col w-full"
-        >
-          <InputField
-            label={field}
-            value={formData[field]}
-            onChange={handleChange}
-            handleFileChange={handleFileChange}
+    <div className="h-full flex justify-center py-6 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-4 justify-center items-center max-w-4xl w-full">
+        <header className="flex flex-col items-center justify-center w-full gap-2 md:gap-4 p-4 mb-2 md:mb-8">
+          <img
+            src={dlt}
+            alt="dlt-logo"
+            loading="lazy"
+            className="w-12 md:w-16"
           />
-          <InputField
-            label={oppositeFields[index]}
-            value={formData[oppositeFields[index]]}
-            onChange={handleChange}
-            handleFileChange={handleFileChange}
-            handleSkillChange={handleSkillChange}
-            availableSkills={availableSkills}
-          />
-        </div>
-      ))}
+          <p className="text-gray-800 text-xl md:text-3xl font-medium text-center">
+            DLT Africa talent pool
+          </p>
+          <p className="text-gray-800 text-sm md:text-base font-normal text-center">
+            Register for the DLT Africa talent pool.
+          </p>
+        </header>
 
-      <div className="mt-[20px] md:mt-[55px] flex flex-col items-center justify-center">
-        <button
-          type="submit"
-          className={`p-[10px] w-[196px] text-[#F7FCFE] text-[13px] bg-[#FC7C13] rounded ${
-            !isFormValid ? "button-slide" : ""
-          }`}
-          onMouseOver={!isFormValid ? (e) => e.preventDefault() : null}
+        <form
+          className="border bg-[#FFEFD4] px-4 py-6 md:px-8 md:py-8 w-full max-w-3xl rounded flex flex-col gap-4"
+          onSubmit={createAccount}
         >
-          {isFormValid ? "Register" : "Please fill all the fields"}
-        </button>
-      </div>
-    </form>
-  );
-};
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="fullName" className="text-[14px] font-Poppins">
+                Full name:
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="Alexander Wong"
+              />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="gender" className="text-[14px] font-Poppins">
+                Gender:
+              </label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
 
-// InputField component
-const InputField = ({
-  label,
-  value,
-  onChange,
-  handleFileChange,
-  handleSkillChange,
-  availableSkills,
-}) => {
-  if (label === "skill set") {
-    return (
-      <div className="flex flex-col gap-2">
-        {availableSkills.map((skill) => (
-          <label key={skill} className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              value={skill}
-              checked={value.includes(skill)} // Ensure 'value' is an array
-              onChange={handleSkillChange}
-            />
-            {skill.charAt(0).toUpperCase() + skill.slice(1)}
-          </label>
-        ))}
-      </div>
-    );
-  }
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="phoneNumber" className="text-[14px] font-Poppins">
+                Phone Number:
+              </label>
+              <input
+                type="text"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="+234705746234"
+              />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="gitHubLink" className="text-[14px] font-Poppins">
+                GitHub Link:
+              </label>
+              <input
+                type="text"
+                name="gitHubLink"
+                value={formData.gitHubLink}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="https://"
+              />
+            </div>
+          </div>
 
-  return (
-    <div className="flex flex-col gap-4 md:gap-2 md:w-[49%]">
-      <label className="text-[14px] font-[400] font-Poppins capitalize">
-        {label} :
-      </label>
-      {label === "gender" ? (
-        <select
-          name={label}
-          value={value}
-          onChange={onChange}
-          className="bg-transparent border-b border-neutral-400 p-2"
-        >
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      ) : label === "addImage" ? (
-        <input
-          type="file"
-          name={label}
-          onChange={handleFileChange}
-          className="bg-transparent border-b border-neutral-400 border-b-[1.5px] outline-none focus:border-b focus:border-neutral-900 p-2"
-        />
-      ) : (
-        <input
-          type="text"
-          name={label}
-          value={value}
-          onChange={onChange}
-          className="bg-transparent border-b border-neutral-400 border-b-[1.5px] outline-none focus:border-b focus:border-neutral-900 p-2"
-        />
-      )}
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label
+                htmlFor="emailAddress"
+                className="text-[14px] font-Poppins"
+              >
+                Email Address:
+              </label>
+              <input
+                type="text"
+                name="emailAddress"
+                value={formData.emailAddress}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="Alexanderwong@gmail.com"
+              />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="addImage" className="text-[14px] font-Poppins">
+                Upload Image:
+              </label>
+              <input
+                type="file"
+                name="addImage"
+                onChange={handleFileChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label
+                htmlFor="uploadResume"
+                className="text-[14px] font-Poppins"
+              >
+                Resume Link:
+              </label>
+              <input
+                type="text"
+                name="uploadResume"
+                value={formData.uploadResume}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="https://"
+              />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="skills" className="text-[14px] font-Poppins">
+                Skill Set:
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {availableSkills.map((skill) => (
+                  <div key={skill} className="flex items-center">
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        name="skills"
+                        value={skill}
+                        checked={formData.skills.includes(skill)}
+                        onChange={(e) => {
+                          const selectedSkills = [...formData.skills];
+                          if (e.target.checked) {
+                            selectedSkills.push(skill);
+                          } else {
+                            const index = selectedSkills.indexOf(skill);
+                            if (index > -1) selectedSkills.splice(index, 1);
+                          }
+                          setFormData({ ...formData, skills: selectedSkills });
+                        }}
+                      />
+                      {skill}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center items-center">
+            <button
+              type="submit"
+              className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
