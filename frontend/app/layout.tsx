@@ -26,11 +26,7 @@ export default function RootLayout({
           <title>DLT Africa Official Website</title>
           <meta name="description" content="DLT Africa Official Website" />
 
-          <link
-            rel="shortcut icon"
-            href="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdlt.84ee470c.png&w=48&q=75"
-            type="image/x-icon"
-          />
+          <link rel="icon" href="/dlt.png" type="image/png" />
         </head>
         <body className={inter.className}>
           <Header />
