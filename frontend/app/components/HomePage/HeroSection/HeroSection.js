@@ -1,6 +1,9 @@
 import Image from "next/image";
 import HeroImage from "../../../../public/images/hero-img.svg";
 import Link from "next/link";
+import Lottie from 'lottie-react';
+import animationData from '../../../json-data/character-circular.json';
+
 
 const HeroSection = () => {
   return (
@@ -34,10 +37,7 @@ const HeroSection = () => {
       </div>
 
       <div className="flex">
-        <Image
-          className="w-[100%] md:w-[500px]  2xl:w-[800px] flex items-center justify-center"
-          src={HeroImage}
-        />
+      <Lottie animationData={animationData} loop={true} />
       </div>
     </div>
   );

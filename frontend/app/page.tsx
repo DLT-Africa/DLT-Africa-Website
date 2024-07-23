@@ -19,17 +19,15 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 8000);
   }, []);
 
   return (
-    <div >
+    <div>
       {loading ? (
         <Loader />
       ) : (
-        <div >
-         
-
+        <div>
           <HeroSection />
           <WhatYou />
           <RegisterOnline />
