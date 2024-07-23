@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
 const eventRoute = require("./routes/eventRoute");
 const teamRoute = require("./routes/teamRoute");
+const talentRoutes = require("./routes/talentRoute");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -30,9 +31,10 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:5173",
 
       "https://dlt-africa-website-frontend.vercel.app",
-      "https://dltafrica.io"
+      "https://dltafrica.io",
     ],
     credentials: true,
     optionSuccessStatus: 200,
@@ -40,10 +42,10 @@ app.use(
   })
 );
 
-
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
+app.use("/api/v1/talent", talentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Home Page");
