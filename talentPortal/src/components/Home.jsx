@@ -107,7 +107,6 @@ const RegistrationForm = () => {
         >
           Register
         </button>
-        {/* {!isFormValid && <p className="text-red-500 mt-2">Fill the fields or sleep here</p>} */}
 
       </div>
     </form>
