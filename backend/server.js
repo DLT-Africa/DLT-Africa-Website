@@ -9,23 +9,25 @@ const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
 const eventRoute = require("./routes/eventRoute");
 const teamRoute = require("./routes/teamRoute");
-const talentRoutes = require("./routes/talentRoute");
-const skillRoute = require("./routes/skillRoute");
 const mongoose = require("mongoose");
 
 const app = express();
 
-// Apply CORS middleware early to allow all origins
 app.use(
   cors({
-    origin: "*", // Allow all origins
+    origin: [
+      "http://localhost:3000",
+
+      "https://dlt-africa-website-frontend.vercel.app",
+      "https://dlt-africa-talent-pool.vercel.app",
+      "https://dltafrica.io",
+    ],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 200,
   })
 );
 
-// Middleware to explicitly set CORS headers for all responses
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -36,7 +38,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use(express.json());
@@ -56,8 +57,6 @@ app.use((req, res, next) => {
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
-app.use("/api/v1/talent", talentRoutes);
-app.use("/api/v1/skill", skillRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");
