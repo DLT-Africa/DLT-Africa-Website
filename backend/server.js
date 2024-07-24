@@ -16,12 +16,14 @@ const mongoose = require("mongoose");
 const app = express();
 
 // Apply CORS middleware early to allow all origins
-app.use(cors({
-  origin: '*', // Allow all origins
-  credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  optionsSuccessStatus: 200,
-}));
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
@@ -36,7 +38,7 @@ app.options("*", cors());
 
 // Log origin requests for debugging
 app.use((req, res, next) => {
-  console.log('Request Origin:', req.headers.origin);
+  console.log("Request Origin:", req.headers.origin);
   next();
 });
 
