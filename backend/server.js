@@ -18,6 +18,7 @@ app.use(
     origin: [
       "http://localhost:3000",
 
+      "https://talent-pool-server.vercel.app",
       "https://dlt-africa-website-frontend.vercel.app",
       "https://dlt-africa-talent-pool.vercel.app",
       "https://dltafrica.io",
