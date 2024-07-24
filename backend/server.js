@@ -15,7 +15,13 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-//serve static files
+// Log origin requests for debugging
+app.use((req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+  next();
+});
+
+// Serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use(express.json());
@@ -23,33 +29,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://dlt-africa-website-frontend.vercel.app",
-  "https://dlt-africa-talent-pool.vercel.app",
-  "https://dltafrica.io",
-];
-
+// CORS Configuration to allow all origins
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
+    origin: true,
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 200,
   })
 );
 
+// Handle preflight requests
 app.options("*", cors());
 
+// Routes
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
@@ -66,5 +59,5 @@ connectDB();
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
-  app.listen(PORT, console.log(`Server up and running on port ${PORT}`));
+  app.listen(PORT, () => console.log(`Server up and running on port ${PORT}`));
 });
