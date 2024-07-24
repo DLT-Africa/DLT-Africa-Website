@@ -17,7 +17,7 @@ const app = express();
 
 // Log origin requests for debugging
 app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
+  console.log('Request Origin:', req.headers.origin);
   next();
 });
 
@@ -30,14 +30,12 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // CORS Configuration to allow all origins
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    optionsSuccessStatus: 200,
-  })
-);
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 200,
+}));
 
 // Handle preflight requests
 app.options("*", cors());
