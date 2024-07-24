@@ -35,6 +35,7 @@ app.use(
       "http://localhost:5173",
 
       "https://dlt-africa-website-frontend.vercel.app",
+      "https://dlt-africa-talent-pool.vercel.app",
       "https://dltafrica.io",
     ],
     credentials: true,
