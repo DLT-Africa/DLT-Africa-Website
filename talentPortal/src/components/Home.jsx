@@ -308,7 +308,7 @@ const Home = () => {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded"
+              className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
             >
               Register
             </button>
