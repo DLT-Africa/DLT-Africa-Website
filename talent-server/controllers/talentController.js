@@ -14,6 +14,7 @@ exports.register = async (req, res) => {
       addImage,
       role,
       skills,
+      description
     } = req.body;
 
     const talentExists = await Talent.findOne({ emailAddress });
@@ -33,6 +34,7 @@ exports.register = async (req, res) => {
       addImage,
       role,
       skills,
+      description
     });
 
     await newRegistration.save();
