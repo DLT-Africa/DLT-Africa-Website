@@ -21,7 +21,7 @@ const Talent: React.FC = () => {
           (key) => key !== "_id" && key !== "__v"
         );
         setAvailableSkills(skillCategories);
-        console.log(availableSkills)
+        console.log(response.data)
       } catch (error) {
         console.error("Error fetching skills:", error);
         toast.error("Error fetching skills");
