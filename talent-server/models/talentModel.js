@@ -30,6 +30,10 @@ const talentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     skills: { type: [String], required: true },
   },
   { timestamps: true, minimize: false }
