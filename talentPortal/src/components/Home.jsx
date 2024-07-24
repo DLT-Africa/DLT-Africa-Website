@@ -19,6 +19,7 @@ const initialState = {
   uploadResume: "",
   gender: "",
   gitHubLink: "",
+  description: "",
   addImage: "",
   skills: [],
 };
@@ -72,6 +73,7 @@ const Home = () => {
       gender,
       gitHubLink,
       addImage,
+      description
     } = formData;
 
     if (
@@ -81,7 +83,8 @@ const Home = () => {
       !uploadResume ||
       !gender ||
       !gitHubLink ||
-      !addImage
+      !addImage ||
+      !description
     ) {
       return toast.error("All fields are required");
     }
@@ -274,6 +277,23 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label
+                htmlFor="description"
+                className="text-[14px] font-Poppins"
+              >
+                Short Description:
+              </label>
+              <textarea
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="I am a ...."
+              />
+            </div>
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
               <label htmlFor="skills" className="text-[14px] font-Poppins">
                 Skill Set:
               </label>
@@ -302,7 +322,6 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-            </div>
           </div>
 
           <div className="flex justify-center items-center">
