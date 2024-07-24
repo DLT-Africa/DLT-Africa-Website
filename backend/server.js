@@ -15,11 +15,13 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// Log origin requests for debugging
-app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-  next();
-});
+// Apply CORS middleware early to allow all origins
+app.use(cors({
+  origin: '*', // Allow all origins
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 200,
+}));
 
 // Serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
@@ -29,18 +31,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// CORS Configuration to allow all origins
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    optionsSuccessStatus: 200,
-  })
-);
-
 // Handle preflight requests
 app.options("*", cors());
+
+// Log origin requests for debugging
+app.use((req, res, next) => {
+  console.log('Request Origin:', req.headers.origin);
+  next();
+});
 
 // Routes
 app.use("/api/v1/cohorts", userRoute);
