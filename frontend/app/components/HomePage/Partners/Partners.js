@@ -46,19 +46,19 @@ const Partners = () => {
           className="flex flex-col text-center 
           
           text-[#1C1C1C] 
-          lg:text-[48px]
+          lg:text-[40px]
           font-serif
           tracking-[1px]
           width-full
           md:text-[36px]
           text-[30px]
-          font-bold"
+          font-bold mt-[57px] "
         >
           {" "}
           People We Have Worked With
         </div>
 
-        <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+        <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] mt-[35px] ">
           <div
             x-ref="logos"
             className=" flex items-center justify-center md:justify-start [&_img]:max-w-none animate-infinite-scroll"
