@@ -13,7 +13,7 @@ const secData = [
   {
     id: 1,
     title: "Duration",
-    text: "3 months Changed from text to match the data Changed from text to  the data",
+    text: "3 months",
     //text2: "(3 times a week)", // Changed from text to text2 to match the data
     icon: <ImHourGlass />,
     courseConClass:
@@ -37,7 +37,7 @@ const secData = [
   {
     id: 3,
     title: "Level",
-    text: "Our program doesn't require you to have any knowledge",
+    text: "Our program requires that you have at least basic knowledge of Javascript",
     icon: <IoIosApps />,
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -59,7 +59,7 @@ const secData = [
   {
     id: 5,
     title: "Prerequisites",
-    text: "All you'll needing for our program 1s a laptop and an open mind",
+    text: "All you'll need for our program 1s a laptop and an open mind",
     icon: <BsListUl />,
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -84,7 +84,7 @@ const secData = [
 const BlockchainIconSection = () => {
   return (
     <section className="mainCon flex justify-center pt-[84px] pb-[71px] text-center sm:px-[100px] md:px-[120px] lg:[220] bg-[#F6F6F6]">
-      <div className="iconsCon sm: grid grid-cols-1 sm:gap-5 md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-20 items-center justify-center">
+      <div className="iconsCon px-5 sm:grid grid-cols-1 sm:gap-5 md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-20 items-center justify-center">
         {secData.map(
           ({
             id,

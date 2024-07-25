@@ -16,17 +16,16 @@ const Header = () => {
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
-    
+
     setIsLoggedIn(loggedIn === "true");
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Remove authentication state
+    localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
 
   useEffect(() => {
-
     setPathname(window.location.pathname);
 
     const handlePathnameChange = () => {
@@ -44,7 +43,7 @@ const Header = () => {
   const closeDrawerTop = () => setOpenTop(false);
 
   return (
-    <>
+    <div>
       <div
         className="flex justify-between py-[10px]  sm:py-5 px-[20px] sm:px-[10px] md:px-[50px] "
         style={{
@@ -53,18 +52,18 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src={navbarContent.logo} />
+            <img src="wilddlt.png" className="w-[180px]  " />
           </Link>
         </div>
         <div className="flex flex-end">
-          <div className="flex ">
-            <Image
-              src={Hamburger}
-              onClick={openDrawerTop}
-              className="cursor-pointer	"
-              alt="icon"
-            />
+          <div
+            className="flex flex-col items-end justify-center gap-2 cursor-pointer"
+            onClick={openDrawerTop}
+          >
+            <div className="w-[50px] h-[5px] bg-orange-500 transition-all duration-300 ease-in-out"></div>
+            <div className="w-[25px] h-[5px] bg-orange-500 hover:w-[45px] transition-all duration-300 ease-in-out"></div>
           </div>
+
           <Drawer
             placement="top"
             open={openTop}
@@ -72,8 +71,8 @@ const Header = () => {
             className="p-4 px-[10px] sm:px-[50px] pb-[300px] mt-[-22px] "
           >
             <div className="my-[10px] flex items-center justify-between ">
-              <Link href={"/"}>
-                <Image src={dlt} />
+              <Link href={"/"} onClick={closeDrawerTop}>
+                <img src="dlt.png" alt="nav-log" />
               </Link>
               <svg
                 onClick={closeDrawerTop}
@@ -109,13 +108,17 @@ const Header = () => {
                   <Link
                     className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/admin-dashboard"}
+                    onClick={closeDrawerTop}
                   >
                     Admin Dashboard
                   </Link>
                   <Link
                     className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                     href={"/"}
-                    onClick={handleLogout}
+                    onClick={() => {
+                      handleLogout();
+                      closeDrawerTop();
+                    }}
                   >
                     Logout
                   </Link>
@@ -124,6 +127,7 @@ const Header = () => {
                 <Link
                   className=" text-[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                   href={"/admin"}
+                  onClick={closeDrawerTop}
                 >
                   Admin Registration/Login
                 </Link>
@@ -132,12 +136,14 @@ const Header = () => {
               <a
                 className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href="https://medium.com/@DLTAfrica"
+                onClick={closeDrawerTop}
               >
                 Blog
               </a>
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/event"}
+                onClick={closeDrawerTop}
               >
                 Event
               </Link>
@@ -145,6 +151,7 @@ const Header = () => {
                 <Link
                   className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                   href={"/hacker-house"}
+                  onClick={closeDrawerTop}
                 >
                   Hacker House
                 </Link>
@@ -153,20 +160,29 @@ const Header = () => {
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/team"}
+                onClick={closeDrawerTop}
               >
                 Our Team
               </Link>
               <Link
                 className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
                 href={"/courses"}
+                onClick={closeDrawerTop}
               >
                 Programmes
+              </Link>
+              <Link
+                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                href={"/talent-pool"}
+                onClick={closeDrawerTop}
+              >
+                Talent Pool
               </Link>
             </div>
           </Drawer>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -2,87 +2,88 @@ import React from "react";
 import Linkedin from "../../../public/images/linkedin.svg";
 import Twitter from "../../../public/images/twitter.svg";
 import Image from "next/image";
+import { BsLinkedin, BsTwitterX } from "react-icons/bs";
 
 const teamMember = [
   {
     id: 1,
-    img: require("../../../public/images/img.png"),
+    img: "soliu.jpeg",
     name: "Soliu Ahmad",
     role: "Software Developer",
     description:
       "Soliu is a software developer, he is a very good team worker. He is always ready to face any challenging projects.",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "https://www.linkedin.com/in/soliu-ahmad-31b049240/",
+    twitterLink: "https://twitter.com/Ahmadsoliu1",
   },
   {
     id: 2,
-    img: require("../../../public/images/img.png"),
+    img: "naheem.jpeg",
     name: "Naheem Oloyede",
     role: "Software Developer & Team Lead",
     description:
       "Naheem is a witty and result oriented full stack developer. Naheem is astuteness and zeal for getting excellent results coupled with his exceptional leadership, and HR skills earned him job at DLT Africa..",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "https://www.linkedin.com/in/naheem-oloyede-593809251/",
+    twitterLink: "https://twitter.com/OloyedeNaheem",
   },
   {
     id: 3,
-    img: require("../../../public/images/img.png"),
+    img: "jordan.jpeg",
     name: "Jordan Muthemba",
     role: "Blockchain Developer",
     description:
       "Jordan is driven by his passion for software development and his desire to use technology to make a positive impact on communities. He is committed to sharing his knowledge with others and is always eager to talk about his journey in Blockchain technology.",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "https://www.linkedin.com/in/jordan-muthemba/",
+    twitterLink: "https://twitter.com/type_jordan",
   },
   {
     id: 4,
-    img: require("../../../public/images/img.png"),
+    img: "ameer.jpeg",
     name: "Abdullah Raji",
     role: "Software Developer",
     description:
       "With a passion for coding, I have dedicated expertise to shaping innovative solutions in the realm of technology.",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "www.linkedin.com/in/alameer98",
+    twitterLink: "https://twitter.com/alAmeer170",
   },
   {
     id: 5,
-    img: require("../../../public/images/img.png"),
+    img: "anate.jpeg",
     name: "Aliyu Anate",
     role: "Software Developer",
     description:
       "Creative software engineer blending innovation with hard work and humor for impactful solutions",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "https://www.linkedin.com/in/aliyu-anate-9773b22b8/",
+    twitterLink: "https://twitter.com/anate669288",
   },
   {
     id: 6,
-    img: require("../../../public/images/img.png"),
+    img: "fawaz.jpeg",
     name: "Fawaz Dada",
     role: "Graphic Designer",
     description:
       "A highly creative, fast-working, and adaptable graphic designer who can quickly grasp the concept of the brief he has been given. He has a strong understanding of the principles of design and he is able to apply them to create visually appealing and effective designs..",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: null,
+    twitterLink: "https://twitter.com/dadaXxf",
   },
   {
     id: 7,
-    img: require("../../../public/images/img.png"),
+    img: "seyi.jpeg",
     name: "Oluwaseyi Abolaji",
     role: "Product Designer & Manager",
     description:
       "Oluwaseyi is a Product designer with a background in Computer Science. Keeping the users needs and expectations in mind while not losing sight of the business goals, enables him to make sound design decisions that benefit the user and the business.",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+    linkedinLink: "https://www.linkedin.com/in/oluwaseyi-abolaji-8b936a213/",
+    twitterLink: "https://twitter.com/Oluwaseyi_7",
   },
   {
     id: 8,
-    img: require("../../../public/images/img.png"),
+    img: "herlew.jpeg",
     name: "Aliu Musa",
-    role: "Blockchain Engineer",
+    role: "Chief Servant Officer",
     description:
-      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and with his current position as the Africa Ecosystem Lead at Celo Foundation.",
-    linkedinLink: "https://www.linkedin.com",
-    twitterLink: "https://twitter.com",
+      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and with his current stint at Arbitrum Foundation as a Senior Program Manager.",
+    linkedinLink: "https://www.linkedin.com/in/aliumusa/",
+    twitterLink: "https://twitter.com/herlew99",
   },
 ];
 
@@ -100,45 +101,48 @@ const team = () => {
                 text-[36px] 
                 font-[normal] 
                 leading-[120%] 
-                tracking-[2.52px]"
+                tracking-[2.52px]
+                "
       >
         {" "}
         Meet the Team
       </div>
 
       <div
-        className="grid 
-                gap-[68px 73px] 
+        className="grid gap-6 
                 w-full 
                 px-10 
                 pt-10 
                 md:grid-cols-2 
                 lg:grid-cols-3
-                place-content-center"
+                place-content-center
+                "
       >
         {teamMember.map((member) => (
           <div
             className="flex 
                         flex-col 
-                        w-[387px] 
-                        h-[521px] 
+                        w-full 
+                        h-auto 
                         gap-[35px] 
                         items-center 
                         flex-shrink-0 
-                        p-[-60px] 
+                        px-50px
                         border-2 border-orange-100 
                         rounded-[10px] 
-                        mb-[73px]"
+                        mb-[73px]
+                        "
             key={member.id}
           >
             <div>
-              <Image
+              <img
                 className="w-[180px] 
                                 h-[180px] 
                                 flex 
                                 justify-center 
                                 items-center
-                                mt-5"
+                                mt-5 
+                                rounded-full"
                 src={member.img}
                 alt="team image"
               />
@@ -188,11 +192,11 @@ const team = () => {
 
             <div className="flex mb-[16px] w-[40px] h-[40px] gap-[10px]">
               <a href={member.linkedinLink}>
-                <Image className="text-[#0A66C2]" src={Linkedin} alt="" />
+                <BsTwitterX className="text-[#0A66C2] transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110" />
               </a>
 
               <a href={member.twitterLink}>
-                <Image className="text-[#000000]" src={Twitter} alt="twitter" />
+                <BsLinkedin className="text-[#000000] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
               </a>
             </div>
           </div>

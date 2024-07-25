@@ -7,7 +7,7 @@ const EventHero = () => {
         <h1 className="text-2xl lg:text-[48px] max-w-[584px] leading mb-[16px] text-[#1C1C1C] font-serif font-[400] space-[3.36]">
           Our Programmes
         </h1>
-        <p className="text-[16px] lg:text-lg max-w-[326px] md:max-w-[529px] h-[48px] font-popins font-[48px] lg:font-[400px] sm:font-[16px] text-[#1C1C1C] opacity-75">
+        <p className="text-[16px] lg:text-lg max-w-[326px] md:max-w-[529px] h-[48px] font-serif font-[48px] lg:font-[400px] sm:font-[16px] text-[#1C1C1C] opacity-75">
           Learn, build and showcase your skills alongside like-minded peers.
         </p>
       </div>

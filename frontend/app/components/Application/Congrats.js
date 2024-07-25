@@ -1,43 +1,62 @@
-import Image from "next/image";
-import Vector1 from "../../../public/Vector1.png";
-import Vector2 from "../../../public/Vector2.png";
-import DLT from "../../dlt.png";
+"use client";
+
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import Confetti from "react-confetti";
 
 const Congrats = () => {
+  const [countdown, setCountdown] = useState(15);
+  const router = useRouter();
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      router.push("/");
+    }
+  }, [countdown]);
+
+  useEffect(() => {
+    setShowConfetti(true);
+
+    const timeout = setTimeout(() => {
+      setShowConfetti(false);
+    }, 20000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-[#FFEFD4] h-[545px] w-[1013px] rounded-[20px] flex justify-center items-center relative">
+      {showConfetti && <Confetti />}
+      <div className="w-[100%] h-screen rounded-[20px] flex justify-center items-center relative">
         <div className="flex flex-col text-center">
-          <h1 className="text-[#FC7C13] w-[400px] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
+          <h1 className="text-[#FC7C13] text-4xl leading-[43.2px] tracking-[7%] mx-auto">
             Congratulations!!!
             <br />
           </h1>
-          <div className="flex flex-col justify-center items-center">
-            <p className="w-[796px] h-[48px] opacity-75%">
-              Your application has successfully been submitted, you&apos;ll get
-              an email from our
-              <br /> team on your next step of action.
+          <div>
+            <p className="h-[48px] opacity-75% text-center">
+              Your application has been successfully submitted. You'll receive
+              an email from our team regarding your next steps shortly.
+            </p>
+            <br />
+            <p>
+              If you don't receive any email within a few minutes, please check
+              your spam folder.
             </p>
 
-            <button className="w-[100px] rounded-md bg-[#ffe0c0] text-[#FC7C13] font-poppins text-[20px] font-medium mt-[2rem] cursor-pointer	">
-              No
-            </button>
+            <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
+              <p>Redirecting to homepage in {countdown} seconds...</p> 
+            </div>
           </div>
-          <div className="absolute left-[88px] top-[444px]">
-            <Image className="h-[67px] w-[41px]" src={DLT} alt="" />
-          </div>
-        </div>
-
-        <div className="w-[724.48px] h-[666.52px] top-[2px] left-[2px] Border-[2px] Rotation-[56.1°] absolute">
-          <Image src={Vector2} alt="Example" />
-        </div>
-
-        <div className="w-[724.48px] h-[666.52px] top-[355.17px] left-[333.69px] Border-[2px] Rotation-[-7.47°] absolute">
-<<<<<<< HEAD:frontend/components/Application/Congrats.js
-            <img src="Vector1.png" alt="Example"/>
-=======
-          <Image src={Vector1} alt="Example" />
->>>>>>> dce23b6276353156041627d2f95003a4150b30d9:frontend/app/components/Application/Congrats.js
         </div>
       </div>
     </div>

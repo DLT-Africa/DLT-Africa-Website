@@ -1,8 +1,9 @@
-"use client"
+"use client";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
-const Faq = ({ question, answer }) => {
+const Faq = ({ question, answer, url, linkText }) => {
   const [isFaqShowing, setIsFaqShowing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,7 +24,7 @@ const Faq = ({ question, answer }) => {
   return (
     <div onClick={() => setIsFaqShowing((prev) => !prev)}>
       <article className="flex justify-between ">
-        <p className="text-[16px]">{question}</p>
+        <p className="lg:text-[20px] text-[16px] font-serif">{question}</p>
 
         <button className="">
           {isFaqShowing ? (
@@ -34,7 +35,19 @@ const Faq = ({ question, answer }) => {
         </button>
       </article>
 
-      {isFaqShowing && <p className="text-[14px] p-[2px]">{answer}</p>}
+      {isFaqShowing && (
+        <p className="lg:text-[18px] text-[14px] p-[2px] flex flex-row gap-1 font-serif">
+          {answer}
+
+          {url && (
+            <p className="text-[#fff] duration-500 ease-in-out transform hover:-translate-y-1 font-serif">
+              <Link href={url} className="">
+                {linkText}
+              </Link>{" "}
+            </p>
+          )}
+        </p>
+      )}
     </div>
   );
 };

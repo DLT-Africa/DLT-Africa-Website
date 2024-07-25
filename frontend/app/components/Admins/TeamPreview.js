@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
+const BACKEND_URL = process.env.BACKEND_URL;
 const TeamPreview = () => {
   const [teamData, setTeamData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,13 +14,18 @@ const TeamPreview = () => {
   const [message, setMessage] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
+  const router = useRouter();
+  const [activeButton, setActiveButton] = useState("/team-list");
+  const handleButtonClick = (href) => {
+    setActiveButton(href);
+  };
 
   useEffect(() => {
     setIsLoading(true);
     const fetchTeamData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/team/team-details"
+          `https://dlt-backend.vercel.app/api/v1/team/team-details`
         );
 
         setTeamData(response.data);
@@ -57,19 +63,34 @@ const TeamPreview = () => {
         <div className="flex space-x-4">
           <Link
             href="/admin-dashboard"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Admission List
           </Link>
           <Link
             href="/team-list"
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Team List
           </Link>
           <Link
             href="/event-list"
-            className="bg-red-500 text-white px-4 py-2 rounded-md"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
           >
             Event List
           </Link>
@@ -93,11 +114,9 @@ const TeamPreview = () => {
               <thead>
                 <tr>
                   <th className="px-4 py-2">S/N</th>
-                  {/* <th className="px-4 py-2">Photo</th> */}
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Phone</th>
-                  <th className="px-4 py-2">Role</th>
                 </tr>
               </thead>
 
@@ -114,7 +133,6 @@ const TeamPreview = () => {
                       <td className="border px-4 py-2">{email}</td>
 
                       <td className="border px-4 py-2">{phone}</td>
-                      <td className="border px-4 py-2">{role}</td>
                     </tr>
                   );
                 })}

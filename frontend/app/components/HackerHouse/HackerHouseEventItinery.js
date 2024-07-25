@@ -13,7 +13,7 @@ const HackerHouseEventItinery = () => {
       ],
     },
     {
-      date: "Lorem",
+      date: "[in view]",
       events: [
         "10am: Opening ceremony",
         "10:30am-12:30AM: Hacking & workshops",
@@ -56,10 +56,13 @@ const HackerHouseEventItinery = () => {
         ))}
       </div>
 
-      <div className="flex justify-center mt-20 mb-20">
-        <button className="w-[353px] h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE] sm:w-[350px] sm:h-[60px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg">
+      <div className="flex justify-center mt-20 mb-20 px-[5px] ">
+        <a
+          href="https://forms.gle/ea5B6C16hif4YYtz8"
+          className=" w-full h-[55px] p-[10px] flex justify-center items-center gap-[10px] rounded-lg bg-orange-500 text-[#F7FCFE] sm:w-[350px] sm:h-[60px] sm:text-sm md:w-[300px] md:h-[50px] md:text-base lg:w-[400px] lg:h-[60px] lg:text-lg"
+        >
           Sign up for Hacker house
-        </button>
+        </a>
       </div>
     </div>
   );

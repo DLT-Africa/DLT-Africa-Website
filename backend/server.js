@@ -13,7 +13,32 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-//serve static files
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+
+      "https://talent-pool-server.vercel.app",
+      "https://dlt-africa-website-frontend.vercel.app",
+      "https://dlt-africa-talent-pool.vercel.app",
+      "https://dltafrica.io",
+    ],
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 200,
+  })
+);
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+  next();
+});
+
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use(express.json());
@@ -21,14 +46,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "*", "https://api.facts.ng/v1/states"],
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  })
-);
+// Handle preflight requests
+app.options("*", cors());
 
+// Log origin requests for debugging
+app.use((req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+  next();
+});
+// Routes
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
@@ -43,5 +69,5 @@ connectDB();
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
-  app.listen(PORT, console.log(`Server up and running on port ${PORT}`));
+  app.listen(PORT, () => console.log(`Server up and running on port ${PORT}`));
 });
