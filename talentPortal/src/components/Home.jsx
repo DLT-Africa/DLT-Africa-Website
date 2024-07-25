@@ -19,6 +19,7 @@ const initialState = {
   uploadResume: "",
   gender: "",
   gitHubLink: "",
+  description: "",
   addImage: "",
   skills: [],
 };
@@ -35,7 +36,9 @@ const Home = () => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await axios.get(`${URL}/api/v1/skill/skills`);
+        const response = await axios.get(
+          `https://talent-pool-server.vercel.app/api/v1/skill/skills`
+        );
         const skillCategories = Object.keys(response.data).filter(
           (key) => key !== "_id" && key !== "__v"
         );
@@ -72,6 +75,7 @@ const Home = () => {
       gender,
       gitHubLink,
       addImage,
+      description,
     } = formData;
 
     if (
@@ -81,7 +85,8 @@ const Home = () => {
       !uploadResume ||
       !gender ||
       !gitHubLink ||
-      !addImage
+      !addImage ||
+      !description
     ) {
       return toast.error("All fields are required");
     }
@@ -274,34 +279,47 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="skills" className="text-[14px] font-Poppins">
-                Skill Set:
+              <label htmlFor="description" className="text-[14px] font-Poppins">
+                Short Description:
               </label>
-              <div className="flex flex-wrap gap-2">
-                {availableSkills.map((skill) => (
-                  <div key={skill} className="flex items-center">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        name="skills"
-                        value={skill}
-                        checked={formData.skills.includes(skill)}
-                        onChange={(e) => {
-                          const selectedSkills = [...formData.skills];
-                          if (e.target.checked) {
-                            selectedSkills.push(skill);
-                          } else {
-                            const index = selectedSkills.indexOf(skill);
-                            if (index > -1) selectedSkills.splice(index, 1);
-                          }
-                          setFormData({ ...formData, skills: selectedSkills });
-                        }}
-                      />
-                      {skill}
-                    </label>
-                  </div>
-                ))}
-              </div>
+              <textarea
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="I am a ...."
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-full md:w-1/2 gap-2">
+            <label htmlFor="skills" className="text-[14px] font-Poppins">
+              Skill Set:
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {availableSkills.map((skill) => (
+                <div key={skill} className="flex items-center">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name="skills"
+                      value={skill}
+                      checked={formData.skills.includes(skill)}
+                      onChange={(e) => {
+                        const selectedSkills = [...formData.skills];
+                        if (e.target.checked) {
+                          selectedSkills.push(skill);
+                        } else {
+                          const index = selectedSkills.indexOf(skill);
+                          if (index > -1) selectedSkills.splice(index, 1);
+                        }
+                        setFormData({ ...formData, skills: selectedSkills });
+                      }}
+                    />
+                    {skill}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
 

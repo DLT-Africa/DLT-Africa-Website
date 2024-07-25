@@ -1,9 +1,9 @@
-import TalentPage from "@/app/components/TalentPool/TalentPool";
+import TalentPool from "../components/TalentPool/TalentPool";
 
 const page = () => {
   return (
     <div>
-      <TalentPage />
+      <TalentPool />
     </div>
   );
 };
