@@ -96,6 +96,14 @@ const Footer = () => {
                 Our Team
               </Link>
             </li>
+            <li className="mb-[21px] text-sm md:text-lg">
+              <Link
+                href="/talent-pool"
+                className="hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+              >
+                Talent Pool
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
