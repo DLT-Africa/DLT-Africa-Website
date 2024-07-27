@@ -40,3 +40,36 @@ select:-webkit-autofill:active {
 }
 
 
+/* Add these styles to your global CSS file */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  marginRight: '-50%';
+  transform: translate(-50%, -50%);
+  background: #FFEFD4;
+  padding: 2em;
+  borderRadius: '10px';
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)';
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backgroundColor: 'rgba(0, 0, 0, 0.75)';
+}
+
+.close-modal {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  fontSize: '1.5em';
+  cursor: pointer;
+}
