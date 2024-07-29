@@ -10,10 +10,12 @@ module.exports = withMT({
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
 
-  theme: {},
-  plugins: [],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        dmSerifDisplay: ["DM Serif Display", "serif"],
+      },
       animation: {
         "infinite-scroll": "infinite-scroll 25s linear infinite",
       },
@@ -25,4 +27,5 @@ module.exports = withMT({
       },
     },
   },
+  plugins: [],
 });
