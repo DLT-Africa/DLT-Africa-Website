@@ -5,6 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
+import Modal from "react-modal";
+import NewForm from "./TalentPoolForm"; // Make sure the path is correct
 
 const URL = "https://talent-pool-server.vercel.app";
 
@@ -15,6 +17,7 @@ const TalentPool = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const [selectedTalent, setSelectedTalent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -68,6 +71,14 @@ const TalentPool = () => {
 
   const handleCardClick = (talent) => {
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
+  };
+
+  const handleContactClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   const capitalizeFirstLetter = (string) => {
@@ -176,7 +187,10 @@ const TalentPool = () => {
                 GitHub
               </a>
 
-              <button className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]">
+              <button 
+                className="border-[#C54809] border py-[18px] px-[19.5px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                onClick={handleContactClick}
+              >
                 Contact
               </button>
             </div>
@@ -233,6 +247,19 @@ const TalentPool = () => {
           <MdOutlineNavigateNext />
         </button>
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+        className="modal"
+        overlayClassName="overlay"
+        contentLabel="Contact Form Modal"
+      >
+        <NewForm />
+        <button onClick={handleCloseModal} className="close-modal">
+          Close
+        </button>
+      </Modal>
     </section>
   );
 };
