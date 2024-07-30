@@ -5,8 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
-import Modal from "react-modal";
-import NewForm from "./TalentPoolForm"; // Make sure the path is correct
+
+import NewForm from "./TalentPoolForm";
 
 const URL = "https://talent-pool-server.vercel.app";
 
@@ -57,7 +57,7 @@ const TalentPool = () => {
       } else if (prevSkills.length < 2) {
         return [...prevSkills, skill];
       } else {
-        return [prevSkills[1], skill]; // Maintain only two selections
+        return [prevSkills[1], skill];
       }
     });
     setCurrentPage(1);
@@ -70,10 +70,14 @@ const TalentPool = () => {
   };
 
   const handleCardClick = (talent) => {
+    console.log("Selected talent:", talent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
   };
 
-  const handleContactClick = () => {
+  const handleContactClick = (talent) => {
+    console.log("Opening modal with talent:", selectedTalent);
+    setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
+
     setIsModalOpen(true);
   };
 
@@ -87,22 +91,67 @@ const TalentPool = () => {
 
   const renderButtons = () => {
     const buttonStyles = [
-      "border border-[#C54809] text-[#C54809] py-2 px-4 m-2 rounded flex items-center justify-center text-[16px] cursor-pointer capitalize",
-      "border border-[#1E9500] text-[#1E9500] py-2 px-4 m-2 rounded flex items-center justify-center text-[16px] cursor-pointer capitalize",
-      "border border-[#C54809] text-[#C54809] py-2 px-4 m-2 rounded flex items-center justify-center text-[16px] cursor-pointer capitalize",
-      "border border-[#1E9500] text-[#1E9500] py-2 px-4 m-2 rounded flex items-center justify-center text-[16px] cursor-pointer capitalize",
+      {
+        border: "border border-[#C54809]",
+        textColor: "text-[#C54809]",
+        padding: "py-2 px-4",
+        margin: "m-2",
+        borderRadius: "rounded",
+        display: "flex items-center justify-center",
+        fontSize: "text-[16px]",
+        cursor: "cursor-pointer",
+        textTransform: "capitalize",
+      },
+      {
+        border: "border border-[#1E9500]",
+        textColor: "text-[#1E9500]",
+        padding: "py-2 px-4",
+        margin: "m-2",
+        borderRadius: "rounded",
+        display: "flex items-center justify-center",
+        fontSize: "text-[16px]",
+        cursor: "cursor-pointer",
+        textTransform: "capitalize",
+      },
+      {
+        border: "border border-[#C54809]",
+        textColor: "text-[#C54809]",
+        padding: "py-2 px-4",
+        margin: "m-2",
+        borderRadius: "rounded",
+        display: "flex items-center justify-center",
+        fontSize: "text-[16px]",
+        cursor: "cursor-pointer",
+        textTransform: "capitalize",
+      },
+      {
+        border: "border border-[#1E9500]",
+        textColor: "text-[#1E9500]",
+        padding: "py-2 px-4",
+        margin: "m-2",
+        borderRadius: "rounded",
+        display: "flex items-center justify-center",
+        fontSize: "text-[16px]",
+        cursor: "cursor-pointer",
+        textTransform: "capitalize",
+      },
     ];
 
-    const skillNames = {
-      blockchain: "Blockchain Devs",
-      frontend: "Frontend Devs",
-      productDesign: "UI/UX Designers",
-      fullstack: "Fullstack Devs",
+    const createButtonClass = (style) => {
+      return `${style.border} ${style.textColor} ${style.padding} ${style.margin} ${style.borderRadius} ${style.display} ${style.fontSize} ${style.cursor} ${style.textTransform}`;
+    };
+    const extractColorFromClass = (classString, prefix) => {
+      const regex = new RegExp(`${prefix}-\\[(#[a-fA-F0-9]+)\\]`);
+      const match = classString.match(regex);
+      return match ? match[1] : null;
     };
 
     return availableSkills.map((skill, index) => {
-      const styles = buttonStyles[index % buttonStyles.length];
+      const style = buttonStyles[index % buttonStyles.length];
+      const styles = createButtonClass(style);
       const isSelected = selectedSkills.includes(skill);
+      const borderColor = extractColorFromClass(styles, "border");
+      const textColor = extractColorFromClass(styles, "text");
       return (
         <label
           key={index}
@@ -114,9 +163,12 @@ const TalentPool = () => {
             value={skill}
             checked={isSelected}
             onChange={() => handleSkillChange(skill)}
-            className="cursor-pointer mr-2"
+            className={`cursor-pointer mr-2 border ${borderColor}`}
+            style={{
+              accentColor: textColor,
+            }}
           />
-          {skillNames[skill] || skill}
+          {skill}
         </label>
       );
     });
@@ -129,9 +181,9 @@ const TalentPool = () => {
 
     if (filteredTalents.length === 0) {
       return (
-        <div className="text-center w-screen">
-          <p className="text-[20px] my-10 ">
-            No talent for these skills yet... Check back later.
+        <div className="text-center w-full">
+          <p className="text-[20px] my-10 text-center">
+            No talent for these skills yet...
           </p>
         </div>
       );
@@ -146,7 +198,7 @@ const TalentPool = () => {
     return paginatedTalents.map((talent, index) => (
       <div
         key={index}
-        className={`m-2 bg-white shadow rounded-[10px] h-[473px] w-[387px] flex justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${
+        className={`m-2 bg-white shadow rounded-[10px] w-[300px] h-[400px] md:h-[473px] md:w-[387px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${
           selectedTalent === talent ? "selected" : ""
         }`}
         onClick={() => handleCardClick(talent)}
@@ -156,7 +208,7 @@ const TalentPool = () => {
             <div className="w-full flex flex-col items-center gap-[10px]">
               <img
                 src={talent.addImage}
-                className="h-[180px] w-[180px] rounded-full"
+                className="w-[100px] h-[100px] md:h-[180px] md:w-[180px] rounded-full"
               />
               <p className="font-dmSerifDisplay font-medium text-[22px] text-[#3E493C] ">
                 {talent.fullName}
@@ -168,27 +220,26 @@ const TalentPool = () => {
             <div className="w-full flex  min-h-[50px] items-center justify-center">
               <p className=" break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
                 {" "}
-                Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis
+                {talent.description}
               </p>
             </div>
-            <div className="flex items-center justify-center gap-[7px] ">
+            <div className="flex items-center justify-center gap-[7px]  ">
               <a
                 href={talent.uploadResume}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 Resume
               </a>
 
               <a
                 href={talent.gitHubLink}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 GitHub
               </a>
 
-              <button 
-                className="border-[#C54809] border py-[18px] px-[19.5px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+              <button
+                className="border-[#C54809] border p-[10px]  rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
                 onClick={handleContactClick}
               >
                 Contact
@@ -222,44 +273,45 @@ const TalentPool = () => {
         DLT Africa Talent Pool
       </h1>
 
-      <div className="flex  flex-wrap w-full px-[50px]	 md:flex-nowrap	 p-4">
+      <div className="flex w-full px-[10px] md:px-[50px] btnContainer">
         {renderButtons()}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 w-full px-[50px]">
+      <div className="flex flex-col items-center md:grid md:grid-cols-3 gap-4 w-full px-[10px] md:px-[50px] py-[50px]">
         {renderTalents()}
       </div>
 
-      <div className="flex items-center justify-center gap-4 mb-4">
+      <div className="flex justify-between px-[10px] w-full max-w-[800px] mt-4">
         <button
-          className="flex items-center justify-center p-2 rounded-full bg-white shadow-md"
           onClick={() => handlePageChange("prev")}
+          className={`${
+            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+          } bg-[#C54809] text-white font-medium p-2 rounded`}
+          disabled={currentPage === 1}
         >
           <IoIosArrowBack />
         </button>
-        <p className="text-[16px] font-poppins font-normal text-[#1D1D1D]">
-          Page {currentPage}
-        </p>
         <button
-          className="flex items-center justify-center p-2 rounded-full bg-white shadow-md"
           onClick={() => handlePageChange("next")}
+          className={`${
+            talents.length <= currentPage * itemsPerPage
+              ? "opacity-50 cursor-not-allowed"
+              : ""
+          } bg-[#C54809] text-white font-medium p-2 rounded`}
+          disabled={talents.length <= currentPage * itemsPerPage}
         >
           <MdOutlineNavigateNext />
         </button>
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={handleCloseModal}
-        className="modal"
-        overlayClassName="overlay"
-        contentLabel="Contact Form Modal"
-      >
-        <NewForm />
-        <button onClick={handleCloseModal} className="close-modal">
-          Close
-        </button>
-      </Modal>
+      {isModalOpen && selectedTalent && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-90 w-screen">
+          <NewForm
+            selectedTalent={selectedTalent}
+            handleCloseModal={handleCloseModal}
+          />
+        </div>
+      )}
     </section>
   );
 };
