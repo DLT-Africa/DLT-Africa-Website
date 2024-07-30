@@ -51,7 +51,7 @@ const updateSkill = async (req, res) => {
   }
 };
 
-// Delete skill document
+// Delete skill document.
 const deleteSkills = async (req, res) => {
   try {
     await Skill.deleteOne({});
