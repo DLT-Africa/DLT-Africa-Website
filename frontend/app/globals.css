@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&family=DM+Serif+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&family=DM+Serif+Display&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,10 +8,9 @@
   width: 5px;
   height: 8px;
   border-radius: 20px;
-  background-color: #c2c2c2; /* or add it to the track */
+  background-color: #c2c2c2;
 }
 
-/* Add a thumb */
 .mostly-customized-scrollbar::-webkit-scrollbar-thumb {
   background: #505050;
   border-radius: 20px;
@@ -35,24 +34,26 @@ select:-webkit-autofill:active {
   transition: background-color 5000000s ease-in-out 0s;
 }
 
-.glass{
+.glass {
   background-image: linear-gradient(180deg, transparent, rgb(34, 33, 33, 0.7));
 }
 
-
-/* Add these styles to your global CSS file */
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
-  marginRight: '-50%';
+  margin-right: -50%;
   transform: translate(-50%, -50%);
-  background: #FFEFD4;
+  background: #ffefd4;
   padding: 2em;
-  borderRadius: '10px';
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)';
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .overlay {
@@ -61,7 +62,7 @@ select:-webkit-autofill:active {
   left: 0;
   right: 0;
   bottom: 0;
-  backgroundColor: 'rgba(0, 0, 0, 0.75)';
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .close-modal {
@@ -70,6 +71,19 @@ select:-webkit-autofill:active {
   right: 1em;
   background: none;
   border: none;
-  fontSize: '1.5em';
+  font-size: 1.5em;
   cursor: pointer;
+}
+
+.btnContainer {
+  overflow-y: scroll;
+}
+
+.btnContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.btnContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
