@@ -54,8 +54,6 @@ const TalentPool = () => {
     setSelectedSkills((prevSkills) => {
       if (prevSkills.includes(skill)) {
         return prevSkills.filter((s) => s !== skill);
-      // } else if (prevSkills.length < 2) {
-      //   return [...prevSkills, skill];
       } else {
         return [...prevSkills, skill];
       }
@@ -217,7 +215,7 @@ const TalentPool = () => {
                 {capitalizeFirstLetter(talent.skills[0])}
               </p>
             </div>
-            <div className="w-full flex  min-h-[50px] items-center justify-center">
+            <div className="w-full flex min-h-[50px] items-center justify-center">
               <p className=" break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
                 {" "}
                 {talent.description}

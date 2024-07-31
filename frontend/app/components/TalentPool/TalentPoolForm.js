@@ -67,7 +67,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
             {selectedTalent.fullName}
           </p>
           <p className="text-2xl font-semibold mb-4 capitalize">
-            Role: {selectedTalent.role}
+            Major: {selectedTalent.role}
           </p>
         </div>
 
