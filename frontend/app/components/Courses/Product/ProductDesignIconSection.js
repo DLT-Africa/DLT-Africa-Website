@@ -25,7 +25,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "3rd July, 2024",
+    text: "To Be Communicated",
     icon: <BsCalendar4Event />,
     courseConClass: " py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -47,7 +47,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "Our Product Design course cost sum of One hundred and Seventy thousand naira only.(#170,000)",
+    text: "To Be Communicated",
     icon: <CgBrowser />, // Corrected to SlCalendar
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
