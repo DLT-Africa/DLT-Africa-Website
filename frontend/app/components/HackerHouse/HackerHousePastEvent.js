@@ -14,11 +14,8 @@ import {
   Card,
   Typography,
   Chip,
-  Avatar,
   IconButton,
 } from "@material-tailwind/react";
-import Image from "next/image";
-const BACKEND_URL = process.env.BACKEND_URL;
 const HackerHousePastEvent = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [eventData, setEventData] = useState([]);
@@ -33,6 +30,7 @@ const HackerHousePastEvent = () => {
           `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
         );
         setEventData(response.data);
+        console.log(response.data)
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -56,22 +54,7 @@ const HackerHousePastEvent = () => {
       label: "All",
       value: "all",
     },
-    // {
-    //   label: "Hackaton",
-    //   value: "hackaton",
-    // },
-    // {
-    //   label: "Bootcamp",
-    //   value: "bootcamp",
-    // },
-    // {
-    //   label: "Event",
-    //   value: "event",
-    // },
-    // {
-    //   label: "Incubator",
-    //   value: "incubator",
-    // },
+    
   ];
 
   return (

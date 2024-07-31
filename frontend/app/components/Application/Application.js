@@ -246,7 +246,7 @@ const Application = () => {
               </p>
             </div>
             <div className="p-4 flex justify-end ">
-              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] pt-10 pl-6 max-w-[404px]">
+              <div className=" border rounded-2xl border-gray-600 bg-[#FFF] p-6 max-w-[404px]">
                 <div className="flex flex-col">
                   <div className="flex gap-2">
                     {" "}
