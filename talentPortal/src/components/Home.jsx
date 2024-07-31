@@ -301,7 +301,7 @@ const Home = () => {
                 htmlFor="uploadResume"
                 className="text-[14px] font-Poppins"
               >
-                Role:
+                Major:
               </label>
               <input
                 type="text"
