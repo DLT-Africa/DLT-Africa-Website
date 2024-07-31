@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import animationData from "../../../json-data/character-circular.json";
+import animationData from "../../../json-data/color-render.json";
 
 const HeroSection = () => {
   if (typeof document !== 'undefined') {
