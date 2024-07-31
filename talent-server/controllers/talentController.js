@@ -17,13 +17,6 @@ exports.register = async (req, res) => {
       description
     } = req.body;
 
-    const talentExists = await Talent.findOne({ emailAddress });
-
-    if (talentExists) {
-      res.status(400);
-      throw new Error("Email already in use.");
-    }
-
     const newRegistration = new Talent({
       fullName,
       phoneNumber,

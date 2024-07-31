@@ -20,7 +20,7 @@ const IconSection = ({
       setIsSmallDevice(mediaQuery.matches);
     };
     mediaQuery.addListener(handleResize);
-    handleResize(); // Initial check
+    handleResize(); 
     return () => {
       mediaQuery.removeListener(handleResize);
     };

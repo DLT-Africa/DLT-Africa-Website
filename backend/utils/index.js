@@ -37,10 +37,10 @@ const calculateTuitionFee = (courseSelected, classType) => {
   if (classType === "Physical") {
     switch (courseSelected) {
       case "Frontend Development":
-        tuitionFee = 0.5 * 410000;
+        tuitionFee = 0 * 0;
         break;
       case "Full-Stack Development":
-        tuitionFee = 0.5 * 630000;
+        tuitionFee = 0 * 0;
         break;
       default:
         tuitionFee = 0;
@@ -48,10 +48,10 @@ const calculateTuitionFee = (courseSelected, classType) => {
   } else if (classType === "Online") {
     switch (courseSelected) {
       case "Frontend Development":
-        tuitionFee = 0.8 * 320000;
+        tuitionFee = 0 * 0;
         break;
       case "Product UI/UX Design":
-        tuitionFee = 0.65 * 170000;
+        tuitionFee = 0 * 0;
         break;
       case "Blockchain Development":
         tuitionFee = 0;
