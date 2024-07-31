@@ -13,7 +13,7 @@ const URL = "https://talent-pool-server.vercel.app";
 const TalentPool = () => {
   const [availableSkills, setAvailableSkills] = useState([]);
   const [talents, setTalents] = useState([]);
-  const [selectedSkills, setSelectedSkills] = useState(["frontend"]);
+  const [selectedSkills, setSelectedSkills] = useState(["Frontend"]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const [selectedTalent, setSelectedTalent] = useState(null);
@@ -54,10 +54,10 @@ const TalentPool = () => {
     setSelectedSkills((prevSkills) => {
       if (prevSkills.includes(skill)) {
         return prevSkills.filter((s) => s !== skill);
-      } else if (prevSkills.length < 2) {
-        return [...prevSkills, skill];
+      // } else if (prevSkills.length < 2) {
+      //   return [...prevSkills, skill];
       } else {
-        return [prevSkills[1], skill];
+        return [...prevSkills, skill];
       }
     });
     setCurrentPage(1);
