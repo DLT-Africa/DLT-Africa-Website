@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const talentRoutes = require("./routes/talentRoute");
 const skillRoute = require("./routes/skillRoute");
+const contactRoute = require("./routes/contactRoute");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/v1/talent", talentRoutes);
 app.use("/api/v1/skill", skillRoute);
+app.use("/api/v1/contact", skillRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");

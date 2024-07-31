@@ -27,6 +27,7 @@ const CreateEvent = () => {
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
+    console.log(e.target.value)
     setFormData({
       ...formData,
       [name]: value,

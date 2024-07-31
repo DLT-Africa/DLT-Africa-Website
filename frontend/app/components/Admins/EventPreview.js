@@ -144,7 +144,7 @@ const EventPreview = () => {
                   <th className="px-4 py-2">S/N</th>
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Category</th>
-                  <th className="px-4 py-2">Start Date</th>
+                  <th className="px-4 py-2">Date</th>
                   <th className="px-4 py-2">Duration</th>
                   <th className="px-4 py-2">Venue</th>
                 </tr>
@@ -191,7 +191,7 @@ const EventPreview = () => {
                 {selectedEventId && (
                   <div>
                     <div className="overlay" onClick={handleCloseModal}></div>
-                    <div className="modal">
+                    <div className="modal z-40">
                       <button
                         onClick={handleCloseModal}
                         className="p-2 text-[#fff] bg-red-500 t-[20px] mt-1 "

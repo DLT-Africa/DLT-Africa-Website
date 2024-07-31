@@ -25,3 +25,18 @@ body {
   animation: slide 0.5s ease-in-out;
   -webkit-animation: slide 0.5s ease-in-out;
 }
+
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #FC7C13;
+  padding: 2px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #fc7c1399;
+}

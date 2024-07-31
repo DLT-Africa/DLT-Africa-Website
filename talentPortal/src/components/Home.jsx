@@ -21,6 +21,7 @@ const initialState = {
   gitHubLink: "",
   description: "",
   addImage: "",
+  role: "",
   skills: [],
 };
 
@@ -76,6 +77,7 @@ const Home = () => {
       gitHubLink,
       addImage,
       description,
+      role
     } = formData;
 
     if (
@@ -86,7 +88,8 @@ const Home = () => {
       !gender ||
       !gitHubLink ||
       !addImage ||
-      !description
+      !description ||
+      !role
     ) {
       return toast.error("All fields are required");
     }
@@ -292,10 +295,30 @@ const Home = () => {
               />
             </div>
           </div>
+          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label
+                htmlFor="uploadResume"
+                className="text-[14px] font-Poppins"
+              >
+                Role:
+              </label>
+              <input
+                type="text"
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="frontend developer || backend developer"
+              />
+            </div>
+
+
           <div className="flex flex-col w-full md:w-1/2 gap-2">
             <label htmlFor="skills" className="text-[14px] font-Poppins">
               Skill Set:
             </label>
+            <code className="text-[8px] ">pick all that applies to you</code>
             <div className="flex flex-wrap gap-2">
               {availableSkills.map((skill) => (
                 <div key={skill} className="flex items-center">
@@ -321,6 +344,7 @@ const Home = () => {
                 </div>
               ))}
             </div>
+          </div>
           </div>
 
           <div className="flex justify-center items-center">

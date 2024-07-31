@@ -6,14 +6,16 @@ import { useRouter } from "next/navigation";
 import { Button, Input } from "@material-tailwind/react";
 import Loader from "@/app/components/Application/Loader";
 
-const NewForm = () => {
+const URL = "https://talent-pool-server.vercel.app";
+
+const NewForm = ({ selectedTalent, handleCloseModal }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    email: "",
-    calendlylink: "",
+    emailAddress: "",
+    calendlyLink: "",
     companyName: "",
+    talentId: selectedTalent._id,
   });
-
   const [formValidMessage, setFormValidMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -29,20 +31,21 @@ const NewForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, calendlylink, companyName } = formData;
+    const { emailAddress, calendlyLink, companyName } = formData;
 
-    if (!email || !calendlylink || !companyName) {
+    if (!emailAddress || !calendlyLink || !companyName) {
       setFormValidMessage("Oops! all fields are required");
       return;
     }
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-backend.vercel.app/api/v1/some-endpoint`, formData)
+      .post(`${URL}/api/v1/contact/create-form`, formData)
       .then((response) => {
         console.log(response.data);
         setIsSubmitting(false);
-        router.push("/some-success-page");
+        handleCloseModal();
+        router.push("/talent-pool");
       })
       .catch((error) => {
         setIsSubmitting(false);
@@ -51,17 +54,32 @@ const NewForm = () => {
   };
 
   return (
-    <div className="border ">
+    <div className="w-full md:w-[800px]  px-4 py-8 md:px-8 md:py-10 rounded-lg ">
+      <div className="bg-white p-8 rounded-lg w-full flex flex-col gap-2 relative">
+        <button
+          className="absolute top-0 right-[10px] text-orange-600 text-[25px] "
+          onClick={handleCloseModal}
+        >
+          X
+        </button>
+        <div className="flex justify-between items-center">
+          <p className="text-2xl font-semibold mb-4">
+            {selectedTalent.fullName}
+          </p>
+          <p className="text-2xl font-semibold mb-4 capitalize">
+            Role: {selectedTalent.role}
+          </p>
+        </div>
 
-    <div className="w-full max-w-lg px-4 py-8 md:px-8 md:py-10 rounded-lg mx-auto">
-      <div className="px-4 md:px-8">
+        <code className="text-black my-2">Fill the form below</code>
+
         <form onSubmit={handleSubmit}>
           <div className="grid gap-y-6 text-center">
             <div>
               <Input
                 size="lg"
                 type="email"
-                name="email"
+                name="emailAddress"
                 variant="static"
                 label="Email Address"
                 className="pl-4 text-xl"
@@ -72,7 +90,7 @@ const NewForm = () => {
                   className: "h-14",
                 }}
                 placeholder="Alexander@dltafrica.io"
-                value={formData.email}
+                value={formData.emailAddress}
                 onChange={handleChange}
               />
             </div>
@@ -80,7 +98,7 @@ const NewForm = () => {
               <Input
                 size="lg"
                 type="text"
-                name="calendlylink"
+                name="calendlyLink"
                 variant="static"
                 label="Calendly link"
                 className="pl-4 text-xl"
@@ -90,8 +108,8 @@ const NewForm = () => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="http//calendly/schedule/create-meeting"
-                value={formData.calendlylink}
+                placeholder="http://calendly/schedule/create-meeting"
+                value={formData.calendlyLink}
                 onChange={handleChange}
               />
             </div>
@@ -109,7 +127,7 @@ const NewForm = () => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="DLT Africa"
+                placeholder="company or individual name"
                 value={formData.companyName}
                 onChange={handleChange}
               />
@@ -131,7 +149,6 @@ const NewForm = () => {
           )}
         </form>
       </div>
-    </div>
     </div>
   );
 };

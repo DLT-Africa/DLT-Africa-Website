@@ -9,7 +9,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
     eventType,
     startDate,
     duration,
-
     eventRegLink,
     eventVenue,
     media,
@@ -42,13 +41,11 @@ const createNewEvent = asyncHandler(async (req, res) => {
   if (event) {
     const {
       _id,
-
       eventName,
       eventCategory,
       eventType,
       startDate,
       duration,
-
       eventRegLink,
       eventVenue,
     } = event;
@@ -60,7 +57,6 @@ const createNewEvent = asyncHandler(async (req, res) => {
       eventType,
       startDate,
       duration,
-
       eventRegLink,
       eventVenue,
     });
