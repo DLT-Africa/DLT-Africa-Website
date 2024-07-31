@@ -51,7 +51,7 @@ const NewForm = () => {
   };
 
   return (
-    <div className="border">
+    <div className="border ">
 
     <div className="w-full max-w-lg px-4 py-8 md:px-8 md:py-10 rounded-lg mx-auto">
       <div className="px-4 md:px-8">

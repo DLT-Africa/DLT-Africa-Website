@@ -54,10 +54,8 @@ const TalentPool = () => {
     setSelectedSkills((prevSkills) => {
       if (prevSkills.includes(skill)) {
         return prevSkills.filter((s) => s !== skill);
-      } else if (prevSkills.length < 2) {
-        return [...prevSkills, skill];
       } else {
-        return [prevSkills[1], skill]; // Maintain only two selections
+        return [...prevSkills, skill];
       }
     });
     setCurrentPage(1);
@@ -97,16 +95,22 @@ const TalentPool = () => {
       blockchain: "Blockchain Devs",
       frontend: "Frontend Devs",
       productDesign: "UI/UX Designers",
-      fullstack: "Fullstack Devs",
+      backend: "Backend Devs",
     };
 
     return availableSkills.map((skill, index) => {
       const styles = buttonStyles[index % buttonStyles.length];
       const isSelected = selectedSkills.includes(skill);
+      const borderColor = styles.match(/#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/)[0];
+      const checkboxStyle = {
+        '--checkbox-border-color': borderColor,
+        '--checkbox-checkmark-color': borderColor,
+      };
+
       return (
         <label
           key={index}
-          className={`${styles} ${isSelected ? "bg-gray-200" : ""}`}
+          className={`${styles} ${isSelected ? "bg-gray-200" : ""} cyberpunk-checkbox-label`}
         >
           <input
             type="checkbox"
@@ -114,7 +118,8 @@ const TalentPool = () => {
             value={skill}
             checked={isSelected}
             onChange={() => handleSkillChange(skill)}
-            className="cursor-pointer mr-2"
+            className="cyberpunk-checkbox"
+            style={checkboxStyle}
           />
           {skillNames[skill] || skill}
         </label>
@@ -175,14 +180,14 @@ const TalentPool = () => {
             <div className="flex items-center justify-center gap-[7px] ">
               <a
                 href={talent.uploadResume}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                className="border-[#C54809] border py-[18px] px-[19.5px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 Resume
               </a>
 
               <a
                 href={talent.gitHubLink}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                className="border-[#C54809] border py-[18px] px-[19.5px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] w-[105px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 GitHub
               </a>
@@ -251,7 +256,7 @@ const TalentPool = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
-        className="modal"
+        className="modal bg-black"
         overlayClassName="overlay"
         contentLabel="Contact Form Modal"
       >
