@@ -8,7 +8,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 import NewForm from "./TalentPoolForm";
 
-const URL = "https://talent-pool-server.vercel.app";
+const URL = "http://localhost:5000";
+// const URL = "https://talent-pool-server.vercel.app";
 
 const TalentPool = () => {
   const [availableSkills, setAvailableSkills] = useState([]);
@@ -54,8 +55,6 @@ const TalentPool = () => {
     setSelectedSkills((prevSkills) => {
       if (prevSkills.includes(skill)) {
         return prevSkills.filter((s) => s !== skill);
-      // } else if (prevSkills.length < 2) {
-      //   return [...prevSkills, skill];
       } else {
         return [...prevSkills, skill];
       }
@@ -87,6 +86,14 @@ const TalentPool = () => {
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  const truncateDescription = (description, wordLimit) => {
+    const words = description.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return description;
   };
 
   const renderButtons = () => {
@@ -176,7 +183,7 @@ const TalentPool = () => {
 
   const renderTalents = () => {
     const filteredTalents = talents.filter((talent) =>
-      selectedSkills.some((skill) => talent.skills.includes(skill))
+      selectedSkills.every((skill) => talent.skills.includes(skill))
     );
 
     if (filteredTalents.length === 0) {
@@ -207,7 +214,7 @@ const TalentPool = () => {
           <div className="h-full w-full detail-card px-[40px] py-[30px] flex flex-col items-center gap-[15px] border-[1px] 	border-orange-400 ">
             <div className="w-full flex flex-col items-center gap-[10px]">
               <img
-                src={talent.addImage}
+                src={talent.profileImage}
                 className="w-[100px] h-[100px] md:h-[180px] md:w-[180px] rounded-full"
               />
               <p className="font-dmSerifDisplay font-medium text-[22px] text-[#3E493C] ">
@@ -218,9 +225,9 @@ const TalentPool = () => {
               </p>
             </div>
             <div className="w-full flex  min-h-[50px] items-center justify-center">
-              <p className=" break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
+              <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
                 {" "}
-                {talent.description}
+                {truncateDescription(talent.description, 30)}
               </p>
             </div>
             <div className="flex items-center justify-center gap-[7px]  ">
@@ -249,7 +256,7 @@ const TalentPool = () => {
         ) : (
           <>
             <img
-              src={talent.addImage}
+              src={talent.bgImage}
               alt={talent.fullName}
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -258,7 +265,7 @@ const TalentPool = () => {
                 {talent.fullName}
               </h2>
               <p className="capitalize text-[16px] font-poppins font-normal text-[#F7FCFE]">
-                {talent.skills[0]}
+                {talent.role}
               </p>
             </div>
           </>
