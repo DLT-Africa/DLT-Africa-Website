@@ -20,7 +20,9 @@ const initialState = {
   gender: "",
   gitHubLink: "",
   description: "",
-  addImage: "",
+  profileImage: "",
+  bgImage: "",
+  role: "",
   skills: [],
 };
 
@@ -58,9 +60,9 @@ const Home = () => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData({ ...formData, addImage: file });
+    const { name, files } = e.target;
+    if (files && files[0]) {
+      setFormData({ ...formData, [name]: files[0] });
     }
   };
 
@@ -74,8 +76,10 @@ const Home = () => {
       uploadResume,
       gender,
       gitHubLink,
-      addImage,
+      profileImage,
+      bgImage,
       description,
+      role,
     } = formData;
 
     if (
@@ -85,8 +89,10 @@ const Home = () => {
       !uploadResume ||
       !gender ||
       !gitHubLink ||
-      !addImage ||
-      !description
+      !profileImage ||
+      !bgImage ||
+      !description ||
+      !role
     ) {
       return toast.error("All fields are required");
     }
@@ -96,8 +102,13 @@ const Home = () => {
     }
 
     try {
-      const imageUrl = await uploadImageToCloudinary(addImage);
-      const userData = { ...formData, addImage: imageUrl || "" };
+      const profileImageUrl = await uploadImageToCloudinary(profileImage);
+      const bgImageUrl = await uploadImageToCloudinary(bgImage);
+      const userData = {
+        ...formData,
+        profileImage: profileImageUrl || "",
+        bgImage: bgImageUrl || "",
+      };
       await dispatch(register(userData));
     } catch (error) {
       console.error("Error during registration:", error);
@@ -249,12 +260,12 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="addImage" className="text-[14px] font-Poppins">
-                Upload Image:
+              <label htmlFor="profileImage" className="text-[14px] font-Poppins">
+                Upload Profile Image:
               </label>
               <input
                 type="file"
-                name="addImage"
+                name="profileImage"
                 onChange={handleFileChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
               />
@@ -279,6 +290,20 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="bgImage" className="text-[14px] font-Poppins">
+                Upload Background Image:
+              </label>
+              <input
+                type="file"
+                name="bgImage"
+                onChange={handleFileChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
               <label htmlFor="description" className="text-[14px] font-Poppins">
                 Short Description:
               </label>
@@ -288,38 +313,56 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ...."
+                placeholder="I am a ....(30 characters )"
+                maxLength="30"
+              />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <label htmlFor="role" className="text-[14px] font-Poppins">
+                Major:
+              </label>
+              <input
+                type="text"
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                placeholder="frontend developer || backend developer"
               />
             </div>
           </div>
-          <div className="flex flex-col w-full md:w-1/2 gap-2">
-            <label htmlFor="skills" className="text-[14px] font-Poppins">
-              Skill Set:
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {availableSkills.map((skill) => (
-                <div key={skill} className="flex items-center">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      name="skills"
-                      value={skill}
-                      checked={formData.skills.includes(skill)}
-                      onChange={(e) => {
-                        const selectedSkills = [...formData.skills];
-                        if (e.target.checked) {
-                          selectedSkills.push(skill);
-                        } else {
-                          const index = selectedSkills.indexOf(skill);
-                          if (index > -1) selectedSkills.splice(index, 1);
-                        }
-                        setFormData({ ...formData, skills: selectedSkills });
-                      }}
-                    />
-                    {skill}
-                  </label>
-                </div>
-              ))}
+
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col w-full gap-2">
+              <label htmlFor="skills" className="text-[14px] font-Poppins">
+                Skill Set:
+              </label>
+              <code className="text-[8px]">Pick all that apply to you</code>
+              <div className="flex flex-wrap gap-2">
+                {availableSkills.map((skill) => (
+                  <div key={skill} className="flex items-center">
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        name="skills"
+                        value={skill}
+                        checked={formData.skills.includes(skill)}
+                        onChange={(e) => {
+                          const selectedSkills = [...formData.skills];
+                          if (e.target.checked) {
+                            selectedSkills.push(skill);
+                          } else {
+                            const index = selectedSkills.indexOf(skill);
+                            if (index > -1) selectedSkills.splice(index, 1);
+                          }
+                          setFormData({ ...formData, skills: selectedSkills });
+                        }}
+                      />
+                      {skill}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

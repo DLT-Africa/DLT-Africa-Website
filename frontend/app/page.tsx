@@ -1,9 +1,11 @@
 "use client";
 
+import dynamic from 'next/dynamic';
+
 import { useEffect, useState } from "react";
 import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 import Faqs from "./components/HomePage/Faq/Faqs";
-import HeroSection from "./components/HomePage/HeroSection/HeroSection";
+// import HeroSection from "./components/HomePage/HeroSection/HeroSection";
 import JoinHackerHouse from "./components/HomePage/JoinHackerHouse/JoinHackerHouse";
 import Partners from "./components/HomePage/Partners/Partners"
 import {
@@ -12,6 +14,7 @@ import {
 } from "./components/HomePage/Register/Register";
 import WhatYou from "./components/HomePage/WhatYou/WhatYou";
 import Loader from "./components/Loader/Loader";
+const HeroSection = dynamic(() => import('./components/HomePage/HeroSection/HeroSection'), { ssr: false });
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

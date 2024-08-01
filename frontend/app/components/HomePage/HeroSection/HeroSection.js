@@ -1,8 +1,13 @@
+"use client";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import animationData from "../../../json-data/character-circular.json";
+import animationData from "../../../json-data/color-render.json";
 
 const HeroSection = () => {
+  if (typeof document !== 'undefined') {
+    // Your code that uses `document`
+    console.log(document.title);
+  }
   return (
     <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[30px] md:gap-[22.76px]  p-[30px] 2xl:px-[60px] items-center justify-between ">
       <div className="lg:w-[448px] mt-[30px] md:mt-0 md:w-[369px]   2xl:w-[740px] flex flex-col md:justify-center  ">
