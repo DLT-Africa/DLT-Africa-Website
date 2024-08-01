@@ -224,8 +224,10 @@ const TalentPool = () => {
                 {capitalizeFirstLetter(talent.skills[0])}
               </p>
             </div>
+
             <div className="w-full flex  min-h-[50px] items-center justify-center">
               <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
+
                 {" "}
                 {truncateDescription(talent.description, 30)}
               </p>
