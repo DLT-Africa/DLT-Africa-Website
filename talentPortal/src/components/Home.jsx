@@ -313,7 +313,8 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ...."
+                placeholder="I am a ....(30 characters )"
+                maxLength="30"
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
