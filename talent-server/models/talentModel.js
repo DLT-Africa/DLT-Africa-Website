@@ -26,9 +26,12 @@ const talentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    addImage: {
+    bgImage: {
       type: String,
       required: true,
+    },
+    profileImage: {
+      type: String,
     },
     description: {
       type: String,
