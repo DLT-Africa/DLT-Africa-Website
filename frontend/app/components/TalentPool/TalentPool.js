@@ -8,8 +8,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 import NewForm from "./TalentPoolForm";
 
-const URL = "http://localhost:5000";
-// const URL = "https://talent-pool-server.vercel.app";
+// const URL = "http://localhost:5000";
+const URL = "https://talent-pool-server.vercel.app";
 
 const TalentPool = () => {
   const [availableSkills, setAvailableSkills] = useState([]);
