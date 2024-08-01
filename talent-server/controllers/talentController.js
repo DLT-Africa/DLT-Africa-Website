@@ -11,10 +11,11 @@ exports.register = async (req, res) => {
       uploadResume,
       gender,
       gitHubLink,
-      addImage,
+      bgImage,
       role,
       skills,
-      description
+      description,
+      profileImage,
     } = req.body;
 
     const newRegistration = new Talent({
@@ -24,8 +25,9 @@ exports.register = async (req, res) => {
       uploadResume,
       gender,
       gitHubLink,
-      addImage,
+      bgImage,
       role,
+      profileImage,
       skills,
       description
     });
