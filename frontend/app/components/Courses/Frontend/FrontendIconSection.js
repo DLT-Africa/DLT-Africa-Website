@@ -28,7 +28,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "To Be Communicated",
+    text: "January 6, 2025",
     icon: <BsCalendar4Event />,
     courseConClass: " py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:
@@ -54,7 +54,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "To Be Communicated",
+    text: "Our frontend course cost sum of Four hundred and Twenty thousand naira only.(#420,000)",
     icon: <CgBrowser />, // Corrected to SlCalendar
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:
