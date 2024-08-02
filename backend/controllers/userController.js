@@ -59,7 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
       to: user.emailAddress,
       subject: "DLT Africa Training Registration Confirmation",
       html: `
-        <img src="https://dltafrica.io/dlt-logo.png" alt="">\n
+        <img src="https://dltafrica.io/dlt-logo.png" alt="DLT Africa logo">\n
         <h1>Hello ${user.firstName},</h1> 
         <p>Thanks for applying for DLT Africa Training to study ${
           user.courseSelected
@@ -95,6 +95,7 @@ const registerUser = asyncHandler(async (req, res) => {
       subject: "New Registration Notification",
       html: `
         <h1>New Registration Notification</h1>
+        <img src="https://dltafrica.io/dlt-logo.png" alt="DLT Africa logo">
         <p>A new student, ${user.firstName} ${user.lastName}, has registered for DLT Africa Training to study ${user.courseSelected} via ${user.classType}.</p>
         <p>Please take necessary actions to review the application.</p>
         <p>Regards,</p>

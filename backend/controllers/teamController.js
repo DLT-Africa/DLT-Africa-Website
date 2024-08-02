@@ -5,10 +5,18 @@ const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
 const jwt = require("jsonwebtoken");
 
-const createTeam = asyncHandler(async (req, res) => {
-  const { name, email, phone } = req.body;
+const validEmails = [
+  "naheem@dltafrica.io",
+  "aliyuanate016@gmail.com",
+  "soliuahmad99@gmail.com",
+  "oluwaseyi@dltafrica.io",
+  "rajiabdullahi907@gmail.com",
+];
 
-  if (!name || !email || !phone) {
+const createTeam = asyncHandler(async (req, res) => {
+  const { name, email, phone, password } = req.body;
+
+  if (!name || !email || !phone || !password) {
     res.status(400);
     throw new Error("Please fill in all the require fields");
   }
@@ -16,6 +24,11 @@ const createTeam = asyncHandler(async (req, res) => {
   if (password.length < 6) {
     res.status(400);
     throw new Error("Password must be up to 6 characters.");
+  }
+
+  if (!validEmails.includes(email)) {
+    res.status(400);
+    throw new Error("Email is not allowed.");
   }
 
   const teamExists = await Team.findOne({ email });
@@ -29,6 +42,7 @@ const createTeam = asyncHandler(async (req, res) => {
     name,
     email,
     phone,
+    password,
   });
 
   const token = generateToken(team._id);
@@ -61,12 +75,12 @@ const createTeam = asyncHandler(async (req, res) => {
 });
 
 const loginTeam = asyncHandler(async (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
 
   //   Validation
-  if (!email) {
+  if (!email || !password) {
     res.status(400);
-    throw new Error("Please input your email");
+    throw new Error("Incorrect email or password, please check and try again!");
   }
 
   const team = await Team.findOne({ email });
@@ -76,10 +90,14 @@ const loginTeam = asyncHandler(async (req, res) => {
     throw new Error("Team not found, please signup");
   }
 
+  const isMatch = await bcrypt.compare(password, team.password);
+  if (!isMatch) {
+    return res.status(400).json({ msg: "Invalid Credentials" });
+  }
 
   const token = generateToken(team._id);
 
-  if (team ) {
+  if (team) {
     res.cookie("token", token, {
       path: "/",
       httpOnly: true,
