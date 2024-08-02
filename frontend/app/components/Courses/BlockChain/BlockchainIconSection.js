@@ -48,7 +48,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "Our Blockchain course is online and the amount still in review",
+    text: "Amount still in review",
     icon: <CgBrowser />, // Corrected to SlCalendar
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
