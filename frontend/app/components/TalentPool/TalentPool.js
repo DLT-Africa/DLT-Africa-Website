@@ -229,7 +229,7 @@ const TalentPool = () => {
               <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
 
                 {" "}
-                {truncateDescription(talent.description, 30)}
+                {truncateDescription(talent.description, 20)}
               </p>
             </div>
             <div className="flex items-center justify-center gap-[7px]  ">
