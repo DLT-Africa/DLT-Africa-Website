@@ -29,21 +29,37 @@ exports.register = async (req, res) => {
       role,
       profileImage,
       skills,
-      description
+      description,
     });
 
     await newRegistration.save();
 
+    // Optimize skill updates
+    const skillsToUpdate = {};
     await Promise.all(
       skills.map(async (skillType) => {
+        if (!skillsToUpdate[skillType]) {
+          skillsToUpdate[skillType] = [];
+        }
+        skillsToUpdate[skillType].push(newRegistration._id);
+      })
+    );
+
+    await Promise.all(
+      Object.keys(skillsToUpdate).map(async (skillType) => {
         const skill = await Skill.findOne({ skillType });
-        if (skill && !skill[skillType].includes(newRegistration._id)) {
-          skill[skillType].push(newRegistration._id);
+        if (skill) {
+          skillsToUpdate[skillType].forEach((id) => {
+            if (!skill[skillType].includes(id)) {
+              skill[skillType].push(id);
+            }
+          });
           await skill.save();
         }
       })
     );
 
+    // Send email asynchronously
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: emailAddress,
@@ -51,7 +67,9 @@ exports.register = async (req, res) => {
       text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
     };
 
-    await sendEmail(mailOptions);
+    sendEmail(mailOptions).catch((error) => {
+      console.error("Error sending email:", error);
+    });
 
     res.status(201).json({
       success: true,

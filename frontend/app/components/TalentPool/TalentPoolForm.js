@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button, Input } from "@material-tailwind/react";
-import Loader from "@/app/components/Application/Loader";
 
 const URL = "https://talent-pool-server.vercel.app";
+// const URL = "http://localhost:5000";
 
 const NewForm = ({ selectedTalent, handleCloseModal }) => {
   const router = useRouter();
