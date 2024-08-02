@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/v1/talent", talentRoutes);
 app.use("/api/v1/skill", skillRoute);
-app.use("/api/v1/contact", skillRoute);
+app.use("/api/v1/contact", contactRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");
