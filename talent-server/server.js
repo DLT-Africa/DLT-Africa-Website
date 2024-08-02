@@ -13,6 +13,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// CORS Middleware
 app.use(
   cors({
     origin: [
@@ -27,16 +28,6 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
-  next();
-});
-
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use(express.json());
@@ -44,12 +35,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.options("*", cors());
-
+// Log the request origin for debugging
 app.use((req, res, next) => {
   console.log("Request Origin:", req.headers.origin);
   next();
 });
+
 // Routes
 app.use("/api/v1/talent", talentRoutes);
 app.use("/api/v1/skill", skillRoute);
