@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button, Input } from "@material-tailwind/react";
 
 const URL = "https://talent-pool-server.vercel.app";
-// const URL = "http://localhost:5000";
+
 
 const NewForm = ({ selectedTalent, handleCloseModal }) => {
   const router = useRouter();
