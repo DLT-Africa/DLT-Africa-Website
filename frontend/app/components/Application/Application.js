@@ -213,7 +213,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-07-31");
+      const deadlineDate = new Date("2024-11-30");
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
@@ -492,7 +492,7 @@ const Application = () => {
               </div>
               <Button
                 type="submit"
-                size="large"
+                size="lg"
                 className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
                   !allCheckboxesChecked && "pointer-events-none opacity-50"
                 }`}

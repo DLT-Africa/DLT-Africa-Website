@@ -25,7 +25,7 @@ const secData = [
   {
     id: 2,
     title: "Date",
-    text: "To Be Communicated",
+    text: "January 6, 2025",
     icon: <BsCalendar4Event />,
     courseConClass: " py-2 px-30 flex flex-row items-center justify-center",
     iconBodyClass:
@@ -51,7 +51,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "To Be Communicated",
+    text: "Our Fullstack course cost sum of Six hundred and Thirty thousand naira only.(#630,000)",
     icon: <CgBrowser />,
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center",
     iconBodyClass:

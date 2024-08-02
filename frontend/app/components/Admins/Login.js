@@ -6,11 +6,11 @@ import axios from "axios";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 
-
 const Login = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
+    password: "",
   });
   const [formValidMessage, setFormValidMessage] = useState();
   const [formCompleted, setFormCompleted] = useState(false);
@@ -25,10 +25,12 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email } = formData;
+    const { email, password } = formData;
 
-    if (!email) {
-      setFormValidMessage("Oops! all fields are required");
+    if (!email || !password) {
+      setFormValidMessage(
+        "Incorrect email or password, please check and try again!"
+      );
       return;
     }
     setIsSubmitting(true);
@@ -88,6 +90,25 @@ const Login = () => {
               }}
               placeholder="yourname@gmail.com"
               value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="grid grid-cols-none md:grid-cols-none gap-y-14 gap-x-14 text-center">
+            <Input
+              size="lg"
+              type="password"
+              name="password"
+              variant="static"
+              label="Password"
+              className="pl-4 text-xl"
+              labelProps={{
+                className: "!text-black",
+              }}
+              containerProps={{
+                className: "h-14 ",
+              }}
+              placeholder=""
+              value={formData.password}
               onChange={handleChange}
             />
           </div>
