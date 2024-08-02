@@ -8,8 +8,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 import NewForm from "./TalentPoolForm";
 
-const URL = "http://localhost:5000";
-// const URL = "https://talent-pool-server.vercel.app";
+// const URL = "http://localhost:5000";
+const URL = "https://talent-pool-server.vercel.app";
 
 const TalentPool = () => {
   const [availableSkills, setAvailableSkills] = useState([]);
@@ -224,8 +224,10 @@ const TalentPool = () => {
                 {capitalizeFirstLetter(talent.skills[0])}
               </p>
             </div>
-            <div className="w-full flex min-h-[50px] items-center justify-center">
-              <p className=" break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
+
+            <div className="w-full flex  min-h-[50px] items-center justify-center">
+              <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
+
                 {" "}
                 {truncateDescription(talent.description, 30)}
               </p>
@@ -276,11 +278,11 @@ const TalentPool = () => {
 
   return (
     <section className="h-auto bg-[#f3f6f6] flex flex-col items-center pb-4">
-      <h1 className="text-[#441606] font-dmSerifDisplay text-[36px] font-medium md:text-[36px] mt-[85px] mb-[61px] font-[400]">
+      <h1 className="text-[#441606] text-center font-dmSerifDisplay text-[36px] font-medium md:text-[36px] mt-[85px] mb-[61px] font-[400]">
         DLT Africa Talent Pool
       </h1>
 
-      <div className="flex w-full px-[10px] md:px-[50px] btnContainer">
+      <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
         {renderButtons()}
       </div>
 

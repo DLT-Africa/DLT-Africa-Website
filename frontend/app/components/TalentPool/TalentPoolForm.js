@@ -108,7 +108,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="http://calendly/schedule/create-meeting"
+                placeholder="https://calendly/schedule/create-meeting"
                 value={formData.calendlyLink}
                 onChange={handleChange}
               />
@@ -139,7 +139,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
               size="lg"
               className="capitalize bg-[#FC7C13] mx-auto w-full max-w-xs h-14 text-lg"
             >
-              {isSubmitting ? <Loader /> : <span>Submit</span>}
+              {isSubmitting ? "Submitting..." : <span>Submit</span>}
             </Button>
           </div>
           {formValidMessage && (
