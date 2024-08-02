@@ -34,7 +34,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
     const { emailAddress, calendlyLink, companyName } = formData;
 
     if (!emailAddress || !calendlyLink || !companyName) {
-      setFormValidMessage("Oops! all fields are required");
+      setFormValidMessage("Oops! All fields are required");
       return;
     }
     setIsSubmitting(true);
@@ -48,8 +48,21 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
         router.push("/talent-pool");
       })
       .catch((error) => {
+        console.error("Error submitting form:", error);
         setIsSubmitting(false);
-        setFormValidMessage("Server error unable to process your submission");
+        if (error.response) {
+          setFormValidMessage(
+            `Server error: ${
+              error.response.data.message || "Unable to process your submission"
+            }`
+          );
+        } else if (error.request) {
+          setFormValidMessage(
+            "No response from server. Please try again later."
+          );
+        } else {
+          setFormValidMessage("Request setup error: " + error.message);
+        }
       });
   };
 
