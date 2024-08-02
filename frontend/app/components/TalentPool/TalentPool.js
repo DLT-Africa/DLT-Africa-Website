@@ -69,12 +69,12 @@ const TalentPool = () => {
   };
 
   const handleCardClick = (talent) => {
-    console.log("Selected talent:", talent);
+    // console.log("Selected talent:", talent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
   };
 
   const handleContactClick = (talent) => {
-    console.log("Opening modal with talent:", selectedTalent);
+    // console.log("Opening modal with talent:", selectedTalent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
 
     setIsModalOpen(true);
@@ -221,7 +221,7 @@ const TalentPool = () => {
                 {talent.fullName}
               </p>
               <p className="font-poppins font-medium text-[16px] text-[#343C33]">
-                {capitalizeFirstLetter(talent.skills[0])}
+                {capitalizeFirstLetter(talent.role)}
               </p>
             </div>
 
@@ -229,7 +229,7 @@ const TalentPool = () => {
               <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
 
                 {" "}
-                {truncateDescription(talent.description, 30)}
+                {truncateDescription(talent.description, 20)}
               </p>
             </div>
             <div className="flex items-center justify-center gap-[7px]  ">
