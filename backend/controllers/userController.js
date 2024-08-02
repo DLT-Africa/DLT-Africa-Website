@@ -59,7 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
       to: user.emailAddress,
       subject: "DLT Africa Training Registration Confirmation",
       html: `
-        <img src="https://dltafrica.io/dlt-logo.png" alt="">\n
+        <img src="https://dltafrica.io/dlt-logo.png" alt="DLT Africa logo">\n
         <h1>Hello ${user.firstName},</h1> 
         <p>Thanks for applying for DLT Africa Training to study ${
           user.courseSelected
@@ -70,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
         <p>If you lack basic knowledge of computers, now is the time to start learning.</p>
         <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of #${tuitionFee.toFixed(
           2
-        )} of the total tuition fee on or before June 30th, 2024.</p>
+        )} of the total tuition fee on or before November 30th, 2024.</p>
         <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
         <p>For payment, kindly make use of the account details below:</p>
         <p>Bank Name: Access Bank</p>
@@ -95,6 +95,7 @@ const registerUser = asyncHandler(async (req, res) => {
       subject: "New Registration Notification",
       html: `
         <h1>New Registration Notification</h1>
+        <img src="https://dltafrica.io/dlt-logo.png" alt="DLT Africa logo">
         <p>A new student, ${user.firstName} ${user.lastName}, has registered for DLT Africa Training to study ${user.courseSelected} via ${user.classType}.</p>
         <p>Please take necessary actions to review the application.</p>
         <p>Regards,</p>
