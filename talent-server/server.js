@@ -13,29 +13,47 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// CORS Middleware
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//       "http://localhost:5173",
+//       "https://dlt-africa-talent-pool.vercel.app",
+//       "https://dltafrica.io",
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//     optionsSuccessStatus: 200,
+//   })
+// );
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://dlt-africa-talent-pool.vercel.app",
+  "https://dltafrica.io",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:5173",
-      "https://dlt-africa-talent-pool.vercel.app",
-      "https://dltafrica.io",
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (e.g., mobile apps, curl requests)
+      if (!origin) return callback(null, true);
+      // Check if the origin is in the list of allowed origins
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    optionsSuccessStatus: 200,
   })
 );
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
-  next();
-});
 
 app.use("/", express.static(path.join(__dirname, "/public")));
 
@@ -44,16 +62,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.options("*", cors());
-
+// Log the request origin for debugging
 app.use((req, res, next) => {
   console.log("Request Origin:", req.headers.origin);
   next();
 });
+
 // Routes
 app.use("/api/v1/talent", talentRoutes);
 app.use("/api/v1/skill", skillRoute);
-app.use("/api/v1/contact", skillRoute);
+app.use("/api/v1/contact", contactRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");

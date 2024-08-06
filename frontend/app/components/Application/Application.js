@@ -117,7 +117,7 @@ const Application = () => {
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (name === "classType" && value === "Online") {
       setFormData({
         ...formData,
