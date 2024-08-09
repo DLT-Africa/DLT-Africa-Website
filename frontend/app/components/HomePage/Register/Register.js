@@ -20,7 +20,7 @@ const RegisterOnline = () => {
               <span className="text-[#252A24]">Ready To Change</span>{" "}
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
-            <div className="w-full lg:w-[450px] xl:w-[540px] lg:text-[20px] text-[16px] lg:text-left xl:text-left font-serif">
+            <div className="w-full   lg:max-w-[450px]  xl:w-[540px] lg:text-[20px] break-words text-wrap text-[16px] lg:text-left xl:text-left font-serif">
               Enroll in our Online Class and receive personalized mentoring from
               seasoned developers and product designers. Dive into interactive
               sessions, hands-on projects, and accelerate your skills from the
