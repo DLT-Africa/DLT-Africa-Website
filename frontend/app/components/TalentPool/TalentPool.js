@@ -68,12 +68,12 @@ const TalentPool = () => {
   };
 
   const handleCardClick = (talent) => {
-    console.log("Selected talent:", talent);
+    // console.log("Selected talent:", talent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
   };
 
   const handleContactClick = (talent) => {
-    console.log("Opening modal with talent:", selectedTalent);
+    // console.log("Opening modal with talent:", selectedTalent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
 
     setIsModalOpen(true);
@@ -220,7 +220,7 @@ const TalentPool = () => {
                 {talent.fullName}
               </p>
               <p className="font-poppins font-medium text-[16px] text-[#343C33]">
-                {capitalizeFirstLetter(talent.skills[0])}
+                {capitalizeFirstLetter(talent.role)}
               </p>
             </div>
 
@@ -277,11 +277,11 @@ const TalentPool = () => {
 
   return (
     <section className="h-auto bg-[#f3f6f6] flex flex-col items-center pb-4">
-      <h1 className="text-[#441606] font-dmSerifDisplay text-[36px] font-medium md:text-[36px] mt-[85px] mb-[61px] font-[400]">
+      <h1 className="text-[#441606] text-center font-dmSerifDisplay text-[36px] font-medium md:text-[36px] mt-[85px] mb-[61px] font-[400]">
         DLT Africa Talent Pool
       </h1>
 
-      <div className="flex w-full px-[10px] md:px-[50px] btnContainer">
+      <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
         {renderButtons()}
       </div>
 
