@@ -5,11 +5,9 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
 import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 import Faqs from "./components/HomePage/Faq/Faqs";
-// import HeroSection from "./components/HomePage/HeroSection/HeroSection";
 import JoinHackerHouse from "./components/HomePage/JoinHackerHouse/JoinHackerHouse";
 import Partners from "./components/HomePage/Partners/Partners"
 import {
-  RegisterOffline,
   RegisterOnline,
 } from "./components/HomePage/Register/Register";
 import WhatYou from "./components/HomePage/WhatYou/WhatYou";

@@ -102,7 +102,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="Alexander@dltafrica.io"
+                placeholder="alexander@dltafrica.io"
                 value={formData.emailAddress}
                 onChange={handleChange}
               />
