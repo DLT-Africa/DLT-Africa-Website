@@ -113,7 +113,7 @@ const Login = () => {
           className="capitalize px-16 py-4 bg-[#FC7C13] my-[35px] w-full text-[16px] transition duration-500 ease-in-out transform hover:-translate-y-1"
           disabled={isSubmitting}
         >
-          {isSubmitting ? <p>Loading...</p> : <span>Sign In</span>}
+          {isSubmitting ? "Loading..." : "Sign In"}
         </Button>
         {formValidMessage && (
           <div className="text-red-600 mt-4">
