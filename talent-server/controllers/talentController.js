@@ -67,9 +67,21 @@ exports.register = async (req, res) => {
       text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
     };
 
-    sendEmail(mailOptions).catch((error) => {
-      console.error("Error sending email:", error);
-    });
+    const notifyOptions = {
+      from: process.env.EMAIL_USER,
+      to: "info@dltafrica.io",
+      subject: "New Talent Registration",
+      text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
+    };
+
+    await Promise.all([
+      sendEmail(mailOptions).catch((error) =>
+        console.error("Error sending registration email:", error)
+      ),
+      sendEmail(notifyOptions).catch((error) =>
+        console.error("Error sending notification email:", error)
+      ),
+    ]);
 
     res.status(201).json({
       success: true,
