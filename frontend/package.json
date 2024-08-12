@@ -1,14 +1,14 @@
 {
   "name": "frontend",
-  "homepage": "https://dltafrica.io/",
+  "homepage": "https://dltafrica.io",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "export": "next export"
+    "export": "next export",
+    "start": "next start"
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.9",
