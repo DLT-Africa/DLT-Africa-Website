@@ -10,7 +10,7 @@ const HeroSection = () => {
   }
   return (
     <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[30px] md:gap-[22.76px]  p-[30px] 2xl:px-[60px] items-center justify-between ">
-      <div className="lg:w-[448px] mt-[30px] md:mt-0 md:w-[369px]   2xl:w-[740px] flex flex-col md:justify-center  ">
+      <div className="lg:w-[500px] mt-[30px] md:mt-0 md:w-[369px]  xl:w-[800px]  2xl:w-[800px] flex flex-col md:justify-center  ">
         <h2 className="text-[#1C1C1C] text-4xl md:text-center lg:text-left lg:text-5xl 2xl:text-7xl md:text-[36px]  leading-[120%] tracking-[3.36px] font-serif">
           Change your career,{" "}
           <span className="text-[#FC7C13] lg:text-5xl md:text-[36px] 2xl:text-7xl  tracking-[3.36px] font-serif">

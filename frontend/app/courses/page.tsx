@@ -1,10 +1,6 @@
 
 import Link from "next/link";
 
-import Course1 from "Course1.png";
-import Course2 from "Course2.png";
-import Course3 from "Course3.png";
-import Course4 from "Course4.png";
 
 const coursesList = [
   {
@@ -12,7 +8,7 @@ const coursesList = [
     courseName: "UI/UX and Prototyping (Product Design)",
     description:
       "User Interface (UI) and User Experience(UX) design are in great demand and are applicable across products and industry domain. With customer experience being the centerfold...  ",
-    media: "Course3.png",
+    media: "/images/Course3.png",
     url: "/product",
   },
   {
@@ -21,7 +17,7 @@ const coursesList = [
     description:
     
       "Start off your career today as a Front-End Web Developer. Learn to build high quality websites with dynamic applications to create stunning user experiences… ",
-    media: "Course2.png",
+    media: "/images/Course2.png",
     url: "/frontend",
   },
   {
@@ -29,7 +25,7 @@ const coursesList = [
     courseName: "Fullstack Web Development",
     description:
       "Acquire the skills and knowledge needed build a complete web development project from scratch to finish. Our Full-Stack Developer's Program is a 6 months program.",
-    media:  "Course1.png",
+    media:  "/images/Course1.png",
     url: "/fullstack",
   },
   {
@@ -37,7 +33,7 @@ const coursesList = [
     courseName: "Blockchain Development (Smart Contract)",
     description:
       "Acquire the skills and knowledge needed to be a Blockchain Developer. The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
-    media: "Course4.png",
+    media: "/images/Course4.png",
     url: "/blockchain",
   },
 ];

@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import {
   Button,
   Checkbox,
@@ -227,11 +225,11 @@ const Application = () => {
   return (
     <div
       className="bg-auto  bg-no-repeat bg-left-top"
-      style={{ backgroundimg: `url(imgs/application-page-bg.svg)` }}
+      style={{ backgroundimg: `url(/images/application-page-bg.svg)` }}
     >
       <div
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
-        style={{ backgroundimg: `url(imgs/application-page-right-bg.svg)` }}
+        style={{ backgroundimg: `url(/images/application-page-right-bg.svg)` }}
       >
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">

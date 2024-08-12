@@ -68,12 +68,12 @@ const TalentPool = () => {
   };
 
   const handleCardClick = (talent) => {
-    console.log("Selected talent:", talent);
+    // console.log("Selected talent:", talent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
   };
 
   const handleContactClick = (talent) => {
-    console.log("Opening modal with talent:", selectedTalent);
+    // console.log("Opening modal with talent:", selectedTalent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
 
     setIsModalOpen(true);
@@ -161,7 +161,9 @@ const TalentPool = () => {
       return (
         <label
           key={index}
-          className={`${styles} ${isSelected ? "bg-gray-200" : ""} cyberpunk-checkbox-label`}
+          className={`${styles} ${
+            isSelected ? "bg-gray-200" : ""
+          } cyberpunk-checkbox-label`}
         >
           <input
             type="checkbox"
@@ -219,35 +221,38 @@ const TalentPool = () => {
               <p className="font-dmSerifDisplay font-medium text-[22px] text-[#3E493C] ">
                 {talent.fullName}
               </p>
-              <p className="font-poppins font-medium text-[16px] text-[#343C33]">
-                {capitalizeFirstLetter(talent.skills[0])}
+              <p className="font-poppins font-medium text-[16px] text-[#343C33] text-center ">
+                {capitalizeFirstLetter(talent.role)}
               </p>
             </div>
 
             <div className="w-full flex  min-h-[50px] items-center justify-center">
-              <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C] ">
-
+              <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C]  ">
                 {" "}
-                {truncateDescription(talent.description, 20)}
+                {truncateDescription(talent.description, 30)}
               </p>
             </div>
-            <div className="flex items-center justify-center gap-[7px]  ">
+            <div className="flex items-center justify-center gap-[7px]">
               <a
                 href={talent.uploadResume}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                target="_blank"
+                rel="noopener noreferrer" 
+                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 Resume
               </a>
 
               <a
                 href={talent.gitHubLink}
-                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 GitHub
               </a>
 
               <button
-                className="border-[#C54809] border p-[10px]  rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px]  hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
+                className="border-[#C54809] border p-[10px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
                 onClick={handleContactClick}
               >
                 Contact
@@ -277,15 +282,15 @@ const TalentPool = () => {
 
   return (
     <section className="h-auto bg-[#f3f6f6] flex flex-col items-center pb-4">
-      <h1 className="text-[#441606] font-dmSerifDisplay text-[36px] font-medium md:text-[36px] mt-[85px] mb-[61px] font-[400]">
+      <h1 className="text-[#441606] text-center font-dmSerifDisplay text-[36px] md:text-[36px] mt-[85px] mb-[61px] font-[400]">
         DLT Africa Talent Pool
       </h1>
 
-      <div className="flex w-full px-[10px] md:px-[50px] btnContainer">
+      <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
         {renderButtons()}
       </div>
 
-      <div className="flex flex-col items-center md:grid md:grid-cols-3 gap-4 w-full px-[10px] md:px-[50px] py-[50px]">
+      <div className="flex flex-col items-center md:flex-row md:flex-wrap lg:justify-start md:justify-center gap-4 w-full px-[10px] md:px-[50px] py-[50px]">
         {renderTalents()}
       </div>
 

@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
   output: "export",
+
+
+  trailingSlash: true,
+
+
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Disable caching
+
     config.cache = false;
     return config;
   },
