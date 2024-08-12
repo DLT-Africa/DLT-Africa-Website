@@ -36,7 +36,6 @@ export default function Home() {
           <JoinHackerHouse />
           <Faqs />
           <CurrentAndUpcoming />
-          {/* <RegisterOffline /> */}
         </div>
       )}
     </div>

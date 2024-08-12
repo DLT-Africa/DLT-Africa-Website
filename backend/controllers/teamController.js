@@ -10,7 +10,7 @@ const validEmails = [
   "aliyuanate016@gmail.com",
   "soliuahmad99@gmail.com",
   "oluwaseyi@dltafrica.io",
-  "rajiabdullahi907@gmail.com",
+  "rajiabdullahi907@outlook.com",
 ];
 
 const createTeam = asyncHandler(async (req, res) => {
