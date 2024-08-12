@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+
 const validEmails = [
   "naheem@dltafrica.io",
   "aliyuanate016@gmail.com",
   "soliuahmad99@gmail.com",
   "oluwaseyi@dltafrica.io",
-  "rajiabdullahi907@gmail.com",
+  "rajiabdullahi907@outlook.com",
 ];
 
 const teamSchema = new mongoose.Schema({
