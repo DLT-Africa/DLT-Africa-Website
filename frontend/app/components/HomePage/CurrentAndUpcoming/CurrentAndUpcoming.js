@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 
-import Current1 from "../../../../public/Current1.png";
 
 const CurrentAndUpcoming = () => {
   const [eventData, setEventData] = useState([]);

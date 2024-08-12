@@ -1,13 +1,10 @@
 import React from "react";
-import Linkedin from "../../../public/images/linkedin.svg";
-import Twitter from "../../../public/images/twitter.svg";
-import Image from "next/image";
 import { BsLinkedin, BsTwitterX } from "react-icons/bs";
 
 const teamMember = [
   {
     id: 1,
-    img: "soliu.jpeg",
+    img: "/images/soliu.jpeg",
     name: "Soliu Ahmad",
     role: "Software Developer",
     description:
@@ -17,7 +14,7 @@ const teamMember = [
   },
   {
     id: 2,
-    img: "naheem.jpeg",
+    img: "/images/naheem.jpeg",
     name: "Naheem Oloyede",
     role: "Software Developer & Team Lead",
     description:
@@ -27,7 +24,7 @@ const teamMember = [
   },
   {
     id: 3,
-    img: "jordan.jpeg",
+    img: "/images/jordan.jpeg",
     name: "Jordan Muthemba",
     role: "Blockchain Developer",
     description:
@@ -37,7 +34,7 @@ const teamMember = [
   },
   {
     id: 4,
-    img: "ameer.jpeg",
+    img: "/images/ameer.jpeg",
     name: "Abdullah Raji",
     role: "Software Developer",
     description:
@@ -47,7 +44,7 @@ const teamMember = [
   },
   {
     id: 5,
-    img: "anate.jpeg",
+    img: "/images/anate.jpeg",
     name: "Aliyu Anate",
     role: "Software Developer",
     description:
@@ -57,7 +54,7 @@ const teamMember = [
   },
   {
     id: 6,
-    img: "fawaz.jpeg",
+    img: "/images/fawaz.jpeg",
     name: "Fawaz Dada",
     role: "Graphic Designer",
     description:
@@ -67,7 +64,7 @@ const teamMember = [
   },
   {
     id: 7,
-    img: "seyi.jpeg",
+    img: "/images/seyi.jpeg",
     name: "Oluwaseyi Abolaji",
     role: "Product Designer & Manager",
     description:
@@ -77,7 +74,7 @@ const teamMember = [
   },
   {
     id: 8,
-    img: "herlew.jpeg",
+    img: "/images/herlew.jpeg",
     name: "Aliu Musa",
     role: "Chief Servant Officer",
     description:

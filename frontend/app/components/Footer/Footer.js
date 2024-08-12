@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import DLT from "../../../public/dlt-logo.png";
 import Link from "next/link";
 
 import {
@@ -19,7 +17,7 @@ const Footer = () => {
           <div className="flex flex-col gap-4  justify-center items-center">
             <a href="">
               {" "}
-              <img src="dlt-logo.png" alt="logo" className="w-[126px] h-[50.797px]" />
+              <img src="/images/dlt-logo.png" alt="logo" className="w-[126px] h-[50.797px]" />
             </a>
 
             <p className="text-neutral-black font-poppins text-sm md:text-lg font-normal leading-[120%]  h-[19px] text-center">

@@ -1,8 +1,4 @@
-import Current1 from "../../../public/Current1.png";
-import Current2 from "../../../public/Current2.png";
-import Current3 from "../../../public/Current3.png";
-import Current4 from "../../../public/Current4.png";
-import Image from "next/image";
+
 import CurrentAndUpcoming from "../HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 
 const EventBootCamps_CurrentAndUpcoming = () => {

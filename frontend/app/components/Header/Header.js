@@ -1,11 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { navbarContent } from "../../configs/navbarConfig";
-import Hamburger from "../../../public/Hamburger.png";
-import dlt from "../../dlt.png";
+
 
 import { Drawer } from "@material-tailwind/react";
 
@@ -52,7 +49,7 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src="wilddlt.png" className="w-[180px]  " />
+            <img src="/images/wilddlt.png" className="w-[180px]  " />
           </Link>
         </div>
         <div className="flex flex-end">
@@ -72,7 +69,7 @@ const Header = () => {
           >
             <div className="my-[10px] flex items-center justify-between ">
               <Link href={"/"} onClick={closeDrawerTop}>
-                <img src="dlt.png" alt="nav-log" />
+                <img src="/images/dlt.png" alt="nav-log" />
               </Link>
               <svg
                 onClick={closeDrawerTop}
