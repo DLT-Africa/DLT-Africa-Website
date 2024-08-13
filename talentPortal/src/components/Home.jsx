@@ -40,6 +40,7 @@ const Home = () => {
       try {
         const response = await axios.get(
           `https://talent-pool-server.vercel.app/api/v1/skill/skills`
+          // `http:localhost:5000/api/v1/skill/skills`
         );
         const skillCategories = Object.keys(response.data).filter(
           (key) => key !== "_id" && key !== "__v"
@@ -99,6 +100,10 @@ const Home = () => {
 
     if (!validateEmail(emailAddress)) {
       return toast.error("Please enter a valid email");
+    }
+
+    if (description.length > 100) {
+      return toast.error("Description must not exceed 100 characters.");
     }
 
     try {
@@ -314,7 +319,7 @@ const Home = () => {
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
                 placeholder="I am a ....(200 characters )"
-               
+
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">

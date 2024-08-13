@@ -18,6 +18,21 @@ exports.register = async (req, res) => {
       profileImage,
     } = req.body;
 
+    const existingTalent = await Talent.findOne({ emailAddress });
+    if (existingTalent) {
+      return res.status(400).json({
+        success: false,
+        message: "Talent already exists with this email address.",
+      });
+    }
+
+    if (description.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Description must not exceed 100 characters.",
+      });
+    }
+
     const newRegistration = new Talent({
       fullName,
       phoneNumber,
