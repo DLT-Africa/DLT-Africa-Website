@@ -1,0 +1,11 @@
+[
+  {
+    "applyTo": "skills",
+    "headers": [
+      {
+        "name": "access-control-allow-origin",
+        "value": "*"
+      }
+    ]
+  }
+]

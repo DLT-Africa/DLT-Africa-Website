@@ -33,14 +33,13 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isSuccess } = useSelector((state) => state.auth);
+  const { isSuccess, isLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
         const response = await axios.get(
           `https://talent-pool-server.vercel.app/api/v1/skill/skills`
-          // `http:localhost:5000/api/v1/skill/skills`
         );
         const skillCategories = Object.keys(response.data).filter(
           (key) => key !== "_id" && key !== "__v"
@@ -318,7 +317,7 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ....(200 characters )"
+                placeholder="I am a ....(100 characters )"
 
               />
             </div>
@@ -376,7 +375,7 @@ const Home = () => {
               type="submit"
               className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
             >
-              Register
+              {isLoading ? "Setting you up  🥳" : "Register"}
             </button>
           </div>
         </form>
