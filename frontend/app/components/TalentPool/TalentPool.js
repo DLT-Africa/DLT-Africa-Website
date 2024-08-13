@@ -18,16 +18,23 @@ const TalentPool = () => {
   const [itemsPerPage] = useState(9);
   const [selectedTalent, setSelectedTalent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     const fetchSkills = async () => {
+      setFetching(true)
       try {
         const response = await axios.get(`${URL}/api/v1/skill/skills`);
         const skillCategories = Object.keys(response.data).filter(
           (key) => key !== "_id" && key !== "__v"
         );
         setAvailableSkills(skillCategories);
+        setFetching(false)
+
       } catch (error) {
+        setFetching(false)
+
         console.error("Error fetching skills:", error);
         toast.error("Error fetching skills");
       }
@@ -38,10 +45,15 @@ const TalentPool = () => {
 
   useEffect(() => {
     const fetchTalents = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(`${URL}/api/v1/talent/talents`);
         setTalents(response.data.data);
+        setLoading(false)
+
       } catch (error) {
+        setLoading(false)
+
         console.error("Error fetching talents:", error);
         toast.error("Error fetching talents");
       }
@@ -68,12 +80,10 @@ const TalentPool = () => {
   };
 
   const handleCardClick = (talent) => {
-    // console.log("Selected talent:", talent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
   };
 
   const handleContactClick = (talent) => {
-    // console.log("Opening modal with talent:", selectedTalent);
     setSelectedTalent((prevTalent) => (prevTalent === talent ? null : talent));
 
     setIsModalOpen(true);
@@ -87,13 +97,8 @@ const TalentPool = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  const truncateDescription = (description, wordLimit) => {
-    const words = description.split(" ");
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(" ") + "...";
-    }
-    return description;
-  };
+ 
+
 
   const renderButtons = () => {
     const buttonStyles = [
@@ -161,9 +166,8 @@ const TalentPool = () => {
       return (
         <label
           key={index}
-          className={`${styles} ${
-            isSelected ? "bg-gray-200" : ""
-          } cyberpunk-checkbox-label`}
+          className={`${styles} ${isSelected ? "bg-gray-200" : ""
+            } cyberpunk-checkbox-label`}
         >
           <input
             type="checkbox"
@@ -206,9 +210,8 @@ const TalentPool = () => {
     return paginatedTalents.map((talent, index) => (
       <div
         key={index}
-        className={`m-2 bg-white shadow rounded-[10px] w-[300px] h-[400px] md:h-[473px] md:w-[387px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${
-          selectedTalent === talent ? "selected" : ""
-        }`}
+        className={`m-2 bg-white shadow rounded-[10px] w-[300px] h-[400px] md:h-[473px] md:w-[387px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${selectedTalent === talent ? "selected" : ""
+          }`}
         onClick={() => handleCardClick(talent)}
       >
         {selectedTalent === talent ? (
@@ -227,16 +230,18 @@ const TalentPool = () => {
             </div>
 
             <div className="w-full flex  min-h-[50px] items-center justify-center">
-              <p className=" description break-words text-center font-poppins font-light text-[14px] text-[#60705C]  ">
-                {" "}
-                {truncateDescription(talent.description, 30)}
+              <p className="description break-words text-center font-poppins font-light text-[14px] text-[#60705C]">
+                {talent.description.length > 100
+                  ? `${talent.description.substring(0, 100)}...`
+                  : talent.description}
               </p>
+
             </div>
             <div className="flex items-center justify-center gap-[7px]">
               <a
                 href={talent.uploadResume}
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
                 className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
               >
                 Resume
@@ -287,30 +292,28 @@ const TalentPool = () => {
       </h1>
 
       <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
-        {renderButtons()}
+        {fetching ? "Fetching..." : renderButtons()}
       </div>
 
       <div className="flex flex-col items-center md:flex-row md:flex-wrap lg:justify-start md:justify-center gap-4 w-full px-[10px] md:px-[50px] py-[50px]">
-        {renderTalents()}
+        {loading ? "Loading..." : renderTalents()}
       </div>
 
       <div className="flex justify-between px-[10px] w-full max-w-[800px] mt-4">
         <button
           onClick={() => handlePageChange("prev")}
-          className={`${
-            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-          } bg-[#C54809] text-white font-medium p-2 rounded`}
+          className={`${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+            } bg-[#C54809] text-white font-medium p-2 rounded`}
           disabled={currentPage === 1}
         >
           <IoIosArrowBack />
         </button>
         <button
           onClick={() => handlePageChange("next")}
-          className={`${
-            talents.length <= currentPage * itemsPerPage
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-          } bg-[#C54809] text-white font-medium p-2 rounded`}
+          className={`${talents.length <= currentPage * itemsPerPage
+            ? "opacity-50 cursor-not-allowed"
+            : ""
+            } bg-[#C54809] text-white font-medium p-2 rounded`}
           disabled={talents.length <= currentPage * itemsPerPage}
         >
           <MdOutlineNavigateNext />
