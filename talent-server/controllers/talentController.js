@@ -176,3 +176,68 @@ exports.getTalents = async (req, res) => {
     });
   }
 };
+
+exports.updateTalent = async (req, res) => {
+  try {
+    const { talentId } = req.params;
+    const {
+      fullName,
+      phoneNumber,
+      emailAddress,
+      uploadResume,
+      gender,
+      gitHubLink,
+      bgImage,
+      role,
+      skills,
+      description,
+      profileImage,
+    } = req.body;
+
+    // Find the talent by ID
+    const talent = await Talent.findById(talentId);
+    if (!talent) {
+      return res.status(404).json({
+        success: false,
+        message: "Talent not found.",
+      });
+    }
+
+    // Validate description length
+    if (description && description.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Description must not exceed 100 characters.",
+      });
+    }
+
+    // Update talent details
+    talent.fullName = fullName || talent.fullName;
+    talent.phoneNumber = phoneNumber || talent.phoneNumber;
+    talent.emailAddress = emailAddress || talent.emailAddress;
+    talent.uploadResume = uploadResume || talent.uploadResume;
+    talent.gender = gender || talent.gender;
+    talent.gitHubLink = gitHubLink || talent.gitHubLink;
+    talent.bgImage = bgImage || talent.bgImage;
+    talent.role = role || talent.role;
+    talent.skills = skills || talent.skills;
+    talent.description = description || talent.description;
+    talent.profileImage = profileImage || talent.profileImage;
+
+    // Save the updated talent
+    await talent.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Talent updated successfully.",
+      data: talent,
+    });
+  } catch (error) {
+    console.error("Update talent error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
