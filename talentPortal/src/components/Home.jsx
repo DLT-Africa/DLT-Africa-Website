@@ -260,7 +260,10 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="profileImage" className="text-[14px] font-Poppins">
+              <label
+                htmlFor="profileImage"
+                className="text-[14px] font-Poppins"
+              >
                 Upload Profile Image:
               </label>
               <input
@@ -313,8 +316,8 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ....(200 characters )"
-               
+                placeholder="I am a ....(30 characters )"
+                maxLength={30}
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">

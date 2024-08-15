@@ -18,6 +18,15 @@ exports.register = async (req, res) => {
       profileImage,
     } = req.body;
 
+    // Check if talent already exists
+    const existingTalent = await Talent.findOne({ emailAddress });
+    if (existingTalent) {
+      return res.status(400).json({
+        success: false,
+        message: "Talent already registered with this email address",
+      });
+    }
+
     const newRegistration = new Talent({
       fullName,
       phoneNumber,
@@ -85,6 +94,7 @@ exports.register = async (req, res) => {
     });
   }
 };
+
 
 exports.getTalent = async (req, res) => {
   try {
