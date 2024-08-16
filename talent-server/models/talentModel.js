@@ -13,6 +13,7 @@ const talentSchema = new mongoose.Schema(
     emailAddress: {
       type: String,
       required: true,
+      unique: true,
     },
     uploadResume: {
       type: String,
