@@ -18,12 +18,18 @@ exports.register = async (req, res) => {
       profileImage,
     } = req.body;
 
-    // Check if talent already exists
     const existingTalent = await Talent.findOne({ emailAddress });
     if (existingTalent) {
       return res.status(400).json({
         success: false,
-        message: "Talent already registered with this email address",
+        message: "Talent already exists with this email address.",
+      });
+    }
+
+    if (description.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Description must not exceed 100 characters.",
       });
     }
 
@@ -76,9 +82,21 @@ exports.register = async (req, res) => {
       text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
     };
 
-    sendEmail(mailOptions).catch((error) => {
-      console.error("Error sending email:", error);
-    });
+    const notifyOptions = {
+      from: process.env.EMAIL_USER,
+      to: "info@dltafrica.io",
+      subject: "New Talent Registration",
+      text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
+    };
+
+    await Promise.all([
+      sendEmail(mailOptions).catch((error) =>
+        console.error("Error sending registration email:", error)
+      ),
+      sendEmail(notifyOptions).catch((error) =>
+        console.error("Error sending notification email:", error)
+      ),
+    ]);
 
     res.status(201).json({
       success: true,
@@ -152,6 +170,71 @@ exports.getTalents = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching talents by skill sets:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+exports.updateTalent = async (req, res) => {
+  try {
+    const { talentId } = req.params;
+    const {
+      fullName,
+      phoneNumber,
+      emailAddress,
+      uploadResume,
+      gender,
+      gitHubLink,
+      bgImage,
+      role,
+      skills,
+      description,
+      profileImage,
+    } = req.body;
+
+    // Find the talent by ID
+    const talent = await Talent.findById(talentId);
+    if (!talent) {
+      return res.status(404).json({
+        success: false,
+        message: "Talent not found.",
+      });
+    }
+
+    // Validate description length
+    if (description && description.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Description must not exceed 100 characters.",
+      });
+    }
+
+    // Update talent details
+    talent.fullName = fullName || talent.fullName;
+    talent.phoneNumber = phoneNumber || talent.phoneNumber;
+    talent.emailAddress = emailAddress || talent.emailAddress;
+    talent.uploadResume = uploadResume || talent.uploadResume;
+    talent.gender = gender || talent.gender;
+    talent.gitHubLink = gitHubLink || talent.gitHubLink;
+    talent.bgImage = bgImage || talent.bgImage;
+    talent.role = role || talent.role;
+    talent.skills = skills || talent.skills;
+    talent.description = description || talent.description;
+    talent.profileImage = profileImage || talent.profileImage;
+
+    // Save the updated talent
+    await talent.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Talent updated successfully.",
+      data: talent,
+    });
+  } catch (error) {
+    console.error("Update talent error:", error);
     res.status(500).json({
       success: false,
       message: "Server error",

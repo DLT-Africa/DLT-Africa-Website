@@ -37,6 +37,8 @@ const talentSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+      maxlength: 100
+
     },
     role: {
       type: String,

@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["hackathons"]
+  "cSpell.words": [
+    "hackathons"
+  ],
+  "editor.fontFamily": "Papyrus",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true
 }

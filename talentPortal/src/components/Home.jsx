@@ -33,7 +33,7 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isSuccess } = useSelector((state) => state.auth);
+  const { isSuccess, isLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -99,6 +99,10 @@ const Home = () => {
 
     if (!validateEmail(emailAddress)) {
       return toast.error("Please enter a valid email");
+    }
+
+    if (description.length > 100) {
+      return toast.error("Description must not exceed 100 characters.");
     }
 
     try {
@@ -316,8 +320,8 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ....(30 characters )"
-                maxLength={30}
+                placeholder="I am a ....(100 characters )"
+
               />
             </div>
             <div className="flex flex-col w-full md:w-1/2 gap-2">
@@ -374,7 +378,7 @@ const Home = () => {
               type="submit"
               className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
             >
-              Register
+              {isLoading ? "Setting you up  🥳" : "Register"}
             </button>
           </div>
         </form>

@@ -13,7 +13,6 @@ const EditEventPage = ({ eventId, onClose }) => {
     duration: "",
     eventRegLink: "",
     eventVenue: "",
-
     media: "",
     eventDescription: "",
   });
