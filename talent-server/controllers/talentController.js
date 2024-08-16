@@ -113,6 +113,7 @@ exports.register = async (req, res) => {
   }
 };
 
+
 exports.getTalent = async (req, res) => {
   try {
     const { id } = req.params;

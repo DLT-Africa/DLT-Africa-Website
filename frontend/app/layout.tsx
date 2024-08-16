@@ -9,6 +9,7 @@ import Header from "@/app/components/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export default function RootLayout({
   children,
 }: Readonly<{

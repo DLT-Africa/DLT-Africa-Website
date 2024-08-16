@@ -98,8 +98,6 @@ const TalentPool = () => {
   };
 
  
-
-
   const renderButtons = () => {
     const buttonStyles = [
       {
