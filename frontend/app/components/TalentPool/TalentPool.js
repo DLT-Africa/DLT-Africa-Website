@@ -184,105 +184,7 @@ const TalentPool = () => {
     });
   };
 
-  // const renderTalents = () => {
-  //   const filteredTalents = talents.filter((talent) =>
-  //     selectedSkills.every((skill) => talent.skills.includes(skill))
-  //   );
-
-  //   if (filteredTalents.length === 0) {
-  //     return (
-  //       <div className="text-center w-full">
-  //         <p className="text-[20px] my-10 text-center">
-  //           No talent for these skills yet...
-  //         </p>
-  //       </div>
-  //     );
-  //   }
-
-  //   const startIndex = (currentPage - 1) * itemsPerPage;
-  //   const paginatedTalents = filteredTalents.slice(
-  //     startIndex,
-  //     startIndex + itemsPerPage
-  //   );
-
-  //   return paginatedTalents.map((talent, index) => (
-  //     <div
-  //       key={index}
-  //       className={`m-2 bg-white shadow rounded-[10px]  w-[90%] sm:w-[250px] md:w-[310px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${selectedTalent === talent ? "selected" : ""
-  //         }`}
-  //       onClick={() => handleCardClick(talent)}
-  //     >
-  //       {selectedTalent === talent ? (
-  //         <div className="h-full w-full  detail-card px-[40px] py-[30px] flex flex-col items-center gap-[15px]  	border-orange-400 ">
-  //           <div className="w-full flex flex-col items-center gap-[10px]">
-  //             <img
-  //               src={talent.profileImage}
-  //               className="w-[100px] h-[100px] md:h-[180px] md:w-[180px] rounded-full"
-  //             />
-  //             <p className="font-dmSerifDisplay font-medium text-[22px] text-[#3E493C] ">
-  //               {talent.fullName}
-  //             </p>
-  //             <p className="font-poppins font-medium text-[16px] text-[#343C33] text-center ">
-  //               {capitalizeFirstLetter(talent.role)}
-  //             </p>
-  //           </div>
-
-  //           <div className="w-full flex  min-h-[50px] items-center justify-center">
-  //             <p className="description break-words text-center font-poppins font-light text-[14px] text-[#60705C]">
-  //               {talent.description.length > 100
-  //                 ? `${talent.description.substring(0, 100)}...`
-  //                 : talent.description}
-  //             </p>
-
-  //           </div>
-  //           <div className="flex items-center justify-center gap-[7px]">
-  //             <a
-  //               href={talent.uploadResume}
-  //               target="_blank"
-  //               rel="noopener noreferrer"
-  //               className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
-  //             >
-  //               Resume
-  //             </a>
-
-  //             <a
-  //               href={talent.gitHubLink}
-  //               target="_blank"
-  //               rel="noopener noreferrer"
-  //               className="border-[#C54809] border p-[10px] flex items-center justify-center rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
-  //             >
-  //               GitHub
-  //             </a>
-
-  //             <button
-  //               className="border-[#C54809] border p-[10px] rounded-[10px] text-[#C54809] font-poppins font-medium text-[16px] hover:bg-[#FFF8ED] ease-in duration-300 active:bg-[#FFEFD4]"
-  //               onClick={handleContactClick}
-  //             >
-  //               Contact
-  //             </button>
-  //           </div>
-  //         </div>
-  //       ) : (
-  //         <div>
-  //           <img
-  //             src={talent.bgImage}
-  //             alt={talent.fullName}
-  //             className="absolute inset-0 w-full h-full object-cover"
-  //           />
-  //           <div className=" glass bg-opacity-20 p-4 relative z-10">
-  //             <h2 className="font-medium text-[36px] text-[#F7FCFE] font-dmSerifDisplay">
-  //               {talent.fullName}
-  //             </h2>
-  //             <p className="capitalize text-[16px] font-poppins font-normal text-[#F7FCFE]">
-  //               {talent.role}
-  //             </p>
-  //           </div>
-  //         </div>
-  //       )}
-  //     </div>
-  //   ));
-  // };
-
+  
   const renderTalents = () => {
     const filteredTalents = talents.filter((talent) =>
       selectedSkills.every((skill) => talent.skills.includes(skill))
@@ -318,7 +220,7 @@ const TalentPool = () => {
                 src={talent.profileImage}
                 className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full"
               />
-              <p className="font-dmSerifDisplay font-medium text-[18px] sm:text-[22px] text-[#3E493C] ">
+              <p className="font-dmSerifDisplay font-medium text-[15px] md:text-[22px] text-[#3E493C] ">
                 {talent.fullName}
               </p>
               <p className="font-poppins font-medium text-[14px] sm:text-[16px] text-[#343C33] text-center ">
@@ -389,11 +291,10 @@ const TalentPool = () => {
       </h1>
 
       <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
-        {fetching ? "Fetching..." : renderButtons()}
+        {fetching ? "Fetching skills.." : renderButtons()}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px] md:gap-[25px]  lg:grid-cols-3 px-[10px]  py-[50px] w-full  ">
-        {/* <div className="flex flex-wrap justify-center gap-4 w-full px-[10px] md:px-[50px] py-[50px]"> */}
 
         {loading ? "Loading..." : renderTalents()}
       </div>

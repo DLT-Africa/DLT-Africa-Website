@@ -30,6 +30,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState(initialState);
   const [availableSkills, setAvailableSkills] = useState([]);
+  const [isRegistrationClosed, setIsRegistrationClosed] = useState(false);
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,6 +54,13 @@ const Home = () => {
     };
 
     fetchSkills();
+  }, []);
+  useEffect(() => {
+    const targetDate = new Date("2024-08-23T12::00");
+
+    if (new Date() >= targetDate) {
+      setIsRegistrationClosed(true);
+    }
   }, []);
 
   const handleInputChange = (e) => {
@@ -181,207 +190,240 @@ const Home = () => {
             Register for the DLT Africa talent pool.
           </p>
         </header>
-
-        <form
-          className="border bg-[#FFEFD4] px-4 py-6 md:px-8 md:py-8 w-full max-w-3xl rounded flex flex-col gap-4"
-          onSubmit={createAccount}
-        >
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="fullName" className="text-[14px] font-Poppins">
-                Full name:
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="Alexander Wong"
-              />
-            </div>
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="gender" className="text-[14px] font-Poppins">
-                Gender:
-              </label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-              >
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
+        {isRegistrationClosed ? (
+          <div className="h-full flex justify-center items-center py-6 px-4 sm:px-6 lg:px-8">
+            <p className="text-red-600 text-xl font-bold">
+              Registration closed! What took you so long? 
+            </p>
           </div>
+        ) : (
 
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="phoneNumber" className="text-[14px] font-Poppins">
-                Phone Number:
-              </label>
-              <input
-                type="text"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="+234705746234"
-              />
-            </div>
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="gitHubLink" className="text-[14px] font-Poppins">
-                GitHub Link:
-              </label>
-              <input
-                type="text"
-                name="gitHubLink"
-                value={formData.gitHubLink}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="https://"
-              />
-            </div>
-          </div>
+          <form
+            className="border bg-[#FFEFD4] px-4 py-6 md:px-8 md:py-8 w-full max-w-3xl rounded flex flex-col gap-4"
+            onSubmit={createAccount}
+          >
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="fullName" className="text-[14px] font-Poppins">
+                  Full name:
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="Alexander Wong"
+                  disabled={isRegistrationClosed}
 
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label
-                htmlFor="emailAddress"
-                className="text-[14px] font-Poppins"
-              >
-                Email Address:
-              </label>
-              <input
-                type="text"
-                name="emailAddress"
-                value={formData.emailAddress}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="Alexanderwong@gmail.com"
-              />
-            </div>
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label
-                htmlFor="profileImage"
-                className="text-[14px] font-Poppins"
-              >
-                Upload Profile Image:
-              </label>
-              <input
-                type="file"
-                name="profileImage"
-                onChange={handleFileChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-              />
-            </div>
-          </div>
+                />
+              </div>
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="gender" className="text-[14px] font-Poppins">
+                  Gender:
+                </label>
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleInputChange}
+                  disabled={isRegistrationClosed}
 
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label
-                htmlFor="uploadResume"
-                className="text-[14px] font-Poppins"
-              >
-                Resume Link:
-              </label>
-              <input
-                type="text"
-                name="uploadResume"
-                value={formData.uploadResume}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="https://"
-              />
-            </div>
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="bgImage" className="text-[14px] font-Poppins">
-                Upload Background Image:
-              </label>
-              <input
-                type="file"
-                name="bgImage"
-                onChange={handleFileChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="description" className="text-[14px] font-Poppins">
-                Short Description:
-              </label>
-              <textarea
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="I am a ....(100 characters )"
-
-              />
-            </div>
-            <div className="flex flex-col w-full md:w-1/2 gap-2">
-              <label htmlFor="role" className="text-[14px] font-Poppins">
-                Major:
-              </label>
-              <input
-                type="text"
-                name="role"
-                value={formData.role}
-                onChange={handleInputChange}
-                className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
-                placeholder="frontend developer || backend developer"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col w-full gap-2">
-              <label htmlFor="skills" className="text-[14px] font-Poppins">
-                Skill Set:
-              </label>
-              <code className="text-[8px]">Pick all that apply to you</code>
-              <div className="flex flex-wrap gap-2">
-                {availableSkills.map((skill) => (
-                  <div key={skill} className="flex items-center">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        name="skills"
-                        value={skill}
-                        checked={formData.skills.includes(skill)}
-                        onChange={(e) => {
-                          const selectedSkills = [...formData.skills];
-                          if (e.target.checked) {
-                            selectedSkills.push(skill);
-                          } else {
-                            const index = selectedSkills.indexOf(skill);
-                            if (index > -1) selectedSkills.splice(index, 1);
-                          }
-                          setFormData({ ...formData, skills: selectedSkills });
-                        }}
-                      />
-                      {skill}
-                    </label>
-                  </div>
-                ))}
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          <div className="flex justify-center items-center">
-            <button
-              type="submit"
-              className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-            >
-              {isLoading ? "Setting you up  🥳" : "Register"}
-            </button>
-          </div>
-        </form>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="phoneNumber" className="text-[14px] font-Poppins">
+                  Phone Number:
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="+234705746234"
+                  disabled={isRegistrationClosed}
+
+                />
+              </div>
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="gitHubLink" className="text-[14px] font-Poppins">
+                  GitHub Link:
+                </label>
+                <input
+                  type="text"
+                  name="gitHubLink"
+                  value={formData.gitHubLink}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="https://"
+                  disabled={isRegistrationClosed}
+
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label
+                  htmlFor="emailAddress"
+                  className="text-[14px] font-Poppins"
+                >
+                  Email Address:
+                </label>
+                <input
+                  type="text"
+                  name="emailAddress"
+                  value={formData.emailAddress}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="Alexanderwong@gmail.com"
+                  disabled={isRegistrationClosed}
+
+                />
+              </div>
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label
+                  htmlFor="profileImage"
+                  className="text-[14px] font-Poppins"
+                >
+                  Upload Profile Image:
+                </label>
+                <input
+                  type="file"
+                  name="profileImage"
+                  onChange={handleFileChange}
+                  disabled={isRegistrationClosed}
+
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label
+                  htmlFor="uploadResume"
+                  className="text-[14px] font-Poppins"
+                >
+                  Resume Link:
+                </label>
+                <input
+                  type="text"
+                  name="uploadResume"
+                  value={formData.uploadResume}
+                  onChange={handleInputChange}
+                  disabled={isRegistrationClosed}
+
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="https://"
+                />
+              </div>
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="bgImage" className="text-[14px] font-Poppins">
+                  Upload Background Image:
+                </label>
+                <input
+                  type="file"
+                  name="bgImage"
+                  onChange={handleFileChange}
+                  disabled={isRegistrationClosed}
+
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="description" className="text-[14px] font-Poppins">
+                  Short Description:
+                </label>
+                <textarea
+                  type="text"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  disabled={isRegistrationClosed}
+
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="I am a ....(100 characters )"
+
+                />
+              </div>
+              <div className="flex flex-col w-full md:w-1/2 gap-2">
+                <label htmlFor="role" className="text-[14px] font-Poppins">
+                  Major:
+                </label>
+                <input
+                  type="text"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleInputChange}
+                  disabled={isRegistrationClosed}
+
+                  className="bg-transparent outline-none border-b border-gray-300 focus:border-gray-900 w-full"
+                  placeholder="frontend developer || backend developer"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full gap-2">
+                <label htmlFor="skills" className="text-[14px] font-Poppins">
+                  Skill Set:
+                </label>
+                <code className="text-[8px]">Pick all that apply to you</code>
+                <div className="flex flex-wrap gap-2">
+                  {availableSkills.map((skill) => (
+                    <div key={skill} className="flex items-center">
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          name="skills"
+                          value={skill}
+                          checked={formData.skills.includes(skill)}
+                          disabled={isRegistrationClosed}
+
+                          onChange={(e) => {
+                            const selectedSkills = [...formData.skills];
+                            if (e.target.checked) {
+                              selectedSkills.push(skill);
+                            } else {
+                              const index = selectedSkills.indexOf(skill);
+                              if (index > -1) selectedSkills.splice(index, 1);
+                            }
+                            setFormData({ ...formData, skills: selectedSkills });
+                          }}
+                        />
+                        {skill}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center">
+              {!isRegistrationClosed && (
+
+                <button
+                  type="submit"
+                  className="mt-4 bg-[#FC7C13] w-[196px] text-white py-2 px-4 rounded transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                >
+                  {isLoading ? "Setting you up ..." : "Register"}
+                </button>
+              )}
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
