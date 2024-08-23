@@ -2,12 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import CurrentAndUpcoming from "./components/HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
-import Faqs from "./components/HomePage/Faq/Faqs";
-import JoinHackerHouse from "./components/HomePage/JoinHackerHouse/JoinHackerHouse";
-import Partners from "./components/HomePage/Partners/Partners";
-import { RegisterOnline } from "./components/HomePage/Register/Register";
-import WhatYou from "./components/HomePage/WhatYou/WhatYou";
 import Loader from "./components/Loader/Loader";
 import IndexHome from "@/app/components/HomePage/Home"
 
