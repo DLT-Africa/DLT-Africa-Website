@@ -44,7 +44,7 @@ const Header = () => {
       <div
         className="flex justify-between py-[10px]  sm:py-5 px-[20px] sm:px-[10px] md:px-[50px] "
         style={{
-          backgroundColor: pathname === "/hacker-house" ? "#031700" : "#F6F7F6",
+          backgroundColor: pathname === "/hacker-house/" ? "#031700" : "#F6F7F6",
         }}
       >
         <div className="sm:py-0 sm:px-0">
