@@ -191,11 +191,18 @@ const Home = () => {
           </p>
         </header>
         {isRegistrationClosed ? (
-          <div className="h-full flex justify-center items-center py-6 px-4 sm:px-6 lg:px-8">
-            <p className="text-red-600 text-xl font-bold">
-              Registration closed! What took you so long? 
+          <div className="h-full flex flex-col justify-center items-center py-6 px-4 sm:px-6 lg:px-8">
+            <p className="text-red-600 text-xl font-bold mb-4">
+              Registration closed! What took you so long?
+            </p>
+
+            <p className="text-center">
+              You can still check on your colleagues in the <a href="https://dltafrica.io/talent-pool/" className="text-blue-500 underline">
+                Talent Pool
+              </a>.
             </p>
           </div>
+
         ) : (
 
           <form
