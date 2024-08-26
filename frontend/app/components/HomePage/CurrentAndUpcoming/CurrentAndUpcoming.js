@@ -15,7 +15,7 @@ const CurrentAndUpcoming = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
+          `https://dlt-backend.vercel.app/api/v1/events/past`
         );
         setEventData(response.data);
       } catch (error) {
