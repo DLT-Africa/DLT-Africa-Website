@@ -73,10 +73,25 @@ const TalentPool = () => {
     setCurrentPage(1);
   };
 
-  const handlePageChange = (direction) => {
-    setCurrentPage((prevPage) =>
-      direction === "next" ? prevPage + 1 : Math.max(prevPage - 1, 1)
-    );
+
+  const handlePageChange = async (direction) => {
+    if (loading) return;
+    setLoading(true); 
+
+    const nextPage = direction === "next" ? currentPage + 1 : Math.max(currentPage - 1, 1);
+
+    try {
+      const response = await axios.get(`${URL}/api/v1/talent/talents`, {
+        params: { page: nextPage, itemsPerPage }
+      });
+      setTalents(response.data.data);
+      setCurrentPage(nextPage);
+    } catch (error) {
+      toast.error("Error fetching talents");
+      console.error("Error fetching talents:", error);
+    } finally {
+      setLoading(false); 
+    }
   };
 
   const handleCardClick = (talent) => {
@@ -184,8 +199,15 @@ const TalentPool = () => {
     });
   };
 
-  
   const renderTalents = () => {
+    if (loading) {
+      return (
+        <div className="text-center w-full">
+          <p className="text-[20px] my-10 text-center">Loading talents...</p>
+        </div>
+      );
+    }
+
     const filteredTalents = talents.filter((talent) =>
       selectedSkills.every((skill) => talent.skills.includes(skill))
     );
@@ -270,11 +292,11 @@ const TalentPool = () => {
               className="absolute inset-0 w-full h-full object-cover"
             />
 
-            <div className="  p-4 relative z-10 bg-gradient-to-r from-green-300  to-yellow-700" >
-              <h2 className="font-medium md:text-[36px] sm:text-[28px] text-[#F7FCFE] font-dmSerifDisplay">
+            <div className="p-4 relative z-10 bg-gradient-to-r from-white/30 to-white/10 backdrop-blur-lg backdrop-brightness-125">
+              <h2 className="font-medium md:text-[30px] sm:text-[28px] text-[#000] font-dmSerifDisplay">
                 {talent.fullName}
               </h2>
-              <p className="capitalize text-[14px] sm:text-[16px] font-poppins font-normal text-[#F7FCFE] ">
+              <p className="capitalize text-[14px] sm:text-[16px] font-poppins font-normal text-[#000] ">
                 {talent.role}
               </p>
             </div>
@@ -283,6 +305,7 @@ const TalentPool = () => {
       </div>
     ));
   };
+
 
   return (
     <section className="h-auto bg-[#f3f6f6] flex flex-col items-center pb-4">
@@ -302,24 +325,28 @@ const TalentPool = () => {
 
 
       <div className="flex justify-between px-[10px] w-full max-w-[800px] mt-4">
+
         <button
           onClick={() => handlePageChange("prev")}
-          className={`${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+          className={`${currentPage === 1 || loading ? "opacity-50 cursor-not-allowed" : ""
             } bg-[#C54809] text-white font-medium p-2 rounded`}
-          disabled={currentPage === 1}
+          disabled={currentPage === 1 || loading}
         >
           <IoIosArrowBack />
         </button>
+
         <button
           onClick={() => handlePageChange("next")}
-          className={`${talents.length <= currentPage * itemsPerPage
+          className={`${talents.length <= currentPage * itemsPerPage || loading
             ? "opacity-50 cursor-not-allowed"
             : ""
             } bg-[#C54809] text-white font-medium p-2 rounded`}
-          disabled={talents.length <= currentPage * itemsPerPage}
+          disabled={talents.length <= currentPage * itemsPerPage || loading}
         >
           <MdOutlineNavigateNext />
         </button>
+
+
       </div>
 
       {isModalOpen && selectedTalent && (
