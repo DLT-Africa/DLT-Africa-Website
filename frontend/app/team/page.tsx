@@ -1,12 +1,10 @@
-"use client"
-import Team from "@/app/components/Team/Team"
+"use client";
+import Team from "@/app/components/Team/Team";
+
 import { useEffect } from "react";
 
-
-const page = () => {
-
+const Page = () => {
   useEffect(() => {
-
     // Google Tag Manager
     const script = document.createElement("script");
     script.src = "https://www.googletagmanager.com/gtag/js?id=G-G2R8DSB4GV";
@@ -30,10 +28,9 @@ const page = () => {
 
   return (
     <div>
-      
-        <Team/>
+      <Team />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
