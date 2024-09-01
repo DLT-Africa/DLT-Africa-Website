@@ -64,10 +64,13 @@ click on fork button, uncheck the checkbox, then click on create fork.
 
 
 # To update the changes:
+```bash
 git add --all
 git status
 git commit -m "first commit"
+git pull upstream staging
 git push origin `name of the issue you're picking`
+```
 
 Go to your github and submit a pull request to the main repository.
 

@@ -60,40 +60,37 @@ const AdminDashboard = () => {
   return (
     <div className="h-full p-3 md:p-[50px] w-full">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-   
+
 
       <div className="flex mb-4">
         <div className="flex space-x-4">
           <Link
             href="/admin-dashboard"
             onClick={() => handleButtonClick("/admin-dashboard")}
-            className={`px-4 py-2 rounded-md ${
-              activeButton === "/admin-dashboard"
+            className={`px-4 py-2 rounded-md ${activeButton === "/admin-dashboard"
                 ? "bg-blue-500 text-white"
                 : "bg-gray-200 text-gray-700"
-            }`}
+              }`}
           >
             Admission List
           </Link>
           <Link
             href="/team-list"
             onClick={() => handleButtonClick("/team-list")}
-            className={`px-4 py-2 rounded-md ${
-              activeButton === "/team-list"
+            className={`px-4 py-2 rounded-md ${activeButton === "/team-list"
                 ? "bg-green-500 text-white"
                 : "bg-gray-200 text-gray-700"
-            }`}
+              }`}
           >
             Team List
           </Link>
           <Link
             href="/event-list"
             onClick={() => handleButtonClick("/event-list")}
-            className={`px-4 py-2 rounded-md ${
-              activeButton === "/event-list"
+            className={`px-4 py-2 rounded-md ${activeButton === "/event-list"
                 ? "bg-red-500 text-white"
                 : "bg-gray-200 text-gray-700"
-            }`}
+              }`}
           >
             Event List
           </Link>
@@ -121,7 +118,7 @@ const AdminDashboard = () => {
                   <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Update Status</th>
                   <th className="px-4 py-2">Course Selected</th>
-                  <th className="px-4 py-2">DOB</th>
+                  <th className="px-4 py-2">Phone</th>
                   <th className="px-4 py-2">Class Type</th>
                   <th className="px-4 py-2" title="payment status">
                     Status
@@ -134,24 +131,24 @@ const AdminDashboard = () => {
                   const {
                     _id,
                     firstName,
-                    academicQualification,
+                    phoneNo,
                     courseSelected,
                     classType,
-                    dob,
                     emailAddress,
                     status,
+                    lastName
                   } = admission;
 
                   return (
                     <tr key={_id}>
                       <td className="border px-4 py-2">{index + 1}</td>
-                      <td className="border px-4 py-2">{firstName}</td>
+                      <td className="border px-4 py-2">{firstName} &nbsp;{lastName}</td>
                       <td className="border px-4 py-2">{emailAddress}</td>
                       <td className="border px-4 py-2">
                         <ChangeStatus id={_id} />
                       </td>
                       <td className="border px-4 py-2">{courseSelected}</td>
-                      <td className="border px-4 py-2">{dob}</td>
+                      <td className="border px-4 py-2">{phoneNo}</td>
                       <td className="border px-4 py-2">{classType}</td>
                       <td className="border px-4 py-2">{status}</td>
                     </tr>
