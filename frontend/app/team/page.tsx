@@ -1,5 +1,6 @@
 "use client";
 import Team from "@/app/components/Team/Team";
+
 import { useEffect } from "react";
 
 const Page = () => {

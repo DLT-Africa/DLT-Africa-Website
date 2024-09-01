@@ -5,10 +5,7 @@ import { useEffect, useState } from "react";
 import Loader from "./components/Loader/Loader";
 import IndexHome from "@/app/components/HomePage/Home"
 
-const HeroSection = dynamic(
-  () => import("./components/HomePage/HeroSection/HeroSection"),
-  { ssr: false }
-);
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
