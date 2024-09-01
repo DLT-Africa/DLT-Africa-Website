@@ -16,6 +16,8 @@ const validateUserInput = (reqBody) => {
     emailAddress,
     codeExperience,
     stateOfResidence,
+    referralOption,
+    referralName
   } = reqBody;
 
   if (
