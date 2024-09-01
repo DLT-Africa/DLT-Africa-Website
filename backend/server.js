@@ -16,6 +16,7 @@ const app = express();
 app.use(
   cors({
     origin: [
+      "*",
       "http://localhost:3000",
       "https://talent-pool-server.vercel.app",
       "https://dlt-africa-website-frontend.vercel.app",
