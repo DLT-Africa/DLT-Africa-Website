@@ -22,6 +22,8 @@ app.use(
       "https://dlt-africa-website-frontend.vercel.app",
       "https://dlt-africa-talent-pool.vercel.app",
       "https://dltafrica.io",
+      "www.google-analytics.com",
+      "www.figma.com"
     ],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
