@@ -65,10 +65,30 @@ const calculateTuitionFee = (courseSelected, classType) => {
   }
   return tuitionFee;
 };
+const calculateCorpersFee = (courseSelected) => {
+  let tuitionFee = 0;
+
+  switch (courseSelected) {
+    case "Web Start Essential":
+      tuitionFee = 70000;
+      break;
+    case "Product UI/UX Design":
+      tuitionFee = 70000;
+      break;
+    case "Code Master Intermediate":
+      tuitionFee = 150000;
+      break;
+    default:
+      tuitionFee = 0;
+  }
+
+  return tuitionFee;
+};
 
 module.exports = {
   generateToken,
   hashToken,
   sendEmail,
   calculateTuitionFee,
+  calculateCorpersFee,
 };

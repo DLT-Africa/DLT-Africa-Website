@@ -1,6 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { sendEmail, calculateTuitionFee } = require("../utils");
+const Corper = require("../models/corpers");
+const {
+  sendEmail,
+  calculateTuitionFee,
+  calculateCorpersFee,
+} = require("../utils");
 
 const validateUserInput = (reqBody) => {
   const {
@@ -17,7 +22,7 @@ const validateUserInput = (reqBody) => {
     codeExperience,
     stateOfResidence,
     referralOption,
-    referralName
+    referralName,
   } = reqBody;
 
   if (
@@ -38,6 +43,33 @@ const validateUserInput = (reqBody) => {
   }
 };
 exports.validateUserInput = validateUserInput;
+
+const validateCorpersInput = (reqBody) => {
+  const {
+    fullName,
+    emailAddress,
+    phone_number,
+    gender,
+    stateOfOrigin,
+    corp_id,
+    course_selected,
+    batchResumption,
+  } = reqBody;
+
+  if (
+    !fullName ||
+    !emailAddress ||
+    !phone_number ||
+    !gender ||
+    !stateOfOrigin ||
+    !corp_id ||
+    !course_selected ||
+    !batchResumption
+  ) {
+    throw new Error("Please fill in all the required fields.");
+  }
+};
+exports.validateUserInput = validateCorpersInput;
 
 const registerUser = asyncHandler(async (req, res) => {
   const { emailAddress } = req.body;
@@ -63,7 +95,8 @@ const registerUser = asyncHandler(async (req, res) => {
       html: `
         <img src="https://mir-s3-cdn-cf.behance.net/projects/404/6a6d3e181530247.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png" alt="DLT Africa logo">\n
         <h1>Hello ${user.firstName},</h1> 
-        <p>Thanks for applying for DLT Africa Training to study ${user.courseSelected
+        <p>Thanks for applying for DLT Africa Training to study ${
+          user.courseSelected
         }.</p>
         <p>Your application has been received and a member of our team will review and get back to you as soon as possible.</p>
         <p>What does this mean?</p>
@@ -140,6 +173,109 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Invalid data");
   }
+});
+
+exports.corpersReg = asyncHandler(async (req, res) => {
+  const { emailAddress } = req.body;
+  validateCorpersInput(req.body);
+
+  const corperExists = await Corper.findOne({ emailAddress });
+
+  if (corperExists) {
+    res.status(400);
+    throw new Error("Email already in use.");
+  }
+
+  const corper = await Corper.create(req.body);
+
+  if (corper) {
+    const tuitionFee = calculateCorpersFee(corper.course_selected);
+
+    await sendEmail({
+      from: process.env.EMAIL_USER,
+      to: corper.emailAddress,
+      subject: "DLT Africa Training Registration Confirmation",
+      html: `
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/6a6d3e181530247.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png" alt="DLT Africa logo">\n
+        <h1>Hello ${corper.fullName},</h1> 
+        <p>Thanks for applying for DLT Africa Training to study ${
+          corper.courseSelected
+        }.</p>
+        <p>Your application has been received and a member of our team will review and get back to you as soon as possible.</p>
+        <p>What does this mean?</p>
+        <p>If you do not already possess a laptop, it's time to acquire one with minimum specification of 8GB RAM and 250GB ROM SSD.</p>
+        <p>If you lack basic knowledge of computers, now is the time to start learning.</p>
+        <p>As part of our requirements to confirm your admission, you are required to make a tuition payment #${tuitionFee.toFixed(
+          2
+        )} after 3 weeks of receiving this message.</p>
+        <p>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</p>
+        <p>For payment, kindly make use of the account details below:</p>
+        <p>Bank Name: Access Bank</p>
+        <p>Account Name: DLT AFRICA SPACE LIMITED</p>
+        <p>Account Number: 1709346763</p>
+        <p>Please share the receipt of payment on WhatsApp through either of these contacts: 08156509701 OR 08133083895.</p>
+        <p>Once payment has been confirmed, we shall share resources to get you started ahead of the training.</p>
+        <p>We look forward to embarking on this journey with you.</p>
+        <p>Regards,</p>
+        <p>DLT Africa Team</p>
+      `,
+    });
+
+    const emailAddresses = [
+      "info@dltafrica.io",
+      "aliu@dltafrica.io",
+      "rajiabdullahi907@gmail.com",
+    ];
+    await sendEmail({
+      from: process.env.EMAIL_USER,
+      to: emailAddresses.join(", "),
+      subject: "New Registration Notification",
+      html: `
+        <h1>New Registration Notification</h1>
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/6a6d3e181530247.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png" alt="DLT Africa logo">
+        <p>A new corper, ${corper.fullName} with ${corper.corp_id}, has registered for DLT Africa Training to study ${corper.course_selected} via  batch ${corper.batchResumption}.</p>
+        <p>Please take necessary actions to review the application.</p>
+        <p>Regards,</p>
+        <p>DLT Africa Team</p>
+      `,
+    });
+
+    const {
+      _id,
+      fullName,
+      emailAddress,
+      phone_number,
+      gender,
+      stateOfOrigin,
+      corp_id,
+      course_selected,
+      batchResumption,
+    } = corper;
+
+    res.status(201).json({
+      _id,
+      fullName,
+      emailAddress,
+      phone_number,
+      gender,
+      stateOfOrigin,
+      corp_id,
+      course_selected,
+      batchResumption,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid data");
+  }
+});
+
+exports.getCorpers = asyncHandler(async (req, res) => {
+  const datas = await Corper.find().sort("-createdAt");
+  if (!datas) {
+    res.status(500);
+    throw new Error("Something went wrong");
+  }
+  res.status(200).json(datas);
 });
 
 const getAdmissions = asyncHandler(async (req, res) => {
