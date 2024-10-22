@@ -295,7 +295,7 @@ const TalentPool = () => {
         {fetching ? "Fetching..." : renderButtons()}
       </div>
 
-      <div className="flex flex-col items-center md:flex-row md:flex-wrap lg:justify-start md:justify-center gap-4 w-full px-[10px] md:px-[50px] py-[50px]">
+      <div className="flex flex-col items-center md:flex-row md:flex-wrap lg:gap-10 lg:justify-start md:justify-center gap-4 w-full px-[10px] md:px-[50px]  flex-2  py-[50px]">
         {loading ? "Loading..." : renderTalents()}
       </div>
 
