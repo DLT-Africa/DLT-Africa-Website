@@ -58,8 +58,8 @@ const CurrentAndUpcoming = () => {
             >
               <img
                 className="w-20 h-20 rounded-full"
-                src="Current1.png"
-                alt="eventmedia"
+                src="/images/Current1.png"
+                alt="photos"
               />
 
               <div className="mt-4 flex justify-center items-center flex-col gap-3">
@@ -67,12 +67,10 @@ const CurrentAndUpcoming = () => {
                   {event.eventName}
                 </h3>
                 <p className="text-sm text-neutral-black">
-                  {event.eventCategory} |{" "}
-                  <span className="venue">
-                    {event.eventVenue.length > 10
-                      ? event.eventVenue.substring(0, 8) + "..."
-                      : event.eventVenue}
-                  </span>
+                  {event.eventVenue}
+                </p>
+                <p className="text-sm text-neutral-black">
+                  {event.eventCategory}
                 </p>
                 <p className="text-sm text-neutral-black">
                   {event.startDate} | {event.duration}

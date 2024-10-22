@@ -13,26 +13,9 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// CORS Middleware
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000",
-//       "http://localhost:5173",
-//       "https://dlt-africa-talent-pool.vercel.app",
-//       "https://dltafrica.io",
-//     ],
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//     optionsSuccessStatus: 200,
-//   })
-// );
-
 const allowedOrigins = [
   "*",
   "http://localhost:3000",
-  "http://localhost:5173",
   "https://dlt-africa-talent-pool.vercel.app",
   "https://dltafrica.io",
 ];

@@ -70,6 +70,8 @@ const Application = () => {
     emailAddress: "",
     codeExperience: "",
     stateOfResidence: "",
+    referralOption: "",
+    referralName: ""
   });
 
   const gender = [
@@ -77,6 +79,22 @@ const Application = () => {
     { id: 2, tag: "Female" },
     { id: 3, tag: "Prefer Not To Mention" },
   ];
+
+  const refOptions = [
+    { id: 1, tag: "Social Media (Facebook, Twitter, LinkedIn, etc.)" },
+    { id: 2, tag: "Friend or Colleague" },
+    { id: 3, tag: "Online Search (Google, Bing, etc.)" },
+    { id: 4, tag: "Newsletter or Email" },
+    { id: 5, tag: "DLT Africa Website" },
+    { id: 6, tag: "Event or Conference" },
+    { id: 7, tag: "Blog or Online Article" },
+    { id: 8, tag: "Webinar or Online Workshop" },
+    { id: 9, tag: "University or School" },
+    { id: 10, tag: "Advertisements (Online, Print, etc.)" },
+    { id: 11, tag: "Community Forum or Group" },
+    { id: 12, tag: "Other (Please Specify)" },
+  ];
+
 
   const academicQual = [
     { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
@@ -145,6 +163,8 @@ const Application = () => {
       emailAddress,
       codeExperience,
       stateOfResidence,
+      referralOption,
+      referralName
     } = formData;
 
     if (
@@ -159,7 +179,7 @@ const Application = () => {
       !phoneNo ||
       !emailAddress ||
       !codeExperience ||
-      !stateOfResidence
+      !stateOfResidence 
     ) {
       setFormValidMessage(
         "Oops! required field are not filled. Go back and fill them"
@@ -432,7 +452,37 @@ const Application = () => {
                   handleChange={handleChange}
                   options={nigerianStates}
                 />
+
+                  <SelectField
+                    className="pl-4 text-[18px] "
+                    label="How did you hear about us?(optional) "
+                    handleChange={handleChange}
+                  name="referralOption"
+                    options={refOptions}
+                  />
+                  
+
+                <Input
+                  size="lg"
+                  name="referralName"
+                  variant="static"
+                  label="Referrals Name"
+                  className="pl-4 text-[18px] "
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="e.g John Doe"
+                  value={formData.referralName}
+                  onChange={handleChange}
+                />
+
               </div>
+
+
+              
               <div className="mt-5 flex w-full flex-col gap-3">
                 <List className="flex-col">
                   <ListItem className="p-0 hover:bg-transparent">
