@@ -13,6 +13,7 @@ const talentSchema = new mongoose.Schema(
     emailAddress: {
       type: String,
       required: true,
+      unique: true,
     },
     uploadResume: {
       type: String,
@@ -43,7 +44,7 @@ const talentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    skills: { type: [String], required: true },
+    // skills: { type: [String], required: true },
   },
   { timestamps: true, minimize: false }
 );

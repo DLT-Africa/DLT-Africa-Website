@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL;
-export const API_URL = `https://talent-pool-server.vercel.app/api/v1/talent/`;
-// export const API_URL = `http://localhost:5000/api/v1/talent/`;
+// export const API_URL = `https://talent-pool-server.vercel.app/api/v1/talent/`;
+export const API_URL = `http://localhost:5000/api/v1/talent/`;
 
 export const validateEmail = (email) => {
   return email.match(

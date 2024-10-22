@@ -61,9 +61,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "Not Paid",
   },
-//   paymentPlan : [
-    
-//   ]
+  referralOption: {
+    type: String,
+  },
+  referralName: {
+    type: String,
+  }
 });
 
 const User = mongoose.model("User", userSchema);

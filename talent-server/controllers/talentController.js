@@ -13,18 +13,18 @@ exports.register = async (req, res) => {
       gitHubLink,
       bgImage,
       role,
-      skills,
+      // skills,
       description,
       profileImage,
     } = req.body;
 
-    const existingTalent = await Talent.findOne({ emailAddress });
-    if (existingTalent) {
-      return res.status(400).json({
-        success: false,
-        message: "Talent already exists with this email address.",
-      });
-    }
+    // const existingTalent = await Talent.findOne({ emailAddress });
+    // if (existingTalent) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Talent already exists with this email address.",
+    //   });
+    // }
 
     if (description.length > 100) {
       return res.status(400).json({
@@ -43,36 +43,36 @@ exports.register = async (req, res) => {
       bgImage,
       role,
       profileImage,
-      skills,
+      // skills,
       description,
     });
 
     await newRegistration.save();
 
     // Optimize skill updates
-    const skillsToUpdate = {};
-    await Promise.all(
-      skills.map(async (skillType) => {
-        if (!skillsToUpdate[skillType]) {
-          skillsToUpdate[skillType] = [];
-        }
-        skillsToUpdate[skillType].push(newRegistration._id);
-      })
-    );
+    // const skillsToUpdate = {};
+    // await Promise.all(
+    //   skills.map(async (skillType) => {
+    //     if (!skillsToUpdate[skillType]) {
+    //       skillsToUpdate[skillType] = [];
+    //     }
+    //     skillsToUpdate[skillType].push(newRegistration._id);
+    //   })
+    // );
 
-    await Promise.all(
-      Object.keys(skillsToUpdate).map(async (skillType) => {
-        const skill = await Skill.findOne({ skillType });
-        if (skill) {
-          skillsToUpdate[skillType].forEach((id) => {
-            if (!skill[skillType].includes(id)) {
-              skill[skillType].push(id);
-            }
-          });
-          await skill.save();
-        }
-      })
-    );
+    // await Promise.all(
+    //   Object.keys(skillsToUpdate).map(async (skillType) => {
+    //     const skill = await Skill.findOne({ skillType });
+    //     if (skill) {
+    //       skillsToUpdate[skillType].forEach((id) => {
+    //         if (!skill[skillType].includes(id)) {
+    //           skill[skillType].push(id);
+    //         }
+    //       });
+    //       await skill.save();
+    //     }
+    //   })
+    // );
 
     // Send email asynchronously
     const mailOptions = {
@@ -82,20 +82,20 @@ exports.register = async (req, res) => {
       text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
     };
 
-    const notifyOptions = {
-      from: process.env.EMAIL_USER,
-      to: "info@dltafrica.io",
-      subject: "New Talent Registration",
-      text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
-    };
+    // const notifyOptions = {
+    //   from: process.env.EMAIL_USER,
+    //   to: "info@dltafrica.io",
+    //   subject: "New Talent Registration",
+    //   text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
+    // };
 
     await Promise.all([
       sendEmail(mailOptions).catch((error) =>
         console.error("Error sending registration email:", error)
       ),
-      sendEmail(notifyOptions).catch((error) =>
-        console.error("Error sending notification email:", error)
-      ),
+      // sendEmail(notifyOptions).catch((error) =>
+      //   console.error("Error sending notification email:", error)
+      // ),
     ]);
 
     res.status(201).json({
@@ -240,4 +240,20 @@ exports.updateTalent = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+exports.deleteTalent = async (req, res) => {
+  const { talentId } = req.params;
+  const talent = await Talent.findById(talentId);
+  if (!talent) {
+    return res.status(404).json({
+      success: false,
+      message: "Talent not found.",
+    });
+  }
+
+  await talent.deleteOne();
+  res.status(200).json({
+    message: "Data deleted successfully",
+  });
 };

@@ -22,7 +22,8 @@ const createNewEvent = asyncHandler(async (req, res) => {
     !startDate ||
     !duration ||
     !eventRegLink ||
-    !eventVenue
+    !eventVenue ||
+    !eventDescription
   ) {
     res.status(400);
     throw new Error("All fields are required!");
@@ -36,6 +37,8 @@ const createNewEvent = asyncHandler(async (req, res) => {
     duration,
     eventRegLink,
     eventVenue,
+    eventDescription,
+    media
   });
 
   if (event) {
@@ -48,6 +51,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
       duration,
       eventRegLink,
       eventVenue,
+      eventDescription
     } = event;
 
     res.status(201).json({
@@ -59,6 +63,7 @@ const createNewEvent = asyncHandler(async (req, res) => {
       duration,
       eventRegLink,
       eventVenue,
+      eventDescription
     });
   } else {
     res.status(400);
@@ -186,10 +191,34 @@ const deleteEvent = asyncHandler(async (req, res) => {
   }
 });
 
+// Fetch past events
+const pastEvents = async (req, res) => {
+  try {
+    const pastEvents = await Event.find().where("date").lte(Date.now()).exec();
+
+    res.status(200).json(pastEvents);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const upcomingEvents = async (req, res) => {
+  try {
+    const upcomingEvents = await Event.find()
+      .where("date")
+      .gt(Date.now())
+      .exec();
+    res.status(200).json(upcomingEvents);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 module.exports = {
   createNewEvent,
   getAllEvents,
   getEvent,
   updateEvent,
   deleteEvent,
+  pastEvents,
+  upcomingEvents
 };

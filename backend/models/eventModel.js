@@ -13,7 +13,6 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: "Hackathon",
-    //Bootcamp, Incubator,
   },
   startDate: {
     type: String,
@@ -35,7 +34,7 @@ const eventSchema = new mongoose.Schema({
 
   media: {
     type: String,
-    default: "",
+    default: "https://shorturl.at/K2L0Y",
   },
   eventDescription: {
     type: String,
@@ -43,5 +42,12 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
+eventSchema.virtual("isUpcoming").get(function () {
+  return this.date > Date.now();
+});
+
+eventSchema.virtual("isPast").get(function () {
+  return this.date <= Date.now();
+});
 const Event = mongoose.model("Event", eventSchema);
 module.exports = Event;
