@@ -319,7 +319,7 @@ const TalentPool = () => {
 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px] md:gap-[25px]  lg:grid-cols-3 px-[10px]  py-[50px] w-full  ">
-           a104f17ca2c9f63c172b5497f21bb45618ed63a9
+
         {loading ? "Loading..." : renderTalents()}
       </div>
 

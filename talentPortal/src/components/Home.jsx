@@ -56,7 +56,7 @@ const Home = () => {
     fetchSkills();
   }, []);
   useEffect(() => {
-    const targetDate = new Date("2024-08-23T12::00");
+    const targetDate = new Date("2024-08-23T12:00");
 
     if (new Date() >= targetDate) {
       setIsRegistrationClosed(true);
