@@ -97,6 +97,17 @@ const AdminDashboard = () => {
           >
             Event List
           </Link>
+          <Link
+            href="/corpers"
+            onClick={() => handleButtonClick("/corpers")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Event List
+          </Link>
         </div>
       </div>
 
