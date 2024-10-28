@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Working from "../../../../public/Working.png";
 import Link from "next/link";
 
 const JoinHackerHouse = () => {
@@ -27,7 +25,7 @@ const JoinHackerHouse = () => {
 
           <div className="w-full md:w-[490px] md:mb-8 mr-0 md:mr-12 mb-[50px]">
             <img
-              src="Working.png"
+              src="/images/Working.png"
               className="w-full h-auto"
               alt="Working at Hacker House"
             />

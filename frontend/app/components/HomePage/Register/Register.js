@@ -1,9 +1,4 @@
-import Image from "next/image";
-import Hero from "../../../../public/hero-section.png";
 import Link from "next/link";
-import Vector162 from "../../../../public/Vector162.png";
-import Grouping162 from "../../../../public/Grouping162.png";
-import Group164 from "../../../../public/Group164.png";
 
 const RegisterOnline = () => {
   return (
@@ -12,7 +7,7 @@ const RegisterOnline = () => {
         <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-20">
           <img
             className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
-            src="hero-section.png"
+            src="/images/hero-section.png"
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
@@ -20,7 +15,7 @@ const RegisterOnline = () => {
               <span className="text-[#252A24]">Ready To Change</span>{" "}
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
-            <div className="w-full lg:w-[450px] xl:w-[540px] lg:text-[20px] text-[16px] lg:text-left xl:text-left font-serif">
+            <div className="w-full   lg:max-w-[450px]  xl:w-[540px] lg:text-[20px] break-words text-wrap text-[16px] lg:text-left xl:text-left font-serif">
               Enroll in our Online Class and receive personalized mentoring from
               seasoned developers and product designers. Dive into interactive
               sessions, hands-on projects, and accelerate your skills from the
@@ -76,7 +71,7 @@ const RegisterOffline = () => {
           </Link>
         </div>
         <div className="absolute xl:right-[-380px] lg:right-[-290px] md:right-[-200px] sm:right-[-200px] bottom-0 right-[-100px]">
-          <img src="Group164.png" alt="image" className="h-[300px]" />
+          <img src="/images/Group164.png" alt="image" className="h-[300px]" />
         </div>
       </div>
     </div>

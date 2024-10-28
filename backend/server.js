@@ -16,12 +16,14 @@ const app = express();
 app.use(
   cors({
     origin: [
+      "*",
       "http://localhost:3000",
-
       "https://talent-pool-server.vercel.app",
       "https://dlt-africa-website-frontend.vercel.app",
       "https://dlt-africa-talent-pool.vercel.app",
       "https://dltafrica.io",
+      "www.google-analytics.com",
+      "www.figma.com",
     ],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -49,11 +51,6 @@ app.use(bodyParser.json());
 // Handle preflight requests
 app.options("*", cors());
 
-// Log origin requests for debugging
-app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-  next();
-});
 // Routes
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);

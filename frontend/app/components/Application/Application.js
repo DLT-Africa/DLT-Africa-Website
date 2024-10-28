@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import {
   Button,
   Checkbox,
@@ -72,6 +70,8 @@ const Application = () => {
     emailAddress: "",
     codeExperience: "",
     stateOfResidence: "",
+    referralOption: "",
+    referralName: ""
   });
 
   const gender = [
@@ -79,6 +79,22 @@ const Application = () => {
     { id: 2, tag: "Female" },
     { id: 3, tag: "Prefer Not To Mention" },
   ];
+
+  const refOptions = [
+    { id: 1, tag: "Social Media (Facebook, Twitter, LinkedIn, etc.)" },
+    { id: 2, tag: "Friend or Colleague" },
+    { id: 3, tag: "Online Search (Google, Bing, etc.)" },
+    { id: 4, tag: "Newsletter or Email" },
+    { id: 5, tag: "DLT Africa Website" },
+    { id: 6, tag: "Event or Conference" },
+    { id: 7, tag: "Blog or Online Article" },
+    { id: 8, tag: "Webinar or Online Workshop" },
+    { id: 9, tag: "University or School" },
+    { id: 10, tag: "Advertisements (Online, Print, etc.)" },
+    { id: 11, tag: "Community Forum or Group" },
+    { id: 12, tag: "Other (Please Specify)" },
+  ];
+
 
   const academicQual = [
     { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
@@ -117,7 +133,7 @@ const Application = () => {
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (name === "classType" && value === "Online") {
       setFormData({
         ...formData,
@@ -147,6 +163,8 @@ const Application = () => {
       emailAddress,
       codeExperience,
       stateOfResidence,
+      referralOption,
+      referralName
     } = formData;
 
     if (
@@ -161,7 +179,7 @@ const Application = () => {
       !phoneNo ||
       !emailAddress ||
       !codeExperience ||
-      !stateOfResidence
+      !stateOfResidence 
     ) {
       setFormValidMessage(
         "Oops! required field are not filled. Go back and fill them"
@@ -213,7 +231,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-07-31");
+      const deadlineDate = new Date("2024-11-30");
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
@@ -227,11 +245,11 @@ const Application = () => {
   return (
     <div
       className="bg-auto  bg-no-repeat bg-left-top"
-      style={{ backgroundimg: `url(imgs/application-page-bg.svg)` }}
+      style={{ backgroundimg: `url(/images/application-page-bg.svg)` }}
     >
       <div
         className="bg-auto  bg-no-repeat bg-[right_bottom_16rem]"
-        style={{ backgroundimg: `url(imgs/application-page-right-bg.svg)` }}
+        style={{ backgroundimg: `url(/images/application-page-right-bg.svg)` }}
       >
         <div className="flex flex-col pt-[103px] px-4 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-between">
@@ -434,7 +452,37 @@ const Application = () => {
                   handleChange={handleChange}
                   options={nigerianStates}
                 />
+
+                  <SelectField
+                    className="pl-4 text-[18px] "
+                    label="How did you hear about us?(optional) "
+                    handleChange={handleChange}
+                  name="referralOption"
+                    options={refOptions}
+                  />
+                  
+
+                <Input
+                  size="lg"
+                  name="referralName"
+                  variant="static"
+                  label="Referrals Name"
+                  className="pl-4 text-[18px] "
+                  labelProps={{
+                    className: "!text-black",
+                  }}
+                  containerProps={{
+                    className: "h-14 ",
+                  }}
+                  placeholder="e.g John Doe"
+                  value={formData.referralName}
+                  onChange={handleChange}
+                />
+
               </div>
+
+
+              
               <div className="mt-5 flex w-full flex-col gap-3">
                 <List className="flex-col">
                   <ListItem className="p-0 hover:bg-transparent">
@@ -492,7 +540,7 @@ const Application = () => {
               </div>
               <Button
                 type="submit"
-                size="large"
+                size="lg"
                 className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
                   !allCheckboxesChecked && "pointer-events-none opacity-50"
                 }`}

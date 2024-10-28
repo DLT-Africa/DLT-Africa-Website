@@ -1,33 +1,31 @@
-import React from "react";
-import Linkedin from "../../../public/images/linkedin.svg";
-import Twitter from "../../../public/images/twitter.svg";
-import Image from "next/image";
+"use client";
+
 import { BsLinkedin, BsTwitterX } from "react-icons/bs";
 
 const teamMember = [
   {
     id: 1,
-    img: "soliu.jpeg",
+    img: "/images/soliu.jpeg",
     name: "Soliu Ahmad",
     role: "Software Developer",
     description:
       "Soliu is a software developer, he is a very good team worker. He is always ready to face any challenging projects.",
-    linkedinLink: "https://www.linkedin.com/in/soliu-ahmad-31b049240/",
+    linkedinLink: "https://www.linkedin.com/in/soliu-ahmad-31b049240",
     twitterLink: "https://twitter.com/Ahmadsoliu1",
   },
   {
     id: 2,
-    img: "naheem.jpeg",
+    img: "/images/naheem.jpeg",
     name: "Naheem Oloyede",
     role: "Software Developer & Team Lead",
     description:
       "Naheem is a witty and result oriented full stack developer. Naheem is astuteness and zeal for getting excellent results coupled with his exceptional leadership, and HR skills earned him job at DLT Africa..",
-    linkedinLink: "https://www.linkedin.com/in/naheem-oloyede-593809251/",
+    linkedinLink: "https://www.linkedin.com/in/naheem-oloyede-593809251",
     twitterLink: "https://twitter.com/OloyedeNaheem",
   },
   {
     id: 3,
-    img: "jordan.jpeg",
+    img: "/images/jordan.jpeg",
     name: "Jordan Muthemba",
     role: "Blockchain Developer",
     description:
@@ -37,7 +35,7 @@ const teamMember = [
   },
   {
     id: 4,
-    img: "ameer.jpeg",
+    img: "/images/abdullah.jpeg",
     name: "Abdullah Raji",
     role: "Software Developer",
     description:
@@ -47,17 +45,17 @@ const teamMember = [
   },
   {
     id: 5,
-    img: "anate.jpeg",
+    img: "/images/anate.jpeg",
     name: "Aliyu Anate",
     role: "Software Developer",
     description:
       "Creative software engineer blending innovation with hard work and humor for impactful solutions",
-    linkedinLink: "https://www.linkedin.com/in/aliyu-anate-9773b22b8/",
+    linkedinLink: "https://www.linkedin.com/in/aliyu-anate-9773b22b8",
     twitterLink: "https://twitter.com/anate669288",
   },
   {
     id: 6,
-    img: "fawaz.jpeg",
+    img: "/images/fawaz.jpeg",
     name: "Fawaz Dada",
     role: "Graphic Designer",
     description:
@@ -67,22 +65,22 @@ const teamMember = [
   },
   {
     id: 7,
-    img: "seyi.jpeg",
+    img: "/images/seyi.jpeg",
     name: "Oluwaseyi Abolaji",
     role: "Product Designer & Manager",
     description:
       "Oluwaseyi is a Product designer with a background in Computer Science. Keeping the users needs and expectations in mind while not losing sight of the business goals, enables him to make sound design decisions that benefit the user and the business.",
-    linkedinLink: "https://www.linkedin.com/in/oluwaseyi-abolaji-8b936a213/",
+    linkedinLink: "https://www.linkedin.com/in/oluwaseyi-abolaji-8b936a213",
     twitterLink: "https://twitter.com/Oluwaseyi_7",
   },
   {
     id: 8,
-    img: "herlew.jpeg",
+    img: "/images/herlew.jpeg",
     name: "Aliu Musa",
     role: "Chief Servant Officer",
     description:
-      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and with his current stint at Arbitrum Foundation as a Senior Program Manager.",
-    linkedinLink: "https://www.linkedin.com/in/aliumusa/",
+      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and also worked at Arbitrum Foundation as a Senior Program Manager.",
+    linkedinLink: "https://www.linkedin.com/in/aliumusa",
     twitterLink: "https://twitter.com/herlew99",
   },
 ];
@@ -142,7 +140,7 @@ const team = () => {
                                 justify-center 
                                 items-center
                                 mt-5 
-                                rounded-full"
+                                rounded-lg"
                 src={member.img}
                 alt="team image"
               />
@@ -192,11 +190,11 @@ const team = () => {
 
             <div className="flex mb-[16px] w-[40px] h-[40px] gap-[10px]">
               <a href={member.linkedinLink}>
-                <BsTwitterX className="text-[#0A66C2] transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110" />
+                <BsTwitterX className="text-[#0A66C2] text-[25px] transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110" />
               </a>
 
               <a href={member.twitterLink}>
-                <BsLinkedin className="text-[#000000] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
+                <BsLinkedin className="text-[#000000] text-[25px] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
               </a>
             </div>
           </div>

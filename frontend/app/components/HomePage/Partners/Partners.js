@@ -3,37 +3,37 @@ import React from "react";
 const partnerItems = [
   {
     id: 1,
-    img: "cartesi.png",
+    img: "/images/cartesi.png",
     url: "https://cartesi.io",
   },
 
   {
     id: 2,
-    img: "bitmama.png",
+    img: "/images/bitmama.png",
     url: "https://bitmama.io",
   },
 
   {
     id: 3,
-    img: "celo.png",
+    img: "/images/celo.png",
     url: "https://celo.org",
   },
 
   {
     id: 4,
-    img: "lisk-black.png",
+    img: "/images/lisk-black.png",
     url: "https://lisk.com",
   },
 
   {
     id: 5,
-    img: "canza.png",
+    img: "/images/canza.png",
     url: "https://canza.io",
   },
 
   {
     id: 6,
-    img: "kotanipay.png",
+    img: "/images/kotanipay.png",
     url: "https://kotanipay.com",
   },
 ];

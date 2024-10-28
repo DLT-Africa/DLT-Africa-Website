@@ -9,6 +9,7 @@ import Header from "@/app/components/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +27,7 @@ export default function RootLayout({
           <title>DLT Africa Official Website</title>
           <meta name="description" content="DLT Africa Official Website" />
 
-          <link rel="icon" href="/dlt.png" type="image/png" />
+          <link rel="icon" href="/images/dlt.png" type="image/png" />
         </head>
         <body className={inter.className}>
           <Header />

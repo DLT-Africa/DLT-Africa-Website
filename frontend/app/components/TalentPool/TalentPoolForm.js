@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button, Input } from "@material-tailwind/react";
-import Loader from "@/app/components/Application/Loader";
 
 const URL = "https://talent-pool-server.vercel.app";
+
 
 const NewForm = ({ selectedTalent, handleCloseModal }) => {
   const router = useRouter();
@@ -34,7 +34,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
     const { emailAddress, calendlyLink, companyName } = formData;
 
     if (!emailAddress || !calendlyLink || !companyName) {
-      setFormValidMessage("Oops! all fields are required");
+      setFormValidMessage("Oops! All fields are required");
       return;
     }
     setIsSubmitting(true);
@@ -48,8 +48,21 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
         router.push("/talent-pool");
       })
       .catch((error) => {
+        console.error("Error submitting form:", error);
         setIsSubmitting(false);
-        setFormValidMessage("Server error unable to process your submission");
+        if (error.response) {
+          setFormValidMessage(
+            `Server error: ${
+              error.response.data.message || "Unable to process your submission"
+            }`
+          );
+        } else if (error.request) {
+          setFormValidMessage(
+            "No response from server. Please try again later."
+          );
+        } else {
+          setFormValidMessage("Request setup error: " + error.message);
+        }
       });
   };
 
@@ -89,7 +102,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="Alexander@dltafrica.io"
+                placeholder="alexander@dltafrica.io"
                 value={formData.emailAddress}
                 onChange={handleChange}
               />
@@ -108,7 +121,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
                 containerProps={{
                   className: "h-14",
                 }}
-                placeholder="http://calendly/schedule/create-meeting"
+                placeholder="https://calendly/schedule/create-meeting"
                 value={formData.calendlyLink}
                 onChange={handleChange}
               />
@@ -139,7 +152,7 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
               size="lg"
               className="capitalize bg-[#FC7C13] mx-auto w-full max-w-xs h-14 text-lg"
             >
-              {isSubmitting ? <Loader /> : <span>Submit</span>}
+              {isSubmitting ? "Submitting..." : <span>Submit</span>}
             </Button>
           </div>
           {formValidMessage && (

@@ -37,10 +37,13 @@ const calculateTuitionFee = (courseSelected, classType) => {
   if (classType === "Physical") {
     switch (courseSelected) {
       case "Frontend Development":
-        tuitionFee = 0 * 0;
+        tuitionFee = 0.5 * 420000;
+        break;
+      case "Product UI/UX Design":
+        tuitionFee = 0.5 * 170000;
         break;
       case "Full-Stack Development":
-        tuitionFee = 0 * 0;
+        tuitionFee = 0.5 * 630000;
         break;
       default:
         tuitionFee = 0;
@@ -48,10 +51,10 @@ const calculateTuitionFee = (courseSelected, classType) => {
   } else if (classType === "Online") {
     switch (courseSelected) {
       case "Frontend Development":
-        tuitionFee = 0 * 0;
+        tuitionFee = 0.5 * 370000;
         break;
       case "Product UI/UX Design":
-        tuitionFee = 0 * 0;
+        tuitionFee = 0.5 * 170000;
         break;
       case "Blockchain Development":
         tuitionFee = 0;
@@ -62,10 +65,30 @@ const calculateTuitionFee = (courseSelected, classType) => {
   }
   return tuitionFee;
 };
+const calculateCorpersFee = (courseSelected) => {
+  let tuitionFee = 0;
+
+  switch (courseSelected) {
+    case "Web Start Essential":
+      tuitionFee = 70000;
+      break;
+    case "Product UI/UX Design":
+      tuitionFee = 70000;
+      break;
+    case "Code Master Intermediate":
+      tuitionFee = 150000;
+      break;
+    default:
+      tuitionFee = 0;
+  }
+
+  return tuitionFee;
+};
 
 module.exports = {
   generateToken,
   hashToken,
   sendEmail,
   calculateTuitionFee,
+  calculateCorpersFee,
 };
