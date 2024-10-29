@@ -127,7 +127,7 @@ const Form = () => {
         );
         const imgData = await response.json();
         if (imgData.url) {
-          return imgData.url; // Return the uploaded image URL
+          return imgData.url; 
         } else {
           throw new Error("Image upload failed. No URL returned.");
         }
@@ -146,11 +146,11 @@ const Form = () => {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file.name); // Display selected file name
-      const url = await uploadImageToCloudinary(file); // Upload to Cloudinary
+      setSelectedFile(file.name); 
+      const url = await uploadImageToCloudinary(file); 
       if (url) {
-        setFormData({ ...formData, corp_id: url }); // Update form data with image URL
-        setImageUrl(url); // Save the uploaded image URL for preview or further use
+        setFormData({ ...formData, corp_id: url });
+        setImageUrl(url); 
       } else {
         setSelectedFile(null);
         setImageUrl("");
@@ -200,12 +200,10 @@ const Form = () => {
       return;
     }
 
-    // Add additional client-side validation here if necessary
-    console.log(formData);
     setIsSubmitting(true);
 
     axios
-      .post(`http://localhost:5000/api/v1/cohorts/corperreg`, formData)
+      .post(`https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`, formData)
       .then((response) => {
         console.log(response.data);
         setIsSubmitting(false);
