@@ -2,33 +2,33 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-const BACKEND_URL = process.env.BACKEND_URL;
-const TeamPreview = () => {
-  const [teamData, setTeamData] = useState([]);
+
+const CorperPreview = () => {
+  const [corperData, setCorperData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [message, setMessage] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
-  const router = useRouter();
-  const [activeButton, setActiveButton] = useState("/team-list");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState("/corpers");
   const handleButtonClick = (href) => {
     setActiveButton(href);
   };
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchTeamData = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/team/team-details`
+          `https://dlt-backend.vercel.app/api/v1/cohorts/get-all-corpers`
         );
 
-        setTeamData(response.data);
+        setCorperData(response.data);
+        console.log(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
@@ -38,17 +38,17 @@ const TeamPreview = () => {
         }
       }
     };
-    fetchTeamData();
+    fetchData();
   }, []);
 
   useEffect(() => {
-    const filteredTeamData = teamData.filter(
+    const filteredData = corperData.filter(
       (res) =>
-        res.name.toLowerCase().includes(search.toLowerCase()) ||
-        res.email.toLowerCase().includes(search.toLowerCase())
+        res.batchResumption.toLowerCase().includes(search.toLowerCase()) ||
+        res.fullName.toLowerCase().includes(search.toLowerCase())
     );
-    setSearchResults(filteredTeamData);
-  }, [teamData, search]);
+    setSearchResults(filteredData);
+  }, [corperData, search]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -58,7 +58,8 @@ const TeamPreview = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Corper&apos;s List</h1>
+
       <div className="flex mb-4">
         <div className="flex space-x-4">
           <Link
@@ -98,7 +99,7 @@ const TeamPreview = () => {
             href="/corpers"
             onClick={() => handleButtonClick("/corpers")}
             className={`px-4 py-2 rounded-md ${
-              activeButton === "/corpers"
+              activeButton === "/event-list"
                 ? "bg-red-500 text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
@@ -111,13 +112,13 @@ const TeamPreview = () => {
       <input
         type="text"
         placeholder="Search"
-        className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 bg-[#FFF8ED] "
+        className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 bg-[#FFF8ED]"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {!isLoading && teamData.length === 0 ? (
-        <p>No data found...</p>
+      {!isLoading && corperData.length === 0 ? (
+        <p>No corper&apos;s data found...</p>
       ) : (
         <>
           <div className="overflow-x-auto">
@@ -125,46 +126,42 @@ const TeamPreview = () => {
               <thead>
                 <tr>
                   <th className="px-4 py-2">S/N</th>
-                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2">Full Name</th>
                   <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Course Selected</th>
                   <th className="px-4 py-2">Phone</th>
+                  <th className="px-4 py-2">Batch</th>
                 </tr>
               </thead>
 
               <tbody>
-                {currentItems.map((team, index) => {
-                  const { _id, name, email, photo, phone, role, isVerified } =
-                    team;
+                {currentItems.map((corper, index) => {
+                  const {
+                    fullName,
+                    emailAddress,
+                    phone_number,
+                    gender,
+                    stateOfOrigin,
+                    corp_id,
+                    course_selected,
+                    batchResumption,
+                  } = corper;
 
                   return (
                     <tr key={_id}>
                       <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{fullName}</td>
+                      <td className="border px-4 py-2">{emailAddress}</td>
 
-                      <td className="border px-4 py-2">{name}</td>
-                      <td className="border px-4 py-2">{email}</td>
+                      <td className="border px-4 py-2">{course_selected}</td>
+                      <td className="border px-4 py-2">{phone_number}</td>
 
-                      <td className="border px-4 py-2">{phone}</td>
+                      <td className="border px-4 py-2">{batchResumption}</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-          </div>
-          <div className="mt-4">
-            <ul className="flex">
-              {[
-                ...Array(Math.ceil(searchResults.length / itemsPerPage)).keys(),
-              ].map((number) => (
-                <li key={number} className="mr-2">
-                  <button
-                    onClick={() => paginate(number + 1)}
-                    className="px-3 py-1 rounded-md bg-blue-500 text-white"
-                  >
-                    {number + 1}
-                  </button>
-                </li>
-              ))}
-            </ul>
           </div>
         </>
       )}
@@ -172,4 +169,4 @@ const TeamPreview = () => {
   );
 };
 
-export default TeamPreview;
+export default CorperPreview;
