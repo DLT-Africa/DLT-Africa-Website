@@ -75,12 +75,20 @@ exports.register = async (req, res) => {
     // );
 
     // Send email asynchronously
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: emailAddress,
-      subject: "Registration Successful",
-      text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
-    };
+
+    // const mailOptions = {
+    //   from: process.env.EMAIL_USER,
+    //   to: emailAddress,
+    //   subject: "Registration Successful",
+    //   text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
+    // };
+
+    // const mailOptions = {
+    //   from: process.env.EMAIL_USER,
+    //   to: emailAddress,
+    //   subject: "Registration Successful",
+    //   text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
+    // };
 
     // const notifyOptions = {
     //   from: process.env.EMAIL_USER,
@@ -89,14 +97,14 @@ exports.register = async (req, res) => {
     //   text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
     // };
 
-    await Promise.all([
-      sendEmail(mailOptions).catch((error) =>
-        console.error("Error sending registration email:", error)
-      ),
+    // await Promise.all([
+    //   sendEmail(mailOptions).catch((error) =>
+    //     console.error("Error sending registration email:", error)
+    //   ),
       // sendEmail(notifyOptions).catch((error) =>
       //   console.error("Error sending notification email:", error)
       // ),
-    ]);
+    // ]);
 
     res.status(201).json({
       success: true,

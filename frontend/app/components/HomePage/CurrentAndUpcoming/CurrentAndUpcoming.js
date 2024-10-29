@@ -59,7 +59,7 @@ const CurrentAndUpcoming = () => {
               <img
                 className="w-20 h-20 rounded-full"
                 src="/images/Current1.png"
-                alt="photos"
+                alt="photos" loading="lazy"
               />
 
               <div className="mt-4 flex justify-center items-center flex-col gap-3">

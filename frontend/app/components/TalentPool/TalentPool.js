@@ -240,7 +240,7 @@ const TalentPool = () => {
             <div className="w-full flex flex-col items-center gap-[10px]">
               <img
                 src={talent.profileImage}
-                className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full"
+                className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full" loading="lazy"
               />
               <p className="font-dmSerifDisplay font-medium text-[15px] md:text-[22px] text-[#3E493C] ">
                 {talent.fullName}
@@ -289,7 +289,7 @@ const TalentPool = () => {
             <img
               src={talent.bgImage}
               alt={talent.fullName}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover" loading="lazy"
             />
 
             <div className="p-4 relative z-10 bg-gradient-to-r from-white/30 to-white/10 backdrop-blur-lg backdrop-brightness-125">
@@ -316,6 +316,7 @@ const TalentPool = () => {
       <div className="flex w-full px-[5px] md:px-[50px]  btnContainer ">
         {fetching ? "Fetching skills.." : renderButtons()}
       </div>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px] md:gap-[25px]  lg:grid-cols-3 px-[10px]  py-[50px] w-full  ">
 
