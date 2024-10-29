@@ -181,7 +181,7 @@ const Home = () => {
             src={dlt}
             alt="dlt-logo"
             loading="lazy"
-            className="w-12 md:w-16"
+            className="w-12 md:w-16" 
           />
           <p className="text-gray-800 text-xl md:text-3xl font-medium text-center">
             DLT Africa talent pool

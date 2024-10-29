@@ -143,6 +143,7 @@ const team = () => {
                                 rounded-lg"
                 src={member.img}
                 alt="team image"
+                loading="lazy"
               />
             </div>
 
