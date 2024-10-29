@@ -98,7 +98,7 @@ const CourseSection = (props) => {
         <div className="lg:mt-[88px] md:mt-[45px] px-[23px] mt-[40px]">
           <img
             className="flex flex-wrap items-center object-cover lg:h-[448px] sm:w-[345px] md:w-[750px] lg:w-full rounded-[20px]"
-            src={props.img}
+            src={props.img} loading="lazy"
           />
         </div>
       </div>
