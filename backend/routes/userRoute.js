@@ -11,9 +11,10 @@ const router = express.Router();
 
 router.post("/studentreg", registerUser);
 router.post("/corperreg", corpersReg);
+router.post("/upgrade-admission", upgradeData);
+
 router.get("/get-all-admissions", getAdmissions);
 router.get("/get-all-corpers", getCorpers);
 router.delete("/:id", deleteAdmission);
-router.post("/upgrade-admission", upgradeData);
 
 module.exports = router;
