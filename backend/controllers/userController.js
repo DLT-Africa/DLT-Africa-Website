@@ -175,7 +175,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-exports.corpersReg = asyncHandler(async (req, res) => {
+const corpersReg = asyncHandler(async (req, res) => {
   const { emailAddress } = req.body;
   validateCorpersInput(req.body);
 
@@ -269,7 +269,7 @@ exports.corpersReg = asyncHandler(async (req, res) => {
   }
 });
 
-exports.getCorpers = asyncHandler(async (req, res) => {
+const getCorpers = asyncHandler(async (req, res) => {
   const datas = await Corper.find().sort("-createdAt");
   if (!datas) {
     res.status(500);
@@ -357,4 +357,11 @@ const upgradeData = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { registerUser, getAdmissions, deleteAdmission, upgradeData };
+module.exports = {  
+  registerUser,
+  getAdmissions,
+  deleteAdmission,
+  upgradeData,
+  corpersReg,
+  getCorpers,
+};
