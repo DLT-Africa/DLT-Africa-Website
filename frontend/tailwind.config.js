@@ -25,6 +25,20 @@ module.exports = withMT({
           to: { transform: "translateX(-100%)" },
         },
       },
+      backgroundImage: {
+        'corper-bg': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/corperBg.png')"
+      },
+      
+      backgroundSize: {
+        auto: 'auto',
+        cover: 'cover',
+        contain: 'contain',
+        70: '70%',
+        80: '80%',
+        90: '90%',
+        100: '100%',
+
+      },
     },
   },
   plugins: [],

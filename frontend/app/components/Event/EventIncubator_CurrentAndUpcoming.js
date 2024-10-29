@@ -12,6 +12,7 @@ const EventIncubator_CurrentAndUpcoming = () => {
                 src="/images/Frame.png"
                 alt="speaker"
                 className="gap-[5rem]"
+                loading="lazy"
               />
             </div>
             <div className="text-[#fff] inline-flex flex-col gap-15">

@@ -46,12 +46,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// Log the request origin for debugging
-app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-  next();
-});
-
 // Routes
 app.use("/api/v1/talent", talentRoutes);
 app.use("/api/v1/skill", skillRoute);

@@ -72,7 +72,7 @@ const page = () => {
                 <img
                   src={media}
                   alt="courses"
-                  className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg "
+                  className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg " loading="lazy"
                 />
 
                 <div className="w-full md:rounded-b-lg bg-[#ffc072] p-4 md:p-6 h-40 md:h-30 rounded-br-lg rounded-bl-lg">
