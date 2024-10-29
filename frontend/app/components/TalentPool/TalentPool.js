@@ -317,6 +317,7 @@ const TalentPool = () => {
         {fetching ? "Fetching skills.." : renderButtons()}
       </div>
 
+
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px] md:gap-[25px]  lg:grid-cols-3 px-[10px]  py-[50px] w-full  ">
 
         {loading ? "Loading..." : renderTalents()}
