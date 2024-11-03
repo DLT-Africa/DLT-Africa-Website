@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
       gitHubLink,
       bgImage,
       role,
-      // skills,
+      skills,
       description,
       profileImage,
     } = req.body;
@@ -43,61 +43,60 @@ exports.register = async (req, res) => {
       bgImage,
       role,
       profileImage,
-      // skills,
+      skills,
       description,
     });
 
     await newRegistration.save();
 
-    // Optimize skill updates
-    // const skillsToUpdate = {};
-    // await Promise.all(
-    //   skills.map(async (skillType) => {
-    //     if (!skillsToUpdate[skillType]) {
-    //       skillsToUpdate[skillType] = [];
-    //     }
-    //     skillsToUpdate[skillType].push(newRegistration._id);
-    //   })
-    // );
+    const skillsToUpdate = {};
+    await Promise.all(
+      skills.map(async (skillType) => {
+        if (!skillsToUpdate[skillType]) {
+          skillsToUpdate[skillType] = [];
+        }
+        skillsToUpdate[skillType].push(newRegistration._id);
+      })
+    );
 
-    // await Promise.all(
-    //   Object.keys(skillsToUpdate).map(async (skillType) => {
-    //     const skill = await Skill.findOne({ skillType });
-    //     if (skill) {
-    //       skillsToUpdate[skillType].forEach((id) => {
-    //         if (!skill[skillType].includes(id)) {
-    //           skill[skillType].push(id);
-    //         }
-    //       });
-    //       await skill.save();
-    //     }
-    //   })
-    // );
+    await Promise.all(
+      Object.keys(skillsToUpdate).map(async (skillType) => {
+        const skill = await Skill.findOne({ skillType });
+        if (skill) {
+          skillsToUpdate[skillType].forEach((id) => {
+            if (!skill[skillType].includes(id)) {
+              skill[skillType].push(id);
+            }
+          });
+          await skill.save();
+        }
+      })
+    );
 
     // Send email asynchronously
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: emailAddress,
-      subject: "Registration Successful",
-      text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
-    };
+    // const mailOptions = {
+    //   from: process.env.EMAIL_USER,
+    //   to: emailAddress,
+    //   subject: "Registration Successful",
+    //   text: `Hello ${fullName},\n\nThank you for registering for the DLT Africa talent pool.\n\nBest regards,\nDLT Africa Team`,
+    // };
 
-    const notifyOptions = {
-      from: process.env.EMAIL_USER,
-      to: "info@dltafrica.io",
-      subject: "New Talent Registration",
-      text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
-    };
+    // const notifyOptions = {
+    //   from: process.env.EMAIL_USER,
+    //   to: "info@dltafrica.io",
+    //   subject: "New Talent Registration",
+    //   text: `A new talent has registered:\n\nName: ${fullName}\nEmail: ${emailAddress}\nRole: ${role}\n\nPlease review the details in the talent management system.`,
+    // };
 
-    await Promise.all([
-      sendEmail(mailOptions).catch((error) =>
-        console.error("Error sending registration email:", error)
-      ),
-      sendEmail(notifyOptions).catch((error) =>
-        console.error("Error sending notification email:", error)
-      ),
-    ]);
+    // await Promise.all([
+    //   sendEmail(mailOptions).catch((error) =>
+    //     console.error("Error sending registration email:", error)
+    //   ),
+    //   sendEmail(notifyOptions).catch((error) =>
+    //     console.error("Error sending notification email:", error)
+    //   ),
+    // ]);
 
     res.status(201).json({
       success: true,
