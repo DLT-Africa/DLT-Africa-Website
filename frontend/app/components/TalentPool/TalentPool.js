@@ -208,9 +208,13 @@ const TalentPool = () => {
       );
     }
 
-    const filteredTalents = talents.filter((talent) =>
-      selectedSkills.every((skill) => talent.skills.includes(skill))
-    );
+   const filteredTalents = talents.filter(
+     (talent) =>
+       talent.skills &&
+       Array.isArray(talent.skills) &&
+       selectedSkills.every((skill) => talent.skills.includes(skill))
+   );
+
 
     if (filteredTalents.length === 0) {
       return (

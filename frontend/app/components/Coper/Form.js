@@ -415,7 +415,7 @@ const Form = () => {
       <div className="flex items-center justify-center">
         <button
           type="submit"
-          className="py-[18px] px-[65px] text-center bg-[#FC7C13] rounded-xl text-[16px] font-poppins font-medium text-[#F7FCFE]"
+          className="py-[15px] px-[65px] text-center bg-[#FC7C13] rounded-xl text-[16px] font-poppins font-medium text-[#F7FCFE]"
         >
           {isSubmitting ? "Submitting..." : "Register"}
         </button>
