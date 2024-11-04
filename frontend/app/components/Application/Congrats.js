@@ -44,17 +44,20 @@ const Congrats = () => {
           </h1>
           <div>
             <p className="h-[48px] opacity-75% text-center">
-              Your application has been successfully submitted. You'll receive
-              an email from our team regarding your next steps shortly.
+              Your application has been successfully submitted. Please expect to
+              receive an email from our team within a few days regarding your
+              next steps.
             </p>
             <br />
+            <p>OR</p>
+            <br />
             <p>
-              If you don't receive any email within a few minutes, please check
-              your spam folder.
+              Send a message to our WhatsApp number: +234 815 650 9701 || +234
+              816 921 1501
             </p>
 
             <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
-              <p>Redirecting to homepage in {countdown} seconds...</p> 
+              <p>Redirecting to homepage in {countdown} seconds...</p>
             </div>
           </div>
         </div>
