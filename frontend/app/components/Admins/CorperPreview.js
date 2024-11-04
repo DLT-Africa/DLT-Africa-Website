@@ -148,7 +148,7 @@ const CorperPreview = () => {
                   } = corper;
 
                   return (
-                    <tr key={_id}>
+                    <tr key={index}>
                       <td className="border px-4 py-2">{index + 1}</td>
                       <td className="border px-4 py-2">{fullName}</td>
                       <td className="border px-4 py-2">{emailAddress}</td>
