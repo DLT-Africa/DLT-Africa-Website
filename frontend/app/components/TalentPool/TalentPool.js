@@ -23,17 +23,16 @@ const TalentPool = () => {
 
   useEffect(() => {
     const fetchSkills = async () => {
-      setFetching(true)
+      setFetching(true);
       try {
         const response = await axios.get(`${URL}/api/v1/skill/skills`);
         const skillCategories = Object.keys(response.data).filter(
           (key) => key !== "_id" && key !== "__v"
         );
         setAvailableSkills(skillCategories);
-        setFetching(false)
-
+        setFetching(false);
       } catch (error) {
-        setFetching(false)
+        setFetching(false);
 
         console.error("Error fetching skills:", error);
         toast.error("Error fetching skills");
@@ -45,14 +44,13 @@ const TalentPool = () => {
 
   useEffect(() => {
     const fetchTalents = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await axios.get(`${URL}/api/v1/talent/talents`);
         setTalents(response.data.data);
-        setLoading(false)
-
+        setLoading(false);
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
 
         console.error("Error fetching talents:", error);
         toast.error("Error fetching talents");
@@ -73,16 +71,16 @@ const TalentPool = () => {
     setCurrentPage(1);
   };
 
-
   const handlePageChange = async (direction) => {
     if (loading) return;
-    setLoading(true); 
+    setLoading(true);
 
-    const nextPage = direction === "next" ? currentPage + 1 : Math.max(currentPage - 1, 1);
+    const nextPage =
+      direction === "next" ? currentPage + 1 : Math.max(currentPage - 1, 1);
 
     try {
       const response = await axios.get(`${URL}/api/v1/talent/talents`, {
-        params: { page: nextPage, itemsPerPage }
+        params: { page: nextPage, itemsPerPage },
       });
       setTalents(response.data.data);
       setCurrentPage(nextPage);
@@ -90,7 +88,7 @@ const TalentPool = () => {
       toast.error("Error fetching talents");
       console.error("Error fetching talents:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -111,7 +109,6 @@ const TalentPool = () => {
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-
 
   const renderButtons = () => {
     const buttonStyles = [
@@ -179,8 +176,9 @@ const TalentPool = () => {
       return (
         <label
           key={index}
-          className={`${styles} ${isSelected ? "bg-gray-200" : ""
-            } cyberpunk-checkbox-label`}
+          className={`${styles} ${
+            isSelected ? "bg-gray-200" : ""
+          } cyberpunk-checkbox-label`}
         >
           <input
             type="checkbox"
@@ -208,13 +206,12 @@ const TalentPool = () => {
       );
     }
 
-   const filteredTalents = talents.filter(
-     (talent) =>
-       talent.skills &&
-       Array.isArray(talent.skills) &&
-       selectedSkills.every((skill) => talent.skills.includes(skill))
-   );
-
+    const filteredTalents = talents.filter(
+      (talent) =>
+        talent.skills &&
+        Array.isArray(talent.skills) &&
+        selectedSkills.every((skill) => talent.skills.includes(skill))
+    );
 
     if (filteredTalents.length === 0) {
       return (
@@ -235,8 +232,9 @@ const TalentPool = () => {
     return paginatedTalents.map((talent, index) => (
       <div
         key={index}
-        className={`h-[500px] md:h-[473px]   m-2 bg-white rounded-[10px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${selectedTalent === talent ? "selected" : ""
-          }`}
+        className={`h-[500px] md:h-[473px]   m-2 bg-white rounded-[10px] flex  justify-end flex-col overflow-hidden relative transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer ${
+          selectedTalent === talent ? "selected" : ""
+        }`}
         onClick={() => handleCardClick(talent)}
       >
         {selectedTalent === talent ? (
@@ -245,7 +243,7 @@ const TalentPool = () => {
               <img
                 loading="lazy"
                 src={talent.profileImage}
-                className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full" loading="lazy"
+                className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full"
               />
               <p className="font-dmSerifDisplay font-medium text-[15px] md:text-[22px] text-[#3E493C] ">
                 {talent.fullName}
@@ -294,7 +292,8 @@ const TalentPool = () => {
             <img
               src={talent.bgImage}
               alt={talent.fullName}
-              className="absolute inset-0 w-full h-full object-cover" loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
 
             <div className="p-4 relative z-10 bg-gradient-to-r from-white/30 to-white/10 backdrop-blur-lg backdrop-brightness-125">
@@ -311,7 +310,6 @@ const TalentPool = () => {
     ));
   };
 
-
   return (
     <section className="h-auto bg-[#f3f6f6] flex flex-col items-center pb-4">
       <h1 className="text-[#441606] text-center font-dmSerifDisplay text-[36px] md:text-[36px] mt-[85px] mb-[61px] font-[400]">
@@ -322,20 +320,16 @@ const TalentPool = () => {
         {fetching ? "Fetching skills.." : renderButtons()}
       </div>
 
-
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-[20px] md:gap-[25px]  lg:grid-cols-3 px-[10px]  py-[50px] w-full  ">
-
         {loading ? "Loading..." : renderTalents()}
       </div>
 
-
-
       <div className="flex justify-between px-[10px] w-full max-w-[800px] mt-4">
-
         <button
           onClick={() => handlePageChange("prev")}
-          className={`${currentPage === 1 || loading ? "opacity-50 cursor-not-allowed" : ""
-            } bg-[#C54809] text-white font-medium p-2 rounded`}
+          className={`${
+            currentPage === 1 || loading ? "opacity-50 cursor-not-allowed" : ""
+          } bg-[#C54809] text-white font-medium p-2 rounded`}
           disabled={currentPage === 1 || loading}
         >
           <IoIosArrowBack />
@@ -343,16 +337,15 @@ const TalentPool = () => {
 
         <button
           onClick={() => handlePageChange("next")}
-          className={`${talents.length <= currentPage * itemsPerPage || loading
-            ? "opacity-50 cursor-not-allowed"
-            : ""
-            } bg-[#C54809] text-white font-medium p-2 rounded`}
+          className={`${
+            talents.length <= currentPage * itemsPerPage || loading
+              ? "opacity-50 cursor-not-allowed"
+              : ""
+          } bg-[#C54809] text-white font-medium p-2 rounded`}
           disabled={talents.length <= currentPage * itemsPerPage || loading}
         >
           <MdOutlineNavigateNext />
         </button>
-
-
       </div>
 
       {isModalOpen && selectedTalent && (
