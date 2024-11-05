@@ -7,8 +7,12 @@ const RegisterOnline = () => {
         <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-20">
           <img
             className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
+<<<<<<< HEAD
             src="/images/hero-section.png"
             loading="lazy"
+=======
+            src="/images/hero-section.png"  loading="lazy"
+>>>>>>> e42a41d85c83c9d2de2223522cbdf7d9c0414b25
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
@@ -44,8 +48,12 @@ const RegisterOffline = () => {
         <div className="absolute xl:left-[-400px] lg:left-[-300px] md:left-[-200px] sm:left-[-100px] left-0 top-0">
           <img
             src="Grouping162.png"
+<<<<<<< HEAD
             className="w-[390px] h-[400px] ml-[-100px] "
             loading="lazy"
+=======
+            className="w-[390px] h-[400px] ml-[-100px] " loading="lazy"
+>>>>>>> e42a41d85c83c9d2de2223522cbdf7d9c0414b25
           />
         </div>
         <div className="flex items-center flex-col gap-10">
@@ -73,12 +81,16 @@ const RegisterOffline = () => {
           </Link>
         </div>
         <div className="absolute xl:right-[-380px] lg:right-[-290px] md:right-[-200px] sm:right-[-200px] bottom-0 right-[-100px]">
+<<<<<<< HEAD
           <img
             src="/images/Group164.png"
             alt="image"
             className="h-[300px]"
             loading="lazy"
           />
+=======
+          <img src="/images/Group164.png" alt="image" className="h-[300px]"  loading="lazy"/>
+>>>>>>> e42a41d85c83c9d2de2223522cbdf7d9c0414b25
         </div>
       </div>
     </div>

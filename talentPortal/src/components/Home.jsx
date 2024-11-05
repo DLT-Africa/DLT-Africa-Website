@@ -56,7 +56,7 @@ const Home = () => {
     fetchSkills();
   }, []);
   useEffect(() => {
-    const targetDate = new Date("2024-08-23T12::00");
+    const targetDate = new Date("2024-08-23T12:00");
 
     if (new Date() >= targetDate) {
       setIsRegistrationClosed(true);
@@ -181,7 +181,7 @@ const Home = () => {
             src={dlt}
             alt="dlt-logo"
             loading="lazy"
-            className="w-12 md:w-16"
+            className="w-12 md:w-16" 
           />
           <p className="text-gray-800 text-xl md:text-3xl font-medium text-center">
             DLT Africa talent pool

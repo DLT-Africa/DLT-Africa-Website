@@ -21,12 +21,7 @@ const HackerHouseBuild = () => {
           </div>
 
           <div className="div">
-            <img
-              src="/images/withthebestimg.svg"
-              alt="suberopic"
-              className="w-[300px] md:w-[537px] "
-              loading="lazy"
-            />
+            <img src="/images/withthebestimg.svg" alt="suberopic" className="w-[300px] md:w-[537px] "  loading="lazy"/>
           </div>
         </div>
 
@@ -34,38 +29,32 @@ const HackerHouseBuild = () => {
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[1017px] top-[110px]"
-            loading="lazy"
+            className="absolute left-[1017px] top-[110px]" loading="lazy"
           />
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[55px] top-[290px]"
-            loading="lazy"
+            className="absolute left-[55px] top-[290px]" loading="lazy"
           />
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[616px] top-[338px]"
-            loading="lazy"
+            className="absolute left-[616px] top-[338px]" loading="lazy"
           />
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[207px] top-[542px]"
-            loading="lazy"
+            className="absolute left-[207px] top-[542px]" loading="lazy"
           />
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[536px] top-[542px]"
-            loading="lazy"
+            className="absolute left-[536px] top-[542px]" loading="lazy"
           />
           <img
             src="/images/strokeimg.svg"
             alt="strok"
-            className="absolute left-[1248px] top-[457px]"
-            loading="lazy"
+            className="absolute left-[1248px] top-[457px]" loading="lazy"
           />
         </div>
       </div>
