@@ -17,7 +17,12 @@ const Footer = () => {
           <div className="flex flex-col gap-4  justify-center items-center">
             <a href="">
               {" "}
-              <img src="/images/dlt-logo.png" alt="logo" className="w-[126px] h-[50.797px]" />
+              <img
+                src="/images/dlt-logo.png"
+                alt="logo"
+                className="w-[126px] h-[50.797px]"
+                loading="lazy"
+              />
             </a>
 
             <p className="text-neutral-black font-poppins text-sm md:text-lg font-normal leading-[120%]  h-[19px] text-center">

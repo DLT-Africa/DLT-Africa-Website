@@ -70,6 +70,7 @@ const Partners = () => {
                     src={partner.img}
                     alt={partner.url}
                     className="h-[40px] w-auto sm:h-[60px] md:h-[80px] lg:h-[100px] xl:h-[120px] "
+                    loading="lazy"
                   />
                 </a>
               </div>
@@ -86,6 +87,7 @@ const Partners = () => {
                     src={partner.img}
                     alt={partner.url}
                     className="h-[40px] w-auto sm:h-[60px] md:h-[80px] lg:h-[100px] xl:h-[120px] animate-move-horizontal"
+                  loading="lazy"
                   />
                 </a>
               </div>

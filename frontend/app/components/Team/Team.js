@@ -73,16 +73,16 @@ const teamMember = [
     linkedinLink: "https://www.linkedin.com/in/oluwaseyi-abolaji-8b936a213",
     twitterLink: "https://twitter.com/Oluwaseyi_7",
   },
-  {
-    id: 8,
-    img: "/images/herlew.jpeg",
-    name: "Aliu Musa",
-    role: "Chief Servant Officer",
-    description:
-      "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and also worked at Arbitrum Foundation as a Senior Program Manager.",
-    linkedinLink: "https://www.linkedin.com/in/aliumusa",
-    twitterLink: "https://twitter.com/herlew99",
-  },
+  // {
+  //   id: 8,
+  //   img: "/images/herlew.jpeg",
+  //   name: "Aliu Musa",
+  //   role: "Chief Servant Officer",
+  //   description:
+  //     "Aliu Musa has wealth of experience in Software Engineering and Business Operations, having worked with top web3 companies across the world including OKX, Real Items and Celo Foundation  and also worked at Arbitrum Foundation as a Senior Program Manager.",
+  //   linkedinLink: "https://www.linkedin.com/in/aliumusa",
+  //   twitterLink: "https://twitter.com/herlew99",
+  // },
 ];
 
 const backgoundImage =
@@ -143,6 +143,7 @@ const team = () => {
                                 rounded-lg"
                 src={member.img}
                 alt="team image"
+                loading="lazy"
               />
             </div>
 

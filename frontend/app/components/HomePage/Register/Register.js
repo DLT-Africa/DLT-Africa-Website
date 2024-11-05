@@ -8,6 +8,7 @@ const RegisterOnline = () => {
           <img
             className="w-full lg:w-auto lg:max-w-[527px] h-[204px] lg:h-[344px] flex-shrink-0 rounded-[20px] "
             src="/images/hero-section.png"
+            loading="lazy"
           />
 
           <div className="inline-flex flex-col justify-left gap-[18px] text-center w-full lg:w-auto lg:text-left  ">
@@ -44,6 +45,7 @@ const RegisterOffline = () => {
           <img
             src="Grouping162.png"
             className="w-[390px] h-[400px] ml-[-100px] "
+            loading="lazy"
           />
         </div>
         <div className="flex items-center flex-col gap-10">
@@ -71,7 +73,12 @@ const RegisterOffline = () => {
           </Link>
         </div>
         <div className="absolute xl:right-[-380px] lg:right-[-290px] md:right-[-200px] sm:right-[-200px] bottom-0 right-[-100px]">
-          <img src="/images/Group164.png" alt="image" className="h-[300px]" />
+          <img
+            src="/images/Group164.png"
+            alt="image"
+            className="h-[300px]"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

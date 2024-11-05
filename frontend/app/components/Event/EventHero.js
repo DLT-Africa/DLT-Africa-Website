@@ -12,7 +12,7 @@ const EventHero = () => {
         </p>
       </div>
       <div className="flex justify-between items-center sm:pl-[17.08px]">
-        <img src="/images/side-image.png" alt="side" />
+        <img src="/images/side-image.png" alt="side" loading="lazy" />
       </div>
     </section>
   );

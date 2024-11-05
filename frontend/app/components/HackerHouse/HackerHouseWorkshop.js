@@ -22,7 +22,7 @@ const HackerHouseWorkshop = () => {
           <div className="flex flex-row justify-center  items-center flex-wrap  gap-[46px]  xl:w-[932px] ">
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon1.png" alt="Example" />
+                <img src="/images/icon1.png" alt="Example" loading="lazy" />
               </div>
 
               <div className="w-full max-w-[250px] h-auto md:h-[201px] gap-[20px]">
@@ -40,7 +40,7 @@ const HackerHouseWorkshop = () => {
 
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon2.png" alt="Example" />
+                <img src="/images/icon2.png" alt="Example" loading="lazy" />
               </div>
 
               <div className="w-[250px] h-[201px] gap-[20px]">
@@ -58,7 +58,7 @@ const HackerHouseWorkshop = () => {
             </div>
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon2.png" alt="Example" />
+                <img src="/images/icon2.png" alt="Example" loading="lazy" />
               </div>
 
               <div className="w-[250px] h-[201px] gap-[20px]">
@@ -75,7 +75,7 @@ const HackerHouseWorkshop = () => {
             </div>
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon4.png" alt="Example" />
+                <img src="/images/icon4.png" alt="Example" loading="lazy" />
               </div>
 
               <div className="w-[250px] h-[201px] gap-[20px]">
@@ -91,7 +91,7 @@ const HackerHouseWorkshop = () => {
             </div>
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon5.png" alt="Example" />
+                <img src="/images/icon5.png" alt="Example" loading="lazy" />
               </div>
 
               <div className="w-[250px] h-[201px] gap-[20px]">
@@ -109,7 +109,7 @@ const HackerHouseWorkshop = () => {
             </div>
             <div className="relative w-[280px]  shadow-lg flex flex-col items-center gap-3 p-5 rounded-lg border border-orange-300 h-[297px] mb-8">
               <div className="absolute top-2 right-2 w-[50px] h-[50px]">
-                <img src="/images/icon6.png" alt="Example" />
+                <img src="/images/icon6.png" alt="Example"  loading="lazy" />
               </div>
 
               <div className="w-[250px] h-[201px] gap-[20px]">

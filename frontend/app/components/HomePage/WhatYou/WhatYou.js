@@ -58,6 +58,7 @@ const WhatYou = () => {
             <img
               className="w-[50px] mx-auto h-[50px] mb-[15px]"
               src={details.img}
+              loading="lazy"
             />
             {/* </div> */}
 

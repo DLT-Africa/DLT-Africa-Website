@@ -239,6 +239,7 @@ const TalentPool = () => {
           <div className="h-full w-full detail-card px-[20px] sm:px-[40px] py-[20px] sm:py-[30px] flex flex-col items-center gap-[15px] border-orange-400">
             <div className="w-full flex flex-col items-center gap-[10px]">
               <img
+                loading="lazy"
                 src={talent.profileImage}
                 className="w-[80px] sm:w-[100px] md:w-[180px] h-[80px] sm:h-[100px] md:h-[180px] rounded-full"
               />
@@ -289,7 +290,8 @@ const TalentPool = () => {
             <img
               src={talent.bgImage}
               alt={talent.fullName}
-              className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
             />
 
             <div className="p-4 relative z-10 bg-gradient-to-r from-white/30 to-white/10 backdrop-blur-lg backdrop-brightness-125">

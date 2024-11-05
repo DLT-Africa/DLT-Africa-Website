@@ -49,7 +49,7 @@ const Header = () => {
       >
         <div className="sm:py-0 sm:px-0">
           <Link href={"/"}>
-            <img src="/images/wilddlt.png" className="w-[180px]  " />
+            <img src="/images/wilddlt.png" className="w-[180px]  " loading="lazy" />
           </Link>
         </div>
         <div className="flex flex-end">
@@ -69,7 +69,7 @@ const Header = () => {
           >
             <div className="my-[10px] flex items-center justify-between ">
               <Link href={"/"} onClick={closeDrawerTop}>
-                <img src="/images/dlt.png" alt="nav-log" />
+                <img src="/images/dlt.png" alt="nav-log" loading="lazy" />
               </Link>
               <svg
                 onClick={closeDrawerTop}
