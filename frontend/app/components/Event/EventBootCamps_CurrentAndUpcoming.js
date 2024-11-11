@@ -1,4 +1,3 @@
-
 import CurrentAndUpcoming from "../HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 
 const EventBootCamps_CurrentAndUpcoming = () => {

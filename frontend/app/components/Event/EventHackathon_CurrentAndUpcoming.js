@@ -1,4 +1,3 @@
-
 import CurrentAndUpcoming from "../HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 
 const EventHackathon_CurrentAndUpcoming = () => {
@@ -23,7 +22,7 @@ const EventHackathon_CurrentAndUpcoming = () => {
         </div>
       </div>
 
-      <CurrentAndUpcoming/>
+      <CurrentAndUpcoming />
     </>
   );
 };
