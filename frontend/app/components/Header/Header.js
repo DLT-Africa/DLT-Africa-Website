@@ -71,14 +71,8 @@ const Header = () => {
             onClose={closeDrawerRight}
             className=" flex justify-between items-start  pt-6"
           >
-            {/* <div className="mt-[10px] flex items-center justify-between  ">
-              <Link href={"/"} onClick={closeDrawerRight}>
-                <img src="/images/dlt.png" alt="nav-log" loading="lazy" />
-              </Link>
-            </div> */}
-
-            <div className="flex flex-col gap-1 w-full items-end pr-2">
-              <div className="w-fullborder-2 flex items-end">
+            <div className="flex flex-col gap-4  w-full">
+              <div className="w-full  flex items-end justify-end p-6 pt-0">
                 <div className="py-2">
                   <svg
                     onClick={closeDrawerRight}
@@ -108,89 +102,90 @@ const Header = () => {
                   </svg>
                 </div>
               </div>
-
-              {isLoggedIn ? (
-                <>
+              <div className="flex flex-col gap-1 w-full items-end pr-6 ">
+                {isLoggedIn ? (
+                  <>
+                    <Link
+                      className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                      href={"/admin-dashboard"}
+                      onClick={closeDrawerRight}
+                    >
+                      Admin Dashboard
+                    </Link>
+                    <Link
+                      className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                      href={"/"}
+                      onClick={() => {
+                        handleLogout();
+                        closeDrawerRight();
+                      }}
+                    >
+                      Logout
+                    </Link>
+                  </>
+                ) : (
                   <Link
-                    className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                    href={"/admin-dashboard"}
+                    className=" text-[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                    href={"/admin"}
                     onClick={closeDrawerRight}
                   >
-                    Admin Dashboard
+                    Admin Registration/Login
                   </Link>
-                  <Link
-                    className=" text-[17px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                    href={"/"}
-                    onClick={() => {
-                      handleLogout();
-                      closeDrawerRight();
-                    }}
-                  >
-                    Logout
-                  </Link>
-                </>
-              ) : (
-                <Link
-                  className=" text-[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                  href={"/admin"}
+                )}
+
+                <a
+                  className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href="https://medium.com/@DLTAfrica"
                   onClick={closeDrawerRight}
                 >
-                  Admin Registration/Login
-                </Link>
-              )}
-
-              <a
-                className="text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href="https://medium.com/@DLTAfrica"
-                onClick={closeDrawerRight}
-              >
-                Blog
-              </a>
-              <Link
-                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/codecorps"}
-                onClick={closeDrawerRight}
-              >
-                Corper's Reg
-              </Link>
-              <Link
-                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/event"}
-                onClick={closeDrawerRight}
-              >
-                Event
-              </Link>
-              {pathname != "/hacker-house" && (
+                  Blog
+                </a>
                 <Link
                   className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                  href={"/hacker-house"}
+                  href={"/codecorps"}
                   onClick={closeDrawerRight}
                 >
-                  Hacker House
+                  Corper's Reg
                 </Link>
-              )}
+                <Link
+                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href={"/event"}
+                  onClick={closeDrawerRight}
+                >
+                  Event
+                </Link>
+                {pathname != "/hacker-house" && (
+                  <Link
+                    className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                    href={"/hacker-house"}
+                    onClick={closeDrawerRight}
+                  >
+                    Hacker House
+                  </Link>
+                )}
 
-              <Link
-                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/team"}
-                onClick={closeDrawerRight}
-              >
-                Our Team
-              </Link>
-              <Link
-                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/courses"}
-                onClick={closeDrawerRight}
-              >
-                Programmes
-              </Link>
-              <Link
-                className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
-                href={"/talent-pool"}
-                onClick={closeDrawerRight}
-              >
-                Talent Pool
-              </Link>
+                <Link
+                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href={"/team"}
+                  onClick={closeDrawerRight}
+                >
+                  Our Team
+                </Link>
+                <Link
+                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href={"/courses"}
+                  onClick={closeDrawerRight}
+                >
+                  Programmes
+                </Link>
+                <Link
+                  className=" text=[18px] hover:text-[#FC7C13] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+                  href={"/talent-pool"}
+                  onClick={closeDrawerRight}
+                >
+                  Talent Pool
+                </Link>
+              </div>
             </div>
           </Drawer>
         </div>
