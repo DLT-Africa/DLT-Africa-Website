@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-function SelectField({ label, name, options, handleChange, setTuitionFee, classType }) {
+function SelectField({
+  label,
+  name,
+  options,
+  handleChange,
+  setTuitionFee,
+  classType,
+}) {
   const [selectedOption, setSelectedOption] = useState("");
   const [validationError, setValidationError] = useState("");
 
@@ -24,7 +31,10 @@ function SelectField({ label, name, options, handleChange, setTuitionFee, classT
           case "Full-Stack Development":
             tuitionFee = 630000;
             break;
-          
+          case "Product UI/UX Design":
+            tuitionFee = 170000;
+            break;
+
           case "Blockchain Development":
             tuitionFee = 0;
             break;
@@ -36,10 +46,10 @@ function SelectField({ label, name, options, handleChange, setTuitionFee, classT
           case "Frontend Development":
             tuitionFee = 320000;
             break;
-            case "Product UI/UX Design":
+          case "Product UI/UX Design":
             tuitionFee = 170000;
             break;
-          
+
           case "Blockchain Development":
             tuitionFee = 0;
             break;
