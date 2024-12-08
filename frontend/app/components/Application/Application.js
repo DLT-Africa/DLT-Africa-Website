@@ -231,7 +231,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-11-30");
+      const deadlineDate = new Date("2024-12-31");
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
