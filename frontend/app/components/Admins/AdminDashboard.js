@@ -101,7 +101,7 @@ const AdminDashboard = () => {
             onClick={() => handleButtonClick("/corpers")}
             className={`px-4 py-2 rounded-md ${
               activeButton === "/corpers"
-                ? "bg-red-500 text-white"
+                ? "bg-pink-800 text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
