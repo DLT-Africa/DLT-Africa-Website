@@ -48,12 +48,13 @@ const Congrats = () => {
               receive an email from our team within a few days regarding your
               next steps.
             </p>
-            <br />
             <p>OR</p>
             <br />
             <p>
-              Send a message to our WhatsApp number: +234 815 650 9701 || +234
-              816 921 1501
+              Send a message to our{" "}
+              <a href="https://wa.link/3bzyk6" className="text-[#FC7C13]" target="_blank">
+                WhatsApp
+              </a>
             </p>
 
             <div className="absolute top-0 right-0 m-4 p-2 text-green-900 rounded-lg shadow">
