@@ -16,11 +16,17 @@ const RegisterOnline = () => {
               <span className="text-[#FC7C13]">Your Life?</span>
             </div>
             <div className="w-full   lg:max-w-[450px]  xl:w-[540px] lg:text-[20px] break-words text-wrap text-[16px] lg:text-left xl:text-left font-serif">
-              Enroll in our Online Class and receive personalized mentoring from
+              Enroll in our  Class and receive personalized mentoring from
               seasoned developers and product designers. Dive into interactive
               sessions, hands-on projects, and accelerate your skills from the
               comfort of your home.
             </div>
+            {/* <div className="w-full   lg:max-w-[450px]  xl:w-[540px] lg:text-[20px] break-words text-wrap text-[16px] lg:text-left xl:text-left font-serif">
+              Enroll in our Online Class and receive personalized mentoring from
+              seasoned developers and product designers. Dive into interactive
+              sessions, hands-on projects, and accelerate your skills from the
+              comfort of your home.
+            </div> */}
 
             <Link href="/application">
               <div className="w-full lg:w-[353px] flex items-center justify-center h-[55px] p-[10px] rounded-lg border-solid border-2 border-orange-500 text-orange-500 hover:bg-orange-100 transition duration-500 ease-in-out transform hover:-translate-y-1">
