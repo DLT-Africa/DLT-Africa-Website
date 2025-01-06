@@ -22,7 +22,7 @@ const IndexHome = () => {
 
 
   return (
-    <>
+    <div className="relative">
       <HeroSection ref={(el) => elementsRef.current.push(el)} className="scale-down" />
       <div ref={refWhatYou} className={`${scalingClass} ${inViewWhatYou ? visibleClass : ""}`}>
         <WhatYou />
@@ -43,7 +43,7 @@ const IndexHome = () => {
         <CurrentAndUpcoming />
       </div>
 
-    </>
+    </div>
   );
 };
 

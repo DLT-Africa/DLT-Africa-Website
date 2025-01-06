@@ -5,23 +5,25 @@ const getDetails = [
   {
     id: 1,
     img: "images/YouTube.png",
-    name: "300 hours of full-stack online curriculum",
+    name: "300 hours of extensive training",
     description:
-      "Embark on a transformative journey with DLTAfrica's comprehensive Full-Stack Online Curriculum, designed to empower aspiring developers and seasoned professionals alike. ",
+      "Embark on a transformative journey with DLTAfrica's comprehensive Full-Stack  Curriculum, designed to empower aspiring developers and seasoned professionals alike. ",
   },
   {
     id: 2,
     img: "images/Vector.png",
     name: "Guidance on setting up your own coding environment",
     description:
-      "DLT Africa is there to give you a comprehensive guide on setting up your own coding environment. Whether you're a beginner or seasoned developer, having the right tools and environment is crucial for success. Wait no more!",
+      "DLT Africa offers comprehensive technical support before, during and after product launch. We have the burden of building product away from non-technical founders to allow them focus on building the business!",
   },
   {
     id: 3,
     img: "images/BarChart.png",
     name: "A progress-oriented user interface and experience",
     description:
-      "Experience software development like never before with our innovative approach to user interface and experience (UI/UX). Designed with your progress in mind, our platform offers an intuitive and conducive learning environment that keeps you engaged, motivated, and focused on your goals.",
+      "Our post product launch support includes regular implementation of user request and 24/7 dedicated developers support for all projects in our portfolio.",
+    // description:
+    //   "Experience software development like never before with our innovative approach to user interface and experience (UI/UX). Designed with your progress in mind, our platform offers an intuitive and conducive learning environment that keeps you engaged, motivated, and focused on your goals.",
   },
 ];
 
@@ -48,8 +50,19 @@ const WhatYou = () => {
         text-center text-[#1C1C1C] opacity-[0.75] lg:px-[250px] md:px-[180px] self-center mb-[90px] md:-w[564px] px-[25px] font-serif"
       >
         {" "}
-        With DLT Africa, you gain access to an extensive curriculum spanning through Full- Stack and Smart Contract development totaling over 200 hours. Accepted cohorts have access to our thriving community as well as opportunities from our strategic partners around the globe.
+        With DLT Africa, top talents gain access to extensive training spanning
+        through full-stack and smart contract development. Top projects receive
+        all needed technical support in building their projects to allow them
+        focus on the business side of the project through our exceptional
+        in-house engineers.
       </p>
+      {/* <p
+        className="lg:text-[25px] md:text-[14px] mt-[10px] leading-[120%] 
+        text-center text-[#1C1C1C] opacity-[0.75] lg:px-[250px] md:px-[180px] self-center mb-[90px] md:-w[564px] px-[25px] font-serif"
+      >
+        {" "}
+        With DLT Africa, you gain access to an extensive curriculum spanning through Full- Stack and Smart Contract development totaling over 200 hours. Accepted cohorts have access to our thriving community as well as opportunities from our strategic partners around the globe.
+      </p> */}
 
       <div className="grid md:grid-cols-3 gap-12 sm:gap-16 md:gap-12 lg:gap-12 xl:gap-12 px-[25px] lg:px-32 pb-[61px] ">
         {getDetails.map((details) => (
