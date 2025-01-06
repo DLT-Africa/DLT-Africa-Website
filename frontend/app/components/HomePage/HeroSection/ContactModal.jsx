@@ -24,6 +24,7 @@ const ContactModal = ({ onClose }) => {
 
       if (!orgName || !emailAddress || !message) {
         toast.error("All fields are required");
+        return;
       }
       const response = await axios.post(
         "https://dlt-backend.vercel.app/api/v1/contact/contactUs",
@@ -67,7 +68,10 @@ const ContactModal = ({ onClose }) => {
             <input
               type="text"
               id="name"
+              name="orgName"
               className="border rounded w-full py-2 px-3 text-gray-700"
+              onChange={handleChange}
+              value={formData.orgName}
             />
           </div>
           <div className="mb-4">
@@ -77,31 +81,35 @@ const ContactModal = ({ onClose }) => {
             <input
               type="email"
               id="email"
+              name="emailAddress"
               className="border rounded w-full py-2 px-3 text-gray-700"
               onChange={handleChange}
+              value={formData.emailAddress}
             />
           </div>
           <div className="mb-4">
             <label
               htmlFor="message"
               className="block text-gray-700 font-medium"
-              onChange={handleChange}
             >
               Message
             </label>
             <textarea
               type="text"
               id="message"
+              name="message"
               className="border rounded w-full py-2 px-3 text-gray-700"
               onChange={handleChange}
+              value={formData.message}
             />
           </div>
           <button
             type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 disabled:opacity-50"
             onClick={handleSubmit}
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
           <button
             type="button"
@@ -111,6 +119,10 @@ const ContactModal = ({ onClose }) => {
             Cancel
           </button>
         </form>
+        {!formCompleted && formValidMessage && (
+          <p className="text-red-500">{formValidMessage}</p>
+        )}
+        {formCompleted && <p className="text-green-500">{formValidMessage}</p>}
       </div>
     </section>
   );
