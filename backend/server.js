@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
 const eventRoute = require("./routes/eventRoute");
 const teamRoute = require("./routes/teamRoute");
+const contactRoute = require("./routes/contactRoutes");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -55,6 +56,7 @@ app.options("*", cors());
 app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
+app.use("/api/v1/contact", contactRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");
