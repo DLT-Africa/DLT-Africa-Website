@@ -13,7 +13,6 @@ const ContactModal = ({ onClose }) => {
   const [formValidMessage, setFormValidMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formCompleted, setFormCompleted] = useState(false);
-  const [data, setData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +29,7 @@ const ContactModal = ({ onClose }) => {
         "https://dlt-backend.vercel.app/api/v1/contact/contactUs",
         formData
       );
+      console.log(response.data);
 
       onClose();
       setIsSubmitting(false);
@@ -57,7 +57,7 @@ const ContactModal = ({ onClose }) => {
   };
 
   return (
-    <section className="h-full shadow-lg opacity-90 bg-blue-gray-100 w-full flex justify-center items-center fixed top-0 left-0 z-50">
+    <section className="h-full shadow-lg  bg-green-50 opacity-95 w-full flex justify-center items-center fixed top-0 left-0 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[500px]">
         <h2 className="text-xl font-bold mb-4">Contact Us</h2>
         <form>

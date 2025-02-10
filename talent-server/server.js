@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 
 connectDB();
 
