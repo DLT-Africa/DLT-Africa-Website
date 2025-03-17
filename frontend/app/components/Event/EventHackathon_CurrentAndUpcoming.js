@@ -1,4 +1,3 @@
-
 import CurrentAndUpcoming from "../HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 
 const EventHackathon_CurrentAndUpcoming = () => {
@@ -8,7 +7,7 @@ const EventHackathon_CurrentAndUpcoming = () => {
         <div className="bg-[#FFFEFB] border border-gray-700 rounded-xl mx-auto pl-[90px] pr-[52px] py-[20px]">
           <div className="flex justify-between gap-10  ">
             <div>
-              <img src="/images/hackaimg.svg" alt="hack" />
+              <img src="/images/hackaimg.svg" alt="hack" loading="lazy" />
             </div>
             <div>
               <h2 className="lg:text-[48px] md:text-[36px] font-[400]   ">
@@ -23,7 +22,7 @@ const EventHackathon_CurrentAndUpcoming = () => {
         </div>
       </div>
 
-      <CurrentAndUpcoming/>
+      <CurrentAndUpcoming />
     </>
   );
 };

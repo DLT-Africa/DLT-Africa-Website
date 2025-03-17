@@ -94,6 +94,17 @@ const TeamPreview = () => {
           >
             Event List
           </Link>
+          <Link
+            href="/corpers"
+            onClick={() => handleButtonClick("/corpers")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/corpers"
+                ? "bg-pink-800 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Corper&apos;s List
+          </Link>
         </div>
       </div>
 

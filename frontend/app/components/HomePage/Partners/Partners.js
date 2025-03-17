@@ -68,8 +68,8 @@ const Partners = () => {
                 <a href={partner.url} target="_blank" rel="noopener noreferrer">
                   <img
                     src={partner.img}
-                    alt={partner.url}
-                    className="h-[40px] w-auto sm:h-[60px] md:h-[80px] lg:h-[100px] xl:h-[120px] "
+                    alt={partner.url} loading="lazy"
+                    className="h-[40px] w-auto sm:h-[60px]  md:h-[80px] lg:h-[100px] xl:h-[120px] "
                   />
                 </a>
               </div>
@@ -84,6 +84,7 @@ const Partners = () => {
                 <a href={partner.url} target="_blank" rel="noopener noreferrer">
                   <img
                     src={partner.img}
+                    loading="lazy"
                     alt={partner.url}
                     className="h-[40px] w-auto sm:h-[60px] md:h-[80px] lg:h-[100px] xl:h-[120px] animate-move-horizontal"
                   />

@@ -28,6 +28,7 @@ const JoinHackerHouse = () => {
               src="/images/Working.png"
               className="w-full h-auto"
               alt="Working at Hacker House"
+              loading="lazy"
             />
           </div>
         </div>

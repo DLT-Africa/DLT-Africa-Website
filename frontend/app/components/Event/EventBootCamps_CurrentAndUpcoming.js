@@ -1,4 +1,3 @@
-
 import CurrentAndUpcoming from "../HomePage/CurrentAndUpcoming/CurrentAndUpcoming";
 
 const EventBootCamps_CurrentAndUpcoming = () => {
@@ -8,7 +7,7 @@ const EventBootCamps_CurrentAndUpcoming = () => {
         <div className="bg-[#FFFEFB] border border-gray-700 rounded-xl mx-auto pl-[90px] pr-[52px] py-[20px] ">
           <div className="flex justify-between gap-10  ">
             <div>
-              <img src="/images/sidespeakerimg.svg" alt="speaker" />
+              <img src="/images/sidespeakerimg.svg" alt="speaker" loading="lazy" />
             </div>
             <div>
               <h2 className="text-[48px] font-[400]   ">Bootcamps</h2>

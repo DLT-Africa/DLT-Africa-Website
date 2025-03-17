@@ -94,7 +94,7 @@ const registerUser = asyncHandler(async (req, res) => {
       subject: "DLT Africa Training Registration Confirmation",
       html: `
         <img src="https://mir-s3-cdn-cf.behance.net/projects/404/6a6d3e181530247.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png" alt="DLT Africa logo">\n
-        <h1>Hello ${user.firstName},</h1> 
+        <h1>Hello ${user.firstName},</h1>
         <p>Thanks for applying for DLT Africa Training to study ${
           user.courseSelected
         }.</p>
@@ -197,7 +197,7 @@ const corpersReg = asyncHandler(async (req, res) => {
       subject: "DLT Africa Training Registration Confirmation",
       html: `
         <img src="https://mir-s3-cdn-cf.behance.net/projects/404/6a6d3e181530247.Y3JvcCwxMDA3LDc4OCwxOTcsMA.png" alt="DLT Africa logo">\n
-        <h1>Hello ${corper.fullName},</h1> 
+        <h1>Hello ${corper.fullName},</h1>
         <p>Thanks for applying for DLT Africa Training to study ${
           corper.courseSelected
         }.</p>
@@ -357,7 +357,7 @@ const upgradeData = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = {  
+module.exports = {
   registerUser,
   getAdmissions,
   deleteAdmission,

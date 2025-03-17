@@ -5,15 +5,12 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-import {  Button } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import Loader from "@/app/components/Application/Loader";
 import SelectField from "@/app/components/Application/SelectField";
 
 const cloud_name = process.env.NEXT_PUBLIC_CLOUD_NAME;
 const upload_preset = process.env.NEXT_PUBLIC_UPLOAD_PRESET;
-
-
-
 
 const Form = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -30,7 +27,6 @@ const Form = () => {
     course_selected: "",
     batchResumption: "",
   });
-
 
   const nigerianStates = [
     { id: 1, tag: "Abia" },
@@ -90,8 +86,6 @@ const Form = () => {
     { id: 3, tag: "March 2025 Entry" },
   ];
 
-
-
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     if (loggedIn === "true") {
@@ -110,15 +104,19 @@ const Form = () => {
       ...formData,
       [name]: value,
     });
+    console.log(formData)
   };
 
   const uploadImageToCloudinary = async (image) => {
-    if (image && ["image/jpeg", "image/jpg", "image/png"].includes(image.type)) {
+    if (
+      image &&
+      ["image/jpeg", "image/jpg", "image/png"].includes(image.type)
+    ) {
       const formData = new FormData();
       formData.append("file", image);
       formData.append("cloud_name", cloud_name);
       formData.append("upload_preset", upload_preset);
-  
+
       try {
         const response = await fetch(
           `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
@@ -129,7 +127,7 @@ const Form = () => {
         );
         const imgData = await response.json();
         if (imgData.url) {
-          return imgData.url;  // Return the uploaded image URL
+          return imgData.url; 
         } else {
           throw new Error("Image upload failed. No URL returned.");
         }
@@ -138,7 +136,9 @@ const Form = () => {
         setFormValidMessage("Error uploading image. Please try again.");
       }
     } else {
-      setFormValidMessage("Invalid image format. Only JPEG, JPG, and PNG are allowed.");
+      setFormValidMessage(
+        "Invalid image format. Only JPEG, JPG, and PNG are allowed."
+      );
     }
     return null;
   };
@@ -146,11 +146,11 @@ const Form = () => {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file.name);  // Display selected file name
-      const url = await uploadImageToCloudinary(file);  // Upload to Cloudinary
+      setSelectedFile(file.name); 
+      const url = await uploadImageToCloudinary(file); 
       if (url) {
-        setFormData({ ...formData, corp_id: url });  // Update form data with image URL
-        setImageUrl(url);  // Save the uploaded image URL for preview or further use
+        setFormData({ ...formData, corp_id: url });
+        setImageUrl(url); 
       } else {
         setSelectedFile(null);
         setImageUrl("");
@@ -160,14 +160,11 @@ const Form = () => {
       setImageUrl("");
     }
   };
-  
-
- 
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const {  
+    const {
       fullName,
       emailAddress,
       phone_number,
@@ -177,7 +174,7 @@ const Form = () => {
       course_selected,
       batchResumption,
     } = formData;
-  
+
     console.log({
       fullName,
       emailAddress,
@@ -188,21 +185,25 @@ const Form = () => {
       course_selected,
       batchResumption,
     });
-  
-    if (!fullName || !emailAddress || !gender || !phone_number || !stateOfOrigin || !corp_id || !course_selected || !batchResumption) {
+
+    if (
+      !fullName ||
+      !emailAddress ||
+      !gender ||
+      !phone_number ||
+      !stateOfOrigin ||
+      !corp_id ||
+      !course_selected ||
+      !batchResumption
+    ) {
       setFormValidMessage("Oops! All fields are required.");
       return;
     }
 
-    // Add additional client-side validation here if necessary
-    console.log(formData)
     setIsSubmitting(true);
 
-    axios
-      .post(
-        `https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`,
-        formData
-      )
+    axios.post(`https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`, formData)
+
       .then((response) => {
         console.log(response.data);
         setIsSubmitting(false);
@@ -224,15 +225,19 @@ const Form = () => {
       });
   };
 
-  console.log(formData.corp_id)
-
-
+  console.log(formData.corp_id);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-[24px] bg-[#FFEFD4] px-[39px] rounded-[20px] py-[80px] md:px-[56px] md:mb-[218px] md:py-[91px] xl:px-[86px] max-w-[889px] text-[#1c1c1c]">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-[24px] bg-[#FFEFD4] px-[39px] rounded-[20px] py-[80px] md:px-[56px] md:mb-[218px] md:py-[91px] xl:px-[86px] max-w-[889px] text-[#1c1c1c]"
+    >
       <div className="flex flex-col gap-[24px] md:flex-row">
         <div className="flex flex-col gap-[8px]">
-          <label htmlFor="fullName" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="fullName"
+            className="font-poppins text-[14px] font-normal"
+          >
             Full name
           </label>
           <input
@@ -246,7 +251,10 @@ const Form = () => {
           />
         </div>
         <div className="flex flex-col gap-[8px]">
-          <label htmlFor="email" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="email"
+            className="font-poppins text-[14px] font-normal"
+          >
             Email Address
           </label>
           <input
@@ -263,7 +271,10 @@ const Form = () => {
 
       <div className="flex flex-col gap-[24px] md:flex-row">
         <div className="flex flex-col gap-[8px]">
-          <label htmlFor="phoneNumber" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="phoneNumber"
+            className="font-poppins text-[14px] font-normal"
+          >
             Phone Number
           </label>
           <input
@@ -278,7 +289,10 @@ const Form = () => {
           />
         </div>
         <div className="flex flex-col gap-[8px] w-full">
-          <label htmlFor="gender" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="gender"
+            className="font-poppins text-[14px] font-normal"
+          >
             Gender
           </label>
           <select
@@ -290,7 +304,9 @@ const Form = () => {
           >
             <option>Select a gender</option>
             {gender.map((gender) => (
-              <option key={gender.id} value={gender.tag}>{gender.tag}</option>
+              <option key={gender.id} value={gender.tag}>
+                {gender.tag}
+              </option>
             ))}
           </select>
         </div>
@@ -298,7 +314,10 @@ const Form = () => {
 
       <div className="flex flex-col gap-[24px] md:flex-row">
         <div className="flex flex-col gap-[8px] w-full">
-          <label htmlFor="stateOfOrigin" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="stateOfOrigin"
+            className="font-poppins text-[14px] font-normal"
+          >
             State of origin
           </label>
           <select
@@ -308,16 +327,21 @@ const Form = () => {
             onChange={handleChange}
             placeholder="Lagos"
             id="stateOfOrigin"
-             className=" outline-none border-b-[1px] border-b-[#1C1C1C] pl-[16px] font-body font-normal text-[18px] w-full bg-transparent"
+            className=" outline-none border-b-[1px] border-b-[#1C1C1C] pl-[16px] font-body font-normal text-[18px] w-full bg-transparent"
           >
             <option>Select a state</option>
-             {nigerianStates.map((state) => (
-              <option key={state.id} value={state.tag}>{state.tag}</option>
+            {nigerianStates.map((state) => (
+              <option key={state.id} value={state.tag}>
+                {state.tag}
+              </option>
             ))}
           </select>
         </div>
         <div className="flex flex-col gap-[8px] text-[#1C1C1C] border-b-[1px] border-b-[#1C1C1C] w-full">
-          <label htmlFor="corpId" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="corpId"
+            className="font-poppins text-[14px] font-normal"
+          >
             Corp member ID
           </label>
           <div className="flex items-center gap-2">
@@ -343,8 +367,11 @@ const Form = () => {
 
       <div className="flex flex-col gap-[24px] md:flex-row">
         <div className="flex flex-col gap-[8px] w-full">
-          <label htmlFor="coursesForCopers" className="font-poppins text-[14px] font-normal">
-          Courses for copers
+          <label
+            htmlFor="coursesForCopers"
+            className="font-poppins text-[14px] font-normal"
+          >
+            Courses for copers
           </label>
           <select
             name="course_selected"
@@ -354,13 +381,18 @@ const Form = () => {
             className=" outline-none border-b-[1px] border-b-[#1C1C1C] pl-[16px] font-body font-normal text-[18px] w-full bg-transparent"
           >
             <option>Select a course</option>
-             {courses.map((course) => (
-              <option key={course.id} value={course.tag}>{course.tag}</option>
+            {courses.map((course) => (
+              <option key={course.id} value={course.tag}>
+                {course.tag}
+              </option>
             ))}
           </select>
         </div>
         <div className="flex flex-col gap-[8px] w-full">
-          <label htmlFor="resumptionBatch" className="font-poppins text-[14px] font-normal">
+          <label
+            htmlFor="resumptionBatch"
+            className="font-poppins text-[14px] font-normal"
+          >
             Resumption batch
           </label>
           <select
@@ -371,25 +403,29 @@ const Form = () => {
             className=" outline-none border-b-[1px] border-b-[#1C1C1C] pl-[16px] font-body font-normal text-[18px] w-full bg-transparent"
           >
             <option>Select a batch</option>
-             {resumptionBatches.map((batch) => (
-              <option key={batch.id} value={batch.tag}>{batch.tag}</option>
+            {resumptionBatches.map((batch) => (
+              <option key={batch.id} value={batch.tag}>
+                {batch.tag}
+              </option>
             ))}
           </select>
         </div>
       </div>
 
-
       <div className="flex items-center justify-center">
-        <button type="submit" className="py-[18px] px-[65px] text-center bg-[#FC7C13] rounded-xl text-[16px] font-poppins font-medium text-[#F7FCFE]">{isSubmitting ? "Submitting..." : "Register"}</button>
+        <button
+          type="submit"
+          className="py-[15px] px-[65px] text-center bg-[#FC7C13] rounded-xl text-[16px] font-poppins font-medium text-[#F7FCFE]"
+        >
+          {isSubmitting ? "Submitting..." : "Register"}
+        </button>
       </div>
 
       {formValidMessage && (
-          <div className="event-page-registration-error-message text-red-600 mt-4">
-            {formValidMessage}
-          </div>
-        )}
-
-      
+        <div className="event-page-registration-error-message text-red-600 mt-4">
+          {formValidMessage}
+        </div>
+      )}
     </form>
   );
 };

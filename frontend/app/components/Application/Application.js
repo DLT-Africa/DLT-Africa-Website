@@ -71,7 +71,7 @@ const Application = () => {
     codeExperience: "",
     stateOfResidence: "",
     referralOption: "",
-    referralName: ""
+    referralName: "",
   });
 
   const gender = [
@@ -95,7 +95,6 @@ const Application = () => {
     { id: 12, tag: "Other (Please Specify)" },
   ];
 
-
   const academicQual = [
     { id: 1, tag: "Senior Secondary School Certificate (SSCE)" },
     { id: 2, tag: "Ordinary National Diploma (OND)" },
@@ -118,6 +117,7 @@ const Application = () => {
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
+          { id: 3, tag: "Product UI/UX Design" },
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({
@@ -164,7 +164,7 @@ const Application = () => {
       codeExperience,
       stateOfResidence,
       referralOption,
-      referralName
+      referralName,
     } = formData;
 
     if (
@@ -179,7 +179,7 @@ const Application = () => {
       !phoneNo ||
       !emailAddress ||
       !codeExperience ||
-      !stateOfResidence 
+      !stateOfResidence
     ) {
       setFormValidMessage(
         "Oops! required field are not filled. Go back and fill them"
@@ -231,7 +231,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-11-30");
+      const deadlineDate = new Date("2024-12-31");
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
@@ -453,14 +453,13 @@ const Application = () => {
                   options={nigerianStates}
                 />
 
-                  <SelectField
-                    className="pl-4 text-[18px] "
-                    label="How did you hear about us?(optional) "
-                    handleChange={handleChange}
+                <SelectField
+                  className="pl-4 text-[18px] "
+                  label="How did you hear about us?(optional) "
+                  handleChange={handleChange}
                   name="referralOption"
-                    options={refOptions}
-                  />
-                  
+                  options={refOptions}
+                />
 
                 <Input
                   size="lg"
@@ -478,11 +477,8 @@ const Application = () => {
                   value={formData.referralName}
                   onChange={handleChange}
                 />
-
               </div>
 
-
-              
               <div className="mt-5 flex w-full flex-col gap-3">
                 <List className="flex-col">
                   <ListItem className="p-0 hover:bg-transparent">
