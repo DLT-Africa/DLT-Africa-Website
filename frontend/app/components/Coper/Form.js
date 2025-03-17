@@ -200,7 +200,7 @@ const Form = () => {
 
     axios
       .post(
-        `http://localhost:5000/api/v1/cohorts/corperreg`,
+        `https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`,
         formData
       )
       .then((response) => {
