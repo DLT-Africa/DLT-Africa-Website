@@ -47,7 +47,7 @@ const secData = [
   {
     id: 4,
     title: "Cost",
-    text: "Our Product Design course cost sum of One hundred and Seventy thousand naira only.(#170,000)",
+    text: "Our Graphics Design course cost sum of One hundred and Fifty thousand naira only.(#150,000)",
     icon: <CgBrowser />, // Corrected to SlCalendar
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center", // Different class for the second item
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -69,7 +69,7 @@ const secData = [
   {
     id: 6,
     title: "Projects",
-    text: "Our cohorts will be given 3 projects to test their knowledge",
+    text: "Our cohorts will be given projects to test their knowledge",
     icon: <BsLayoutWtf />,
     courseConClass: "py-2 px-30 flex flex-row items-center justify-center ",
     iconBodyClass:"sm:h-auto sm:p-2 sm:w-full md:w-[180px] md:h-[220px] lg:w-[229px] lg:h-[241px] border-2 border-[#fc7c1366] shadow-md rounded-[10px] flex p-1",
@@ -80,7 +80,7 @@ const secData = [
   
 ];
 
-const ProductDesignIconSection = () => {
+const GraphicDesignIconSection = () => {
   return (
     <section className="mainCon flex justify-center pt-[84px] pb-[71px] text-center sm:px-[100px] md:px-[120px] lg:[220] bg-[#F6F6F6]">
       <div className="iconsCon sm: grid grid-cols-1 sm:gap-5 md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-20 items-center justify-center">
@@ -116,4 +116,4 @@ const ProductDesignIconSection = () => {
   );
 };
 
-export default ProductDesignIconSection;
+export default GraphicDesignIconSection;
