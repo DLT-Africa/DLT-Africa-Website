@@ -34,6 +34,9 @@ function SelectField({
           case "Product UI/UX Design":
             tuitionFee = 170000;
             break;
+          case "Graphics Design":
+            tuitionFee = 150000;
+            break;
 
           case "Blockchain Development":
             tuitionFee = 0;
@@ -49,6 +52,9 @@ function SelectField({
           case "Product UI/UX Design":
             tuitionFee = 170000;
             break;
+          case "Graphics Design":
+              tuitionFee = 150000;
+              break;
 
           case "Blockchain Development":
             tuitionFee = 0;
