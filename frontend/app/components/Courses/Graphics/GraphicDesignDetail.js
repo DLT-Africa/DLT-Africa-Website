@@ -9,7 +9,7 @@ const courses = [
     id: 1,
     question: "About this Course",
     answer:
-      "Graphic design is about creating compelling visual content that communicates messages effectively. You will learn how to combine elements like typography, color, imagery, and layout to develop designs that enhance branding, marketing, and digital media communication.",
+      "Graphic design involves crafting striking visual content that conveys messages with impact. You'll discover how to blend components such as typography, color, imagery, and layout to create designs that elevate branding, marketing, and digital media communication.",
   },
   {
     id: 2,
@@ -20,11 +20,10 @@ const courses = [
           Dive into the world of graphic design with our comprehensive course, designed to help you master the essential tools and techniques needed to succeed. Here's what you will learn:
         </p>
         <ul className="list-disc">
-          <li>Principles of Graphic Design</li>
+          <li>Principles of Graphic design</li>
           <li>Color Theory and Typography</li>
-          <li>Branding and Visual Identity</li>
           <li>Digital Illustration and Layout Design</li>
-          <li>Tools like Adobe Photoshop, Illustrator, and Canva</li>
+          <li>Proficiency in softwares like Coreldraw & Photoshop</li>
           <li>Real-World Projects and Portfolio Building</li>
         </ul>
       </>,
@@ -48,11 +47,12 @@ const courses = [
     answer: [
       <ul className="list-disc">
         <li>Introduction to Graphic Design and Design Principles</li>
-        <li>Typography, Color Theory, and Layout Design</li>
-        <li>Branding, Visual Identity, and Digital Illustration</li>
-        <li>Practical Training with Design Tools (Photoshop, Illustrator, Canva)</li>
-        <li>Real-World Design Projects and Portfolio Development</li>
-        <li>2 Projects for hands-on experience</li>
+        <li>Essential tools and techniques </li>
+        <li>Working with colors and files</li>
+        <li>Layers and groups</li>
+        <li>Preparing artwork for output</li>
+        <li>Design Principles and project </li>
+        <li>2 Projects for hands-on experience </li>
       </ul>,
     ],
   },
