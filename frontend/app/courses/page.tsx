@@ -30,6 +30,14 @@ const coursesList = [
     url: "/fullstack",
   },
   {
+    id: 3,
+    courseName: "Graphics Design",
+    description:
+      "Graphic design is in high demand and essential across industries and products. As a key tool for visual communication, it strengthens brand identity and enhances customer experiences.",
+    media: "/images/Course5.png",
+    url: "/graphics-design",
+  },
+  {
     id: 4,
     courseName: "Blockchain Development (Smart Contract)",
     description:
