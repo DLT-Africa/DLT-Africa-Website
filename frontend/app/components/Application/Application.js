@@ -164,9 +164,7 @@ const Application = () => {
       phoneNo,
       emailAddress,
       codeExperience,
-      stateOfResidence,
-      referralOption,
-      referralName,
+      stateOfResidence
     } = formData;
 
     if (
@@ -184,7 +182,7 @@ const Application = () => {
       !stateOfResidence
     ) {
       setFormValidMessage(
-        "Oops! required field are not filled. Go back and fill them"
+        "Oops! required field are not filled. Please, go back and fill them"
       );
       return;
     }
@@ -233,7 +231,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-12-31");
+      const deadlineDate = new Date("2024-05-30");
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
@@ -289,7 +287,7 @@ const Application = () => {
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
-                    <p>300+ alumni have joined our community, so can you</p>
+                    <p>350+ alumni have joined our community, so can you</p>
                   </div>
                 </div>
               </div>
