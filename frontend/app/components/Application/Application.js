@@ -113,11 +113,13 @@ const Application = () => {
       ? [
           { id: 1, tag: "Frontend Development", fee: 320000 },
           { id: 2, tag: "Product UI/UX Design", fee: 170000 },
+          { id: 3, tag: "Graphics Design", fee: 150000 },
         ]
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
           { id: 3, tag: "Product UI/UX Design" },
+          {id: 4, tag: "Graphics Design"},
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({

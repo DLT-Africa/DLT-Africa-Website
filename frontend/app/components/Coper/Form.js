@@ -202,8 +202,8 @@ const Form = () => {
 
     setIsSubmitting(true);
 
-    axios
-      .post(`https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`, formData)
+    axios.post(`https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`, formData)
+
       .then((response) => {
         console.log(response.data);
         setIsSubmitting(false);
