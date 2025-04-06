@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/userModel");
+const CohortSev = require("../models/userModel");
 const Corper = require("../models/corpers");
 const {
   sendEmail,
@@ -76,14 +76,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   validateUserInput(req.body);
 
-  const userExists = await User.findOne({ emailAddress });
+  const userExists = await CohortSev.findOne({ emailAddress });
 
   if (userExists) {
     res.status(400);
     throw new Error("Email already in use.");
   }
 
-  const user = await User.create(req.body);
+  const user = await CohortSev.create(req.body);
 
   if (user) {
     const tuitionFee = calculateTuitionFee(user.courseSelected, user.classType);
@@ -279,7 +279,7 @@ const getCorpers = asyncHandler(async (req, res) => {
 });
 
 const getAdmissions = asyncHandler(async (req, res) => {
-  const datas = await User.find().sort("-createdAt");
+  const datas = await CohortSev.find().sort("-createdAt");
   if (!datas) {
     res.status(500);
     throw new Error("Something went wrong");
@@ -288,7 +288,7 @@ const getAdmissions = asyncHandler(async (req, res) => {
 });
 
 const deleteAdmission = asyncHandler(async (req, res) => {
-  const data = User.findById(req.params.id);
+  const data = CohortSev.findById(req.params.id);
 
   if (!data) {
     res.status(404);
@@ -304,7 +304,7 @@ const deleteAdmission = asyncHandler(async (req, res) => {
 const upgradeData = asyncHandler(async (req, res) => {
   const { status, id } = req.body;
 
-  const user = await User.findById(id);
+  const user = await CohortSev.findById(id);
 
   if (!user) {
     res.status(404);
