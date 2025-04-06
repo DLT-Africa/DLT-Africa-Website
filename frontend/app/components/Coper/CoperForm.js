@@ -14,8 +14,11 @@ const CoperForm = () => {
         DLT Africa CodeCorps Bootcamp Registration
         </p>
       </div>
+
       <div className='flex items-center justify-center px-15'>
-        <Form/>
+        
+        <Form />
+        
       </div>
       
     </div>
