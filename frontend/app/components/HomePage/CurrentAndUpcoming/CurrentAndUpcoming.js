@@ -96,7 +96,7 @@ const CurrentAndUpcoming = () => {
 
       {isModalOpen && selectedEvent && (
         <div
-          className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black bg-opacity-75"
+          className="fixed inset-0 w-screen h-full flex justify-center items-center bg-black bg-opacity-75"
           onClick={closeModal}
         >
           <div

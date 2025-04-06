@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const cohortSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -69,5 +69,5 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const User = mongoose.model("User7", userSchema);
-module.exports = User;
+const CohortSev = mongoose.model("CohortSeven", cohortSchema);
+module.exports = CohortSev;
