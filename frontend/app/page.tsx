@@ -1,11 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader/Loader";
-import IndexHome from "@/app/components/HomePage/Home"
-
-
+import IndexHome from "@/app/components/HomePage/Home";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -19,7 +16,6 @@ export default function Home() {
       setLoading(false);
     }, 8000);
 
-    // Load Google Tag Manager scripts
     const addGoogleTagManager = () => {
       const script = document.createElement("script");
       script.src = "https://www.googletagmanager.com/gtag/js?id=G-G2R8DSB4GV";
@@ -28,11 +24,11 @@ export default function Home() {
 
       const script2 = document.createElement("script");
       script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-G2R8DSB4GV');
-      `;
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G2R8DSB4GV');
+    `;
       document.head.appendChild(script2);
 
       return () => {
@@ -51,7 +47,6 @@ export default function Home() {
 
   return (
     <div>
-
       {loading ? (
         <Loader />
       ) : (
