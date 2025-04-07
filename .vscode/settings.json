@@ -1,8 +1,6 @@
 {
-  "cSpell.words": [
-    "hackathons"
-  ],
-  "editor.fontFamily": "Papyrus",
+  "cSpell.words": ["hackathons"],
+  "editor.fontFamily": "Cascadia Code, Consolas, 'Courier New', monospace",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true

@@ -26,7 +26,7 @@ function SelectField({
       if (classType === "Physical") {
         switch (value) {
           case "Frontend Development":
-            tuitionFee = 410000;
+            tuitionFee = 420000;
             break;
           case "Full-Stack Development":
             tuitionFee = 630000;
