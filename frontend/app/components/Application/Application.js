@@ -119,7 +119,7 @@ const Application = () => {
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
           { id: 3, tag: "Product UI/UX Design" },
-          {id: 4, tag: "Graphics Design"},
+          { id: 4, tag: "Graphics Design" },
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({
@@ -129,13 +129,12 @@ const Application = () => {
   });
 
   const [formValidMessage, setFormValidMessage] = useState();
-  const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    // console.log(e.target.value);
+    console.log(e.target.value);
     if (name === "classType" && value === "Online") {
       setFormData({
         ...formData,
@@ -164,7 +163,7 @@ const Application = () => {
       phoneNo,
       emailAddress,
       codeExperience,
-      stateOfResidence
+      stateOfResidence,
     } = formData;
 
     if (
@@ -194,10 +193,9 @@ const Application = () => {
         formData
       )
       .then(function (response) {
-        console.log(response.data);
-        console.log(formData);
+        // console.log(response.data);
+        // console.log(formData);
         setIsSubmitting(false);
-        setFormCompleted(true);
         router.push("/congrats");
       })
       .catch(function (error) {
@@ -231,7 +229,9 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-05-30");
+      // console.log(currentDate)
+      const deadlineDate = new Date("2025-05-30");
+      // console.log(deadlineDate)
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }

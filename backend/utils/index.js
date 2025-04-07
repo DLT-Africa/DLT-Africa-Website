@@ -35,6 +35,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
       case "Frontend Development":
         tuitionFee = 0.5 * 420000;
         break;
+      case "Graphics Design":
+        tuitionFee = 0.8 * 150000;
+        break;
       case "Product UI/UX Design":
         tuitionFee = 0.5 * 170000;
         break;
@@ -48,6 +51,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
     switch (courseSelected) {
       case "Frontend Development":
         tuitionFee = 0.5 * 370000;
+        break;
+      case "Graphics Design":
+        tuitionFee = 0.8 * 150000;
         break;
       case "Product UI/UX Design":
         tuitionFee = 0.5 * 170000;
