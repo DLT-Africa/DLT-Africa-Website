@@ -4,7 +4,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const ChangeStatus = ({ id }) => {
-  console.log(id);
   const [studentStatus, setStudentStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -16,8 +15,8 @@ const ChangeStatus = ({ id }) => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        `https://dlt-backend.vercel.app/api/v1/cohorts/upgrade-admission`,
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/upgrade-admission`,
         { status: studentStatus, id }
       );
       router.push("/admin-dashboard");

@@ -2,9 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
 const EditEventPage = ({ eventId, onClose }) => {
-
   const [formData, setFormData] = useState({
     _id: "",
     eventName: "",
@@ -20,7 +18,7 @@ const EditEventPage = ({ eventId, onClose }) => {
   const fetchEventDetails = async () => {
     try {
       const response = await axios.get(
-        `https://dlt-backend.vercel.app/api/v1/events/get-single-event/${eventId}`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/get-single-event/${eventId}`
       );
       setFormData(response.data);
     } catch (error) {
@@ -31,15 +29,12 @@ const EditEventPage = ({ eventId, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
       const updateResponse = await axios.patch(
-        `https://dlt-backend.vercel.app/api/v1/events/update-event/${eventId}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/update-event/${eventId}`,
         formData
       );
 
-      console.log("Event updated:", updateResponse.data);
-      onClose()
-      
+      onClose();
     } catch (error) {
       console.error("Error updating event:", error);
     }

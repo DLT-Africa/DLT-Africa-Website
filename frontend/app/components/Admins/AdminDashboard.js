@@ -25,18 +25,18 @@ const AdminDashboard = () => {
     const fetchAdmissions = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/cohorts/get-all-admissions`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/get-all-admissions`
         );
 
         setAdmissionData(response.data);
-        console.log(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
           setMessage("Cannot fetch data");
-        } else {
-          setMessage("Server error");
+          return;
         }
+
+        setMessage("Server error");
       }
     };
     fetchAdmissions();

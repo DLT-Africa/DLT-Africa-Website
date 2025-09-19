@@ -24,10 +24,11 @@ const WaitlistModal = ({ isOpen, onClose }) => {
         if (isOpen) {
             // Prevent body scroll when modal is open
             document.body.style.overflow = 'hidden';
-        } else {
-            // Restore body scroll when modal is closed
-            document.body.style.overflow = 'unset';
+            return;
         }
+        
+        // Restore body scroll when modal is closed
+        document.body.style.overflow = 'unset';
 
         // Cleanup function to restore scroll when component unmounts
         return () => {

@@ -14,7 +14,7 @@ const CurrentAndUpcoming = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/get-all-events`
         );
         setEventData(response.data);
       } catch (error) {
@@ -32,9 +32,10 @@ const CurrentAndUpcoming = () => {
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
+      return;
     }
+
+    document.body.classList.remove("overflow-hidden");
   }, [isModalOpen]);
 
   const handleViewMore = (event) => {

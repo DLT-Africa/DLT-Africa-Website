@@ -6,7 +6,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import { Button, Input, Typography } from "@material-tailwind/react";
-import Loader from "@/app/components/Application/Loader";
 
 const Register = () => {
   const router = useRouter();
@@ -47,17 +46,16 @@ const Register = () => {
       return;
     }
 
-    // Add additional client-side validation here if necessary
 
     setIsSubmitting(true);
 
     axios
       .post(
-        `https://dlt-backend.vercel.app/api/v1/team/register-team`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/team/register-team`,
         formData
       )
       .then((response) => {
-        console.log(response.data);
+
         setIsSubmitting(false);
         localStorage.setItem("isLoggedIn", "true");
         setFormCompleted(true);
@@ -65,15 +63,17 @@ const Register = () => {
       })
       .catch((error) => {
         setIsSubmitting(false);
+
         if (error.response && error.response.status === 400) {
           setFormValidMessage(
             "An applicant with the same email address already exists."
           );
-        } else {
-          setFormValidMessage(
-            "Server error. Unable to process your registration."
-          );
+          return;
         }
+
+        setFormValidMessage(
+          "Server error. Unable to process your registration."
+        );
       });
   };
 

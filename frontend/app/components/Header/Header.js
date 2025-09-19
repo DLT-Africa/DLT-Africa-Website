@@ -46,13 +46,14 @@ const Header = () => {
       document.body.style.height = "100vh";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
-    } else {
-      // Restore scrolling when drawer is closed
-      document.body.style.overflow = "";
-      document.body.style.height = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
+      return;
     }
+    
+    // Restore scrolling when drawer is closed
+    document.body.style.overflow = "";
+    document.body.style.height = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
