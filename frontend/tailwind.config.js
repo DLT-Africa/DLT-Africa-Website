@@ -15,6 +15,7 @@ module.exports = withMT({
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         dmSerifDisplay: ["DM Serif Display", "serif"],
+        sfPro: ["SF Pro Display", "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
       },
       animation: {
         "infinite-scroll": "infinite-scroll 25s linear infinite",

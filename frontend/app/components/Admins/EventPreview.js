@@ -8,7 +8,6 @@ import { FaPen } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import EditEventPage from "@/app/components/Admins/EditEvent";
 
-
 const EventPreview = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -132,6 +131,17 @@ const EventPreview = () => {
             }`}
           >
             Corper&apos;s List
+          </Link>
+          <Link
+            href="/waitlist"
+            onClick={() => handleButtonClick("/waitlist")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/waitlist"
+                ? "bg-[#FC7C13] text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Waitlist
           </Link>
         </div>
       </div>

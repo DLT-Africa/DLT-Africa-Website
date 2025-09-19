@@ -6,9 +6,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import Footer from "@/app/components/Footer/Footer";
 import Header from "@/app/components/Header/Header";
+import ConditionalLayout from "@/app/components/ConditionalLayout";
 
 const inter = Inter({ subsets: ["latin"] });
-
 
 export default function RootLayout({
   children,
@@ -30,10 +30,7 @@ export default function RootLayout({
           <link rel="icon" href="/images/dlt.png" type="image/png" />
         </head>
         <body className={inter.className}>
-          <Header />
-          {children}
-
-          <Footer />
+          <ConditionalLayout>{children}</ConditionalLayout>
         </body>
       </ThemeProvider>
     </html>
