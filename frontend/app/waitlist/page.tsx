@@ -73,6 +73,7 @@ const WaitlistAdmin = () => {
 
   const handleDelete = async (id: string) => {
     if (
+      typeof window !== "undefined" &&
       window.confirm("Are you sure you want to delete this waitlist entry?")
     ) {
       try {
@@ -93,6 +94,11 @@ const WaitlistAdmin = () => {
   };
 
   const exportToCSV = () => {
+    // Check if we're on the client side
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
+
     const csvContent = [
       ["Name", "Email", "Phone", "Joined Date"],
       ...waitlistData.map((entry: WaitlistEntry) => [
@@ -107,11 +113,15 @@ const WaitlistAdmin = () => {
 
     const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `waitlist-${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+
+    // Check if we're on the client side
+    if (typeof document !== "undefined") {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `waitlist-${new Date().toISOString().split("T")[0]}.csv`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
   };
 
   const toggleWaitlistStatus = async () => {

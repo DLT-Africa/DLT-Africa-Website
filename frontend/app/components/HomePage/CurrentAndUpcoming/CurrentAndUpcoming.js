@@ -30,6 +30,11 @@ const CurrentAndUpcoming = () => {
   }, []);
 
   useEffect(() => {
+    // Check if we're on the client side
+    if (typeof document === "undefined") {
+      return;
+    }
+
     if (isModalOpen) {
       document.body.classList.add("overflow-hidden");
       return;
