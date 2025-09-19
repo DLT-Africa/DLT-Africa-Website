@@ -1,7 +1,4 @@
-
-import Head from "next/head";
 import Link from "next/link";
-
 
 const coursesList = [
   {
@@ -16,7 +13,6 @@ const coursesList = [
     id: 2,
     courseName: "Frontend Web Development",
     description:
-
       "Start off your career today as a Front-End Web Developer. Learn to build high quality websites with dynamic applications to create stunning user experiences… ",
     media: "/images/Course2.png",
     url: "/frontend",
@@ -50,22 +46,6 @@ const coursesList = [
 const page = () => {
   return (
     <div>
-      <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-G2R8DSB4GV"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-G2R8DSB4GV');
-            `,
-          }}
-        />
-      </Head>
       <div>
         <div className="mt-12">
           <h1 className="text-4xl font-semibold text-center mb-8">
@@ -80,7 +60,8 @@ const page = () => {
                 <img
                   src={media}
                   alt="courses"
-                  className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg " loading="lazy"
+                  className="w-full h-52 md:rounded-t-lg md:h-60 object-cover cursor-pointer rounded-tr-lg rounded-tl-lg "
+                  loading="lazy"
                 />
 
                 <div className="w-full md:rounded-b-lg bg-[#ffc072] p-4 md:p-6 h-40 md:h-30 rounded-br-lg rounded-bl-lg">

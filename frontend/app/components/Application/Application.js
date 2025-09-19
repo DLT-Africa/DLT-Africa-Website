@@ -134,7 +134,6 @@ const Application = () => {
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (name === "classType" && value === "Online") {
       setFormData({
         ...formData,
@@ -188,13 +187,8 @@ const Application = () => {
     setIsSubmitting(true);
 
     axios
-      .post(
-        `https://dlt-backend.vercel.app/api/v1/cohorts/studentreg`,
-        formData
-      )
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/studentreg`, data)
       .then(function (response) {
-        // console.log(response.data);
-        // console.log(formData);
         setIsSubmitting(false);
         router.push("/congrats");
       })
@@ -204,11 +198,12 @@ const Application = () => {
           setFormValidMessage(
             "Applicant with the same email address already exist"
           );
-        } else {
-          setFormValidMessage(
-            "Server error, unable to process your registration"
-          );
+          return;
         }
+
+        setFormValidMessage(
+          "Server error, unable to process your registration"
+        );
       });
   };
 
@@ -229,9 +224,7 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      // console.log(currentDate)
       const deadlineDate = new Date("2025-05-30");
-      // console.log(deadlineDate)
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }

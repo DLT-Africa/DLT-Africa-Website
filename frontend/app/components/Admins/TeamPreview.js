@@ -25,7 +25,7 @@ const TeamPreview = () => {
     const fetchTeamData = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/team/team-details`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/team/team-details`
         );
 
         setTeamData(response.data);
@@ -33,9 +33,10 @@ const TeamPreview = () => {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
           setMessage("Cannot fetch data");
-        } else {
-          setMessage("Server error");
+          return;
         }
+
+        setMessage("Server error");
       }
     };
     fetchTeamData();

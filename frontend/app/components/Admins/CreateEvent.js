@@ -27,7 +27,6 @@ const CreateEvent = () => {
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    console.log(e.target.value)
     setFormData({
       ...formData,
       [name]: value,
@@ -69,11 +68,10 @@ const CreateEvent = () => {
 
       axios
         .post(
-          `https://dlt-backend.vercel.app/api/v1/events/create-event`,
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/create-event`,
           formData
         )
         .then(function (response) {
-          console.log(response.data)
           setIsSubmitting(false);
           setFormCompleted(true);
           router.push("/event-list");
@@ -84,11 +82,12 @@ const CreateEvent = () => {
             setFormValidMessage(
               "An event with the same details already exists."
             );
-          } else {
-            setFormValidMessage(
-              "Server error: unable to process your event registration."
-            );
+            return;
           }
+
+          setFormValidMessage(
+            "Server error: unable to process your event registration."
+          );
         });
     } catch (error) {
       console.error("Error submitting form:", error);

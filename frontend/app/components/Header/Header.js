@@ -11,17 +11,29 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Check if we're on the client side
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const loggedIn = localStorage.getItem("isLoggedIn");
 
     setIsLoggedIn(loggedIn === "true");
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("isLoggedIn");
+    }
     setIsLoggedIn(false);
   };
 
   useEffect(() => {
+    // Check if we're on the client side
+    if (typeof window === "undefined") {
+      return;
+    }
+
     setPathname(window.location.pathname);
 
     const handlePathnameChange = () => {
@@ -40,26 +52,34 @@ const Header = () => {
 
   // Prevent background scrolling when drawer is open
   useEffect(() => {
+    // Check if we're on the client side
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
+
     if (openRight) {
       // Prevent scrolling when drawer is open
       document.body.style.overflow = "hidden";
       document.body.style.height = "100vh";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
-    } else {
-      // Restore scrolling when drawer is closed
-      document.body.style.overflow = "";
-      document.body.style.height = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
+      return;
     }
+
+    // Restore scrolling when drawer is closed
+    document.body.style.overflow = "";
+    document.body.style.height = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.height = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "";
+        document.body.style.height = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+      }
     };
   }, [openRight]);
 

@@ -26,10 +26,9 @@ const ContactModal = ({ onClose }) => {
         return;
       }
       const response = await axios.post(
-        "https://dlt-backend.vercel.app/api/v1/contact/contactUs",
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/contactUs`,
         formData
       );
-      console.log(response.data);
 
       onClose();
       setIsSubmitting(false);

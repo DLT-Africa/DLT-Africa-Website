@@ -37,7 +37,7 @@ const EventPreview = () => {
   const handleDelete = async (eventId) => {
     try {
       await axios.delete(
-        `https://dlt-backend.vercel.app/api/v1/events/delete/${eventId}`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/delete/${eventId}`
       );
       setEventData(eventData.filter((event) => event._id !== eventId));
       setMessage("Event deleted successfully");
@@ -51,18 +51,18 @@ const EventPreview = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/get-all-events`
         );
 
         setEventData(response.data);
-        console.log(response.data);
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
           setMessage("Cannot fetch data");
-        } else {
-          setMessage("Server error");
+          return;
         }
+
+        setMessage("Server error");
       }
     };
     fetchEvents();

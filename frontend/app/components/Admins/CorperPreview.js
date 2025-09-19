@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const CorperPreview = () => {
   const [corperData, setCorperData] = useState([]);
@@ -13,7 +12,6 @@ const CorperPreview = () => {
   const [message, setMessage] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeButton, setActiveButton] = useState("/corpers");
   const handleButtonClick = (href) => {
     setActiveButton(href);
@@ -24,18 +22,19 @@ const CorperPreview = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/cohorts/get-all-corpers`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/get-all-corpers`
         );
 
         setCorperData(response.data);
-        console.log(response.data);
+
       } catch (error) {
         setIsLoading(false);
         if (error.response && error.response.status == 400) {
           setMessage("Cannot fetch data");
-        } else {
-          setMessage("Server error");
+          return;
         }
+
+        setMessage("Server error");
       }
     };
     fetchData();
