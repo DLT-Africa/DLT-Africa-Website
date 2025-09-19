@@ -43,7 +43,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`https://dlt-backend.vercel.app/api/v1/team/login`, formData)
+      .post(`http://localhost:8000/api/v1/team/login`, formData)
       .then((response) => {
         console.log(response.data); // Consider removing this in production
         setIsSubmitting(false);
@@ -116,9 +116,7 @@ const Login = () => {
           {isSubmitting ? "Loading..." : "Sign In"}
         </Button>
         {formValidMessage && (
-          <div className="text-red-600 mt-4">
-            {formValidMessage}
-          </div>
+          <div className="text-red-600 mt-4">{formValidMessage}</div>
         )}
         <p className="mt-[10px]">
           Don&apos;t have an account?{" "}

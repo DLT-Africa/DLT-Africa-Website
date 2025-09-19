@@ -107,6 +107,17 @@ const AdminDashboard = () => {
           >
             Corper&apos;s List
           </Link>
+          <Link
+            href="/waitlist"
+            onClick={() => handleButtonClick("/waitlist")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/waitlist"
+                ? "bg-[#FC7C13] text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Waitlist
+          </Link>
         </div>
       </div>
 

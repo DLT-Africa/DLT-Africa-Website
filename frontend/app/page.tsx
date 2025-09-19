@@ -1,59 +1,80 @@
-"use client";
+// "use client";
+// import { useState, useEffect } from "react";
+// import WelcomeScreen from "./components/SplashScreens/WelcomeScreen";
+// import DestinationScreen from "./components/SplashScreens/DestinationScreen";
 
-import { useEffect, useState } from "react";
-import Loader from "./components/Loader/Loader";
-import IndexHome from "@/app/components/HomePage/Home";
+// export default function Home() {
+//   const [currentScreen, setCurrentScreen] = useState(0);
+//   const [showImage, setShowImage] = useState(false);
+
+//   const handleContinue = () => {
+//     setCurrentScreen(1);
+//     // Trigger the image animation after a short delay to allow screen transition
+//     setTimeout(() => {
+//       setShowImage(true);
+//     }, 500);
+//   };
+
+//   return (
+//     <div className="md:overflow-hidden overflow-auto relative w-full h-screen">
+//       {/* First Screen - Welcome Screen */}
+//       <div
+//         className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
+//           currentScreen === 0 ? "translate-x-0" : "-translate-x-full"
+//         }`}
+//       >
+//         <WelcomeScreen onContinue={handleContinue} />
+//       </div>
+
+//       {/* Second Screen - Destination Selection */}
+//       <div
+//         className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
+//           currentScreen === 1 ? "translate-x-0" : "translate-x-full"
+//         }`}
+//       >
+//         <DestinationScreen showImage={showImage} />
+//       </div>
+//     </div>
+//   );
+// }
+
+
+"use client";
+import { useState, useEffect } from "react";
+import WelcomeScreen from "./components/SplashScreens/WelcomeScreen";
+import DestinationScreen from "./components/SplashScreens/DestinationScreen";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  const [currentScreen, setCurrentScreen] = useState(0);
+  const [showImage, setShowImage] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setLoading(false);
-    }, 8000);
-
-    const addGoogleTagManager = () => {
-      const script = document.createElement("script");
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-G2R8DSB4GV";
-      script.async = true;
-      document.head.appendChild(script);
-
-      const script2 = document.createElement("script");
-      script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G2R8DSB4GV');
-    `;
-      document.head.appendChild(script2);
-
-      return () => {
-        document.head.removeChild(script);
-        document.head.removeChild(script2);
-      };
-    };
-
-    const removeScripts = addGoogleTagManager();
-
-    return () => {
-      clearTimeout(loadTimeout);
-      removeScripts();
-    };
-  }, []);
+  const handleContinue = () => {
+    setCurrentScreen(1);
+    // Trigger the image animation after a short delay to allow screen transition
+    setTimeout(() => {
+      setShowImage(true);
+    }, 500);
+  };
 
   return (
-    <div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <IndexHome />
-        </>
-      )}
+    <div className="relative w-full h-screen md:overflow-hidden">
+      {/* First Screen - Welcome Screen */}
+      <div
+        className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
+          currentScreen === 0 ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <WelcomeScreen onContinue={handleContinue} />
+      </div>
+
+      {/* Second Screen - Destination Selection */}
+      <div
+        className={`absolute inset-0 transition-transform duration-1000 ease-in-out overflow-y-auto md:overflow-hidden ${
+          currentScreen === 1 ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <DestinationScreen showImage={showImage} />
+      </div>
     </div>
   );
 }

@@ -10,6 +10,8 @@ const userRoute = require("./routes/userRoute");
 const eventRoute = require("./routes/eventRoute");
 const teamRoute = require("./routes/teamRoute");
 const contactRoute = require("./routes/contactRoutes");
+const waitlistRoute = require("./routes/waitlistRoute");
+const settingsRoute = require("./routes/settingsRoute");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -57,6 +59,8 @@ app.use("/api/v1/cohorts", userRoute);
 app.use("/api/v1/events", eventRoute);
 app.use("/api/v1/team", teamRoute);
 app.use("/api/v1/contact", contactRoute);
+app.use("/api/v1/waitlist", waitlistRoute);
+app.use("/api/v1/settings", settingsRoute);
 
 app.get("/", (req, res) => {
   res.send("Home Page");
