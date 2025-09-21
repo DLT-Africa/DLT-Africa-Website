@@ -144,9 +144,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: "10mb" }));
 
-// Static files
-app.use("/", express.static(path.join(__dirname, "/public")));
-
 // Health check endpoint
 app.get("/health", (req, res) => {
   res.status(200).json({
@@ -195,7 +192,6 @@ app.use(
     explorer: true,
     customCss: ".swagger-ui .topbar { display: none }",
     customSiteTitle: "DLT Africa API Documentation",
-    customfavIcon: "/favicon.ico",
     swaggerOptions: {
       persistAuthorization: true,
       displayRequestDuration: true,
@@ -205,6 +201,9 @@ app.use(
     },
   })
 );
+
+// Static files (moved after Swagger UI to avoid conflicts)
+app.use("/", express.static(path.join(__dirname, "/public")));
 
 // Root endpoint
 app.get("/", (req, res) => {

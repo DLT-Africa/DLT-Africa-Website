@@ -14,10 +14,6 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:6000",
-        description: "Development server",
-      },
-      {
         url: "https://dlt-backend.vercel.app",
         description: "Production server",
       },
