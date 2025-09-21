@@ -45,7 +45,6 @@ const Login = () => {
     axios
       .post(`http://localhost:8000/api/v1/team/login`, formData)
       .then((response) => {
-        console.log(response.data); // Consider removing this in production
         setIsSubmitting(false);
         localStorage.setItem("isLoggedIn", "true");
         setFormCompleted(true);
@@ -55,9 +54,10 @@ const Login = () => {
         setIsSubmitting(false);
         if (error.response && error.response.status === 400) {
           setFormValidMessage("Invalid login credentials.");
-        } else {
-          setFormValidMessage("Server error. Please try again later.");
+          return;
         }
+
+        setFormValidMessage("Server error. Please try again later.");
       });
   };
 

@@ -16,17 +16,16 @@ const HeroSection = forwardRef((props, ref) => {
     setIsModalOpen(false);
   };
 
-  
   useEffect(() => {
     if (typeof document !== "undefined") {
       // Your code that uses `document`
-      // console.log(document.title);
 
       if (isModalOpen) {
         document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "auto";
+        return;
       }
+
+      document.body.style.overflow = "auto";
       return () => {
         document.body.style.overflow = "auto";
       };

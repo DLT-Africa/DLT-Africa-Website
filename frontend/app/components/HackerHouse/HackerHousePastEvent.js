@@ -10,12 +10,7 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import {
-  Card,
-  Typography,
-  Chip,
-  IconButton,
-} from "@material-tailwind/react";
+import { Card, Typography, Chip, IconButton } from "@material-tailwind/react";
 const HackerHousePastEvent = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [eventData, setEventData] = useState([]);
@@ -27,10 +22,9 @@ const HackerHousePastEvent = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://dlt-backend.vercel.app/api/v1/events/get-all-events`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/get-all-events`
         );
         setEventData(response.data);
-        console.log(response.data)
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -54,7 +48,6 @@ const HackerHousePastEvent = () => {
       label: "All",
       value: "all",
     },
-    
   ];
 
   return (

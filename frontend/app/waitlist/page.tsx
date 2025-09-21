@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 const WaitlistAdmin = () => {
-  const [waitlistData, setWaitlistData] = useState<any[]>([]);
+  interface WaitlistEntry {
+    _id: string;
+    name: string;
+    email: string;
+    phone?: string;
+    createdAt: string;
+  }
+
+  const [waitlistData, setWaitlistData] = useState<WaitlistEntry[]>([]);
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<WaitlistEntry[]>([]);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,21 +28,19 @@ const WaitlistAdmin = () => {
     const fetchWaitlist = async () => {
       try {
         const response = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-          }/api/v1/waitlist/`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/waitlist/`
         );
         setWaitlistData(response.data.data);
-        console.log("Waitlist data:", response.data);
         setIsLoading(false);
       } catch (error: any) {
         setIsLoading(false);
         console.error("Error fetching waitlist:", error);
         if (error.response && error.response.status === 400) {
           setMessage("Cannot fetch waitlist data");
-        } else {
-          setMessage("Server error");
+          return;
         }
+
+        setMessage("Server error");
       }
     };
     fetchWaitlist();
@@ -45,9 +51,7 @@ const WaitlistAdmin = () => {
     const fetchWaitlistStatus = async () => {
       try {
         const response = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-          }/api/v1/settings/waitlist-status`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/settings/waitlist-status`
         );
         setWaitlistActive(response.data.waitlistActive);
       } catch (error: any) {
@@ -59,7 +63,7 @@ const WaitlistAdmin = () => {
 
   useEffect(() => {
     const filteredWaitlist = waitlistData.filter(
-      (entry) =>
+      (entry: WaitlistEntry) =>
         entry.name.toLowerCase().includes(search.toLowerCase()) ||
         entry.email.toLowerCase().includes(search.toLowerCase()) ||
         (entry.phone && entry.phone.includes(search))
@@ -67,17 +71,18 @@ const WaitlistAdmin = () => {
     setSearchResults(filteredWaitlist);
   }, [search, waitlistData]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     if (
+      typeof window !== "undefined" &&
       window.confirm("Are you sure you want to delete this waitlist entry?")
     ) {
       try {
         await axios.delete(
-          `${
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-          }/api/v1/waitlist/${id}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/waitlist/${id}`
         );
-        setWaitlistData(waitlistData.filter((entry) => entry._id !== id));
+        setWaitlistData(
+          waitlistData.filter((entry: WaitlistEntry) => entry._id !== id)
+        );
         setMessage("Waitlist entry deleted successfully");
         setTimeout(() => setMessage(""), 3000);
       } catch (error) {
@@ -89,9 +94,14 @@ const WaitlistAdmin = () => {
   };
 
   const exportToCSV = () => {
+    // Check if we're on the client side
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
+
     const csvContent = [
       ["Name", "Email", "Phone", "Joined Date"],
-      ...waitlistData.map((entry) => [
+      ...waitlistData.map((entry: WaitlistEntry) => [
         entry.name,
         entry.email,
         entry.phone || "N/A",
@@ -103,20 +113,22 @@ const WaitlistAdmin = () => {
 
     const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `waitlist-${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+
+    // Check if we're on the client side
+    if (typeof document !== "undefined") {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `waitlist-${new Date().toISOString().split("T")[0]}.csv`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
   };
 
   const toggleWaitlistStatus = async () => {
     setIsUpdatingStatus(true);
     try {
       const response = await axios.put(
-        `${
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-        }/api/v1/settings/waitlist-status`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/settings/waitlist-status`,
         { waitlistActive: !waitlistActive }
       );
 
@@ -242,7 +254,7 @@ const WaitlistAdmin = () => {
           <p className="text-3xl font-bold text-[#FC7C13]">
             {
               waitlistData.filter(
-                (entry) =>
+                (entry: WaitlistEntry) =>
                   new Date(entry.createdAt).getMonth() ===
                     new Date().getMonth() &&
                   new Date(entry.createdAt).getFullYear() ===
@@ -254,7 +266,7 @@ const WaitlistAdmin = () => {
         <div className="bg-white p-6 rounded-lg shadow-md border">
           <h3 className="text-lg font-semibold text-gray-700">With Phone</h3>
           <p className="text-3xl font-bold text-[#FC7C13]">
-            {waitlistData.filter((entry) => entry.phone).length}
+            {waitlistData.filter((entry: WaitlistEntry) => entry.phone).length}
           </p>
         </div>
       </div>
@@ -267,7 +279,9 @@ const WaitlistAdmin = () => {
               type="text"
               placeholder="Search by name, email, or phone..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearch(e.target.value)
+              }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FC7C13] focus:border-transparent"
             />
           </div>
@@ -311,7 +325,7 @@ const WaitlistAdmin = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {currentItems.map((entry) => (
+              {currentItems.map((entry: WaitlistEntry) => (
                 <tr key={entry._id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">

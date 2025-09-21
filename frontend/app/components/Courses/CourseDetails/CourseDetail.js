@@ -10,9 +10,10 @@ const CourseDetail = ({ question, answer }) => {
   useEffect(() => {
     if (isDetails) {
       setMaxHeight(`${contentRef.current.scrollHeight}px`);
-    } else {
-      setMaxHeight("0px");
+      return;
     }
+    
+    setMaxHeight("0px");
   }, [isDetails]);
 
   return (

@@ -17,9 +17,10 @@ function SelectField({
     setSelectedOption(value);
     if (value === "") {
       setValidationError("Please select an option.");
-    } else {
-      setValidationError("");
+      return;
     }
+
+    setValidationError("");
 
     if (label === "Course Selected") {
       let tuitionFee = 0;
@@ -53,8 +54,8 @@ function SelectField({
             tuitionFee = 170000;
             break;
           case "Graphics Design":
-              tuitionFee = 150000;
-              break;
+            tuitionFee = 150000;
+            break;
 
           case "Blockchain Development":
             tuitionFee = 0;

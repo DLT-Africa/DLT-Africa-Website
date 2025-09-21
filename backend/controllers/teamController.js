@@ -1,11 +1,20 @@
 const asyncHandler = require("express-async-handler");
 const Team = require("../models/teamModel");
-const { generateToken, hashToken } = require("../utils");
+const {
+  generateToken,
+  generateRefreshToken,
+  hashToken,
+  generateRandomToken,
+  sendEmail,
+  sendVerificationEmail: sendVerificationEmailUtil,
+} = require("../utils");
 const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
-const validEmails = [
+// Constants
+const VALID_EMAILS = [
   "naheem@dltafrica.io",
   "aliyuanate016@gmail.com",
   "soliuahmad99@gmail.com",
@@ -13,204 +22,399 @@ const validEmails = [
   "rajiabdullahi907@outlook.com",
 ];
 
+const TOKEN_EXPIRY = {
+  VERIFICATION: 24 * 60 * 60 * 1000, // 24 hours
+  RESET: 60 * 60 * 1000, // 1 hour
+  LOGIN: 24 * 60 * 60 * 1000, // 24 hours
+};
+
+const MIN_PASSWORD_LENGTH = 6;
+
+/**
+ * Validates team registration input
+ * @param {Object} reqBody - Request body
+ * @throws {Error} If validation fails
+ */
+const validateTeamInput = (reqBody) => {
+  const { name, email, phone, password } = reqBody;
+
+  // Check required fields
+  const requiredFields = { name, email, phone, password };
+  const missingFields = Object.entries(requiredFields)
+    .filter(
+      ([key, value]) => !value || (typeof value === "string" && !value.trim())
+    )
+    .map(([key]) => key);
+
+  if (missingFields.length > 0) {
+    throw new Error(`Missing required fields: ${missingFields.join(", ")}`);
+  }
+
+  // Validate email format
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    throw new Error("Invalid email format");
+  }
+
+  // Validate email against allowed list
+  if (!VALID_EMAILS.includes(email)) {
+    throw new Error("Email is not authorized for team registration");
+  }
+
+  // Validate password strength
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    throw new Error(
+      `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`
+    );
+  }
+
+  // Validate phone number format (Nigerian)
+  const phoneRegex = /^(\+234|234|0)?[789][01]\d{8}$/;
+  if (!phoneRegex.test(phone)) {
+    throw new Error("Invalid Nigerian phone number format");
+  }
+
+  // Validate name
+  if (name.trim().length < 2) {
+    throw new Error("Name must be at least 2 characters long");
+  }
+};
+
+/**
+ * Validates login input
+ * @param {Object} reqBody - Request body
+ * @throws {Error} If validation fails
+ */
+const validateLoginInput = (reqBody) => {
+  const { email, password } = reqBody;
+
+  if (!email || !password) {
+    throw new Error("Email and password are required");
+  }
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    throw new Error("Invalid email format");
+  }
+};
+
+/**
+ * @swagger
+ * @route POST /api/v1/team/register-team
+ * @desc Register a new team member
+ * @access Public
+ */
 const createTeam = asyncHandler(async (req, res) => {
   const { name, email, phone, password } = req.body;
 
-  if (!name || !email || !phone || !password) {
-    res.status(400);
-    throw new Error("Please fill in all the require fields");
-  }
+  // Validate input
+  validateTeamInput(req.body);
 
-  if (password.length < 6) {
-    res.status(400);
-    throw new Error("Password must be up to 6 characters.");
-  }
-
-  if (!validEmails.includes(email)) {
-    res.status(400);
-    throw new Error("Email is not allowed.");
-  }
-
+  // Check if team member already exists
   const teamExists = await Team.findOne({ email });
-
   if (teamExists) {
     res.status(400);
-    throw new Error("Email already in use.");
+    throw new Error("Email already in use");
   }
 
-  const team = await Team.create({
-    name,
-    email,
-    phone,
-    password,
-  });
-
-  const token = generateToken(team._id);
-
-  res.cookie("token", token, {
-    path: "/",
-    httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 86400),
-    sameSite: "none",
-    secure: true,
-  });
-
-  if (team) {
-    const { _id, name, email, photo, phone, role, isVerified } = team;
-
-    res.status(201).json({
-      _id,
-      name,
-      email,
-      phone,
-      photo,
-      role,
-      isVerified,
-      token,
+  try {
+    // Create team member
+    const team = await Team.create({
+      name: name.trim(),
+      email: email.toLowerCase().trim(),
+      phone: phone.trim(),
+      password,
     });
-  } else {
-    res.status(400);
-    throw new Error("Invalid team data provided, please confirm!");
-  }
-});
 
-const loginTeam = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+    if (!team) {
+      res.status(400);
+      throw new Error("Failed to create team account");
+    }
 
-  //   Validation
-  if (!email || !password) {
-    res.status(400);
-    throw new Error("Incorrect email or password, please check and try again!");
-  }
+    // Generate tokens
+    const token = generateToken(team._id);
+    const refreshToken = generateRefreshToken(team._id);
 
-  const team = await Team.findOne({ email });
-
-  if (!team) {
-    res.status(404);
-    throw new Error("Team not found, please signup");
-  }
-
-  const isMatch = await bcrypt.compare(password, team.password);
-  if (!isMatch) {
-    return res.status(400).json({ msg: "Invalid Credentials" });
-  }
-
-  const token = generateToken(team._id);
-
-  if (team) {
+    // Set HTTP-only cookie
     res.cookie("token", token, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400), // 1 day
+      expires: new Date(Date.now() + TOKEN_EXPIRY.LOGIN),
       sameSite: "none",
       secure: true,
     });
 
-    const { _id, name, email, photo, phone, role, isVerified } = team;
+    // Set refresh token cookie
+    res.cookie("refreshToken", refreshToken, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+      sameSite: "none",
+      secure: true,
+    });
 
-    res.status(201).json({
+    // Return team data (excluding sensitive information)
+    const {
       _id,
-      name,
-      email,
-      phone,
+      name: teamName,
+      email: teamEmail,
       photo,
+      phone: teamPhone,
       role,
       isVerified,
-      token,
+      createdAt,
+    } = team;
+
+    res.status(201).json({
+      success: true,
+      message: "Team member registered successfully",
+      data: {
+        _id,
+        name: teamName,
+        email: teamEmail,
+        phone: teamPhone,
+        photo,
+        role,
+        isVerified,
+        createdAt,
+        token,
+      },
     });
-  } else {
+  } catch (error) {
+    console.error("Error creating team member:", error);
+    if (error.code === 11000) {
+      res.status(400);
+      throw new Error("Email already exists");
+    }
     res.status(500);
-    throw new Error("Something went wrong, please try again");
+    throw new Error("Failed to create team account");
   }
 });
 
+/**
+ * @swagger
+ * @route POST /api/v1/team/login
+ * @desc Login team member
+ * @access Public
+ */
+const loginTeam = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  // Validate input
+  validateLoginInput(req.body);
+
+  try {
+    // Find team member
+    const team = await Team.findOne({ email: email.toLowerCase().trim() });
+    if (!team) {
+      res.status(404);
+      throw new Error("Team member not found");
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, team.password);
+    if (!isMatch) {
+      res.status(401);
+      throw new Error("Invalid credentials");
+    }
+
+    // Generate tokens
+    const token = generateToken(team._id);
+    const refreshToken = generateRefreshToken(team._id);
+
+    // Set HTTP-only cookies
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + TOKEN_EXPIRY.LOGIN),
+      sameSite: "none",
+      secure: true,
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+      sameSite: "none",
+      secure: true,
+    });
+
+    // Return team data (excluding sensitive information)
+    const {
+      _id,
+      name,
+      email: teamEmail,
+      photo,
+      phone,
+      role,
+      isVerified,
+      lastLogin,
+      createdAt,
+    } = team;
+
+    // Update last login
+    team.lastLogin = new Date();
+    await team.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      data: {
+        _id,
+        name,
+        email: teamEmail,
+        phone,
+        photo,
+        role,
+        isVerified,
+        lastLogin: team.lastLogin,
+        createdAt,
+        token,
+      },
+    });
+  } catch (error) {
+    console.error("Error during login:", error);
+    if (
+      error.message === "Team member not found" ||
+      error.message === "Invalid credentials"
+    ) {
+      throw error;
+    }
+    res.status(500);
+    throw new Error("Login failed. Please try again");
+  }
+});
+
+/**
+ * @swagger
+ * @route POST /api/v1/team/sendVerificationEmail
+ * @desc Send verification email to team member
+ * @access Private
+ */
 const sendVerificationEmail = asyncHandler(async (req, res) => {
   const team = await Team.findById(req.team._id);
 
   if (!team) {
     res.status(404);
-    throw new Error("Team not found");
+    throw new Error("Team member not found");
   }
 
   if (team.isVerified) {
     res.status(400);
-    throw new Error("You are already verified");
+    throw new Error("Account is already verified");
   }
-
-  let token = await Token.findOne({ teamId: team._id });
-  if (token) {
-    await token.deleteOne();
-  }
-
-  const verificationToken = crypto.randomBytes(32).toString("hex") + team._id;
-  console.log(verificationToken);
-
-  // Hash token and save
-  const hashedToken = hashToken(verificationToken);
-  await new Token({
-    userId: team._id,
-    vToken: hashedToken,
-    createdAt: Date.now(),
-    expiresAt: Date.now() + 60 * (60 * 1000), // 60mins
-  }).save();
-
-  // Construct Verification URL
-  const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
-
-  // Send Email
-  const subject = "Verify Your Account - AUTH:Z";
-  const send_to = team.email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "";
-  const template = "verifyEmail";
-  const name = team.name;
-  const link = verificationUrl;
 
   try {
-    await sendEmail(
-      subject,
-      send_to,
-      sent_from,
-      reply_to,
-      template,
-      name,
-      link
-    );
-    res.status(200).json({ message: "Verification Email Sent successfully" });
+    // Delete existing verification token if any
+    let token = await Token.findOne({
+      userId: team._id,
+      tokenType: "verification",
+    });
+    if (token) {
+      await token.deleteOne();
+    }
+
+    // Generate new verification token
+    const verificationToken = generateRandomToken(32) + team._id;
+    const hashedToken = hashToken(verificationToken);
+
+    // Save token to database
+    await new Token({
+      userId: team._id,
+      vToken: hashedToken,
+      tokenType: "verification",
+      createdAt: new Date(),
+      expiresAt: new Date(Date.now() + TOKEN_EXPIRY.VERIFICATION),
+    }).save();
+
+    // Send verification email using new utility function
+    await sendVerificationEmailUtil(team.email, team.name, verificationToken);
+
+    res.status(200).json({
+      success: true,
+      message: "Verification email sent successfully",
+      data: {
+        email: team.email,
+        expiresIn: TOKEN_EXPIRY.VERIFICATION / (1000 * 60 * 60), // hours
+      },
+    });
   } catch (error) {
+    console.error("Error sending verification email:", error);
     res.status(500);
-    throw new Error("Email not sent, please try again");
+    throw new Error("Failed to send verification email. Please try again");
   }
 });
 
+/**
+ * @swagger
+ * @route PATCH /api/v1/team/verifyUser/{verificationToken}
+ * @desc Verify team member email
+ * @access Public
+ */
 const verifyTeam = asyncHandler(async (req, res) => {
   const { verificationToken } = req.params;
 
-  const hashedToken = hashToken(verificationToken);
-
-  const teamToken = await Token.findOne({
-    vToken: hashedToken,
-    expiresAt: { $gt: Date.now() },
-  });
-
-  if (!teamToken) {
-    res.status(404);
-    throw new Error("Invalid or Expired Token");
-  }
-
-  // Find User
-  const team = await Team.findOne({ _id: teamToken.teamId });
-
-  if (team.isVerified) {
+  if (!verificationToken) {
     res.status(400);
-    throw new Error("User is already verified");
+    throw new Error("Verification token is required");
   }
 
-  // Now verify user
-  team.isVerified = true;
-  await team.save();
+  try {
+    const hashedToken = hashToken(verificationToken);
 
-  res.status(200).json({ message: "Account Verification Successful" });
+    const teamToken = await Token.findOne({
+      vToken: hashedToken,
+      tokenType: "verification",
+      expiresAt: { $gt: new Date() },
+    });
+
+    if (!teamToken) {
+      res.status(404);
+      throw new Error("Invalid or expired verification token");
+    }
+
+    // Find team member
+    const team = await Team.findById(teamToken.userId);
+    if (!team) {
+      res.status(404);
+      throw new Error("Team member not found");
+    }
+
+    if (team.isVerified) {
+      res.status(400);
+      throw new Error("Account is already verified");
+    }
+
+    // Verify team member
+    team.isVerified = true;
+    team.verifiedAt = new Date();
+    await team.save();
+
+    // Delete the used token
+    await Token.findByIdAndDelete(teamToken._id);
+
+    res.status(200).json({
+      success: true,
+      message: "Account verification successful",
+      data: {
+        name: team.name,
+        email: team.email,
+        isVerified: team.isVerified,
+        verifiedAt: team.verifiedAt,
+      },
+    });
+  } catch (error) {
+    console.error("Error verifying team member:", error);
+    if (
+      error.message === "Invalid or expired verification token" ||
+      error.message === "Team member not found" ||
+      error.message === "Account is already verified"
+    ) {
+      throw error;
+    }
+    res.status(500);
+    throw new Error("Verification failed. Please try again");
+  }
 });
 
 const logout = asyncHandler(async (req, res) => {
@@ -406,32 +610,85 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * @route PATCH /api/v1/team/resetPassword/{resetToken}
+ * @desc Reset team member password
+ * @access Public
+ */
 const resetPassword = asyncHandler(async (req, res) => {
   const { resetToken } = req.params;
   const { password } = req.body;
-  console.log(resetToken);
-  console.log(password);
 
-  const hashedToken = hashToken(resetToken);
-
-  const teamToken = await Token.findOne({
-    rToken: hashedToken,
-    expiresAt: { $gt: Date.now() },
-  });
-
-  if (!teamToken) {
-    res.status(404);
-    throw new Error("Invalid or Expired Token");
+  if (!resetToken) {
+    res.status(400);
+    throw new Error("Reset token is required");
   }
 
-  // Find User
-  const team = await Team.findOne({ _id: teamToken.teamId });
+  if (!password) {
+    res.status(400);
+    throw new Error("New password is required");
+  }
 
-  // Now Reset password
-  team.password = password;
-  await team.save();
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    res.status(400);
+    throw new Error(
+      `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`
+    );
+  }
 
-  res.status(200).json({ message: "Password Reset Successful, please login" });
+  try {
+    const hashedToken = hashToken(resetToken);
+
+    const teamToken = await Token.findOne({
+      rToken: hashedToken,
+      tokenType: "reset",
+      expiresAt: { $gt: new Date() },
+    });
+
+    if (!teamToken) {
+      res.status(404);
+      throw new Error("Invalid or expired reset token");
+    }
+
+    // Find team member
+    const team = await Team.findById(teamToken.userId);
+    if (!team) {
+      res.status(404);
+      throw new Error("Team member not found");
+    }
+
+    // Hash the new password before saving
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Update password
+    team.password = hashedPassword;
+    team.passwordChangedAt = new Date();
+    await team.save();
+
+    // Delete the used token
+    await Token.findByIdAndDelete(teamToken._id);
+
+    res.status(200).json({
+      success: true,
+      message: "Password reset successful. Please login with your new password",
+      data: {
+        email: team.email,
+        passwordChangedAt: team.passwordChangedAt,
+      },
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    if (
+      error.message === "Invalid or expired reset token" ||
+      error.message === "Team member not found"
+    ) {
+      throw error;
+    }
+    res.status(500);
+    throw new Error("Password reset failed. Please try again");
+  }
 });
 
 const changePassword = asyncHandler(async (req, res) => {
@@ -466,6 +723,7 @@ const changePassword = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  // Main controller functions
   createTeam,
   loginTeam,
   sendVerificationEmail,
@@ -480,4 +738,13 @@ module.exports = {
   forgotPassword,
   resetPassword,
   changePassword,
+
+  // Validation functions
+  validateTeamInput,
+  validateLoginInput,
+
+  // Constants (for testing or external use)
+  VALID_EMAILS,
+  TOKEN_EXPIRY,
+  MIN_PASSWORD_LENGTH,
 };

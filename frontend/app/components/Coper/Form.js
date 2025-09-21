@@ -104,61 +104,66 @@ const Form = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData)
   };
 
   const uploadImageToCloudinary = async (image) => {
     if (
-      image &&
-      ["image/jpeg", "image/jpg", "image/png"].includes(image.type)
+      !image ||
+      !["image/jpeg", "image/jpg", "image/png"].includes(image.type)
     ) {
-      const formData = new FormData();
-      formData.append("file", image);
-      formData.append("cloud_name", cloud_name);
-      formData.append("upload_preset", upload_preset);
-
-      try {
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const imgData = await response.json();
-        if (imgData.url) {
-          return imgData.url; 
-        } else {
-          throw new Error("Image upload failed. No URL returned.");
-        }
-      } catch (error) {
-        console.error("Error uploading image:", error);
-        setFormValidMessage("Error uploading image. Please try again.");
-      }
-    } else {
       setFormValidMessage(
         "Invalid image format. Only JPEG, JPG, and PNG are allowed."
       );
+      return null;
     }
-    return null;
+
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("cloud_name", cloud_name);
+    formData.append("upload_preset", upload_preset);
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const imgData = await response.json();
+
+      if (!imgData.url) {
+        throw new Error("Image upload failed. No URL returned.");
+      }
+
+      return imgData.url;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      setFormValidMessage("Error uploading image. Please try again.");
+      return null;
+    }
   };
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file.name); 
-      const url = await uploadImageToCloudinary(file); 
-      if (url) {
-        setFormData({ ...formData, corp_id: url });
-        setImageUrl(url); 
-      } else {
-        setSelectedFile(null);
-        setImageUrl("");
-      }
-    } else {
+
+    if (!file) {
       setSelectedFile(null);
       setImageUrl("");
+      return;
     }
+
+    setSelectedFile(file.name);
+    const url = await uploadImageToCloudinary(file);
+
+    if (!url) {
+      setSelectedFile(null);
+      setImageUrl("");
+      return;
+    }
+
+    setFormData({ ...formData, corp_id: url });
+    setImageUrl(url);
   };
 
   const handleSubmit = (event) => {
@@ -174,17 +179,6 @@ const Form = () => {
       course_selected,
       batchResumption,
     } = formData;
-
-    console.log({
-      fullName,
-      emailAddress,
-      phone_number,
-      gender,
-      stateOfOrigin,
-      corp_id,
-      course_selected,
-      batchResumption,
-    });
 
     if (
       !fullName ||
@@ -202,10 +196,13 @@ const Form = () => {
 
     setIsSubmitting(true);
 
-    axios.post(`https://dlt-backend.vercel.app/api/v1/cohorts/corperreg`, formData)
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/corperreg`,
+        formData
+      )
 
       .then((response) => {
-        console.log(response.data);
         setIsSubmitting(false);
         localStorage.setItem("isLoggedIn", "true");
         setFormCompleted(true);
@@ -217,15 +214,14 @@ const Form = () => {
           setFormValidMessage(
             "An applicant with the same email address already exists."
           );
-        } else {
-          setFormValidMessage(
-            "Server error. Unable to process your registration."
-          );
+          return;
         }
+
+        setFormValidMessage(
+          "Server error. Unable to process your registration."
+        );
       });
   };
-
-  console.log(formData.corp_id);
 
   return (
     <form

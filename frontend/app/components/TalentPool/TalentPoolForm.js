@@ -7,7 +7,6 @@ import { Button, Input } from "@material-tailwind/react";
 
 const URL = "https://talent-pool-server.vercel.app";
 
-
 const NewForm = ({ selectedTalent, handleCloseModal }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -42,7 +41,6 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
     axios
       .post(`${URL}/api/v1/contact/create-form`, formData)
       .then((response) => {
-        console.log(response.data);
         setIsSubmitting(false);
         handleCloseModal();
         router.push("/talent-pool");
@@ -60,9 +58,10 @@ const NewForm = ({ selectedTalent, handleCloseModal }) => {
           setFormValidMessage(
             "No response from server. Please try again later."
           );
-        } else {
-          setFormValidMessage("Request setup error: " + error.message);
+          return;
         }
+
+        setFormValidMessage("Request setup error: " + error.message);
       });
   };
 
