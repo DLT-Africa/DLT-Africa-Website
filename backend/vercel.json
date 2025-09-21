@@ -1,16 +1,55 @@
-
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "server.js", 
-        "use": "@vercel/node"
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/docs/swagger-ui.css",
+      "dest": "server.js",
+      "headers": {
+        "Content-Type": "text/css"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "server.js"
+    },
+    {
+      "src": "/docs/swagger-ui-bundle.js",
+      "dest": "server.js",
+      "headers": {
+        "Content-Type": "application/javascript"
       }
-    ]
-  }
+    },
+    {
+      "src": "/docs/swagger-ui-standalone-preset.js",
+      "dest": "server.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "src": "/docs/swagger-ui-init.js",
+      "dest": "server.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "src": "/docs/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/health",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
