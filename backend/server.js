@@ -184,9 +184,23 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/waitlist", waitlistRoute);
 app.use("/api/v1/settings", settingsRoute);
 
-// Swagger Documentation
+// Swagger Documentation with explicit MIME type handling
 app.use(
   "/docs",
+  (req, res, next) => {
+    // Handle specific Swagger UI static assets with correct MIME types
+    if (req.path.endsWith(".css")) {
+      res.setHeader("Content-Type", "text/css");
+    } else if (req.path.endsWith(".js")) {
+      res.setHeader("Content-Type", "application/javascript");
+    } else if (req.path.endsWith(".png") || req.path.endsWith(".ico")) {
+      res.setHeader(
+        "Content-Type",
+        req.path.endsWith(".png") ? "image/png" : "image/x-icon"
+      );
+    }
+    next();
+  },
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpecs, {
     explorer: true,
