@@ -1,0 +1,206 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
+
+interface CorperData {
+  fullName: string;
+  emailAddress: string;
+  phone_number: string;
+  gender: string;
+  stateOfOrigin: string;
+  corp_id: string;
+  course_selected: string;
+  batchResumption: string;
+}
+
+const CorperPreview: React.FC = () => {
+  const [corperData, setCorperData] = useState<CorperData[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<CorperData[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(5);
+  const [activeButton, setActiveButton] = useState<string>("/corpers");
+
+  const handleButtonClick = (href: string): void => {
+    setActiveButton(href);
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async (): Promise<void> => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/get-all-corpers`
+        );
+        if (
+          response.data &&
+          response.data.success &&
+          Array.isArray(response.data.data)
+        ) {
+          setCorperData(response.data.data);
+        } else {
+          setCorperData([]);
+          setMessage("Invalid data format received");
+        }
+      } catch (error: any) {
+        console.error("Error fetching corper data:", error);
+        setCorperData([]);
+        if (error.response && error.response.status == 400) {
+          setMessage("Cannot fetch data");
+          return;
+        }
+        setMessage("Server error");
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!Array.isArray(corperData)) {
+      setSearchResults([]);
+      return;
+    }
+    const filteredData = corperData.filter(
+      (res) =>
+        res.batchResumption?.toLowerCase().includes(search.toLowerCase()) ||
+        res.fullName?.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchResults(filteredData);
+  }, [corperData, search]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Corper&apos;s List</h1>
+
+      <div className="flex mb-4">
+        <div className="flex space-x-4">
+          <Link
+            href="/admin-dashboard"
+            onClick={() => handleButtonClick("/admin-dashboard")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/admin-dashboard"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Admission List
+          </Link>
+          <Link
+            href="/team-list"
+            onClick={() => handleButtonClick("/team-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/team-list"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Team List
+          </Link>
+          <Link
+            href="/event-list"
+            onClick={() => handleButtonClick("/event-list")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/event-list"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Event List
+          </Link>
+          <Link
+            href="/corpers"
+            onClick={() => handleButtonClick("/corpers")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/corpers"
+                ? "bg-pink-800 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Corper&apos;s List
+          </Link>
+          <Link
+            href="/waitlist"
+            onClick={() => handleButtonClick("/waitlist")}
+            className={`px-4 py-2 rounded-md ${
+              activeButton === "/waitlist"
+                ? "bg-[#FC7C13] text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            Waitlist
+          </Link>
+        </div>
+      </div>
+
+      <input
+        type="text"
+        placeholder="Search"
+        className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 bg-[#FFF8ED]"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {!isLoading && corperData.length === 0 ? (
+        <p>No corper&apos;s data found...</p>
+      ) : (
+        <>
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">S/N</th>
+                  <th className="px-4 py-2">Full Name</th>
+                  <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Course Selected</th>
+                  <th className="px-4 py-2">Phone</th>
+                  <th className="px-4 py-2">Batch</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {currentItems.map((corper: CorperData, index: number) => {
+                  const {
+                    fullName,
+                    emailAddress,
+                    phone_number,
+                    gender,
+                    stateOfOrigin,
+                    corp_id,
+                    course_selected,
+                    batchResumption,
+                  } = corper;
+
+                  return (
+                    <tr key={index}>
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{fullName}</td>
+                      <td className="border px-4 py-2">{emailAddress}</td>
+
+                      <td className="border px-4 py-2">{course_selected}</td>
+                      <td className="border px-4 py-2">{phone_number}</td>
+
+                      <td className="border px-4 py-2">{batchResumption}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default CorperPreview;
