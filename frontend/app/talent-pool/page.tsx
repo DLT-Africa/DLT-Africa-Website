@@ -1,22 +1,22 @@
-"use client";
-import { useEffect, useState } from "react";
-import TalentPool from "../components/TalentPool/TalentPool";
+import { Suspense } from "react";
+import dynamicImport from "next/dynamic";
 import TalentPoolLoader from "@/app/components/Loader/TalentPoolLoader";
 
+// Dynamically import TalentPool with no SSR
+const TalentPool = dynamicImport(
+  () => import("../components/TalentPool/TalentPool"),
+  {
+    ssr: false,
+    loading: () => <TalentPoolLoader />,
+  }
+);
+
 const page = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setLoading(false);
-    }, 8000);
-
-    return () => {
-      clearTimeout(loadTimeout);
-    };
-  }, []);
-
-  return <div>{loading ? <TalentPoolLoader /> : <TalentPool />}</div>;
+  return (
+    <Suspense fallback={<TalentPoolLoader />}>
+      <TalentPool />
+    </Suspense>
+  );
 };
 
 export default page;

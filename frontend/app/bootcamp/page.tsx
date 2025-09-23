@@ -1,38 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamicImport from "next/dynamic";
 import Loader from "../components/Loader/Loader";
-import IndexHome from "@/app/components/HomePage/Home";
+
+// Dynamically import IndexHome with no SSR
+const IndexHome = dynamicImport(
+  () => import("@/app/components/HomePage/Home"),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  }
+);
+
+// Force dynamic rendering to avoid SSR issues
+export const dynamic = "force-dynamic";
 
 export default function Bootcamp() {
-  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check if we're on the client side
-    if (typeof window !== "undefined") {
-      window.scrollTo(0, 0);
-    }
+    setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-
-    return () => {
-      clearTimeout(loadTimeout);
-    };
-  }, []);
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return <Loader />;
+  }
 
   return (
     <div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <IndexHome />
-        </>
-      )}
+      <IndexHome />
     </div>
   );
 }

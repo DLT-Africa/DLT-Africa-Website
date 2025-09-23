@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  // output: "export", // Temporarily disabled to fix SSR issues
 
   env: {
     NEXT_PUBLIC_API_BASE_URL:
