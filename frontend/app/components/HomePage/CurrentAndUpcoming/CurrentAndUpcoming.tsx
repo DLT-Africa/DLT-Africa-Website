@@ -21,6 +21,19 @@ const CurrentAndUpcoming: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const formatDate = (dateString: string): string => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch (error) {
+      return dateString; // Return original string if parsing fails
+    }
+  };
+
   useEffect(() => {
     const fetchEvents = async (): Promise<void> => {
       try {
@@ -28,15 +41,16 @@ const CurrentAndUpcoming: React.FC = () => {
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/events/get-all-events`
         );
         if (
-          response.data &&
-          response.data.success &&
-          Array.isArray(response.data.data)
+          !response.data ||
+          !response.data.success ||
+          !Array.isArray(response.data.data)
         ) {
-          setEventData(response.data.data);
-        } else {
           setEventData([]);
           setMessage("Invalid data format received");
+          return;
         }
+
+        setEventData(response.data.data);
       } catch (error: any) {
         console.error("Error fetching events:", error);
         setEventData([]);
@@ -105,7 +119,7 @@ const CurrentAndUpcoming: React.FC = () => {
                 loading="lazy"
               />
               <div className="mt-4 flex justify-center items-center flex-col gap-3">
-                <h3 className="text-xl font-semibold text-neutral-black capitalize">
+                <h3 className="font-semibold text-neutral-black capitalize text-center">
                   {event.eventName}
                 </h3>
                 <p className="text-sm text-neutral-black text-center capitalize">
@@ -115,7 +129,7 @@ const CurrentAndUpcoming: React.FC = () => {
                   {event.eventCategory}
                 </p>
                 <p className="text-sm text-neutral-black">
-                  {event.startDate} | {event.duration}
+                  {formatDate(event.startDate)} | {event.duration}
                 </p>
                 <button
                   className="mt-4 transition duration-500 ease-in-out transform hover:-translate-y-1 text-orange-500 bg-secondary-700 px-4 py-2 rounded-lg hover:bg-orange-100 focus:outline-none border border-orange-500 text-base font-medium"
@@ -147,7 +161,7 @@ const CurrentAndUpcoming: React.FC = () => {
             </p>
             <p>
               <span className="font-bold">Start Date:</span>{" "}
-              {selectedEvent.startDate}
+              {formatDate(selectedEvent.startDate)}
             </p>
             <p>
               <span className="font-bold">Duration:</span>{" "}

@@ -37,7 +37,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
         toast.error("All fields are required");
         return;
       }
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/contactUs`,
         formData
       );
@@ -72,7 +72,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
   };
 
   return (
-    <section className="h-full shadow-lg  bg-green-50 opacity-95 w-full flex justify-center items-center fixed top-0 left-0 z-50">
+    <section className="h-full shadow-xl  bg-green-50 opacity-[0.98] w-full flex justify-center items-center fixed top-0 left-0 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[500px]">
         <h2 className="text-xl font-bold mb-4">Contact Us</h2>
         <form onSubmit={handleSubmit}>
