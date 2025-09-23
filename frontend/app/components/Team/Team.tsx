@@ -51,7 +51,7 @@ const teamMember: TeamMember[] = [
     description:
       "With a passion for coding, I have dedicated expertise to shaping innovative solutions in the realm of technology.",
     linkedinLink: "www.linkedin.com/in/alameer98",
-    twitterLink: "https://twitter.com/alAmeer170",
+    twitterLink: "https://twitter.com/17_alAmeer",
   },
   {
     id: 5,

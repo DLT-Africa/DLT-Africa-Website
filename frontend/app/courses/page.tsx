@@ -33,14 +33,14 @@ const coursesList = [
     media: "/images/Course5.png",
     url: "/graphics-design",
   },
-  {
-    id: 4,
-    courseName: "Blockchain Development (Smart Contract)",
-    description:
-      "Acquire the skills and knowledge needed to be a Blockchain Developer. The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
-    media: "/images/Course4.png",
-    url: "/blockchain",
-  },
+  // {
+  //   id: 4,
+  //   courseName: "Blockchain Development (Smart Contract)",
+  //   description:
+  //     "Acquire the skills and knowledge needed to be a Blockchain Developer. The course is designed to provide a comprehensive introduction to Ethereum smart contract development.",
+  //   media: "/images/Course4.png",
+  //   url: "/blockchain",
+  // },
 ];
 
 const page = () => {

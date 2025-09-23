@@ -41,7 +41,7 @@ const CourseSection: React.FC<CourseSectionProps> = (props) => {
     <>
       <div className="flex flex-col-reverse md:flex-row bg-[#F6F7F6] lg:gap-[83px] lg:pr-[50px] md:gap-[63px] md:justify-between ">
         <div className="lg:w-[673px] md:w-[345px] sm:w-[390px] lg:pl-[50px] lg:mt-[35px] md:px-[50px] px-[32px] mt-[30px]">
-          <h4 className="lg:text-[40px] md:text-[24px] text-[30px] w-full lg:w-[404px] md:w-[187px] sm:w-[187px] font-serif font-[700] lg:mb-[14px] md:mb-[10px] sm:mt-[30px] sm:font-[700] sm:mb-[10px] leading-[120%]">
+          <h4 className="lg:text-[40px] md:text-[24px] text-[30px] w-full font-serif font-[700] lg:mb-[14px] md:mb-[10px] sm:mt-[30px] sm:font-[700] sm:mb-[10px] leading-[120%]">
             {props.title}
           </h4>
           {props.text && (
@@ -80,7 +80,6 @@ const CourseSection: React.FC<CourseSectionProps> = (props) => {
                 {props.showCheckbox && (
                   <FaCheckCircle className="inline-block mr-2 w-[16px] h-[16px]" />
                 )}{" "}
-                {/* Conditionally render checkbox icon */}
               </p>
               {props.headline3}
             </div>
