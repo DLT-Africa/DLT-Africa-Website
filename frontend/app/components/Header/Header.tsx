@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 import { Drawer } from "@material-tailwind/react";
 
 const Header: React.FC = () => {
   const [openRight, setOpenRight] = useState<boolean>(false);
-  const [pathname, setPathname] = useState<string>("");
+  const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
@@ -27,25 +28,6 @@ const Header: React.FC = () => {
     }
     setIsLoggedIn(false);
   };
-
-  useEffect(() => {
-    // Check if we're on the client side
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    setPathname(window.location.pathname);
-
-    const handlePathnameChange = (): void => {
-      setPathname(window.location.pathname);
-    };
-
-    window.addEventListener("popstate", handlePathnameChange);
-
-    return () => {
-      window.removeEventListener("popstate", handlePathnameChange);
-    };
-  }, []);
 
   const openDrawerRight = (): void => setOpenRight(true);
   const closeDrawerRight = (): void => setOpenRight(false);
