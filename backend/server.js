@@ -112,6 +112,7 @@ const corsOptions = {
       "https://dlt-africa-talent-pool.vercel.app",
       "https://dltafrica.io",
       "https://www.dltafrica.io",
+      "https://dltafrica.vercel.app",
     ];
 
     // Allow requests with no origin (mobile apps, Postman, etc.)

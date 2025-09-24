@@ -94,7 +94,8 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
     } catch (error: any) {
       console.error("Error joining waitlist:", error);
       setMessage(
-        error.response?.data?.message ||
+        error.response?.data?.error ||
+          error.response?.data?.message ||
           "Failed to join waitlist. Please try again."
       );
       setMessageType("error");
