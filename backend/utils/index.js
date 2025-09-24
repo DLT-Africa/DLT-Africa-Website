@@ -126,7 +126,7 @@ const createEmailTransporter = () => {
     throw new Error("Email credentials not configured");
   }
 
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
@@ -134,7 +134,6 @@ const createEmailTransporter = () => {
     },
   });
 };
-
 
 const sendEmail = async (mailOptions) => {
   if (!mailOptions || !mailOptions.to || !mailOptions.subject) {
@@ -156,8 +155,6 @@ const sendEmail = async (mailOptions) => {
   }
 };
 
-
-
 const sendVerificationEmail = async (email, name, verificationToken) => {
   const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${verificationToken}`;
 
@@ -177,8 +174,6 @@ const sendVerificationEmail = async (email, name, verificationToken) => {
 
   return sendEmail(mailOptions);
 };
-
-
 
 const sendPasswordResetEmail = async (email, name, resetToken) => {
   const resetUrl = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
@@ -201,8 +196,6 @@ const sendPasswordResetEmail = async (email, name, resetToken) => {
 
   return sendEmail(mailOptions);
 };
-
-
 
 const validateCourseInputs = (courseSelected, classType) => {
   if (!courseSelected || typeof courseSelected !== "string") {
