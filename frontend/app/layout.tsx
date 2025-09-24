@@ -1,11 +1,10 @@
 "use client";
 // @ts-ignore
+import { Analytics } from "@vercel/analytics/next";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
-import Footer from "@/app/components/Footer/Footer";
-import Header from "@/app/components/Header/Header";
 import ConditionalLayout from "@/app/components/ConditionalLayout";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +30,7 @@ export default function RootLayout({
         </head>
         <body className={inter.className}>
           <ConditionalLayout>{children}</ConditionalLayout>
+          <Analytics />
         </body>
       </ThemeProvider>
     </html>
