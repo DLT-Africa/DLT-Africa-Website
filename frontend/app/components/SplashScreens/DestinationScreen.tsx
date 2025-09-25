@@ -76,7 +76,7 @@ const dynamicContent: DynamicContent[] = [
     image: "/splash/live-chat.svg",
     title: "Welcome to DLT HUB",
     description:
-      "Live chat session with Sophia Dew Dowel Lead Celo Foundation.",
+      "Live chat session with Sophia Dew DevRel Lead @Celo Foundation",
   },
   {
     id: 9,
