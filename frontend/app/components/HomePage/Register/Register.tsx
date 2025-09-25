@@ -14,7 +14,8 @@ const RegisterOnline: React.FC = () => {
       try {
         const response = await axios.get(
           `${
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+            process.env.NEXT_PUBLIC_API_BASE_URL ||
+            "https://dlt-backend.vercel.app/api/v1"
           }/api/v1/settings/waitlist-status`
         );
         setWaitlistActive(response.data.waitlistActive);
@@ -94,7 +95,8 @@ const RegisterOffline: React.FC = () => {
       try {
         const response = await axios.get(
           `${
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+            process.env.NEXT_PUBLIC_API_BASE_URL ||
+            "https://dlt-backend.vercel.app/api/v1"
           }/api/v1/settings/waitlist-status`
         );
         setWaitlistActive(response.data.waitlistActive);

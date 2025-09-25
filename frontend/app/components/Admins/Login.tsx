@@ -48,7 +48,7 @@ const Login: React.FC = () => {
     setIsSubmitting(true);
 
     axios
-      .post(`http://localhost:8000/api/v1/team/login`, formData)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/team/login`, formData)
       .then((response) => {
         setIsSubmitting(false);
         localStorage.setItem("isLoggedIn", "true");

@@ -72,7 +72,8 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
     try {
       const response = await axios.post(
         `${
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+          process.env.NEXT_PUBLIC_API_BASE_URL ||
+          "https://dlt-backend.vercel.app/api/v1"
         }/api/v1/waitlist/join`,
         formData
       );
