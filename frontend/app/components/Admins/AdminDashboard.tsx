@@ -36,7 +36,7 @@ const AdminDashboard: React.FC = () => {
     const fetchAdmissions = async (): Promise<void> => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/cohorts/get-all-admissions`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/cohorts/get-all-admissions`
         );
         if (
           response.data &&

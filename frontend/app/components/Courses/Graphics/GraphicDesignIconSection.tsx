@@ -37,7 +37,7 @@ const secData: SecDataItem[] = [
   {
     id: 2,
     title: "Date",
-    text: "July 10, 2025",
+    text: "January 5, 2026",
     icon: <BsCalendar4Event />,
     courseConClass: " py-2 px-30 flex flex-row items-center justify-center",
     iconBodyClass:

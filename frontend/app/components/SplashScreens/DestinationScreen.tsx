@@ -144,7 +144,7 @@ export default function DestinationScreen({
   return (
     <div className="flex md:flex-row flex-col min-h-screen md:h-screen">
       {/* Left Side - Dynamic Content */}
-      <div className="overflow-hidden relative w-full h-64 sm:h-80 md:h-full md:w-1/2 lg:w-1/2 flex-shrink-0">
+      <div className="overflow-hidden relative w-full h-96 sm:h-80 md:h-full md:w-1/2 lg:w-1/2 flex-shrink-0">
         <div className="relative w-full h-full">
           <Image
             src={dynamicContent[currentContentIndex].image}
@@ -187,9 +187,9 @@ export default function DestinationScreen({
       <div
         className={`${
           showImage ? "relative" : ""
-        } flex flex-col w-full md:w-1/2 lg:w-1/2 bg-[#F6F6F6] min-h-screen md:h-full overflow-hidden`}
+        } flex flex-col w-full md:w-1/2 lg:w-1/2 bg-[#F6F6F6] h-auto md:h-full overflow-hidden`}
       >
-        <div className="flex flex-col flex-1 p-4 sm:p-6 md:p-8 lg:pt-24 space-y-6 sm:space-y-8 md:space-y-0 md:justify-between overflow-y-auto">
+        <div className="flex flex-col flex-1 p-4 sm:p-6 md:p-8 lg:pt-24 space-y-3 sm:space-y-8 md:space-y-0 md:justify-between overflow-y-auto">
           {/* Header */}
           <div className="text-center flex-shrink-0">
             <h1 className="mb-2 sm:mb-3 md:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black font-sfPro">
@@ -206,7 +206,7 @@ export default function DestinationScreen({
             <h2 className="mb-4 sm:mb-6 md:mb-8 text-lg sm:text-xl font-medium text-center text-black font-sfPro">
               Choose a destination
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-[13px] mb-6 sm:mb-8 md:mb-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-[13px] mb-2 sm:mb-8 md:mb-0">
               <button
                 onClick={() => handleDestinationClick("DEV STUDIO")}
                 className="flex justify-center items-center border-[1px] border-[#C54809] rounded-lg text-[#C54809] font-semibold text-sm sm:text-base md:text-lg hover:bg-[#C54809]/20 transition-all duration-300 transform hover:scale-105 font-sfPro py-3 sm:py-4 lg:h-[173px] h-12 sm:h-14 md:h-auto md:py-4"
@@ -229,7 +229,7 @@ export default function DestinationScreen({
           </div>
 
           {/* Footer */}
-          <div className="flex flex-col space-y-6 sm:space-y-8 md:space-y-6 lg:space-y-0 lg:flex-row lg:justify-between lg:items-end flex-shrink-0">
+          <div className="flex flex-col space-y-3 sm:space-y-8 md:space-y-6 lg:space-y-0 lg:flex-row lg:justify-between lg:items-end flex-shrink-0 md:pt-0 pt-8">
             {/* Social Media Icons */}
             <div className="flex gap-4 sm:gap-5 md:gap-4 justify-center lg:justify-start">
               <a
