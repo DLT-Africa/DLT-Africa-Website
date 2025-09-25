@@ -107,5 +107,14 @@ export default function Bootcamp() {
 
   if (!mounted) return <Loader />;
 
-  return <div>{loading ? <Loader /> : <IndexHome />}</div>;
+  // Show only the loader during loading state to prevent footer from showing
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <Loader />
+      </div>
+    );
+  }
+
+  return <IndexHome />;
 }
