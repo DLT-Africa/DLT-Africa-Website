@@ -163,7 +163,7 @@ export default function DestinationScreen({
                 : "opacity-100 translate-y-0"
             }`}
           >
-            <h2 className="mb-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[48px] font-bold text-black font-sfPro leading-tight">
+            <h2 className="mb-2 lg:leading-[3rem] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[48px] font-bold text-black font-sfPro ">
               {dynamicContent[currentContentIndex].title
                 .split(" ")
                 .map((word, index) =>
