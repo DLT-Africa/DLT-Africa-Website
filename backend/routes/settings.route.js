@@ -2,7 +2,7 @@ const express = require("express");
 const {
   getWaitlistStatus,
   updateWaitlistStatus,
-} = require("../controllers/settingsController");
+} = require("../controllers/settings.controller");
 const router = express.Router();
 
 // Get waitlist status (public)

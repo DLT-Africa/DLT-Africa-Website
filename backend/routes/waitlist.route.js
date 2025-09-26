@@ -3,7 +3,7 @@ const {
   joinWaitlist,
   getWaitlist,
   deleteWaitlistEntry,
-} = require("../controllers/waitlistController");
+} = require("../controllers/waitlist.controller");
 const router = express.Router();
 
 /**

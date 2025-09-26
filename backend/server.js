@@ -15,16 +15,16 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpecs = require("./config/swagger");
 
 // Import routes
-const userRoute = require("./routes/userRoute");
-const eventRoute = require("./routes/eventRoute");
-const teamRoute = require("./routes/teamRoute");
-const contactRoute = require("./routes/contactRoutes");
-const waitlistRoute = require("./routes/waitlistRoute");
-const settingsRoute = require("./routes/settingsRoute");
+const userRoute = require("./routes/user.route");
+const eventRoute = require("./routes/event.route");
+const teamRoute = require("./routes/team.route");
+const contactRoute = require("./routes/contact.route");
+const waitlistRoute = require("./routes/waitlist.route");
+const settingsRoute = require("./routes/settings.route");
 
 // Import middleware
-const errorHandler = require("./middleware/errorHandler");
-const notFound = require("./middleware/notFound");
+const errorHandler = require("./middleware/errorHandler.middleware");
+const notFound = require("./middleware/notFound.middleware");
 
 // Environment validation
 const requiredEnvVars = ["MONGO_URI", "JWT_SECRET", "EMAIL_USER", "EMAIL_PASS"];

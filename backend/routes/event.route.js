@@ -7,7 +7,7 @@ const {
   updateEvent,
   pastEvents,
   upcomingEvents,
-} = require("../controllers/eventController");
+} = require("../controllers/event.controller");
 const router = express.Router();
 
 /**

@@ -5,7 +5,7 @@ const {
   upgradeData,
   corpersReg,
   getCorpers,
-} = require("../controllers/userController");
+} = require("../controllers/user.controller");
 const router = express.Router();
 
 /**
