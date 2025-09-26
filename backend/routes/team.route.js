@@ -14,7 +14,7 @@ const {
   updateTeam,
   resetPassword,
   changePassword,
-} = require("../controllers/teamController");
+} = require("../controllers/team.controller");
 const router = express.Router();
 
 /**

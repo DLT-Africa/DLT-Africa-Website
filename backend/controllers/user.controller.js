@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const CohortSev = require("../models/userModel");
+const CohortEight = require("../models/cohorts/cohort.eight");
 const Corper = require("../models/corpers");
 const {
   sendEmail,
@@ -318,14 +318,14 @@ const registerUser = asyncHandler(async (req, res) => {
   validateUserInput(req.body);
 
   // Check if user already exists
-  const userExists = await CohortSev.findOne({ emailAddress });
+  const userExists = await CohortEight.findOne({ emailAddress });
   if (userExists) {
     res.status(400);
     throw new Error("Email already in use.");
   }
 
   // Create user
-  const user = await CohortSev.create(req.body);
+  const user = await CohortEight.create(req.body);
 
   if (!user) {
     res.status(400);
@@ -535,7 +535,7 @@ const getCorpers = asyncHandler(async (req, res) => {
  */
 const getAdmissions = asyncHandler(async (req, res) => {
   try {
-    const admissions = await CohortSev.find().sort("-createdAt");
+    const admissions = await CohortEight.find().sort("-createdAt");
 
     res.status(200).json({
       success: true,
@@ -586,7 +586,7 @@ const upgradeData = asyncHandler(async (req, res) => {
 
   try {
     // Find user
-    const user = await CohortSev.findById(id);
+    const user = await CohortEight.findById(id);
     if (!user) {
       res.status(404);
       throw new Error("User not found");

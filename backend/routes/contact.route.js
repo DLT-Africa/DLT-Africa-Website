@@ -4,7 +4,7 @@ const {
   getAllContacts,
   getContact,
   deleteContact,
-} = require("../controllers/contactController");
+} = require("../controllers/contact.controller");
 const router = express.Router();
 
 /**
