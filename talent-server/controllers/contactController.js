@@ -9,7 +9,7 @@ exports.createForm = async (req, res) => {
     if (!emailAddress || !companyName || !calendlyLink || !talentId) {
       return res.status(400).json({
         success: false,
-        message: "Please fill all the fields."
+        message: "Please fill all the fields.",
       });
     }
 
@@ -17,7 +17,7 @@ exports.createForm = async (req, res) => {
     if (!selectedTalent) {
       return res.status(404).json({
         success: false,
-        message: "Talent not found."
+        message: "Talent not found.",
       });
     }
 
@@ -34,7 +34,13 @@ exports.createForm = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: emailAddress,
       subject: "Talent Contact Information",
-      text: `Hello ${companyName},\n\nThank you for your interest in our talent pool. Here are the details of the talent you selected:\n\nName: ${selectedTalent.fullName}\nSkills: ${selectedTalent.skills.join(", ")}\n\nPlease, be informed that the selected talent has been notified and they will soon contact your company directly using your provided contact details.\n\nBest regards,\nDLT Africa Team`,
+      text: `Hello ${companyName},\n\nThank you for your interest in our talent pool. Here are the details of the talent you selected:\n\nName: ${
+        selectedTalent.fullName
+      }\nSkills: ${
+        Array.isArray(selectedTalent.skills)
+          ? selectedTalent.skills.join(", ")
+          : "Not specified"
+      }\n\nPlease, be informed that the selected talent has been notified and they will soon contact your company directly using your provided contact details.\n\nBest regards,\nDLT Africa Team`,
     };
 
     const talentMailOptions = {
@@ -47,8 +53,8 @@ exports.createForm = async (req, res) => {
     // Send emails asynchronously
     await Promise.all([
       sendEmail(companyMailOptions),
-      sendEmail(talentMailOptions)
-    ]).catch(error => {
+      sendEmail(talentMailOptions),
+    ]).catch((error) => {
       console.error("Error sending emails:", error);
       // Log email errors, but don't let it affect the response
     });
@@ -58,7 +64,6 @@ exports.createForm = async (req, res) => {
       message: "Contact form submitted successfully and email sent",
       data: newForm,
     });
-
   } catch (error) {
     console.error("Error in createForm:", error);
     return res.status(500).json({
@@ -68,4 +73,3 @@ exports.createForm = async (req, res) => {
     });
   }
 };
-
