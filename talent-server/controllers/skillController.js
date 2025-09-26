@@ -32,16 +32,18 @@ const updateSkill = async (req, res) => {
       return res.status(400).json({ message: "Invalid skill type" });
     }
 
+    if (action !== "add" && action !== "remove") {
+      return res.status(400).json({ message: "Invalid action" });
+    }
+
     if (action === "add") {
       if (!skill[skillType].includes(userId)) {
         skill[skillType].push(userId);
       }
-    } else if (action === "remove") {
+    } else {
       skill[skillType] = skill[skillType].filter(
         (id) => id.toString() !== userId.toString()
       );
-    } else {
-      return res.status(400).json({ message: "Invalid action" });
     }
 
     await skill.save();

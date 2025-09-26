@@ -4,7 +4,6 @@ const path = require("path");
 const express = require("express");
 const connectDB = require("./config/DBconnect");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const talentRoutes = require("./routes/talentRoute");
 const skillRoute = require("./routes/skillRoute");
@@ -14,7 +13,6 @@ const mongoose = require("mongoose");
 const app = express();
 
 const allowedOrigins = [
-  "*",
   "http://localhost:3000",
   "https://dlt-africa-talent-pool.vercel.app",
   "https://dltafrica.io",
@@ -22,16 +20,12 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (e.g., mobile apps, curl requests)
-      if (!origin) return callback(null, true);
-      // Check if the origin is in the list of allowed origins
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl requests) or from allowed origins
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
       }
-      return callback(null, true);
+      return callback(new Error("CORS policy violation"), false);
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -44,7 +38,6 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.json());
 
 // Routes
 app.use("/api/v1/talent", talentRoutes);

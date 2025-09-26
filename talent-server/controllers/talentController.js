@@ -43,7 +43,7 @@ exports.register = async (req, res) => {
       bgImage,
       role,
       profileImage,
-      // skills,
+      skills,
       description,
     });
 
@@ -59,19 +59,33 @@ exports.register = async (req, res) => {
       })
     );
 
-    await Promise.all(
-      Object.keys(skillsToUpdate).map(async (skillType) => {
-        const skill = await Skill.findOne({ skillType });
-        if (skill) {
-          skillsToUpdate[skillType].forEach((id) => {
-            if (!skill[skillType].includes(id)) {
-              skill[skillType].push(id);
-            }
-          });
-          await skill.save();
-        }
-      })
-    );
+    // Fix N+1 query: Fetch all skills in a single query instead of multiple queries
+    const skillsToFetch = Object.keys(skillsToUpdate);
+    if (skillsToFetch.length > 0) {
+      const existingSkills = await Skill.find({
+        skillType: { $in: skillsToFetch },
+      });
+
+      // Create a map for quick lookup
+      const skillMap = {};
+      existingSkills.forEach((skill) => {
+        skillMap[skill.skillType] = skill;
+      });
+
+      await Promise.all(
+        skillsToFetch.map(async (skillType) => {
+          const skill = skillMap[skillType];
+          if (skill) {
+            skillsToUpdate[skillType].forEach((id) => {
+              if (!skill[skillType].includes(id)) {
+                skill[skillType].push(id);
+              }
+            });
+            await skill.save();
+          }
+        })
+      );
+    }
 
     // Send email asynchronously
 
