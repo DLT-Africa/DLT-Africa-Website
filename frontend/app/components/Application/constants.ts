@@ -74,18 +74,9 @@ export const GENDER_OPTIONS: Option[] = [
 ];
 
 export const REFERRAL_OPTIONS: Option[] = [
-    { id: 1, tag: "Social Media (Facebook, Twitter, LinkedIn, etc.)" },
-    { id: 2, tag: "Friend or Colleague" },
-    { id: 3, tag: "Online Search (Google, Bing, etc.)" },
-    { id: 4, tag: "Newsletter or Email" },
-    { id: 5, tag: "DLT Africa Website" },
-    { id: 6, tag: "Event or Conference" },
-    { id: 7, tag: "Blog or Online Article" },
-    { id: 8, tag: "Webinar or Online Workshop" },
-    { id: 9, tag: "University or School" },
-    { id: 10, tag: "Advertisements (Online, Print, etc.)" },
-    { id: 11, tag: "Community Forum or Group" },
-    { id: 12, tag: "Other (Please Specify)" },
+    { id: 1, tag: "Social Media" },
+    { id: 2, tag: "Friend" },
+    { id: 3, tag: "Website" },
 ];
 
 export const ACADEMIC_QUALIFICATIONS: Option[] = [
@@ -97,12 +88,13 @@ export const ACADEMIC_QUALIFICATIONS: Option[] = [
 
 export const CODING_EXPERIENCE: Option[] = [
     { id: 1, tag: "Beginner" },
-    { id: 2, tag: "Inter-Mediate" },
+    { id: 2, tag: "Intermediate" },
     { id: 3, tag: "Advanced" },
+    { id: 4, tag: "Expert" },
 ];
 
 export const CLASS_TYPES: Option[] = [
-    { id: 1, tag: "Online" },
+    { id: 1, tag: "Virtual" },
     { id: 2, tag: "Physical" },
 ];
 

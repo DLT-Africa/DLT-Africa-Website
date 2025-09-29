@@ -160,7 +160,7 @@ const generateStudentConfirmationEmail = (user, tuitionFee) => {
           <li>If you lack basic knowledge of computers, now is the time to start learning.</li>
         </ul>
         
-        <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of <strong>${formattedFee}</strong> of the total tuition fee on or before November 30th, 2024.</p>
+        <p>As part of our requirements to confirm your admission, you are required to make a tuition deposit of <strong>${formattedFee}</strong> of the total tuition fee on or before December 20th, 2025.</p>
         
         <p><strong>ONLY those who make the tuition deposit will be considered to have secured a place, and those who have not completed their deposit shall lose their place to other candidates in the pipeline.</strong></p>
         
