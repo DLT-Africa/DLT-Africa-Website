@@ -339,6 +339,8 @@ module.exports = {
   getCorpersCourses,
   formatCurrency,
 
+  validateCourseInputs,
+
   // Constants
   COURSE_PRICING,
   VALID_CLASS_TYPES,
