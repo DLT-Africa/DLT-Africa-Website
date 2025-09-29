@@ -107,6 +107,7 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
       "http://localhost:3000",
+      "http://localhost:3001",
       "https://talent-pool-server.vercel.app",
       "https://dlt-africa-website-frontend.vercel.app",
       "https://dlt-africa-talent-pool.vercel.app",
