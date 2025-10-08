@@ -56,9 +56,8 @@ const Application: React.FC = () => {
               <Button
                 type="submit"
                 size="lg"
-                className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${
-                  !allCheckboxesChecked && "pointer-events-none opacity-50"
-                }`}
+                className={`capitalize px-16 py-4 mt-5 bg-[#FC7C13] ${!allCheckboxesChecked && "pointer-events-none opacity-50"
+                  }`}
                 disabled={
                   !allCheckboxesChecked || isSubmitting || isApplicationClosed
                 }
@@ -75,6 +74,14 @@ const Application: React.FC = () => {
                 </div>
               )}
             </form>
+
+            {/* Phone Number Display */}
+            <div className="text-center mt-6">
+              <p className="text-gray-600 text-sm">
+                Need help or having issues registering? Call us at: <span className="font-semibold text-[#FC7C13]">+234-8156509701</span>
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
