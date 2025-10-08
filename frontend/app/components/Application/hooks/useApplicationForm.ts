@@ -50,7 +50,7 @@ export const useApplicationForm = () => {
         setFormValidMessage("");
         const { name, value } = e.target;
 
-        if (name === "classType" && value === "Online") {
+        if (name === "classType" && value === "Virtual") {
             setFormData({
                 ...formData,
                 [name]: value,
