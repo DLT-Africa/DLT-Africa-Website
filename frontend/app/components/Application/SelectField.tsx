@@ -16,6 +16,7 @@ interface SelectFieldProps {
   value?: string;
 }
 
+
 const SelectField: React.FC<SelectFieldProps> = ({
   label,
   name,
@@ -64,7 +65,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
           default:
             tuitionFee = 0;
         }
-      } else if (classType === "Online") {
+      } else if (classType === "Virtual") {
         switch (value) {
           case "Frontend Development":
             tuitionFee = 320000;
@@ -83,6 +84,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
         }
       }
       setTuitionFee(tuitionFee);
+
     }
   };
 
