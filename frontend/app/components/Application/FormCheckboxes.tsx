@@ -125,7 +125,7 @@ const FormCheckboxes = ({
               />
             </ListItemPrefix>
             <Typography
-              className="font-normal text-sm text-[#000]"
+              className="font-normal text-sm text-gray-600"
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
