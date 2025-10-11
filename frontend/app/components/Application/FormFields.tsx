@@ -28,7 +28,7 @@ const FormFields = ({
   tuitionFee,
 }: FormFieldsProps) => {
   const courseOptions =
-    formData.classType === "Online" ? ONLINE_COURSES : PHYSICAL_COURSES;
+    formData.classType === "Virtual" ? ONLINE_COURSES : PHYSICAL_COURSES;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 gap-x-14">
