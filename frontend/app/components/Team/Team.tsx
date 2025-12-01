@@ -35,13 +35,13 @@ const teamMember: TeamMember[] = [
   },
   {
     id: 3,
-    img: "/images/jordan.jpeg",
-    name: "Jordan Muthemba",
-    role: "Blockchain Developer",
+    img: "/images/kenny.png",
+    name: "Kehinde Abubakar",
+    role: "Software Developer",
     description:
-      "Jordan is driven by his passion for software development and his desire to use technology to make a positive impact on communities. He is committed to sharing his knowledge with others and is always eager to talk about his journey in Blockchain technology.",
-    linkedinLink: "https://www.linkedin.com/in/jordan-muthemba/",
-    twitterLink: "https://twitter.com/type_jordan",
+      "Kehinde is a strong software developer and a dependable team player. He consistently brings a collaborative attitude to every project and doesn’t shy away from difficult or complex challenges. He’s the kind of engineer who steps up, takes ownership, and delivers.",
+    linkedinLink: "https://www.linkedin.com/in/kehinde-abubakar/",
+    twitterLink: "https://twitter.com/kennySpec",
   },
   {
     id: 4,
